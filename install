@@ -383,7 +383,32 @@ add_to_path() {
 
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
-current_shell=$(basename "$SHELL")
+# The user's interactive shell, which is the one that needs the PATH entry.
+#
+# `$SHELL` is the obvious source and it is not reliable: it is inherited from
+# whatever launched this process, so a terminal emulator configured to start a
+# different shell, or a `chsh` whose session was never restarted, leaves it
+# pointing at a shell the user no longer uses. That failure is silent and total:
+# the line lands in a config file nothing reads, the installer reports success,
+# and the command is never found. It was observed with `$SHELL=/usr/bin/zsh`
+# against a login shell of `/bin/fish`.
+#
+# The passwd entry is what `chsh` writes and what the login process reads, so it
+# is asked first. `$SHELL` stays as the fallback: some containers ship no
+# `getent` and no readable `/etc/passwd`, and on macOS the user record is not
+# there either, where `$SHELL` is set from it and is trustworthy.
+detect_shell() {
+    local login_shell=""
+    if command -v getent >/dev/null 2>&1; then
+        login_shell=$(getent passwd "$(id -un)" 2>/dev/null | cut -d: -f7)
+    fi
+    if [[ -z $login_shell && -r /etc/passwd ]]; then
+        login_shell=$(grep "^$(id -un):" /etc/passwd 2>/dev/null | head -n1 | cut -d: -f7)
+    fi
+    basename "${login_shell:-$SHELL}"
+}
+
+current_shell=$(detect_shell)
 case $current_shell in
     fish)
         config_files="$HOME/.config/fish/config.fish"
@@ -447,6 +472,19 @@ fi
 if [ -n "${GITHUB_ACTIONS-}" ] && [ "${GITHUB_ACTIONS}" == "true" ]; then
     echo "$INSTALL_DIR" >> $GITHUB_PATH
     print_message info "Added $INSTALL_DIR to \$GITHUB_PATH"
+fi
+
+# The PATH line lands in a config file, and a config file is read when a shell
+# starts. Saying nothing here is how an install that worked still ends with
+# "command not found": the user tries it in the very session that cannot see it.
+if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
+    case $current_shell in
+        fish) activate="fish_add_path $INSTALL_DIR" ;;
+        *)    activate="export PATH=$INSTALL_DIR:\$PATH" ;;
+    esac
+    echo -e ""
+    echo -e "${ORANGE}Abre una terminal nueva para usarlo${NC}, o actívalo en esta con:"
+    echo -e "  $activate"
 fi
 
 echo -e ""
