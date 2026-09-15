@@ -1,0 +1,44 @@
+[
+  {
+    "file": "2xqh.pdb",
+    "url": "https://files.rcsb.org/download/2XQH.pdb",
+    "retrieved_at": "2026-09-15T13:31:05.620209+00:00",
+    "status": 200,
+    "final_url": "https://files.rcsb.org/download/2XQH.pdb",
+    "bytes": 359397,
+    "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
+  },
+  {
+    "file": "reupred.tar.gz",
+    "url": "http://old.protein.bio.unipd.it/reupred/reupred.tar.gz",
+    "retrieved_at": "2026-09-15T13:31:05.620862+00:00",
+    "status": 200,
+    "final_url": "http://old.protein.bio.unipd.it/reupred/reupred.tar.gz",
+    "bytes": 4397642,
+    "sha256": "3c6b98b8a9d0b147e38a27918a8e3bb3c47308278a30f889a741768b0473a200"
+  },
+  {
+    "file": "edam-releases.json",
+    "url": "https://api.github.com/repos/edamontology/edamontology/releases/latest",
+    "retrieved_at": "2026-09-15T13:31:05.621311+00:00",
+    "status": 200,
+    "final_url": "https://api.github.com/repos/edamontology/edamontology/releases/latest",
+    "bytes": 11121,
+    "sha256": "d2d3988f8059457f059c43ad6733722ee96054ce9b845f8747ba9344a1f5f818"
+  },
+  {
+    "file": "biotools-schema.json",
+    "url": "https://raw.githubusercontent.com/bio-tools/biotoolsSchema/master/biotools.schema.json",
+    "retrieved_at": "2026-09-15T13:31:05.621792+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "file": "repeatsdb-page.json",
+    "url": "https://repeatsdb.org/api/production/annotations?limit=1&skip=0&chain.source=RCSB%2FPDB",
+    "retrieved_at": "2026-09-15T13:31:05.622453+00:00",
+    "status": 200,
+    "final_url": "https://repeatsdb.org/api/production/annotations?limit=1&skip=0&chain.source=RCSB%2FPDB",
+    "bytes": 2221,
+    "sha256": "8e974674ed7bb9a827b92a98e07f587a70402422ddb75457ba1effb54aa61502"
+  }
+]

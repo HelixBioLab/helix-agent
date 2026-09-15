@@ -49,7 +49,12 @@ def main():
         def replace_text(node, value):
             runs = node.getElementsByTagName("w:t")
             if not runs:
-                run = element("r", parent=node)
+                # Word requires runs inside paragraphs, including in empty table cells.
+                parent = node
+                if node.tagName == "w:tc":
+                    paragraphs = node.getElementsByTagName("w:p")
+                    parent = paragraphs[0] if paragraphs else element("p", parent=node)
+                run = element("r", parent=parent)
                 runs = [element("t", parent=run)]
             for item in runs:
                 for child in list(item.childNodes):

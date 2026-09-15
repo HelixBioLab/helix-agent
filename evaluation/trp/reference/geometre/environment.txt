@@ -1,0 +1,26 @@
+biopython==1.84
+certifi==2026.7.22
+charset-normalizer==3.5.1
+cloudpickle==3.1.2
+geometre @ file:///opt/geometre
+idna==3.19
+ImageIO==2.37.4
+joblib==1.6.0
+lazy-loader==0.5
+networkx==3.6.1
+numpy==2.2.2
+packaging==26.3
+pandas==2.2.3
+pillow==12.3.0
+python-dateutil==2.9.0.post0
+pytz==2026.3.post1
+requests==2.32.3
+scikit-image==0.25.0
+scikit-learn==1.6.0
+scipy==1.15.0
+six==1.17.0
+threadpoolctl==3.6.0
+tifffile==2026.3.3
+tmtools==0.2.0
+tzdata==2026.4
+urllib3==2.7.0

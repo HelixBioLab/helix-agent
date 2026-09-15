@@ -1,0 +1,8 @@
+{
+  "pdb": "2xqh",
+  "chain": "A",
+  "units": "161_175,176_189,190_203,204_217,218_233,234_249,250_263,264_276,305_326,327_350,373_392,393_416",
+  "insertions": "351_372",
+  "frame": "pdb-author-residue-number",
+  "source": "https://github.com/BioComputingUP/GeomeTRe/blob/8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9/README.md"
+}

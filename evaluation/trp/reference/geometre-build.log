@@ -1,0 +1,160 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from geometre.Dockerfile
+#1 transferring dockerfile: 878B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11.11-slim-bookworm@sha256:081075da77b2b55c23c088251026fb69a7b2bf92471e491ff5fd75c192fd38e5
+#2 DONE 1.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/python:3.11.11-slim-bookworm@sha256:081075da77b2b55c23c088251026fb69a7b2bf92471e491ff5fd75c192fd38e5
+#4 resolve docker.io/library/python:3.11.11-slim-bookworm@sha256:081075da77b2b55c23c088251026fb69a7b2bf92471e491ff5fd75c192fd38e5 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 3.25kB done
+#5 DONE 0.0s
+
+#6 [2/4] COPY . /opt/geometre
+#6 CACHED
+
+#7 [3/4] RUN python -m pip install --no-cache-dir     numpy==2.2.2 pandas==2.2.3 scipy==1.15.0 scikit-learn==1.6.0     biopython==1.84 tmtools==0.2.0 scikit-image==0.25.0 requests==2.32.3     certifi==2026.7.22 charset-normalizer==3.5.1 cloudpickle==3.1.2     idna==3.19 ImageIO==2.37.4 joblib==1.6.0 lazy-loader==0.5 networkx==3.6.1     packaging==26.3 pillow==12.3.0 python-dateutil==2.9.0.post0 pytz==2026.3.post1     six==1.17.0 threadpoolctl==3.6.0 tifffile==2026.3.3 tzdata==2026.4 urllib3==2.7.0     /opt/geometre     && python -m pip freeze > /opt/geometre-freeze.txt
+#7 1.729 Processing /opt/geometre
+#7 1.731   Installing build dependencies: started
+#7 3.667   Installing build dependencies: finished with status 'done'
+#7 3.668   Getting requirements to build wheel: started
+#7 3.879   Getting requirements to build wheel: finished with status 'done'
+#7 3.880   Preparing metadata (pyproject.toml): started
+#7 4.065   Preparing metadata (pyproject.toml): finished with status 'done'
+#7 4.596 Collecting numpy==2.2.2
+#7 4.780   Downloading numpy-2.2.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+#7 4.806      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 2.3 MB/s eta 0:00:00
+#7 5.000 Collecting pandas==2.2.3
+#7 5.010   Downloading pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (89 kB)
+#7 5.021      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 89.9/89.9 kB 8.9 MB/s eta 0:00:00
+#7 5.210 Collecting scipy==1.15.0
+#7 5.221   Downloading scipy-1.15.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+#7 5.224      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 210.3 MB/s eta 0:00:00
+#7 5.352 Collecting scikit-learn==1.6.0
+#7 5.441   Downloading scikit_learn-1.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+#7 5.493 Collecting biopython==1.84
+#7 5.503   Downloading biopython-1.84-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+#7 5.530 Collecting tmtools==0.2.0
+#7 5.577   Downloading tmtools-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#7 5.758 Collecting scikit-image==0.25.0
+#7 5.920   Downloading scikit_image-0.25.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (14 kB)
+#7 5.965 Collecting requests==2.32.3
+#7 5.974   Downloading requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+#7 6.003 Collecting certifi==2026.7.22
+#7 6.009   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#7 6.205 Collecting charset-normalizer==3.5.1
+#7 6.216   Downloading charset_normalizer-3.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+#7 6.221      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.9/45.9 kB 59.6 MB/s eta 0:00:00
+#7 6.245 Collecting cloudpickle==3.1.2
+#7 6.254   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+#7 6.276 Collecting idna==3.19
+#7 6.283   Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+#7 6.320 Collecting ImageIO==2.37.4
+#7 6.328   Downloading imageio-2.37.4-py3-none-any.whl.metadata (9.6 kB)
+#7 6.360 Collecting joblib==1.6.0
+#7 6.368   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+#7 6.384 Collecting lazy-loader==0.5
+#7 6.392   Downloading lazy_loader-0.5-py3-none-any.whl.metadata (5.9 kB)
+#7 6.427 Collecting networkx==3.6.1
+#7 6.433   Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+#7 6.462 Collecting packaging==26.3
+#7 6.469   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#7 6.696 Collecting pillow==12.3.0
+#7 6.704   Downloading pillow-12.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+#7 6.725 Collecting python-dateutil==2.9.0.post0
+#7 6.732   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#7 6.789 Collecting pytz==2026.3.post1
+#7 6.796   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+#7 6.816 Collecting six==1.17.0
+#7 6.825   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#7 6.841 Collecting threadpoolctl==3.6.0
+#7 6.851   Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+#7 6.906 Collecting tifffile==2026.3.3
+#7 6.915   Downloading tifffile-2026.3.3-py3-none-any.whl.metadata (31 kB)
+#7 6.991 Collecting tzdata==2026.4
+#7 7.000   Downloading tzdata-2026.4-py2.py3-none-any.whl.metadata (1.4 kB)
+#7 7.046 Collecting urllib3==2.7.0
+#7 7.052   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#7 7.486 Downloading numpy-2.2.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.4 MB)
+#7 8.431    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.4/16.4 MB 18.3 MB/s eta 0:00:00
+#7 8.439 Downloading pandas-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+#7 9.181    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 17.9 MB/s eta 0:00:00
+#7 9.206 Downloading scipy-1.15.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (40.6 MB)
+#7 11.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.6/40.6 MB 20.4 MB/s eta 0:00:00
+#7 11.60 Downloading scikit_learn-1.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.5 MB)
+#7 12.25    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.5/13.5 MB 21.8 MB/s eta 0:00:00
+#7 12.26 Downloading biopython-1.84-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+#7 12.41    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 22.0 MB/s eta 0:00:00
+#7 12.42 Downloading tmtools-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+#7 12.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 25.0 MB/s eta 0:00:00
+#7 12.58 Downloading scikit_image-0.25.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (14.8 MB)
+#7 13.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.8/14.8 MB 19.3 MB/s eta 0:00:00
+#7 13.36 Downloading requests-2.32.3-py3-none-any.whl (64 kB)
+#7 13.36    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.9/64.9 kB 42.2 MB/s eta 0:00:00
+#7 13.37 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#7 13.38    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.0/137.0 kB 47.6 MB/s eta 0:00:00
+#7 13.39 Downloading charset_normalizer-3.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (262 kB)
+#7 13.40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 262.3/262.3 kB 36.8 MB/s eta 0:00:00
+#7 13.41 Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+#7 13.41 Downloading idna-3.19-py3-none-any.whl (68 kB)
+#7 13.42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.5/68.5 kB 209.0 MB/s eta 0:00:00
+#7 13.43 Downloading imageio-2.37.4-py3-none-any.whl (318 kB)
+#7 13.44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 318.0/318.0 kB 57.8 MB/s eta 0:00:00
+#7 13.45 Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+#7 13.46    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 306.1/306.1 kB 31.6 MB/s eta 0:00:00
+#7 13.47 Downloading lazy_loader-0.5-py3-none-any.whl (8.0 kB)
+#7 13.49 Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+#7 13.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 30.1 MB/s eta 0:00:00
+#7 13.58 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#7 13.58    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 56.8 MB/s eta 0:00:00
+#7 13.62 Downloading pillow-12.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+#7 13.92    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 23.3 MB/s eta 0:00:00
+#7 13.93 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#7 13.94    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 26.6 MB/s eta 0:00:00
+#7 13.95 Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+#7 13.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 508.3/508.3 kB 42.9 MB/s eta 0:00:00
+#7 13.98 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#7 13.98 Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+#7 14.00 Downloading tifffile-2026.3.3-py3-none-any.whl (243 kB)
+#7 14.00    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 244.0/244.0 kB 48.8 MB/s eta 0:00:00
+#7 14.01 Downloading tzdata-2026.4-py2.py3-none-any.whl (347 kB)
+#7 14.02    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 347.5/347.5 kB 40.0 MB/s eta 0:00:00
+#7 14.04 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#7 14.04    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 kB 57.3 MB/s eta 0:00:00
+#7 14.21 Building wheels for collected packages: geometre
+#7 14.21   Building wheel for geometre (pyproject.toml): started
+#7 14.41   Building wheel for geometre (pyproject.toml): finished with status 'done'
+#7 14.42   Created wheel for geometre: filename=geometre-1.0-py3-none-any.whl size=25600 sha256=96d97afa7c300caa329c3a8ea6d37845c049bc943bd26b4489c9b661c728b964
+#7 14.42   Stored in directory: /tmp/pip-ephem-wheel-cache-km5eeewx/wheels/9b/f2/e0/6294e2d8d9c6d0987175eab15906ef103bbcefd2265b5bc493
+#7 14.42 Successfully built geometre
+#7 14.75 Installing collected packages: pytz, urllib3, tzdata, threadpoolctl, six, pillow, packaging, numpy, networkx, idna, cloudpickle, charset-normalizer, certifi, tmtools, tifffile, scipy, requests, python-dateutil, lazy-loader, joblib, ImageIO, biopython, scikit-learn, scikit-image, pandas, geometre
+#7 29.53 Successfully installed ImageIO-2.37.4 biopython-1.84 certifi-2026.7.22 charset-normalizer-3.5.1 cloudpickle-3.1.2 geometre-1.0 idna-3.19 joblib-1.6.0 lazy-loader-0.5 networkx-3.6.1 numpy-2.2.2 packaging-26.3 pandas-2.2.3 pillow-12.3.0 python-dateutil-2.9.0.post0 pytz-2026.3.post1 requests-2.32.3 scikit-image-0.25.0 scikit-learn-1.6.0 scipy-1.15.0 six-1.17.0 threadpoolctl-3.6.0 tifffile-2026.3.3 tmtools-0.2.0 tzdata-2026.4 urllib3-2.7.0
+#7 29.53 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#7 29.70 
+#7 29.70 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#7 29.70 [notice] To update, run: pip install --upgrade pip
+#7 DONE 30.7s
+
+#8 [4/4] WORKDIR /work
+#8 DONE 0.2s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 18.3s done
+#9 exporting manifest sha256:d6ad682352f61197803f0ab486cb5d779b73cc9d2bcc049e157126f812d3c9f9 0.0s done
+#9 exporting config sha256:6839dabf0238d85869c58c1ee9572fa7d310b39b2708e118b5eb785a9a52e8c8 0.0s done
+#9 exporting attestation manifest sha256:b2aa37d7db84da9862cb12a309d63b6c8238fa5d8e42c88bcee2a836dfed7bcc 0.0s done
+#9 exporting manifest list sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2 0.0s done
+#9 naming to docker.io/tesis/geometre:1.0-frozen done
+#9 unpacking to docker.io/tesis/geometre:1.0-frozen
+#9 unpacking to docker.io/tesis/geometre:1.0-frozen 5.0s done
+#9 DONE 23.4s

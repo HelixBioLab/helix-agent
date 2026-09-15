@@ -1,0 +1,31 @@
+{
+  "phase": "F2",
+  "source_sha256": "51f2d7e91a7befa1985da111e90ecdb5a15173c0708bc906dd77db3f0b5dcda6",
+  "docx": {
+    "path": "/home/webiwabou/Projects/Tesis.docx",
+    "sha256": "b665e59133214ff83144e0c2532fd63226d384ef465ce523f42f54887f81e54b"
+  },
+  "pdf": {
+    "path": "/home/webiwabou/Projects/Tesis-fase2.pdf",
+    "sha256": "69e2aca8e176dcf3a4522f60eb3d500f6fd566cd7ce4fd172c20b22864d76cf4",
+    "pages": 121,
+    "automatic_section_separator_pages": [10, 106]
+  },
+  "checks": {
+    "bibliography_paragraphs_preserved": 99,
+    "bibliography_author_notes_preserved": 2,
+    "bibliography_entry_count": "not_asserted_until_F7_repairs_split_entries",
+    "active_figures_preserved": 4,
+    "sections_preserved": 3,
+    "red_italic_author_notes": 25,
+    "r21_table_populated_after_render": true,
+    "toc_has_all_five_chapters": true,
+    "toc_has_21_results_once_each": true,
+    "appendix_sections": 16,
+    "toc_duplicates": 0,
+    "footer_total_matches_pdf": true
+  },
+  "historical_correction": "F1 inserted runs directly in blank table cells; Writer dropped that invalid content. F2 fixes the writer and verifies R2.1 after rendering.",
+  "visual_review_pages": [9, 85, 117],
+  "installed": true
+}

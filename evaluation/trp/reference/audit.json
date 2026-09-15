@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-15",
+  "admitted": [
+    "rcsb.structure",
+    "geometre.geometry"
+  ],
+  "candidates": [
+    "repeatsdb.annotations",
+    "reupred.detect",
+    "strpsearch.detect"
+  ],
+  "scope": "Technical reference and contract audit, not empirical evaluation",
+  "strpsearch_database": {
+    "sha256": "8c7341b2c789e6e0769c751bce4e5bfaeb3d750bde90985c406b51f2f4d8854d",
+    "bytes": 73965136
+  },
+  "biotools": {
+    "revision": "c31233af4e136f985e83a58f3ca11b02628348f9",
+    "file": "stable/biotools.xsd",
+    "sha256": "c81c2fd17a1a75bf40a9eb91ab27e9bc62ca59c0bcce035f02dbb67ea52521e7",
+    "fields": [
+      "function.operation.uri",
+      "function.input.data.uri",
+      "function.input.format.uri",
+      "function.output.data.uri",
+      "function.output.format.uri"
+    ],
+    "conformance": "Field mapping only; no claim of registration or full schema validation"
+  },
+  "edam": {
+    "version": "1.25.20260626T1230Z",
+    "source": "https://github.com/edamontology/edamontology/releases/download/1.25.20260626T1230Z/EDAM.owl",
+    "sha256": "278c5e606004c872311cd9d9d385eb578f01c1a3a38cb9ebeaa5e125e818ecc8",
+    "license": "CC-BY-SA-4.0",
+    "terms": [
+      {
+        "uri": "http://edamontology.org/data_0989",
+        "term": "Protein identifier"
+      },
+      {
+        "uri": "http://edamontology.org/data_1460",
+        "term": "Protein structure"
+      },
+      {
+        "uri": "http://edamontology.org/data_1537",
+        "term": "Protein structure report"
+      },
+      {
+        "uri": "http://edamontology.org/format_1476",
+        "term": "PDB"
+      },
+      {
+        "uri": "http://edamontology.org/format_3464",
+        "term": "JSON"
+      },
+      {
+        "uri": "http://edamontology.org/format_3752",
+        "term": "CSV"
+      },
+      {
+        "uri": "http://edamontology.org/operation_2406",
+        "term": "Protein structure analysis"
+      },
+      {
+        "uri": "http://edamontology.org/operation_2422",
+        "term": "Data retrieval"
+      }
+    ]
+  }
+}

@@ -1,0 +1,635 @@
+{
+  "version": "trp-catalog/1.0.0",
+  "entries": [
+    {
+      "id": "rcsb.structure",
+      "name": "RCSB PDB structure retrieval (legacy PDB)",
+      "status": "admitted",
+      "kind": "http",
+      "source": {
+        "url": "https://files.rcsb.org/download/2XQH.pdb",
+        "revision": "response-sha256:f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b",
+        "license": "CC0-1.0",
+        "licenseUrl": "https://www.wwpdb.org/about/usage-policies"
+      },
+      "operation": {
+        "uri": "http://edamontology.org/operation_2422",
+        "term": "Data retrieval"
+      },
+      "inputs": [
+        {
+          "id": "request",
+          "data": {
+            "uri": "http://edamontology.org/data_0989",
+            "term": "Protein identifier"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "none",
+          "numbering": "none",
+          "insertionCodes": "none",
+          "confidence": "none",
+          "constraints": ["Explicit PDB identifier and format in the request"],
+          "scales": []
+        }
+      ],
+      "outputs": [
+        {
+          "id": "structure",
+          "data": {
+            "uri": "http://edamontology.org/data_1460",
+            "term": "Protein structure"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_1476",
+            "term": "PDB"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "preserved",
+          "confidence": "none",
+          "constraints": ["PDB identifiers are normalized to lowercase; chain identifiers remain case-sensitive"],
+          "scales": [
+            {
+              "field": "xyz",
+              "meaning": "atomic coordinates",
+              "unit": "angstrom",
+              "direction": "none"
+            },
+            {
+              "field": "B-factor",
+              "meaning": "experimental displacement parameter; not pLDDT",
+              "unit": "angstrom^2",
+              "direction": "none"
+            }
+          ]
+        }
+      ],
+      "parameters": ["pdb_id", "format=pdb"],
+      "limitations": [
+        "Reference uses 2xqh only; the live archive may change. Reproduction checks the stored bytes, not an assumed current version.",
+        "Not all PDB entries are available in legacy PDB format. mmCIF retrieval and predicted models need separate tested contracts.",
+        "Model selection, alternate locations, insertion codes, missing residues and confidence interpretation must be checked before geometric analysis."
+      ],
+      "reference": {
+        "revision": "response-sha256:f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b",
+        "command": ["HTTP", "GET", "https://files.rcsb.org/download/2XQH.pdb"],
+        "exitCode": 0,
+        "record": {
+          "path": "evaluation/trp/reference/rcsb-reference.json",
+          "bytes": 698,
+          "sha256": "5171960082f66c19dd932fa48f0b093433ae95f04cdd1c821780086f71bbd58f"
+        },
+        "inputs": [
+          {
+            "path": "evaluation/trp/reference/rcsb-request.json",
+            "bytes": 114,
+            "sha256": "f16828a16b17e69f6502f83c498d2ce17f4254561659efef2ede8df91e29a63d"
+          }
+        ],
+        "outputs": [
+          {
+            "path": "evaluation/trp/reference/geometre/2xqh.pdb",
+            "bytes": 359397,
+            "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
+          }
+        ]
+      }
+    },
+    {
+      "id": "geometre.geometry",
+      "name": "GeomeTRe single-structure geometry",
+      "status": "admitted",
+      "kind": "container",
+      "source": {
+        "url": "https://github.com/BioComputingUP/GeomeTRe",
+        "revision": "8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9",
+        "license": "GPL-3.0-only",
+        "licenseUrl": "https://github.com/BioComputingUP/GeomeTRe/blob/8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9/LICENSE"
+      },
+      "operation": {
+        "uri": "http://edamontology.org/operation_2406",
+        "term": "Protein structure analysis"
+      },
+      "inputs": [
+        {
+          "id": "structure",
+          "data": {
+            "uri": "http://edamontology.org/data_1460",
+            "term": "Protein structure"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_1476",
+            "term": "PDB"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "excluded",
+          "confidence": "none",
+          "constraints": [
+            "PDB identifiers are normalized to lowercase; chain identifiers remain case-sensitive",
+            "Exactly one selected model and author chain",
+            "Selected residues have unambiguous CA atoms",
+            "No author insertion codes in the selected chain",
+            "Input basename starts with the matching four-character PDB identifier"
+          ],
+          "scales": [
+            {
+              "field": "xyz",
+              "meaning": "atomic coordinates",
+              "unit": "angstrom",
+              "direction": "none"
+            },
+            {
+              "field": "B-factor",
+              "meaning": "experimental displacement parameter; not pLDDT",
+              "unit": "angstrom^2",
+              "direction": "none"
+            }
+          ]
+        },
+        {
+          "id": "units",
+          "data": {
+            "uri": "http://edamontology.org/data_1537",
+            "term": "Protein structure report"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "excluded",
+          "confidence": "none",
+          "constraints": [
+            "Explicit approved unit boundaries, ordered and disjoint, with at least two nonempty units",
+            "Unit boundaries are integer author residue numbers, not sequence offsets",
+            "Missing residues and insertion intervals must be declared before execution"
+          ],
+          "scales": []
+        }
+      ],
+      "outputs": [
+        {
+          "id": "geometry",
+          "data": {
+            "uri": "http://edamontology.org/data_1537",
+            "term": "Protein structure report"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3752",
+            "term": "CSV"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "excluded",
+          "confidence": "none",
+          "constraints": [
+            "Single-mode CSV only",
+            "First unit is a zero placeholder; mean and std rows summarize pairs and are not residues",
+            "Expected unit count and boundaries must be preserved; reject empty or non-finite output"
+          ],
+          "scales": [
+            {
+              "field": "curvature",
+              "meaning": "geometric rotation angle; not a confidence score",
+              "unit": "radian",
+              "minimum": 0,
+              "direction": "none"
+            },
+            {
+              "field": "twist",
+              "meaning": "geometric rotation angle; not a confidence score",
+              "unit": "radian",
+              "minimum": 0,
+              "direction": "none"
+            },
+            {
+              "field": "pitch",
+              "meaning": "geometric rotation angle; not a confidence score",
+              "unit": "radian",
+              "minimum": 0,
+              "direction": "none"
+            },
+            {
+              "field": "yaw",
+              "meaning": "geometric rotation angle; not a confidence score",
+              "unit": "radian",
+              "minimum": 0,
+              "direction": "none"
+            },
+            {
+              "field": "tmscore",
+              "meaning": "TM-align structural similarity between adjacent units; not pLDDT",
+              "unit": "dimensionless",
+              "minimum": 0,
+              "maximum": 1,
+              "direction": "higher"
+            },
+            {
+              "field": "twist_hand,pitch_hand",
+              "meaning": "sign of rotation; summary rows are mean and standard deviation of signs",
+              "unit": "dimensionless",
+              "direction": "none"
+            }
+          ]
+        }
+      ],
+      "parameters": ["chain", "units", "insertions (optional)", "window=6 (upstream default; no CLI override)"],
+      "limitations": [
+        "Requires previously supplied repeat-unit boundaries; does not detect repeats.",
+        "Admission covers single mode and PDB format. Batch, mmCIF, alternate conformations, multichain structures and general missing-coordinate handling are not validated by this reference.",
+        "The upstream implementation can discard empty units and can exit successfully without a CSV. The wrapper checks the output explicitly.",
+        "The auxiliary NPY contains Python objects; recorded as opaque bytes and never loaded by the verifier.",
+        "A local Docker digest identifies the tested image; this phase does not publish an image to a registry."
+      ],
+      "reference": {
+        "revision": "8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9",
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--network",
+          "none",
+          "--read-only",
+          "--cap-drop",
+          "ALL",
+          "--security-opt",
+          "no-new-privileges",
+          "--pids-limit",
+          "128",
+          "--cpus",
+          "2",
+          "--memory",
+          "2g",
+          "--tmpfs",
+          "/tmp",
+          "--user",
+          "1000:1000",
+          "--mount",
+          "type=bind,src=/tmp/tesis-f2/geometre-reference-frozen,dst=/work",
+          "sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2",
+          "single",
+          "/work/2xqh.pdb",
+          "A",
+          "/work/geometry.csv",
+          "161_175,176_189,190_203,204_217,218_233,234_249,250_263,264_276,305_326,327_350,373_392,393_416",
+          "-ins_def",
+          "351_372"
+        ],
+        "exitCode": 0,
+        "image": "sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2",
+        "record": {
+          "path": "evaluation/trp/reference/geometre/reference.json",
+          "bytes": 2368,
+          "sha256": "7c9ea839ee13a30dfca04a836ac656d74c7e9d846f01db563a4ad58d6f3b36a8"
+        },
+        "inputs": [
+          {
+            "path": "evaluation/trp/reference/geometre/2xqh.pdb",
+            "bytes": 359397,
+            "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
+          },
+          {
+            "path": "evaluation/trp/reference/geometre/units.json",
+            "bytes": 327,
+            "sha256": "43e08616015fab47bb74f82398270d5c57380ee1271eb526202d7378cee3a186"
+          }
+        ],
+        "outputs": [
+          {
+            "path": "evaluation/trp/reference/geometre/environment.txt",
+            "bytes": 461,
+            "sha256": "e3c078e170db172c87d23be30cc022a7b111aca47b5d7acf6bf9e0b05a6c603c"
+          },
+          {
+            "path": "evaluation/trp/reference/geometre/geometry.csv",
+            "bytes": 992,
+            "sha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f"
+          },
+          {
+            "path": "evaluation/trp/reference/geometre/geometry.npy",
+            "bytes": 13452,
+            "sha256": "a81eff2c96ae2eb645d4246759b31612f0b682c31d6d42fc51c789e9401205bb"
+          },
+          {
+            "path": "evaluation/trp/reference/geometre/stderr.log",
+            "bytes": 75,
+            "sha256": "02e530ec11441bb7a75c19fc173a654fcc13d7ed955484575c11e318304c942b"
+          },
+          {
+            "path": "evaluation/trp/reference/geometre/stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repeatsdb.annotations",
+      "name": "RepeatsDB annotation API",
+      "status": "candidate",
+      "kind": "http",
+      "source": {
+        "url": "https://repeatsdb.org/api/production/annotations",
+        "revision": "response-sha256:8e974674ed7bb9a827b92a98e07f587a70402422ddb75457ba1effb54aa61502",
+        "license": "unresolved",
+        "licenseUrl": "https://old.repeatsdb.bio.unipd.it/about"
+      },
+      "operation": {
+        "uri": "http://edamontology.org/operation_2422",
+        "term": "Data retrieval"
+      },
+      "inputs": [
+        {
+          "id": "request",
+          "data": {
+            "uri": "http://edamontology.org/data_0989",
+            "term": "Protein identifier"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "none",
+          "numbering": "none",
+          "insertionCodes": "none",
+          "confidence": "none",
+          "constraints": ["Explicit PDB identifier and format in the request"],
+          "scales": []
+        }
+      ],
+      "outputs": [
+        {
+          "id": "annotations",
+          "data": {
+            "uri": "http://edamontology.org/data_1537",
+            "term": "Protein structure report"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "unresolved",
+          "numbering": "unresolved",
+          "insertionCodes": "unresolved",
+          "confidence": "none",
+          "constraints": [
+            "Preserve raw source labels and reviewed status",
+            "Do not reinterpret locus numbers as author or label numbering without evidence"
+          ],
+          "scales": []
+        }
+      ],
+      "parameters": ["limit=1", "skip=0", "chain.source=RCSB/PDB"],
+      "limitations": [
+        "HTTP 200 and a real single-record response were obtained. This is not a complete snapshot.",
+        "The archive-era site declares CC BY 4.0. Its applicability to the current API release needs confirmation.",
+        "The tested response does not declare a coordinate frame. A validated mapping is required before coordinates feed geometry.",
+        "reviewed=false in the observed record; membership must not be equated with independent manual validation."
+      ]
+    },
+    {
+      "id": "reupred.detect",
+      "name": "ReUPred",
+      "status": "candidate",
+      "kind": "container",
+      "source": {
+        "url": "http://old.protein.bio.unipd.it/reupred/",
+        "revision": "archive-sha256:3c6b98b8a9d0b147e38a27918a8e3bb3c47308278a30f889a741768b0473a200",
+        "license": "GPL-notice-version-unspecified",
+        "licenseUrl": "http://old.protein.bio.unipd.it/reupred/reupred.tar.gz"
+      },
+      "operation": {
+        "uri": "http://edamontology.org/operation_2406",
+        "term": "Protein structure analysis"
+      },
+      "inputs": [
+        {
+          "id": "structure",
+          "data": {
+            "uri": "http://edamontology.org/data_1460",
+            "term": "Protein structure"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_1476",
+            "term": "PDB"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "preserved",
+          "confidence": "none",
+          "constraints": ["PDB identifiers are normalized to lowercase; chain identifiers remain case-sensitive"],
+          "scales": [
+            {
+              "field": "xyz",
+              "meaning": "atomic coordinates",
+              "unit": "angstrom",
+              "direction": "none"
+            },
+            {
+              "field": "B-factor",
+              "meaning": "experimental displacement parameter; not pLDDT",
+              "unit": "angstrom^2",
+              "direction": "none"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "id": "annotations",
+          "data": {
+            "uri": "http://edamontology.org/data_1537",
+            "term": "Protein structure report"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "unresolved",
+          "numbering": "unresolved",
+          "insertionCodes": "unresolved",
+          "confidence": "none",
+          "constraints": [
+            "Preserve raw source labels and reviewed status",
+            "Do not reinterpret locus numbers as author or label numbering without evidence"
+          ],
+          "scales": []
+        }
+      ],
+      "parameters": ["Not executable from this catalog version"],
+      "limitations": [
+        "Archive includes a GNU GPL notice, but no license version or complete license copy was identified. This corrects the earlier audit saying no license notice existed.",
+        "Python 3.14 launch fails at Python 2 print syntax. An isolated compatible environment, alignment tools and a successful prediction are still required.",
+        "The README command omits required arguments present in the parser. No scientific reference output was produced."
+      ]
+    },
+    {
+      "id": "strpsearch.detect",
+      "name": "STRPsearch",
+      "status": "candidate",
+      "kind": "container",
+      "source": {
+        "url": "https://github.com/BioComputingUP/STRPsearch",
+        "revision": "ed325a7f6b77578ee96753f31dbdcfda4931cca8",
+        "license": "GPL-3.0-only",
+        "licenseUrl": "https://github.com/BioComputingUP/STRPsearch/blob/ed325a7f6b77578ee96753f31dbdcfda4931cca8/LICENSE"
+      },
+      "operation": {
+        "uri": "http://edamontology.org/operation_2406",
+        "term": "Protein structure analysis"
+      },
+      "inputs": [
+        {
+          "id": "structure",
+          "data": {
+            "uri": "http://edamontology.org/data_1460",
+            "term": "Protein structure"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_1476",
+            "term": "PDB"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "preserved",
+          "confidence": "none",
+          "constraints": ["PDB identifiers are normalized to lowercase; chain identifiers remain case-sensitive"],
+          "scales": [
+            {
+              "field": "xyz",
+              "meaning": "atomic coordinates",
+              "unit": "angstrom",
+              "direction": "none"
+            },
+            {
+              "field": "B-factor",
+              "meaning": "experimental displacement parameter; not pLDDT",
+              "unit": "angstrom^2",
+              "direction": "none"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "id": "annotations",
+          "data": {
+            "uri": "http://edamontology.org/data_1537",
+            "term": "Protein structure report"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "unresolved",
+          "numbering": "unresolved",
+          "insertionCodes": "unresolved",
+          "confidence": "none",
+          "constraints": [
+            "Preserve raw source labels and reviewed status",
+            "Do not reinterpret locus numbers as author or label numbering without evidence"
+          ],
+          "scales": []
+        }
+      ],
+      "parameters": ["Not executable from this catalog version"],
+      "limitations": [
+        "Host launch fails because typer is absent; this is an environment failure, not evidence the algorithm fails.",
+        "Dockerfile selects strpsearch_env but environment.yml names strpsearch_env_ch_before. Requires a repaired, frozen build plus Foldseek, USalign and a successful reference using the bundled database.",
+        "The unconditional Chainsaw import introduces additional dependencies even when segmentation is disabled. Database archive sha256 is recorded in the audit."
+      ]
+    },
+    {
+      "id": "repeatsdb-lite.web",
+      "name": "RepeatsDB-lite",
+      "status": "web-comparator",
+      "kind": "web",
+      "source": {
+        "url": "https://protein.bio.unipd.it/repeatsdb-lite/",
+        "revision": "not-pinned",
+        "license": "unresolved",
+        "licenseUrl": "https://protein.bio.unipd.it/repeatsdb-lite/"
+      },
+      "operation": {
+        "uri": "http://edamontology.org/operation_2406",
+        "term": "Protein structure analysis"
+      },
+      "inputs": [
+        {
+          "id": "structure",
+          "data": {
+            "uri": "http://edamontology.org/data_1460",
+            "term": "Protein structure"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_1476",
+            "term": "PDB"
+          },
+          "namespace": "pdb",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "preserved",
+          "confidence": "none",
+          "constraints": ["PDB identifiers are normalized to lowercase; chain identifiers remain case-sensitive"],
+          "scales": [
+            {
+              "field": "xyz",
+              "meaning": "atomic coordinates",
+              "unit": "angstrom",
+              "direction": "none"
+            },
+            {
+              "field": "B-factor",
+              "meaning": "experimental displacement parameter; not pLDDT",
+              "unit": "angstrom^2",
+              "direction": "none"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "id": "annotations",
+          "data": {
+            "uri": "http://edamontology.org/data_1537",
+            "term": "Protein structure report"
+          },
+          "format": {
+            "uri": "http://edamontology.org/format_3464",
+            "term": "JSON"
+          },
+          "namespace": "pdb",
+          "chain": "unresolved",
+          "numbering": "unresolved",
+          "insertionCodes": "unresolved",
+          "confidence": "none",
+          "constraints": [
+            "Preserve raw source labels and reviewed status",
+            "Do not reinterpret locus numbers as author or label numbering without evidence"
+          ],
+          "scales": []
+        }
+      ],
+      "parameters": ["Manual comparator only"],
+      "limitations": [
+        "No local executable reference or automation contract verified; excluded from automatic composition."
+      ]
+    }
+  ]
+}

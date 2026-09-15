@@ -63,14 +63,30 @@ def main():
                 item = indexes.getByIndex(index)
                 if item.supportsService("com.sun.star.text.ContentIndex"):
                     item.CreateFromOutline = True
+                    # A heading selected both by outline and by an explicit style map
+                    # is duplicated by Writer. All thesis headings have outline levels.
+                    item.CreateFromLevelParagraphStyles = False
                     item.Level = 3
                 item.update()
             document.getTextFields().refresh()
             document.refresh()
             for index in range(indexes.getCount()):
                 indexes.getByIndex(index).update()
+            document.getCurrentController().getViewCursor().jumpToLastPage()
+            dispatcher = context.ServiceManager.createInstanceWithContext("com.sun.star.frame.DispatchHelper", context)
+            dispatcher.executeDispatch(document.getCurrentController().getFrame(), ".uno:UpdateAll", "", 0, ())
+            # PDF export forces pagination. Refresh NUMPAGES only after that layout,
+            # then save both formats with the same final field values.
+            pdf_options = (
+                prop("FilterName", "writer_pdf_Export"),
+                # Keep Writer's section-parity pages so PDF length agrees with NUMPAGES.
+                prop("FilterData", uno.Any("[]com.sun.star.beans.PropertyValue", (prop("IsSkipEmptyPages", False),))),
+                prop("Overwrite", True),
+            )
+            document.storeToURL(pdf.as_uri(), pdf_options)
+            document.getTextFields().refresh()
             document.storeToURL(target.as_uri(), (prop("FilterName", "Office Open XML Text"),))
-            document.storeToURL(pdf.as_uri(), (prop("FilterName", "writer_pdf_Export"),))
+            document.storeToURL(pdf.as_uri(), pdf_options)
             print(f"Updated {indexes.getCount()} indexes; wrote {target} and {pdf}")
         finally:
             if document is not None:

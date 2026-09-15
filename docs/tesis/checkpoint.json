@@ -1,8 +1,8 @@
 {
   "project": "Bioinformática.org — tesis TRP",
   "updated": "2026-09-15",
-  "phases_completed": ["F1"],
-  "next_phase": "F2",
+  "phases_completed": ["F1", "F2"],
+  "next_phase": "F3",
   "schedule": {
     "defense_month": "2027-07",
     "defense_month_status": "confirmed_by_user",
@@ -21,7 +21,7 @@
   "implementation_complete": false,
   "phases": {
     "F1": "complete",
-    "F2": "in_progress",
+    "F2": "complete",
     "F3": "planned",
     "F4": "planned",
     "F5": "planned",
@@ -32,18 +32,22 @@
     "plan": "docs/tesis/PLAN.md",
     "status": "docs/tesis/ESTADO.md",
     "traceability": "docs/tesis/trazabilidad.json",
-    "document_content": "docs/tesis/fase1-documento.json",
-    "engineering_evidence": "docs/tesis/evidencia/fase1.json",
-    "document_evidence": "docs/tesis/evidencia/documento-fase1.json",
+    "document_content": "docs/tesis/fase2-documento.json",
+    "engineering_evidence": "docs/tesis/evidencia/fase2.json",
+    "document_evidence": "docs/tesis/evidencia/documento-fase2.json",
     "docx": "/home/webiwabou/Projects/Tesis.docx",
-    "pdf": "/home/webiwabou/Projects/Tesis-fase1.pdf",
-    "verifier": "script/tesis/verify_snapshot.py"
+    "pdf": "/home/webiwabou/Projects/Tesis-fase2.pdf",
+    "verifier": "script/tesis/verify_snapshot.py",
+    "catalogue": "packages/bioinformatica/src/trp/catalog.json",
+    "protocol": "evaluation/trp/PROTOCOL.md",
+    "annotation_guide": "evaluation/trp/ANNOTATION.md"
   },
   "external_dependencies": [
     "Authentic FCI approval document and official title",
     "Independent annotator for R1.3 and R4.3",
     "Confirmed cluster access if the cluster execution claim is retained",
-    "Confirmed evaluation model, compute and API budget"
+    "Confirmed evaluation model, compute and API budget",
+    "Executable detection references and validated RepeatsDB coordinate frame before discovery workflows"
   ],
   "provider_connection": {
     "provider": "OpenAI",
@@ -52,10 +56,17 @@
     "model_id": null,
     "evaluation_budget": null
   },
-  "current_phase": "F2",
+  "current_phase": null,
   "resource_availability": {
     "annotator": "unconfirmed_user_confirmed_pending",
     "cluster": "unconfirmed_user_confirmed_pending",
     "reason": "User explicitly asked to register both as pending dependencies"
+  },
+  "phase2_scope": {
+    "admitted": 2,
+    "audited": 6,
+    "R1.1": "partial; detection tools and RepeatsDB mapping move to F3",
+    "R2.1": "design implemented; empirical campaign not started",
+    "document_installed": true
   }
 }

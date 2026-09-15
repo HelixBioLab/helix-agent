@@ -4,7 +4,8 @@
   "fuente": "Tesis.docx: secciones 1.2.3 y 1.2.4",
   "leyenda": {
     "parcial": "Hay componentes reutilizables; el indicador completo no está demostrado.",
-    "sin_evidencia": "La auditoría no encontró el entregable o su medición. No implica que una búsqueda pruebe inexistencia absoluta."
+    "sin_evidencia": "La auditoría no encontró el entregable o su medición. No implica que una búsqueda pruebe inexistencia absoluta.",
+    "implementado": "Entregable de diseño o software construido y verificado en su alcance; no implica cumplimiento empírico del objetivo."
   },
   "resultados": [
     {
@@ -15,16 +16,26 @@
       "codigo": [
         "packages/bioinformatica/src/nfcore/registry.ts",
         "packages/bioinformatica/src/bio/repeatsdb.ts",
-        "packages/bioinformatica/src/bio/sifts.ts"
+        "packages/bioinformatica/src/bio/sifts.ts",
+        "packages/bioinformatica/src/trp/catalog.ts",
+        "packages/bioinformatica/src/trp/catalog.json"
       ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/registry.test.ts",
         "packages/bioinformatica/test/bio/repeatsdb.test.ts",
-        "packages/bioinformatica/test/bio/sifts.test.ts"
+        "packages/bioinformatica/test/bio/sifts.test.ts",
+        "packages/bioinformatica/test/trp/catalog.test.ts"
       ],
-      "pendiente": "El registro nf-core y los clientes biológicos existen; falta un catálogo TRP de operaciones con contratos de identificadores, numeración y confianza, y una invocación ejecutada y versionada por entrada.",
-      "fase_cierre": "F2",
-      "medicion": null
+      "pendiente": "F2 entrega catálogo 1.0.0: dos operaciones con referencias verificadas, tres candidatas y un comparador web. Falta integrar resolución en el agente, admitir detección y verificar el marco de RepeatsDB. Los servicios remotos no exponen imagen de servidor. Se conserva alcance parcial y se traslada la ampliación a F3.",
+      "fase_cierre": "F3",
+      "medicion": {
+        "tipo": "referencia_tecnica_no_evaluacion_empirica",
+        "admitidas": 2,
+        "universo_auditado": 6,
+        "referencias_verificadas": 2,
+        "pruebas_catalogo": 16,
+        "evidencia": "evaluation/trp/reference/audit.json"
+      }
     },
     {
       "id": "R1.2",
@@ -47,7 +58,7 @@
       "estado": "sin_evidencia",
       "codigo": [],
       "pruebas": [],
-      "pendiente": "Preparar al menos 50 enunciados, sus paráfrasis y el criterio de admisibilidad; obtener juicios externos y medir admisibilidad y estabilidad. Las etiquetas no pueden atribuirse a un anotador inexistente.",
+      "pendiente": "Guía y plantilla externas preparadas en F2. Construir el corpus reservado de 50 intenciones factibles y dos paráfrasis por intención; conseguir anotador, congelar etiquetas y medir las tres repeticiones. No hay juicios externos obtenidos.",
       "fase_cierre": "F6",
       "medicion": null
     },
@@ -55,12 +66,23 @@
       "id": "R2.1",
       "objetivo": "OE2",
       "titulo": "Protocolo de evaluación",
-      "estado": "sin_evidencia",
-      "codigo": [],
+      "estado": "implementado",
+      "codigo": [
+        "evaluation/trp/PROTOCOL.md",
+        "evaluation/trp/protocol.json",
+        "evaluation/trp/ANNOTATION.md",
+        "evaluation/trp/freeze.template.json"
+      ],
       "pruebas": [],
-      "pendiente": "Los planes históricos de ablación no son el protocolo de los 21 resultados TRP. Fijar corpus, particiones, umbrales aún abiertos, denominadores y enmiendas antes de la campaña de evaluación.",
+      "pendiente": "Protocolo 1.0.0 fijado antes de la campaña con 21 definiciones, corpus, particiones, metas y enmiendas. Completar el registro de congelación, modelo, presupuesto, casos y anotador antes de F6; no es una evaluación ejecutada ni una prerregistración externa.",
       "fase_cierre": "F2",
-      "medicion": null
+      "medicion": {
+        "tipo": "cobertura_del_diseno",
+        "indicadores_definidos": 21,
+        "indicadores_requeridos": 21,
+        "version": "1.0.0",
+        "campana_iniciada": false
+      }
     },
     {
       "id": "R2.2",
@@ -141,7 +163,7 @@
       "estado": "sin_evidencia",
       "codigo": [],
       "pruebas": [],
-      "pendiente": "Implementar conteo derivado del grafo con llamadas, estructuras y tareas; declarar supuestos de almacenamiento. El tiempo mínimo por límite de tasa no garantiza el tiempo total.",
+      "pendiente": "Protocolo F2 fija diferencia cero para tareas/llamadas deterministas, ninguna superación de cota y sobreestimación mediana del almacenamiento ≤25%. Falta implementar el contador y medir; un tiempo mínimo por tasa no es tiempo total garantizado.",
       "fase_cierre": "F4",
       "medicion": null
     },
@@ -163,7 +185,7 @@
       "estado": "sin_evidencia",
       "codigo": [],
       "pruebas": [],
-      "pendiente": "Medir matriz de decisión frente a ejecución observada en condiciones controladas. Un caso rechazado que no se ejecutó para contraste no demuestra un rechazo correcto.",
+      "pendiente": "F2 fija falso rechazo ≤5% y reporte conjunto de acierto con contraste observado. Falta construir escenarios y ejecutar evaluación; un rechazo sin contraste sigue no evaluado.",
       "fase_cierre": "F6",
       "medicion": null
     },
@@ -268,7 +290,7 @@
       "estado": "sin_evidencia",
       "codigo": [],
       "pruebas": [],
-      "pendiente": "Recuperar los casos publicados de fallo y la anotación de referencia, separar desarrollo y reserva y medir ambas tasas. No asumir que una alarma de PAE detecta los casos de Pratt et al.",
+      "pendiente": "F2 fija sensibilidad ≥80%, especificidad ≥90% y cobertura evaluable ≥90%, con reporte conservador. Recuperar casos publicados independientes y controles pertinentes revisados; no atribuir capacidad de detección a PAE sin evaluación.",
       "fase_cierre": "F6",
       "medicion": null
     }

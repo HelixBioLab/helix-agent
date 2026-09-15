@@ -1,0 +1,40 @@
+{
+  "version": "1.25.20260626T1230Z",
+  "source": "https://github.com/edamontology/edamontology/releases/download/1.25.20260626T1230Z/EDAM.owl",
+  "sha256": "278c5e606004c872311cd9d9d385eb578f01c1a3a38cb9ebeaa5e125e818ecc8",
+  "license": "CC-BY-SA-4.0",
+  "terms": [
+    {
+      "uri": "http://edamontology.org/data_0989",
+      "term": "Protein identifier"
+    },
+    {
+      "uri": "http://edamontology.org/data_1460",
+      "term": "Protein structure"
+    },
+    {
+      "uri": "http://edamontology.org/data_1537",
+      "term": "Protein structure report"
+    },
+    {
+      "uri": "http://edamontology.org/format_1476",
+      "term": "PDB"
+    },
+    {
+      "uri": "http://edamontology.org/format_3464",
+      "term": "JSON"
+    },
+    {
+      "uri": "http://edamontology.org/format_3752",
+      "term": "CSV"
+    },
+    {
+      "uri": "http://edamontology.org/operation_2406",
+      "term": "Protein structure analysis"
+    },
+    {
+      "uri": "http://edamontology.org/operation_2422",
+      "term": "Data retrieval"
+    }
+  ]
+}

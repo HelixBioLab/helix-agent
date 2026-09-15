@@ -1,0 +1,24 @@
+bun test v1.3.14 (0d9b296a)
+
+test/trp/catalog.test.ts:
+(pass) TRP catalog admission > both admitted resources resolve from the recorded bytes, without network or Docker [7.66ms]
+(pass) TRP catalog admission > the reference remains verifiable after moving the evidence directory [3.43ms]
+(pass) TRP catalog admission > tampered scientific output cannot pass on a stored success flag [3.96ms]
+(pass) TRP catalog admission > missing input is a failure even when all outputs exist [2.18ms]
+(pass) TRP catalog admission > a reference symlink cannot escape the supplied evidence root [3.34ms]
+(pass) TRP catalog admission > candidates and web comparators cannot be selected for execution [2.84ms]
+(pass) TRP catalog admission > a candidate cannot be promoted by changing its status alone [1.14ms]
+(pass) TRP catalog admission > changing the pinned tool revision invalidates its reference [0.35ms]
+(pass) TRP catalog admission > a human-readable image tag cannot replace a digest [0.30ms]
+(pass) TRP catalog admission > unknown or mislabeled EDAM terms are rejected [0.30ms]
+(pass) TRP catalog admission > duplicate operation identifiers cannot shadow a reference [0.48ms]
+(pass) TRP catalog admission > invalid digest and traversal are rejected before reading files [0.65ms]
+(pass) TRP port contracts > opaque RepeatsDB coordinates cannot feed a known frame [0.18ms]
+(pass) TRP port contracts > format equality does not erase residue, chain or confidence differences [0.15ms]
+(pass) TRP port contracts > radians and degrees, or TM-score and pLDDT, are not interchangeable [0.44ms]
+(pass) TRP port contracts > raw retrieval does not imply the selected chain satisfies geometric preconditions [0.12ms]
+
+ 16 pass
+ 0 fail
+ 21 expect() calls
+Ran 16 tests across 1 file. [1.72s]

@@ -1,0 +1,20 @@
+{
+  "operation": "rcsb.structure",
+  "request": {
+    "path": "evaluation/trp/reference/rcsb-request.json",
+    "bytes": 114,
+    "sha256": "f16828a16b17e69f6502f83c498d2ce17f4254561659efef2ede8df91e29a63d"
+  },
+  "response": {
+    "path": "evaluation/trp/reference/geometre/2xqh.pdb",
+    "bytes": 359397,
+    "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
+  },
+  "file": "2xqh.pdb",
+  "url": "https://files.rcsb.org/download/2XQH.pdb",
+  "retrieved_at": "2026-09-15T13:31:05.620209+00:00",
+  "status": 200,
+  "final_url": "https://files.rcsb.org/download/2XQH.pdb",
+  "bytes": 359397,
+  "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
+}

@@ -33,3 +33,20 @@ python3 script/tesis/update_phase1_docx.py /ruta/respaldo-original.docx /tmp/rev
 `render_docx.py` requiere LibreOffice y su módulo Python UNO. Abre una instancia aislada sin interfaz, con macros desactivadas, recalcula el índice y exporta DOCX/PDF a un directorio nuevo. El renderizado reserializa el Word; por ello se comparan el texto de referencias y las ilustraciones activas, y se revisan visualmente las páginas afectadas antes de reemplazar el original. No usa una sesión de Word o LibreOffice que el usuario tenga abierta.
 
 Estos scripts registran la transformación de F1. Para fases posteriores se edita la revisión actual: no se cambia el hash esperado para forzar la reaplicación de F1 sobre un Word ya modificado.
+
+## Fase 2: catálogo, protocolo y Word
+
+- `bun script/tesis/check_trp_catalog.ts`: comprueba sin red los archivos de referencia de las operaciones admitidas. Los contratos están en `packages/bioinformatica/src/trp/`; el alcance y la reproducción se documentan en `evaluation/trp/README.md`.
+- `run_geometre_reference.py` y `geometre.Dockerfile`: ejecutan el ejemplo real de GeomeTRe con versión, imagen y dependencias registradas. El catálogo enlaza la ejecución con todas las dependencias fijadas; el ejemplo requiere unidades suministradas.
+- `update_phase2_docx.py`: aplica `docs/tesis/fase2-documento.json` sobre el Word final de F1, identificado por hash. Corrige R2.1, añade A.16 con los 21 criterios, actualiza avance y conserva secciones, imágenes y referencias. Es una migración entre revisiones conocidas, no un generador que se deba aplicar otra vez al Word actual.
+
+Ejemplo de edición sobre una copia conservada de la revisión F1:
+
+```bash
+python3 script/tesis/update_phase2_docx.py /ruta/copia-fase1.docx /tmp/nueva-fase2/Tesis.docx
+/usr/bin/python3 script/tesis/render_docx.py /tmp/nueva-fase2/Tesis.docx /tmp/revision-fase2
+```
+
+El renderizador usa una sola fuente de encabezados para evitar duplicados en el índice, actualiza campos y conserva las páginas automáticas entre secciones. `FilterData` se pasa a UNO como una secuencia tipada de propiedades; de otro modo Writer ignora la opción de páginas vacías y el PDF puede tener menos páginas que el campo `NUMPAGES`.
+
+**Corrección del registro de F1:** su script insertaba un `w:r` directamente en celdas vacías, y LibreOffice descartaba ese texto inválido. F2 coloca el texto dentro de `w:p`, corrige también el script histórico y comprueba las dos celdas de R2.1 en el DOCX ya renderizado. El registro de F1 que las daba por llenas no constituye evidencia de que hubieran sobrevivido a aquella exportación.

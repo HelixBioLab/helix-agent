@@ -1,0 +1,6 @@
+usage: run_geometre_reference.py [-h] --input INPUT --source SOURCE
+                                 --work WORK [--image IMAGE]
+run_geometre_reference.py: error: input differs from the pinned 2xqh reference; review it as a new case
+
+Expected exit code: 2
+No work directory was created.

@@ -42,10 +42,10 @@ El modelo propone una especificación. Un esquema comprueba que esté completa y
 
 Ubicaciones propuestas para código nuevo, **todavía no construidas en F1**: `packages/bioinformatica/src/trp/{catalog,specification,composition,validation,admission,controls,methods}.ts`, pruebas en `test/trp/`, corpus pequeños de regresión en `test/fixture/trp/` y evaluaciones en `evaluation/trp/`. Mantener las capas del monorepo: contratos compartidos en Schema/Protocol cuando correspondan, lógica del dominio en el paquete y adaptadores del agente en `src/tool/`. Evitar duplicar los clientes biológicos y el sistema de permisos existentes.
 
-## Protocolo de evaluación por cerrar en F2
+## Protocolo de evaluación definido en F2
 
 - Conservar los umbrales del Word: admisibilidad y estabilidad ≥85%; emisión de flujos ≥95%; aceptación indebida ≤5%; kappa ≥0,70. Son metas, no resultados.
-- Completar los umbrales que el documento deja abiertos (demanda/consumo, falso rechazo y sensibilidad) **antes** de evaluar. Explicar su fundamento y registrar una enmienda si cambian.
+- F2 fija diferencia cero en conteos deterministas, ninguna superación de presupuesto, sobreestimación mediana de almacenamiento ≤25%, falso rechazo ≤5%, sensibilidad ≥80%, especificidad ≥90% y cobertura evaluable ≥90%. Son metas propuestas; su fundamento y las reglas de enmienda constan en `evaluation/trp/PROTOCOL.md`.
 - Definir denominadores, particiones de desarrollo/reserva, tratamiento de casos no evaluables, agrupamiento de paráfrasis por intención y estructuras por familia. No dividir las paráfrasis de una misma intención entre desarrollo y reserva.
 - No usar la falta de diferencia significativa como prueba de equivalencia. La comparación de ablación nf-core es una evaluación adicional histórica, no sustituye los 21 resultados TRP actuales.
 - Una cota de tiempo mínimo impuesta por un servicio no es una cota superior del tiempo de ejecución. El tamaño de salidas desconocidas exige supuestos explícitos o un presupuesto conservador.
@@ -101,6 +101,12 @@ El usuario confirmó durante esta sesión que el agente ya está conectado con O
 | Datos de fallos publicados               | Sensibilidad de OE5                                           | Recuperar originales y conservar hashes/condiciones; un caso sintético no reemplaza silenciosamente el caso publicado                           |
 
 No se necesita volver a pedir autorización para editar los archivos o hacer commits: el usuario ya la dio. La escritura del Word fuera del área de trabajo puede requerir permiso técnico del sandbox. No se envían correos, se contratan servicios ni se publican cambios por inferencia.
+
+## Alcance entregado en F2 y continuidad
+
+El catálogo inicial incluye seis recursos auditados y admite dos operaciones con referencias comprobadas: recuperación PDB y geometría con unidades suministradas. F2 entrega el protocolo de los 21 indicadores y el encargo externo preparado. **R1.1 permanece parcial**: ReUPred y STRPsearch aún necesitan entornos y predicciones de referencia; RepeatsDB necesita verificar marco y condiciones de la API actual. Las exclusiones se conservan, sin presentar 2/2 como cobertura de todos los recursos.
+
+F3 debe comenzar por resolver esas referencias y mapeos para cualquier tarea de detección; puede avanzar en paralelo lógico con especificación, aprobación y validación de la cadena acotada ya ejecutable. GeomeTRe no sustituye a un detector. La validación integrada y el corpus reservado todavía no existen. Este traslado de trabajo queda explícito en la matriz de trazabilidad.
 
 ## Estado y continuación
 

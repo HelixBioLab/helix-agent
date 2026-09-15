@@ -1,0 +1,222 @@
+{
+  "phase": "F2",
+  "date": "2026-09-15",
+  "replace_sections": [
+    {
+      "heading": "R1.1. Catálogo declarativo del dominio",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "En F2 se implementó el catálogo TRP 1.0.0 en packages/bioinformatica/src/trp/catalog.ts y catalog.json. El universo auditado comprende seis recursos: dos operaciones admitidas, tres candidatas y un comparador web. Cada operación admitida declara tipo y formato con términos EDAM verificados, espacio de identificadores, cadena, numeración, tratamiento de inserciones y escala. Las anclas de operación, dato y formato se corresponden con campos del esquema bio.tools; no se afirma registro en bio.tools ni validación contra todo ese esquema.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Se ejecutaron la recuperación de la estructura PDB 2xqh y el ejemplo de geometría de GeomeTRe 1.0 sobre la cadena A. La referencia geométrica usa 12 unidades suministradas por el ejemplo de los autores y produce 12 filas de unidades y dos de resumen. El comando, revisión del código, digest local de imagen, dependencias, entrada, salida y SHA-256 están conservados en evaluation/trp/reference. La ejecución no detecta repeticiones nuevas: calcula geometría de límites previamente definidos.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La resolución del catálogo comprueba los bytes antes de devolver una operación admitida. Las pruebas rechazan archivos alterados o ausentes, referencias que escapan del paquete, candidatos promovidos sin evidencia y discrepancias de marco o escala. La integración con especificaciones, grafos y el ejecutor queda para F3. Dos referencias correctas de dos operaciones admitidas no representan cobertura completa de todos los recursos TRP; R1.1 conserva alcance parcial.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "RepeatsDB respondió a una consulta de una página, pero el registro observado no declara marco de coordenadas y contiene reviewed=false. Su conversión a límites geométricos sigue excluida. ReUPred incluye un aviso GPL de versión no identificada y falla con Python 3 por sintaxis de Python 2. STRPsearch requiere dependencias ausentes y corregir la discrepancia entre los nombres del entorno en su Dockerfile y YAML antes de producir una referencia. RepeatsDB-lite se mantiene como comparador web.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. La imagen de un servidor HTTP ajeno no es observable; se registra respuesta fechada y hash, sin inventar un digest remoto. Aclarar este caso no aplicable en la formulación final del indicador R1.1. Completar las referencias de detección antes de afirmar una cadena de descubrimiento de novo. Figura propia recomendada: ejemplo de una frontera de numeración no resuelta que impide componer RepeatsDB con GeomeTRe.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "heading": "R2.1. Protocolo de evaluación",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "En F2 se redactó el protocolo TRP 1.0.0, fechado antes de la campaña empírica y conservado en evaluation/trp/PROTOCOL.md y protocol.json. Sus 21 indicadores tienen medición, denominador, criterio y regla de reporte. El apartado A.16 reproduce su diseño operativo. El registro local por Git y hash no se presenta como prerregistración externa.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Se conservan las metas del Word: admisibilidad y estabilidad de al menos 85%, ejecución sin edición manual de al menos 95%, aceptación indebida de como máximo 5% y kappa de al menos 0,70. Como decisiones metodológicas de F2 se fijan falso rechazo de como máximo 5%, sensibilidad de al menos 80%, especificidad de al menos 90% y cobertura evaluable de al menos 90%. Las tareas y llamadas deterministas deben contarse sin diferencia; ninguna ejecución admitida debe superar su presupuesto, y la sobreestimación mediana del almacenamiento no debe exceder 25%.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Estos umbrales son metas, no resultados ni valores avalados por las herramientas. El protocolo separa desarrollo y reserva por intención, sesión y familia; especifica tres repeticiones del lenguaje, tratamiento de caídas de servicio, exclusiones, incertidumbre y enmiendas. Se prepararon la guía externa y las plantillas de anotación y congelación. El anotador y el clúster no están confirmados; el modelo exacto y el presupuesto deben fijarse antes de medir.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. Los valores nuevos cierran decisiones que estaban abiertas; conservar su justificación y fecha. Una enmienda posterior a conocer la reserva exige declarar el análisis exploratorio o evaluar una reserva nueva. No rellenar las plantillas con nombres, juicios externos o recursos supuestos.",
+          "kind": "note"
+        }
+      ]
+    }
+  ],
+  "replace_paragraphs": [
+    {
+      "old": "La primera fase establece una línea base verificable para una tesis que combina construcción de software y evaluación instrumental. La auditoría distingue el armazón heredado, las capacidades bioinformáticas existentes y los resultados TRP que aún requieren implementación o evidencia. Esta distinción permite orientar el cierre hacia los cinco objetivos específicos sin atribuir a la investigación capacidades que solo aparecen en el diseño.",
+      "new": "Las dos primeras fases establecen una línea base verificable y un catálogo inicial con referencias reales para una tesis que combina construcción de software y evaluación instrumental. La auditoría distingue el armazón heredado, las capacidades bioinformáticas existentes y los resultados TRP que aún requieren construcción o evidencia. Esta distinción permite orientar el cierre hacia los cinco objetivos específicos sin atribuir a la investigación capacidades que solo aparecen en el diseño."
+    },
+    {
+      "old": "Respecto del OE1, existen el objetivo persistente de campaña y mecanismos de consulta al usuario; todavía no acreditan una especificación completa con procedencia de cada parámetro ni su estabilidad ante reformulación. Respecto del OE2, los clientes SIFTS y las utilidades de composición nf-core constituyen una base reutilizable, pero la compatibilidad de marcos en una cadena TRP exige un validador integrado y un corpus adversarial propio.",
+      "new": "Respecto del OE1, se dispone de un catálogo declarativo inicial y de comprobación de sus referencias; todavía faltan la especificación completa con procedencia de parámetros, su aprobación vinculada al contenido y la validación externa de estabilidad ante reformulación. Respecto del OE2, el protocolo de los 21 resultados está definido antes de la campaña; la compatibilidad de marcos en una cadena TRP exige integrar el validador y construir el corpus adversarial en F3. El ensayo de GeomeTRe demuestra ejecución de una operación geométrica con límites conocidos, sin demostrar detección de repeticiones ni cierre de ambos objetivos."
+    },
+    {
+      "old": "El Anexo A desarrolla el plan de proyecto al que remiten el enfoque metodológico del Capítulo 1 y la presentación de resultados del Capítulo 4. Incluye el alcance de construcción, las dependencias de evaluación, la programación y el costo estimado del trabajo restante. La evidencia de ejecución y los protocolos se incorporarán como anexos complementarios cuando existan y hayan sido verificados.",
+      "new": "El Anexo A desarrolla el plan de proyecto al que remiten el enfoque metodológico del Capítulo 1 y la presentación de resultados del Capítulo 4. Incluye alcance, dependencias, programación y costo estimado. El apartado A.16 incorpora el protocolo de evaluación fijado en F2; los artefactos de referencia y sus hashes se conservan en el repositorio. La campaña empírica y sus juicios externos siguen pendientes."
+    },
+    {
+      "old": "La viabilidad de la cadena TRP depende de ejecutar las herramientas candidatas con versiones identificables y entradas de referencia. La auditoría documental previa orienta esta selección, pero no reemplaza una invocación de referencia actual. La validación de R1.3 y R4.3 depende de una persona ajena al desarrollo; la ejecución en clúster y el presupuesto de campañas del modelo todavía requieren disponibilidad concreta.",
+      "new": "La segunda fase verificó localmente la recuperación de una estructura PDB y la geometría de unidades conocidas con GeomeTRe. La detección mediante ReUPred o STRPsearch y el mapeo de las anotaciones actuales de RepeatsDB conservan dependencias técnicas explícitas. El usuario confirmó que el agente está conectado con OpenAI y que el anotador externo y el clúster todavía no están disponibles de forma confirmada. La validación externa de R1.3/R4.3 y una eventual afirmación de ejecución en clúster dependen de resolver esos puntos."
+    },
+    {
+      "old": "La programación propone 263 días naturales inclusivos entre el 15 de septiembre de 2026 y el 4 de junio de 2027. Cada ventana de fase supera su duración estimada a 20 horas semanales: 18 frente a 14 días; 33 frente a 28; 54 frente a 42; 40 frente a 35 en F4, F5 y F6; y 26 frente a 21 en F7. Las reuniones se distribuyen dentro del intervalo total. Se conserva junio como margen de revisión antes de la sustentación prevista para julio de 2027.",
+      "new": "La programación propone 263 días naturales inclusivos entre el 15 de septiembre de 2026 y el 4 de junio de 2027. Cada ventana de fase supera su duración estimada a 20 horas semanales: 18 frente a 14 días; 33 frente a 28; 54 frente a 42; 40 frente a 35 en F4, F5 y F6; y 26 frente a 21 en F7. Las reuniones se distribuyen dentro del intervalo total. Se conserva junio como margen de revisión antes de la sustentación prevista para julio de 2027. El usuario confirmó julio de 2027 como mes de sustentación; el 4 de junio se mantiene como fecha objetivo del borrador completo. La dedicación, el presupuesto y el día institucional exacto continúan por confirmar."
+    },
+    {
+      "old": "Este capítulo presenta los 21 resultados esperados de los cinco objetivos específicos y establece qué evidencia permite dar por construido y validado cada uno. La versión actual recoge la línea base del 15 de septiembre de 2026, sobre el repositorio Bioinformática.org, revisión f37ba272bcf0ae1b2700bf998c3a3495e4b0ba1f, y los cambios de la primera fase de cierre. El plan de implementación, su cronograma y sus recursos se desarrollan en el Anexo A.",
+      "new": "Este capítulo presenta los 21 resultados esperados de los cinco objetivos específicos y establece qué evidencia permite dar por construido y validado cada uno. La versión actual recoge la línea base del 15 de septiembre de 2026, sobre el repositorio Bioinformática.org, revisión f37ba272bcf0ae1b2700bf998c3a3495e4b0ba1f, y los cambios de las fases F1 y F2. El plan de implementación, su cronograma y sus recursos se desarrollan en el Anexo A."
+    }
+  ],
+  "r21_cells": [
+    "Protocolo TRP 1.0.0 fechado y versionado; definiciones de los 21 indicadores, corpus, particiones, guía de anotación e historial de enmiendas. Véase A.16 y evaluation/trp/PROTOCOL.md.",
+    "100% de los indicadores tienen medición, denominador y criterio declarados antes de la campaña. Toda modificación posterior queda fechada y justificada. La campaña comienza solo con los campos de congelación aplicables completos."
+  ],
+  "engineering": [
+    {
+      "text": "En F2 se añadieron 16 pruebas del catálogo, con verificación de alteraciones de igual tamaño, traslado de evidencias, referencias ausentes, escapes por enlaces y contratos incompatibles. La suite conjunta de nf-core, bio y TRP terminó con 350 pruebas aprobadas y cero fallidas en 32 archivos; la comprobación de tipos terminó sin errores. Estos valores son evidencia de ingeniería y no porcentajes de cumplimiento experimental de la tesis.",
+      "kind": "paragraph"
+    }
+  ],
+  "appendix": [
+    {
+      "text": "A.16. Protocolo de evaluación TRP 1.0.0",
+      "kind": "heading"
+    },
+    {
+      "text": "Fecha de fijación del diseño: 15 de septiembre de 2026. Este apartado reproduce los criterios operativos de R2.1; la versión ampliada y estructurada se conserva en evaluation/trp/PROTOCOL.md y protocol.json. Los ensayos de instalación, las referencias técnicas y las pruebas de componentes se consideran desarrollo, no evaluación empírica reservada.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.16.1. Condiciones de inicio y alcance",
+      "kind": "subheading"
+    },
+    {
+      "text": "El catálogo inicial admite recuperación de coordenadas PDB y cálculo geométrico GeomeTRe con límites suministrados. Se reportan también los cuatro recursos excluidos. Una afirmación de detección de novo requiere admitir primero una herramienta de detección con su referencia ejecutada y sus contratos. No sustituir detección por geometría sin explicar que cambia la tarea científica.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Antes de F6 se congelarán commit, protocolo, catálogo, inventario y asignación de casos, fuentes, licencias, modelo/revisión, instrucciones, parámetros de muestreo, límites de tokens y llamadas, imágenes, dependencias, hardware y presupuesto. Se registrarán el seudónimo, experiencia y acuerdo del anotador. Un dato aplicable pendiente impide iniciar la medición dependiente. El acceso a clúster y el anotador externo permanecen pendientes; la conexión OpenAI está confirmada por el usuario, sin una inferencia de evaluación realizada en F2.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Las enmiendas conservan versión anterior, fecha, motivo, cambios y conocimiento previo de resultados. Un criterio cambiado después de observar la reserva requiere otra reserva o la clasificación del análisis como exploratorio. No se afirma prerregistración institucional o externa.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.16.2. Corpus y separación",
+      "kind": "subheading"
+    },
+    {
+      "text": "Desarrollo: el ejemplo 2xqh/A, la consulta 1a0c/A, las pruebas automatizadas y sus familias quedan excluidos de la reserva. Preparar al menos diez intenciones factibles con dos paráfrasis y diez solicitudes fuera de alcance para depurar instrucciones y guía. Sus etiquetas son del investigador y no representan validación externa.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Lenguaje reservado: al menos 50 intenciones factibles en español, con dos paráfrasis por intención, y 20 solicitudes adicionales inviables o fuera de alcance. R1.3 se calcula sobre los 50 originales factibles y 100 pares original–paráfrasis por repetición. Los negativos se reportan aparte. Una especificación vacía o inadmisible nunca cuenta como estable aunque otra salida repita el mismo fallo.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Composición: 50 especificaciones factibles aprobadas y al menos 30 composiciones inválidas. Incluir tres casos por modo de fallo: ciclo, dependencia ausente, operación excluida, formato, identidad de proteína, cadena, numeración, inserciones, confianza y parámetro obligatorio. No corregir manualmente una emisión y contarla como éxito sin edición.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Recursos: al menos 40 escenarios, 20 factibles y 20 que excedan un presupuesto, con puntos por debajo, iguales y por encima del límite. La factibilidad se determina mediante contraste autorizado y observado. Una ejecución de contraste se realiza con límites efectivos; un rechazo no contrastado no se etiqueta como correcto por la sola decisión del admisor.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Proveniencia: todas las ejecuciones completas e interrumpidas y todos sus eventos de permisos, admisión y protocolo. Inyectar ausencia y alteración por tipo de artefacto. Intervenciones: al menos 100 turnos humanos seleccionados por sesiones completas y orden por hash, antes de observar sus clases automáticas; conservar contexto y primera etiqueta externa.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Controles estructurales: recuperar los casos publicados de Pratt et al. (2025) con estructura/modelo y referencia identificables, y al menos 30 controles pertinentes con anotación revisada de RepeatsDB. La mera presencia en la base o reviewed=false no es evidencia de estructura correcta. Registrar originales no recuperables y sus motivos, sin sustituirlos por sintéticos en la sensibilidad publicada. Los casos utilizados para diseñar el control en F5 no pueden ser reserva; sin casos independientes solo se informa demostración o exploración.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "La unidad de separación es intención, sesión o familia, según la medición. Paráfrasis, cadenas, conformaciones y modelos de una misma proteína permanecen juntos. Agrupar por familia anotada y accesión canónica con evidencia; ante incertidumbre, conservar junto todo el componente de correspondencias. Ordenar grupos elegibles mediante SHA-256 de trp-eval-1.0.0|group_id y asignar los cupos antes de observar salidas. Conservar el inventario, exclusiones y estratos ausentes; no reducir un cupo para facilitar cumplimiento.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.16.3. Ejecución, comparaciones y repeticiones",
+      "kind": "subheading"
+    },
+    {
+      "text": "Primero se obtiene una referencia manual reproducible por operación. La evaluación integrada exige aprobación vinculada al hash de la especificación, registro de parámetros y decisiones, validación previa y artefactos esperados. Para solicitudes factibles se permiten como máximo tres rondas de aclaración; alcanzar el límite sin especificación admisible es fallo.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "T-LANG se repite tres veces en sesiones nuevas y con configuración idéntica. Las semillas 20260915, 20260916 y 20260917 permutan el orden de casos; no controlan un modelo cuyo proveedor no exponga semilla. La referencia inicial corresponde a 450 solicitudes de enunciado y debe presupuestar aclaraciones y reintentos adicionales. No se inicia gasto por la existencia de esta estimación.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "La comparación manual usa las mismas tareas, versiones e insumos y conserva producto, intervención, tiempo y consumo. Las ablaciones retiran una capa por vez: validación semántica, admisión y controles. Solo se ejecutan de forma aislada y con límites efectivos; retirar la decisión de admisión no retira el límite del ejecutor. Las comparaciones adicionales son diagnósticas y no reemplazan los indicadores obligatorios.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Las caídas de servicio se conservan como fallos de la tasa operativa principal y se presentan además condicionadas a disponibilidad. Una repetición diagnóstica puede abarcar todos los casos afectados por una misma incidencia documentada, siempre separada de la campaña principal. No se ocultan reintentos selectivos.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.16.4. Indicadores, denominadores y metas",
+      "kind": "subheading"
+    },
+    {
+      "text": "Las metas provenientes del Word se mantienen; las señaladas como propuesta F2 son tolerancias del proyecto fijadas antes de medir. No son resultados ni valores validados por la literatura. Todo 100% requiere casos: 0/0 se informa no evaluable. La cobertura del catálogo ejecutable se acompaña siempre del universo de recursos auditados y sus exclusiones.",
+      "kind": "paragraph"
+    }
+  ],
+  "appendix_after_metrics": [
+    {
+      "text": "El margen de almacenamiento de 25% evita presupuestos arbitrariamente inflados sin aceptar infraestimación. No se aplica a llamadas o tareas deterministas, que deben contarse exactamente. La tolerancia de falso rechazo de 5% corresponde como máximo a una negativa errónea entre 20 contrastes factibles. Sensibilidad 80%, especificidad 90% y cobertura 90% son objetivos iniciales de una batería auxiliar; no demuestran equivalencia con revisión experta. Los tamaños mínimos responden a factibilidad, sin atribuirles una potencia estadística aún no demostrada.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.16.5. Incertidumbre, fallos y reporte",
+      "kind": "subheading"
+    },
+    {
+      "text": "Mostrar numerador, denominador, porcentaje, estrato, intervalo y exclusiones. Usar intervalos Wilson de 95% para proporciones simples y remuestreo por intención, sesión o familia para comparaciones y kappa: 2 000 réplicas, semilla 20260915, percentiles 2,5 y 97,5. Reportar las réplicas válidas. Las tres salidas de una intención no se tratan como tres sujetos independientes.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "La meta se decide con el valor puntual predefinido; el intervalo comunica incertidumbre y no se omite si cruza el umbral. R1.3 debe alcanzar su meta en cada repetición. No usar ausencia de diferencia significativa como prueba de equivalencia. Reportar kappa con matriz de confusión y acuerdo observado/esperado; si 1−p_e es cero, kappa es indefinido y no se asigna uno.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Cada caso conserva uno de cuatro estados: aprobado, fallido, no evaluable o excluido antes de congelar, con código de motivo y evidencia. Los fallos posteriores no desaparecen del denominador operativo. En mediciones biológicas se muestran el conjunto evaluable, el total previsto y una versión conservadora que cuenta los no evaluables como fallos de detección. La falta de cobertura impide declarar cumplimiento.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.16.6. Anotación externa y artefactos de cierre",
+      "kind": "subheading"
+    },
+    {
+      "text": "La guía está preparada en evaluation/trp/ANNOTATION.md. La persona debe ser ajena al desarrollo, conocer estructuras y procedimientos bioinformáticos, y recibir casos y contexto sin predicciones automáticas ni identidad de la variante. Se discuten ejemplos de desarrollo antes de congelar la guía y se conserva la primera entrega externa con fecha y hash. La adjudicación posterior no reemplaza las etiquetas usadas para medir el acuerdo inicial.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Admisibilidad exige objetivo, datos, identidad y cadena, marco y escala cuando correspondan, operaciones disponibles, parámetros y procedencia. Equivalencia compara esos campos y el producto previsto, no solo redacción. Las seis clases de intervención son corrección factual, rechazo, redirección, desambiguación, aprobación y otra. Si coexisten, se aplica ese orden de precedencia; otra significa evidencia insuficiente de una clase de la guía, no ausencia absoluta de intervención.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "La plantilla de congelación y la de anotación conservan vacíos los campos todavía no resueltos. Cada campaña entregará casos, asignaciones, ejecuciones, etiquetas externas, métricas, exclusiones y manifiestos con SHA-256. El Capítulo 4 presentará meta, valor, denominador, incertidumbre, evidencia y limitación por resultado; el Capítulo 5 concluirá por objetivo, incluyendo metas no alcanzadas.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Fuentes técnicas de F2: código GeomeTRe 1.0, revisión 8bb0c50bb0bf, repositorio BioComputingUP/GeomeTRe; EDAM 1.25.20260626T1230Z; esquema bio.tools, revisión c31233af4e13, stable/biotools.xsd; coordenadas RCSB de 2xqh bajo la política CC0 de wwPDB. URL completas, revisiones y hashes constan en evaluation/trp/reference/audit.json y README.md. Estas fuentes sustentan formatos e interfaces; los umbrales propuestos pertenecen al diseño de esta tesis.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "NOTA PARA EL AUTOR. Antes de F6 resolver anotador, modelo, presupuesto y datos reservados; registrar acceso al clúster si se conserva esa afirmación metodológica. Se mantiene sustentación en julio de 2027 y borrador completo objetivo al 4 de junio. Recomendar dos ilustraciones propias al cierre: separación de corpus por familia/intención y matriz de estados con ejemplos de no evaluabilidad, generadas desde datos reales.",
+      "kind": "note"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "phase": "F2",
+  "date": "2026-09-15",
+  "scope": "catalogue and protocol; no empirical evaluation",
+  "checks": {
+    "domain": {
+      "passed": 350,
+      "failed": 0,
+      "files": 32,
+      "log": "docs/tesis/evidencia/dominio-fase2.log"
+    },
+    "catalogue": {
+      "passed": 16,
+      "failed": 0,
+      "log": "docs/tesis/evidencia/catalogo-pruebas-fase2.log"
+    },
+    "types": {
+      "exit_code": 0,
+      "log": "docs/tesis/evidencia/tipos-fase2.log"
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 0,
+      "log": "docs/tesis/evidencia/lint-fase2.log"
+    },
+    "reference_input_guard": {
+      "exit_code": 2,
+      "result": "rejects mismatched PDB before creating directory or starting Docker",
+      "log": "docs/tesis/evidencia/referencia-guardia-fase2.log"
+    }
+  },
+  "catalogue": {
+    "version": "trp-catalog/1.0.0",
+    "audited": 6,
+    "admitted": 2,
+    "candidates": 3,
+    "web_comparators": 1,
+    "reference": "evaluation/trp/reference/audit.json"
+  },
+  "geometre_reference": "evaluation/trp/reference/geometre/reference.json",
+  "protocol": {
+    "version": "1.0.0",
+    "indicators": 21,
+    "external_annotation": "pending",
+    "cluster": "pending",
+    "model_id": null,
+    "api_budget": null
+  },
+  "previous_user_file": {
+    "path": "packages/sdk/js/src/v2/client.ts",
+    "sha256": "99fa8d8e31a4b95c5b7ad2814319f94b8d96a27e22331e78b05d179e232311ba",
+    "included_in_commit": false
+  }
+}
