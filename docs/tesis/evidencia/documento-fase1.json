@@ -1,0 +1,17 @@
+{
+  "source_sha256": "c95fe37a10be7593be2eb2587d8805d7f72a37f0942395841098a796778a0341",
+  "docx_sha256": "51f2d7e91a7befa1985da111e90ecdb5a15173c0708bc906dd77db3f0b5dcda6",
+  "pdf_sha256": "f9c62b64a1f7e1170c3ae726854d79bec0e86c9de9c013a95eec5e81c4372613",
+  "pages": 110,
+  "summary_words": 245,
+  "mapped_results": 21,
+  "annex_sections": 15,
+  "template_markers": 0,
+  "active_figures_preserved": 4,
+  "bibliography_entries_preserved": 100,
+  "red_notes": 22,
+  "sections": 3,
+  "toc_updated": true,
+  "visual_review": "Portada, resumen, índice, capítulos 4 y 5, presupuesto y continuidad de tablas. Revisión final de los capítulos 1–3 y citas pendiente de F7.",
+  "administrative_gap": "Tema FCI auténtico y título oficial pendientes; nota roja explícita, sin simular aprobación."
+}

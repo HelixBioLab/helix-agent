@@ -1,0 +1,20 @@
+bun test v1.3.14 (0d9b296a)
+
+test/bio/independent-verify.test.ts:
+(pass) independent snapshot verification > Python agrees with the TypeScript writer after the package is moved [60.90ms]
+(pass) independent snapshot verification > rejects a plausible data edit that preserves file size and row count [57.82ms]
+(pass) independent snapshot verification > rejects a wrong rows count even when the digest matches [58.97ms]
+(pass) independent snapshot verification > rejects a wrong bytes count even when the digest matches [57.72ms]
+(pass) independent snapshot verification > rejects absent data [58.67ms]
+(pass) independent snapshot verification > rejects invalid NDJSON even with matching digest: "{\"x\":NaN}\n" [58.35ms]
+(pass) independent snapshot verification > rejects invalid NDJSON even with matching digest: "{\"x\":1,\"x\":2}\n" [59.26ms]
+(pass) independent snapshot verification > rejects invalid NDJSON even with matching digest: "{broken}\n" [57.88ms]
+(pass) independent snapshot verification > rejects invalid NDJSON even with matching digest: "\n" [58.73ms]
+(pass) independent snapshot verification > rejects an escaping symlink even when it targets valid corpus data [56.18ms]
+(pass) independent snapshot verification > accepts an explicitly empty corpus [57.34ms]
+(pass) independent snapshot verification > never reports successful verification when no manifest was supplied [183.92ms]
+
+ 12 pass
+ 0 fail
+ 30 expect() calls
+Ran 12 tests across 1 file. [2.75s]

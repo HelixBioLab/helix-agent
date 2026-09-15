@@ -1,0 +1,50 @@
+{
+  "fecha": "2026-09-15",
+  "commit_base": "f37ba272bcf0ae1b2700bf998c3a3495e4b0ba1f",
+  "alcance": "Pruebas de ingeniería; no evaluación experimental de los 21 indicadores TRP",
+  "antes": {
+    "comando": "bun test test/nfcore test/bio --timeout 30000",
+    "cwd": "packages/bioinformatica",
+    "pass": 322,
+    "fail": 0,
+    "archivos": 30
+  },
+  "despues": {
+    "comando": "bun test test/nfcore test/bio --timeout 30000",
+    "cwd": "packages/bioinformatica",
+    "pass": 334,
+    "fail": 0,
+    "archivos": 31
+  },
+  "verificador": {
+    "comando": "bun test test/bio/independent-verify.test.ts --timeout 30000",
+    "cwd": "packages/bioinformatica",
+    "pass": 12,
+    "fail": 0
+  },
+  "tipos": {
+    "comando": "bun typecheck",
+    "cwd": "packages/bioinformatica",
+    "exit_code": 0
+  },
+  "lint": {
+    "comando": "node_modules/.bin/oxlint packages/bioinformatica/test/bio/independent-verify.test.ts",
+    "exit_code": 0,
+    "errores": 0,
+    "advertencias": 0
+  },
+  "corpus_historico": {
+    "comando": "python3 script/tesis/verify_snapshot.py .bitacora/corpus/nfcore-pipelines.manifest.json",
+    "exit_code": 0,
+    "rows": 156,
+    "bytes": 1489328,
+    "sha256": "5f99f2f99c55104d0dd5675669ac90cd01c73139dee1027a449aa8983098ebc9",
+    "nota": "Corpus ya existente y privado de la bitácora; no forma parte del conjunto de evaluación TRP."
+  },
+  "logs": {
+    "dominio-antes.log": "ffd137b76a01b257b3bc797db26c6d589c3029de512d98d40206e01cdf080f64",
+    "dominio-despues.log": "48f33114cb6845ffa07f8ac8912d2b9c1d2209edb505677d75ed27dd34170dec",
+    "verificador.log": "c21e52ebfd389f4119fc2e3ec7345c19305d6cdf2bfe9256b3ad905012d2cc37",
+    "tipos.log": "ae47736bb2a9401aa9743893f2f64b9a605e65a99d78cd991a8021e0f7722d87"
+  }
+}

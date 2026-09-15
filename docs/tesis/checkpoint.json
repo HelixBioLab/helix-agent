@@ -1,0 +1,41 @@
+{
+  "project": "Bioinformática.org — tesis TRP",
+  "updated": "2026-09-15",
+  "phases_completed": ["F1"],
+  "next_phase": "F2",
+  "thesis_complete": false,
+  "implementation_complete": false,
+  "phases": {
+    "F1": "complete",
+    "F2": "planned",
+    "F3": "planned",
+    "F4": "planned",
+    "F5": "planned",
+    "F6": "planned",
+    "F7": "planned"
+  },
+  "artifacts": {
+    "plan": "docs/tesis/PLAN.md",
+    "status": "docs/tesis/ESTADO.md",
+    "traceability": "docs/tesis/trazabilidad.json",
+    "document_content": "docs/tesis/fase1-documento.json",
+    "engineering_evidence": "docs/tesis/evidencia/fase1.json",
+    "document_evidence": "docs/tesis/evidencia/documento-fase1.json",
+    "docx": "/home/webiwabou/Projects/Tesis.docx",
+    "pdf": "/home/webiwabou/Projects/Tesis-fase1.pdf",
+    "verifier": "script/tesis/verify_snapshot.py"
+  },
+  "external_dependencies": [
+    "Authentic FCI approval document and official title",
+    "Independent annotator for R1.3 and R4.3",
+    "Confirmed cluster access if the cluster execution claim is retained",
+    "Confirmed evaluation model, compute and API budget"
+  ],
+  "provider_connection": {
+    "provider": "OpenAI",
+    "status": "connected_user_confirmed",
+    "verification": "User confirmed in this session; no inference call performed in F1",
+    "model_id": null,
+    "evaluation_budget": null
+  }
+}

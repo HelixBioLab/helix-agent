@@ -1,0 +1,669 @@
+{
+  "title": "Agente de bioinformática para la composición, ejecución y verificación de análisis de proteínas de repeticiones en tándem",
+  "summary": [
+    {
+      "kind": "paragraph",
+      "text": "El análisis de proteínas de repeticiones en tándem exige encadenar recursos que recuperan estructuras, detectan y delimitan unidades repetitivas y describen su geometría. La diversidad de formatos, identificadores y convenciones de numeración dificulta ese recorrido y puede producir resultados plausibles a partir de correspondencias incorrectas. Esta tesis desarrolla Bioinformática.org, un agente de terminal que recibe preguntas en lenguaje natural y busca convertirlas en análisis ejecutables con evidencia verificable por terceros."
+    },
+    {
+      "kind": "paragraph",
+      "text": "La investigación adopta un enfoque constructivo organizado en cinco objetivos: elicitar especificaciones aprobadas, componer y validar flujos, admitir ejecuciones según los recursos declarados, generar artefactos de proveniencia y aplicar controles mecánicos de fallo silencioso. La propuesta separa la formulación asistida por un modelo de lenguaje de las comprobaciones deterministas que condicionan la ejecución. Emplea un catálogo de operaciones invocables, correspondencias explícitas entre marcos de residuos y manifiestos que conservan la procedencia de los datos y de las decisiones."
+    },
+    {
+      "kind": "paragraph",
+      "text": "La evaluación prevista utiliza corpus de enunciados y composiciones adversariales, ejecuciones de contraste y casos publicados del dominio. Reporta admisibilidad, estabilidad ante paráfrasis, aceptación indebida, falso rechazo, acuerdo de anotación y sensibilidad y especificidad de los controles. La implementación disponible ofrece una base de adquisición, ejecución nf-core y comprobación de corpus; la cadena TRP completa y sus indicadores permanecen en desarrollo. El aporte que se somete a evaluación es la posibilidad de inspeccionar qué se ejecuta y qué controles se aplican, con límites explícitos: la integridad de los artefactos no acredita por sí sola la corrección biológica."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Resumen de trabajo: describe el estado y la evaluación prevista, sin atribuir resultados experimentales todavía no obtenidos. En F7 se actualizará con los indicadores observados y la conclusión empírica, manteniendo entre 200 y 300 palabras."
+    }
+  ],
+  "topic": [
+    {
+      "kind": "paragraph",
+      "text": "El trabajo desarrolla Bioinformática.org para la ejecución verificable de análisis sobre estructuras de proteínas de repeticiones en tándem. El alcance técnico, los objetivos y los resultados comprometidos se presentan en el Capítulo 1."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Pendiente externo de cierre administrativo: incorporar aquí la copia auténtica del Tema FCI aprobado. No se encontró en el material inspeccionado una constancia que permita sustituirla. El título de portada es una propuesta de trabajo y debe cotejarse con la denominación oficial; esta página no acredita aprobación del Decano."
+    }
+  ],
+  "chapter4": [
+    {
+      "kind": "paragraph",
+      "text": "Este capítulo presenta los 21 resultados esperados de los cinco objetivos específicos y establece qué evidencia permite dar por construido y validado cada uno. La versión actual recoge la línea base del 15 de septiembre de 2026, sobre el repositorio Bioinformática.org, revisión f37ba272bcf0ae1b2700bf998c3a3495e4b0ba1f, y los cambios de la primera fase de cierre. El plan de implementación, su cronograma y sus recursos se desarrollan en el Anexo A."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Los estados de este capítulo son una auditoría de avance. «Parcial» significa que existen componentes reutilizables, sin demostración del indicador completo; «sin evidencia» indica que no se encontró el entregable o su medición. Ningún porcentaje objetivo del Capítulo 1 se presenta como porcentaje alcanzado."
+    },
+    {
+      "kind": "heading",
+      "text": "Arquitectura y criterio de evidencia",
+      "level": 1
+    },
+    {
+      "kind": "paragraph",
+      "text": "El armazón del agente procede de opencode y la especialización bioinformática reside principalmente en packages/bioinformatica/src/bio y src/nfcore. El primero contiene clientes y utilidades para datos biológicos; el segundo reúne capacidades de flujos nf-core, registro, verificación y presentación. El tamaño del monorepositorio no mide el aporte propio de la tesis. La contribución se delimita por los contratos, controles e integración específicos del proceso TRP y por su evaluación."
+    },
+    {
+      "kind": "paragraph",
+      "text": "La arquitectura prevista sigue el orden pregunta, especificación, aprobación, composición, validación, admisión, ejecución y evidencia. La aprobación identifica la especificación concreta; un cambio posterior no hereda automáticamente esa aprobación. Las comprobaciones de identificadores, numeración y recursos se resuelven antes de ejecutar, y los veredictos de los controles se conservan junto a los datos que los sustentan."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Ilustración propia recomendada: diagrama de esa secuencia, marcando la frontera entre propuesta del modelo y decisión mecánica. Incorporar un caso real de identificadores y numeración incompatibles cuando se ejecute F3; no ilustrar una ejecución aún inexistente con una captura simulada."
+    },
+    {
+      "kind": "heading",
+      "text": "Elicitación y catálogo del dominio",
+      "level": 1
+    },
+    {
+      "kind": "heading",
+      "text": "R1.1. Catálogo declarativo del dominio",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE1. El registro nf-core y los clientes biológicos existen; falta un catálogo TRP de operaciones con contratos de identificadores, numeración y confianza, y una invocación ejecutada y versionada por entrada."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/registry.ts, src/bio/repeatsdb.ts, src/bio/sifts.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F2."
+    },
+    {
+      "kind": "heading",
+      "text": "R1.2. Módulo de elicitación",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE1. El objetivo de campaña y las preguntas no constituyen una especificación completa del análisis. Falta registrar el origen de cada parámetro y vincular la aprobación al contenido exacto que se ejecuta."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/objective.ts, src/tool/question.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F3."
+    },
+    {
+      "kind": "heading",
+      "text": "R1.3. Corpus de enunciados con patrón externo",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE1. Preparar al menos 50 enunciados, sus paráfrasis y el criterio de admisibilidad; obtener juicios externos y medir admisibilidad y estabilidad. Las etiquetas no pueden atribuirse a un anotador inexistente."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F6. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "Composición y validación mecánica",
+      "level": 1
+    },
+    {
+      "kind": "heading",
+      "text": "R2.1. Protocolo de evaluación",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE2. Los planes históricos de ablación no son el protocolo de los 21 resultados TRP. Fijar corpus, particiones, umbrales aún abiertos, denominadores y enmiendas antes de la campaña de evaluación."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F2. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "R2.2. Motor de composición",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE2. Se construyen comandos nf-core y se orquesta lint; falta emitir la cadena TRP sobre Nextflow desde la especificación aprobada y demostrar su ejecución sin edición manual."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/command.ts, src/nfcore/authoring.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F3."
+    },
+    {
+      "kind": "heading",
+      "text": "R2.3. Correspondencia de identificadores y numeración",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE2. Existe lectura de SIFTS con sello de versión y utilidades de correspondencia; falta integrar los contratos de marcos y validar la regla de modelos predichos frente a discordancias reales multicadena."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/bio/sifts.ts, src/bio/glue.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F3."
+    },
+    {
+      "kind": "heading",
+      "text": "R2.4. Validador estático y recorrido sin datos",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE2. El lint no verifica semántica de identificadores ni numeración entre pasos. Implementar comprobación del grafo completo y compuerta obligatoria de ejecución, además de resolución de configuración y recorrido en seco."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/authoring.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F3."
+    },
+    {
+      "kind": "heading",
+      "text": "R2.5. Informe de validación",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE2. Hay informes de validación nf-core; falta el informe por composición TRP con comprobaciones realizadas, omitidas y motivo, enlazado a la ejecución efectiva."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/validation.ts, src/nfcore/authoring.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F3."
+    },
+    {
+      "kind": "heading",
+      "text": "R2.6. Corpus de composiciones inválidas",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE2. Construir al menos 30 casos con incompatibilidad declarada y cobertura de todos los modos; medir aceptación indebida con el denominador visible."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F6. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "Admisión y gobernanza de recursos",
+      "level": 1
+    },
+    {
+      "kind": "heading",
+      "text": "R3.1. Inventario de recursos",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE3. Se detectan herramientas, CPU y memoria. Falta inventario de presupuesto de cómputo, disco y llamadas externas fijado para cada decisión de admisión."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/environment/detect.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F4."
+    },
+    {
+      "kind": "heading",
+      "text": "R3.2. Contador de demanda",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE3. Implementar conteo derivado del grafo con llamadas, estructuras y tareas; declarar supuestos de almacenamiento. El tiempo mínimo por límite de tasa no garantiza el tiempo total."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F4. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "R3.3. Rechazo tipificado de admisión",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE3. Implementar negativas por recurso y cantidad antes de ejecutar; probar límites exactos y presupuestos ausentes. Los rechazos del protocolo conversacional no sustituyen esta capa."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F4. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "R3.4. Acierto y falso rechazo",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE3. Medir matriz de decisión frente a ejecución observada en condiciones controladas. Un caso rechazado que no se ejecutó para contraste no demuestra un rechazo correcto."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F6. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "Artefactos de proveniencia",
+      "level": 1
+    },
+    {
+      "kind": "heading",
+      "text": "R4.1. Manifiesto verificable en frío",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE4. Los corpus registran hash, filas y bytes; el manifiesto de ejecución aún referencia artefactos sin sus hashes. F1 añade un verificador independiente de corpus; falta cerrar la cobertura de ejecuciones y su portabilidad."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/bio/snapshot.ts, src/nfcore/manifest.ts, src/nfcore/verify.ts, src/nfcore/dossier.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F4."
+    },
+    {
+      "kind": "heading",
+      "text": "R4.2. Registro de decisiones y rechazos",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE4. Existen registros de protocolo y ejecuciones; falta integrar y contrastar las tres fuentes del objetivo: permisos, negativas de admisión y violaciones del protocolo en la ruta real del agente."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/protocol.ts, src/nfcore/record.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F4."
+    },
+    {
+      "kind": "heading",
+      "text": "R4.3. Conteo de intervenciones",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE4. Hay taxonomía y clasificador determinista con reglas en inglés; falta validación externa, cobertura del idioma del corpus y reporte emparejado con corrección. Las autoetiquetas de prueba no acreditan kappa externo."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/handcount.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F6."
+    },
+    {
+      "kind": "heading",
+      "text": "R4.4. Métodos derivados del manifiesto",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE4. Las versiones de pipeline y el párrafo del conteo no cubren métodos TRP completos. Falta plantilla con revisión y digest de imagen por herramienta, y rechazo de campos sin procedencia."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/manifest.ts, src/nfcore/handcount.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F4."
+    },
+    {
+      "kind": "heading",
+      "text": "Controles de fallo silencioso",
+      "level": 1
+    },
+    {
+      "kind": "heading",
+      "text": "R5.1. Catálogo de fallos silenciosos",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE5. Convertir los hallazgos de la literatura y los apuntes históricos en un catálogo versionado: fuente, criterio mecánico, umbral y veredictos; declarar los fallos que no admiten automatización."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F5. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "R5.2. Batería de controles",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE5. El censo detecta pérdidas de identificadores, un control genérico. Faltan los controles estructurales de escala de confianza, numeración, cobertura y geometría, con valores y umbrales explícitos."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Base localizada en packages/bioinformatica: src/nfcore/census.ts. La matriz versionada docs/tesis/trazabilidad.json relaciona cada resultado con las rutas de código y de sus pruebas. Esas pruebas comprueban componentes; la evaluación del indicador completo se realiza en F5."
+    },
+    {
+      "kind": "heading",
+      "text": "R5.3. Artefacto de controles por instancia",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE5. Emitir una fila por instancia con fuente, versión de modelo, escala de confianza y veredicto por control; enlazar el archivo y su hash al manifiesto."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F5. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "R5.4. Sensibilidad y especificidad",
+      "level": 2
+    },
+    {
+      "kind": "paragraph",
+      "text": "Relación con el objetivo: OE5. Recuperar los casos publicados de fallo y la anotación de referencia, separar desarrollo y reserva y medir ambas tasas. No asumir que una alarma de PAE detecta los casos de Pratt et al."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Evidencia exigida: el entregable y el medio de verificación de la tabla correspondiente del §1.2.4, con el indicador calculado desde datos conservados. Fase prevista de cierre: F6. Estado de la medición: pendiente."
+    },
+    {
+      "kind": "heading",
+      "text": "Verificación de la línea base",
+      "level": 1
+    },
+    {
+      "kind": "paragraph",
+      "text": "Antes de modificar el código se ejecutó «bun test test/nfcore test/bio --timeout 30000» desde packages/bioinformatica. La suite terminó con 322 pruebas aprobadas, cero fallidas, distribuidas en 30 archivos. El resultado es evidencia de regresión de los componentes revisados; no demuestra una tasa de éxito sobre preguntas científicas ni sobre los 21 resultados completos."
+    },
+    {
+      "kind": "paragraph",
+      "text": "La primera fase incorpora script/tesis/verify_snapshot.py, una implementación en Python estándar que relee el manifiesto y los datos NDJSON sin importar el productor TypeScript. Comprueba SHA-256, tamaño y número de registros; rechaza entradas inválidas o ausentes y rutas que salen del paquete. Sus pruebas diferenciales ejecutan el programa contra datos producidos con las funciones reales del escritor, incluyendo cambios de contenido de igual tamaño y traslados del paquete. El alcance es la integridad de corpus, y no la verificación de una ejecución TRP completa. Las 12 pruebas nuevas pasaron; la suite de dominio posterior terminó con 334 pruebas aprobadas y cero fallidas en 31 archivos. La comprobación de tipos también concluyó sin errores."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Ilustraciones propias de F6: matriz de aceptación/rechazo de composiciones, matriz de admisión frente a consumo observado y sensibilidad/especificidad por modo de fallo. Cada figura debe indicar denominador, partición de evaluación y casos no evaluables. No convertir los umbrales previstos en barras de resultados."
+    }
+  ],
+  "chapter5_conclusions": [
+    {
+      "kind": "paragraph",
+      "text": "La primera fase establece una línea base verificable para una tesis que combina construcción de software y evaluación instrumental. La auditoría distingue el armazón heredado, las capacidades bioinformáticas existentes y los resultados TRP que aún requieren implementación o evidencia. Esta distinción permite orientar el cierre hacia los cinco objetivos específicos sin atribuir a la investigación capacidades que solo aparecen en el diseño."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Respecto del OE1, existen el objetivo persistente de campaña y mecanismos de consulta al usuario; todavía no acreditan una especificación completa con procedencia de cada parámetro ni su estabilidad ante reformulación. Respecto del OE2, los clientes SIFTS y las utilidades de composición nf-core constituyen una base reutilizable, pero la compatibilidad de marcos en una cadena TRP exige un validador integrado y un corpus adversarial propio."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Respecto del OE3, detectar el entorno no demuestra que una ejecución quepa en sus recursos: el inventario debe vincularse a una demanda explícita y la decisión debe contrastarse con consumo observado. Respecto del OE4, se puede comprobar la integridad de instantáneas sin modelo ni red; falta extender esa cobertura a todos los artefactos de ejecución y a los métodos. Respecto del OE5, los controles genéricos de completitud no sustituyen la medición de fallos estructurales del dominio."
+    },
+    {
+      "kind": "paragraph",
+      "text": "La conclusión metodológica que puede sostenerse en esta etapa es que la verificabilidad necesita contratos y evidencia conservada fuera de la conversación. Un manifiesto consistente demuestra correspondencia con los bytes registrados, no autenticidad ni corrección biológica. El juicio final sobre el cumplimiento de los objetivos dependerá de los indicadores observados, incluidos los resultados nulos y los casos no evaluables."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Conclusiones provisionales de avance. En F7 sustituir esta síntesis por conclusiones empíricas vinculadas a las tablas del Capítulo 4. No afirmar cumplimiento de OE1–OE5 hasta completar la implementación y su evaluación; mantener visibles la anotación externa y el acceso a infraestructura que sigan pendientes."
+    }
+  ],
+  "chapter5_future": [
+    {
+      "kind": "paragraph",
+      "text": "Una vez evaluado el alcance comprometido, el trabajo puede extenderse a nuevas familias estructurales, otros instrumentos de detección y más gestores de ejecución. Cada ampliación exige contratos de identificadores y numeración y una invocación de referencia, para conservar la misma regla de admisión al catálogo."
+    },
+    {
+      "kind": "paragraph",
+      "text": "Otras líneas son la evaluación con investigadores del dominio, la comparación controlada de distintas capas de especialización y la interoperabilidad con consumidores externos de herramientas. Estas líneas requieren diseños y recursos propios. El catálogo, la composición, la admisión, la proveniencia y los controles que ya forman parte de los 21 resultados actuales son trabajo pendiente de esta tesis y no se trasladan a trabajo futuro para aparentar su conclusión."
+    }
+  ],
+  "annex_intro": [
+    {
+      "kind": "paragraph",
+      "text": "El Anexo A desarrolla el plan de proyecto al que remiten el enfoque metodológico del Capítulo 1 y la presentación de resultados del Capítulo 4. Incluye el alcance de construcción, las dependencias de evaluación, la programación y el costo estimado del trabajo restante. La evidencia de ejecución y los protocolos se incorporarán como anexos complementarios cuando existan y hayan sido verificados."
+    }
+  ],
+  "annex": {
+    "Justificación": [
+      {
+        "kind": "paragraph",
+        "text": "El proyecto responde a la fragmentación de recursos que resuelven pasos aislados del análisis de proteínas de repeticiones en tándem. Su propósito es hacer explícitas las decisiones de composición, los requisitos de ejecución y la evidencia que un tercero necesita para inspeccionar lo realizado. Los beneficiarios previstos son investigadores del dominio y quienes revisan o reproducen sus análisis."
+      },
+      {
+        "kind": "paragraph",
+        "text": "La conveniencia práctica reside en reducir el encadenamiento manual sin ocultar sus supuestos. La relevancia para la investigación consiste en conservar datos, versiones, decisiones y controles que permitan cuestionar un resultado plausible. La utilidad metodológica radica en medir admisibilidad, compatibilidad, rechazo y detección de fallos con criterios registrados antes de evaluar. No se presume una mejora de productividad ni de corrección biológica hasta medirla."
+      },
+      {
+        "kind": "paragraph",
+        "text": "El valor conceptual es delimitar tres propiedades diferentes: poder ejecutar, poder comprobar qué se ejecutó y poder sostener una interpretación biológica. La tesis construye y evalúa mecanismos para las dos primeras y controles acotados para la tercera; no introduce un nuevo predictor estructural."
+      }
+    ],
+    "Viabilidad": [
+      {
+        "kind": "paragraph",
+        "text": "La viabilidad de ingeniería se apoya en un repositorio ejecutable sobre Bun y TypeScript, clientes biológicos y una suite de pruebas de dominio que se ejecutó en esta fase. El entorno de trabajo dispone de Python y LibreOffice para la comprobación de artefactos y preparación del documento. Las fuentes y el análisis de literatura ya reunidos permiten fijar contratos del dominio sin partir de un catálogo vacío."
+      },
+      {
+        "kind": "paragraph",
+        "text": "La viabilidad de la cadena TRP depende de ejecutar las herramientas candidatas con versiones identificables y entradas de referencia. La auditoría documental previa orienta esta selección, pero no reemplaza una invocación de referencia actual. La validación de R1.3 y R4.3 depende de una persona ajena al desarrollo; la ejecución en clúster y el presupuesto de campañas del modelo todavía requieren disponibilidad concreta."
+      },
+      {
+        "kind": "note",
+        "text": "NOTA PARA EL AUTOR. Escenario de trabajo mientras se confirman recursos: usar la estación local y reservar la evaluación externa y de clúster como dependencias. Los costos y fechas de este anexo son estimaciones propuestas, no recursos concedidos ni compromisos de terceros."
+      }
+    ],
+    "Alcance": [
+      {
+        "kind": "paragraph",
+        "text": "Se incluyen: catálogo de operaciones TRP invocables por programa; especificación aprobable desde lenguaje natural; composición sobre Nextflow; validación de formato, identificadores y numeración; admisión contra inventario y demanda; manifiestos, registros y métodos; controles de fallo silencioso; corpus de evaluación y documentación reproducible. El catálogo admite recursos después de una invocación real con versión y evidencia."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Se excluyen del alcance de construcción: desarrollar un predictor de estructura, garantizar corrección biológica de toda anotación, automatizar interfaces exclusivamente web como si fueran API y rehacer los formatos de proveniencia del ecosistema. Los recursos sin interfaz programática se conservan como comparadores. Las limitaciones de una herramienta no se resuelven sustituyéndola sin declarar el cambio y evaluar sus consecuencias."
+      }
+    ],
+    "Limitaciones": [
+      {
+        "kind": "paragraph",
+        "text": "El trabajo se planifica con un tesista, disponibilidad parcial y una ventana previa a la sustentación indicada para julio de 2027. Las restricciones principales son el acceso y mantenimiento del instrumental TRP, la disponibilidad de datos de fallos publicados, el costo de llamadas al modelo y la independencia de la anotación de referencia."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Los resultados instrumentales no permiten inferir automáticamente usabilidad con investigadores. Los manifiestos no garantizan autenticidad si un adversario modifica a la vez datos y hashes; requieren una referencia externa para ello. Los fallos no reducibles a una comprobación mecánica se declaran fuera de la batería, y los casos no evaluables no se cuentan como controles aprobados."
+      }
+    ],
+    "Identificación de los riesgos del proyecto": [
+      {
+        "kind": "paragraph",
+        "text": "Se usa una escala ordinal de probabilidad e impacto: 1 bajo, 2 medio y 3 alto. La severidad es el producto P×I y prioriza la atención; no es una probabilidad estadística. Las valoraciones siguientes son juicios de planificación que se revisan al finalizar cada fase."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-A. Herramienta TRP no ejecutable. Síntoma: instalación fallida o versión sin referencia. Probabilidad: 3. Impacto: 3. Severidad: 9. Mitigación: Probar una invocación mínima en F2. Contingencia: Documentar el bloqueo; evaluar una alternativa equivalente y registrar cambio de alcance."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-B. Anotación externa no disponible. Síntoma: no hay persona ni fecha acordadas. Probabilidad: 3. Impacto: 3. Severidad: 9. Mitigación: Preparar instrucciones y corpus temprano. Contingencia: Mantener R1.3/R4.3 sin validación externa; no sustituirla por autoetiquetas."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-C. Error de numeración o escala. Síntoma: uniones plausibles con residuos equivocados. Probabilidad: 2. Impacto: 3. Severidad: 6. Mitigación: Contratos explícitos y casos adversariales. Contingencia: Detener composición, corregir mapeo y repetir controles afectados."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-D. Campaña supera recursos. Síntoma: demanda desconocida o llamadas sin presupuesto. Probabilidad: 2. Impacto: 3. Severidad: 6. Mitigación: Inventario, conteo y prueba piloto separada de la reserva. Contingencia: Rechazo antes de ejecutar; reducir lote con enmienda documentada."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-E. Clúster no disponible. Síntoma: falta cuenta o cuota confirmada. Probabilidad: 2. Impacto: 2. Severidad: 4. Mitigación: Resolver acceso antes de F6. Contingencia: Reportar evidencia local; no confundir configuración con ejecución en clúster."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-F. Indicadores sesgados. Síntoma: umbrales elegidos tras mirar datos o fuga de paráfrasis. Probabilidad: 2. Impacto: 3. Severidad: 6. Mitigación: Registro previo y partición por intención/familia. Contingencia: Invalidar medición contaminada y registrar protocolo corregido y nueva reserva."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-G. Documento diverge del código. Síntoma: rutas ausentes o métricas sin log. Probabilidad: 2. Impacto: 3. Severidad: 6. Mitigación: Matriz por resultado y actualización al cerrar cada fase. Contingencia: Retirar afirmación no sustentada y repetir comprobación."
+      },
+      {
+        "kind": "paragraph",
+        "text": "R-H. Plazo insuficiente. Síntoma: fase consume su holgura sin entregar evidencia. Probabilidad: 2. Impacto: 2. Severidad: 4. Mitigación: Revisión de hitos cada dos semanas. Contingencia: Reprogramar con la asesora; declarar efectos sobre indicadores y alcance."
+      }
+    ],
+    "Estructura de descomposición del trabajo (EDT)": [
+      {
+        "kind": "paragraph",
+        "text": "1. Dirección y evidencia: plan, trazabilidad, protocolo y reuniones. 2. Catálogo: auditoría, invocaciones, contratos y versiones. 3. Especificación y composición: esquema, aprobación, grafo y validación. 4. Ejecución: inventario, demanda, admisión y proveniencia. 5. Controles: modos de fallo, lectores y reportes. 6. Evaluación: corpus, anotación, campañas y métricas. 7. Documento: capítulos, anexos, bibliografía, figuras y entrega."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Cada paquete se cierra con un entregable revisable y una comprobación. La secuencia de dependencias es F1 → F2 → F3 → F4 → F5 → F6 → F7. El diseño de controles puede avanzar después de F2; su integración necesita los artefactos de F4. La anotación externa se prepara en F2 para no retrasar F6."
+      }
+    ],
+    "Lista de tareas": [
+      {
+        "kind": "paragraph",
+        "text": "La unidad de esfuerzo es la hora-persona del tesista. Para estimar duración se supone una dedicación de 20 horas por semana; el costo humano de referencia es S/25 por hora como costo de oportunidad. Las verificaciones se incluyen en cada paquete. Las reuniones contemplan 20 sesiones propuestas de una hora y 20 horas de preparación y seguimiento, sujetas al calendario de asesoría y del curso."
+      },
+      {
+        "kind": "table",
+        "headers": ["Tarea", "Contenido", "Horas-persona", "Semanas equivalentes", "Costo humano (S/)"],
+        "rows": [
+          ["F1", "Auditoría de 21 resultados, pruebas, verificador y estructura del Word", "40", "2", "1000"],
+          ["F2", "Catálogo ejecutado, contratos, protocolo y encargo de anotación", "80", "4", "2000"],
+          ["F3", "Elicitación, aprobación, composición y pruebas adversariales", "120", "6", "3000"],
+          ["F4", "Admisión, manifiestos, registros y métodos", "100", "5", "2500"],
+          ["F5", "Controles del dominio y artefactos por instancia", "100", "5", "2500"],
+          ["F6", "Campañas, anotación externa, métricas y reproducción", "100", "5", "2500"],
+          ["F7", "Redacción final, citas, figuras, revisión de Word y PDF", "60", "3", "1500"],
+          ["T", "Reuniones con asesora, revisiones de curso y seguimiento", "40", "2", "1000"]
+        ],
+        "widths": [700, 3700, 1100, 1400, 1300]
+      },
+      {
+        "kind": "paragraph",
+        "text": "Total: 640 horas-persona, equivalentes a 32 semanas de dedicación, y S/16 000 de costo humano supuesto. Las primeras siete tareas suman 600 horas; el paquete transversal añade 40. No son horas ya ejecutadas ni facturadas."
+      }
+    ],
+    "Cronograma del proyecto": [
+      {
+        "kind": "paragraph",
+        "text": "La programación propone 263 días naturales inclusivos entre el 15 de septiembre de 2026 y el 4 de junio de 2027. Cada ventana de fase supera su duración estimada a 20 horas semanales: 18 frente a 14 días; 33 frente a 28; 54 frente a 42; 40 frente a 35 en F4, F5 y F6; y 26 frente a 21 en F7. Las reuniones se distribuyen dentro del intervalo total. Se conserva junio como margen de revisión antes de la sustentación prevista para julio de 2027."
+      },
+      {
+        "kind": "table",
+        "headers": ["Fase", "Inicio y fin propuestos", "Predecesoras"],
+        "rows": [
+          ["F1", "15 sep–2 oct 2026", "—"],
+          ["F2", "5 oct–6 nov 2026", "F1"],
+          ["F3", "9 nov 2026–1 ene 2027", "F2"],
+          ["F4", "4 ene–12 feb 2027", "F3"],
+          ["F5", "15 feb–26 mar 2027", "F2, F4"],
+          ["F6", "29 mar–7 may 2027", "F3–F5; recursos externos"],
+          ["F7", "10 may–4 jun 2027", "F6"],
+          ["T", "15 sep 2026–4 jun 2027", "Transversal"]
+        ],
+        "widths": [1000, 4500, 2700]
+      },
+      {
+        "kind": "note",
+        "text": "NOTA PARA EL AUTOR. Confirmar dedicación semanal, vacaciones, calendario del curso y fecha institucional antes de convertir estas ventanas en un compromiso. La planificación es un escenario calculado y revisable; no presupone disponibilidad de la asesora, anotador o clúster."
+      }
+    ],
+    "Lista de recursos": [
+      {
+        "kind": "paragraph",
+        "text": "Se requieren una estación de trabajo local y un tesista durante todo el proyecto; participación de la asesora en las revisiones; un anotador externo para preparar y juzgar los conjuntos reservados; almacenamiento para entradas y artefactos; y un presupuesto limitado de API/cómputo para la campaña de evaluación. El clúster se requiere en F6 si se conserva la afirmación de ejecución en esa infraestructura. Las cantidades y usos específicos se detallan a continuación."
+      }
+    ],
+    "Personas involucradas y necesidades de capacitación": [
+      {
+        "kind": "table",
+        "headers": ["Rol y cantidad", "Participación prevista", "Capacitación o preparación"],
+        "rows": [
+          [
+            "Marlow Brando Ariza Mejia, 1 tesista",
+            "F1–F7; 640 h estimadas",
+            "Contratos TRP, Nextflow, instrumentación y evaluación estadística."
+          ],
+          [
+            "Dra. Layla Hirsh Martínez, 1 asesora",
+            "20 h de revisión propuestas, por confirmar",
+            "Revisión de alcance, instrumentos, resultados y manuscrito."
+          ],
+          [
+            "1 anotador externo por identificar",
+            "30 h estimadas, F2 y F6",
+            "Guía de admisibilidad, taxonomía de intervenciones y separación de conjuntos."
+          ],
+          [
+            "Responsable de infraestructura, si aplica",
+            "Acceso y soporte del clúster en F6",
+            "Procedimiento local de ejecución y cuotas. Tiempo aún no contratado."
+          ]
+        ],
+        "widths": [2300, 2600, 3300]
+      },
+      {
+        "kind": "note",
+        "text": "NOTA PARA EL AUTOR. La existencia del rol no acredita participación realizada. Registrar la identidad y aportes del anotador cuando se concreten. Declarar en la versión final la relación de la asesora con las herramientas evaluadas según sus autorías verificadas, y separar asesoría de anotación independiente."
+      }
+    ],
+    "Materiales requeridos para el proyecto": [
+      {
+        "kind": "paragraph",
+        "text": "El desarrollo y los análisis utilizan material digital: fuentes bibliográficas, ficheros de estructuras, secuencias, anotaciones de referencia, casos adversariales y registros de ejecución. No se requieren muestras biológicas ni reactivos. Se reserva una partida estimada de impresión y presentación para el cierre; la entrega digital puede reducirla. Cada conjunto de datos conservará su procedencia y las condiciones de reutilización verificadas."
+      }
+    ],
+    "Estándares utilizados en el proyecto": [
+      {
+        "kind": "paragraph",
+        "text": "El proyecto emplea JSON/NDJSON para intercambios y registros, JSON Schema para contratos, SHA-256 para comprobación de integridad, Git para revisiones y PDBx/mmCIF para datos estructurales. El catálogo se ancla en EDAM y biotoolsSchema, cuyos términos concretos se verifican en F2. Los artefactos RO-Crate y BioCompute del sustrato se detectan y referencian cuando existen; su presencia no se declara antes de comprobarla."
+      },
+      {
+        "kind": "paragraph",
+        "text": "El formato de tesis sigue la plantilla proporcionada y su estilo bibliográfico autor-fecha. Las especificaciones y licencias deben vincularse a sus versiones y fuentes oficiales al congelar el entorno. La afirmación de conformidad con un estándar requiere la comprobación correspondiente; enumerarlo como referencia no basta."
+      }
+    ],
+    "Equipamiento requerido": [
+      {
+        "kind": "paragraph",
+        "text": "Una estación de trabajo local con entorno Linux o compatible para desarrollo y pruebas; almacenamiento de trabajo para corpus y artefactos, dimensionado por el contador de demanda; acceso de red durante adquisición y campañas del modelo; y medios de copia para la verificación sin conexión. No se presupone una GPU obligatoria: su necesidad se decide al admitir herramientas concretas."
+      },
+      {
+        "kind": "paragraph",
+        "text": "La utilización de clúster se contempla como recurso condicionado, con cuenta, ejecutor, cuota y fechas todavía por confirmar. El informe de entorno capturará las características reales de cada ejecución; este anexo no sustituye ese inventario con especificaciones supuestas."
+      }
+    ],
+    "Herramientas requeridas": [
+      {
+        "kind": "paragraph",
+        "text": "Desarrollo: Bun, TypeScript, Effect, Git, comprobador de tipos, formateador y pruebas automatizadas. Ejecución: Nextflow y el backend de contenedores disponible, con nf-core tools para las comprobaciones que correspondan. Evidencia: Python estándar para el verificador independiente, utilidades de hash y formatos de texto abiertos. Documento: Word o LibreOffice y herramientas de exportación y revisión de PDF."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Dominio: recursos de recuperación y anotación ya revisados en el Capítulo 3, con selección final condicionada a la auditoría y a una invocación de referencia. Un recurso citado no se considera instalado o disponible por aparecer en esta lista. El modelo y proveedor de la evaluación se fijarán con su identificador, configuración y presupuesto en el protocolo."
+      }
+    ],
+    "Costeo del Proyecto": [
+      {
+        "kind": "note",
+        "text": "NOTA PARA EL AUTOR. Presupuesto ilustrativo de planificación, pendiente de validación del autor. Las tarifas no son cotizaciones ni datos observados: S/25 por hora del tesista, S/80 por hora de asesoría y S/50 por hora del anotador son supuestos de valoración. Las reservas de API, almacenamiento e impresión no autorizan gasto. Sustituir por valores documentados al aprobar el presupuesto."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Se distingue costo económico de desembolso. El trabajo del tesista y el uso de equipo existente generan costo de oportunidad aunque no impliquen pago nuevo. La estación se valora provisionalmente en S/4 500, con vida útil de 36 meses y valor residual nulo: la depreciación lineal es 4 500/36 = S/125 mensuales y nueve meses imputan S/1 125. El tiempo de asesoría es una valoración económica propuesta, no una tarifa cobrada por la universidad."
+      },
+      {
+        "kind": "paragraph",
+        "text": "El costo total de propiedad del software considera licencia, instalación, operación y mantenimiento. Se presuponen licencias sin cargo únicamente para las herramientas que se admitan bajo esa condición; el esfuerzo de integración y mantenimiento ya está incluido en las 640 horas y no se cuenta dos veces. Los servicios de API se presupuestan aparte. Cualquier herramienta con licencia de pago obliga a revisar la partida antes de incorporarla."
+      },
+      {
+        "kind": "table",
+        "headers": ["N.º", "Descripción", "Unidad", "Cant.", "Unitario (S/)", "Total (S/)", "Acumulado (S/)"],
+        "rows": [
+          ["1", "Tesista: costo de oportunidad", "hora", "640", "25.00", "16000.00", "16000.00"],
+          ["2", "Asesoría: valoración propuesta", "hora", "20", "80.00", "1600.00", "17600.00"],
+          ["3", "Anotador externo: provisión", "hora", "30", "50.00", "1500.00", "19100.00"],
+          ["4", "Estación: depreciación lineal supuesta", "mes", "9", "125.00", "1125.00", "20225.00"],
+          ["5", "API y cómputo: reserva de campaña", "partida", "1", "600.00", "600.00", "20825.00"],
+          ["6", "Almacenamiento y copias", "partida", "1", "120.00", "120.00", "20945.00"],
+          ["7", "Licencias de software previstas", "partida", "1", "0.00", "0.00", "20945.00"],
+          ["8", "Impresión y presentación", "partida", "1", "150.00", "150.00", "21095.00"],
+          ["9", "Movilidad no programada", "partida", "1", "0.00", "0.00", "21095.00"],
+          ["10", "Reserva de contingencia (10% del subtotal)", "partida", "1", "2109.50", "2109.50", "23204.50"]
+        ],
+        "widths": [500, 2700, 850, 650, 1100, 1150, 1250]
+      },
+      {
+        "kind": "paragraph",
+        "text": "Subtotal: S/21 095,00. Contingencia propuesta del 10%: S/2 109,50. Costo económico total estimado: S/23 204,50. El gasto efectivo dependerá de qué recursos se paguen, de los consumos registrados y de los servicios finalmente contratados. El clúster no tiene una tarifa documentada; su costo adicional queda sin cuantificar y este escenario no acredita financiamiento para él."
+      }
+    ]
+  }
+}

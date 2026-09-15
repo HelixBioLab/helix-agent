@@ -1,0 +1,276 @@
+{
+  "fecha": "2026-09-15",
+  "commit_base": "f37ba272bcf0ae1b2700bf998c3a3495e4b0ba1f",
+  "fuente": "Tesis.docx: secciones 1.2.3 y 1.2.4",
+  "leyenda": {
+    "parcial": "Hay componentes reutilizables; el indicador completo no está demostrado.",
+    "sin_evidencia": "La auditoría no encontró el entregable o su medición. No implica que una búsqueda pruebe inexistencia absoluta."
+  },
+  "resultados": [
+    {
+      "id": "R1.1",
+      "objetivo": "OE1",
+      "titulo": "Catálogo declarativo del dominio",
+      "estado": "parcial",
+      "codigo": [
+        "packages/bioinformatica/src/nfcore/registry.ts",
+        "packages/bioinformatica/src/bio/repeatsdb.ts",
+        "packages/bioinformatica/src/bio/sifts.ts"
+      ],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/registry.test.ts",
+        "packages/bioinformatica/test/bio/repeatsdb.test.ts",
+        "packages/bioinformatica/test/bio/sifts.test.ts"
+      ],
+      "pendiente": "El registro nf-core y los clientes biológicos existen; falta un catálogo TRP de operaciones con contratos de identificadores, numeración y confianza, y una invocación ejecutada y versionada por entrada.",
+      "fase_cierre": "F2",
+      "medicion": null
+    },
+    {
+      "id": "R1.2",
+      "objetivo": "OE1",
+      "titulo": "Módulo de elicitación",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/objective.ts", "packages/bioinformatica/src/tool/question.ts"],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/objective.test.ts",
+        "packages/bioinformatica/test/tool/question.test.ts"
+      ],
+      "pendiente": "El objetivo de campaña y las preguntas no constituyen una especificación completa del análisis. Falta registrar el origen de cada parámetro y vincular la aprobación al contenido exacto que se ejecuta.",
+      "fase_cierre": "F3",
+      "medicion": null
+    },
+    {
+      "id": "R1.3",
+      "objetivo": "OE1",
+      "titulo": "Corpus de enunciados con patrón externo",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Preparar al menos 50 enunciados, sus paráfrasis y el criterio de admisibilidad; obtener juicios externos y medir admisibilidad y estabilidad. Las etiquetas no pueden atribuirse a un anotador inexistente.",
+      "fase_cierre": "F6",
+      "medicion": null
+    },
+    {
+      "id": "R2.1",
+      "objetivo": "OE2",
+      "titulo": "Protocolo de evaluación",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Los planes históricos de ablación no son el protocolo de los 21 resultados TRP. Fijar corpus, particiones, umbrales aún abiertos, denominadores y enmiendas antes de la campaña de evaluación.",
+      "fase_cierre": "F2",
+      "medicion": null
+    },
+    {
+      "id": "R2.2",
+      "objetivo": "OE2",
+      "titulo": "Motor de composición",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/command.ts", "packages/bioinformatica/src/nfcore/authoring.ts"],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/command.test.ts",
+        "packages/bioinformatica/test/nfcore/authoring.test.ts"
+      ],
+      "pendiente": "Se construyen comandos nf-core y se orquesta lint; falta emitir la cadena TRP sobre Nextflow desde la especificación aprobada y demostrar su ejecución sin edición manual.",
+      "fase_cierre": "F3",
+      "medicion": null
+    },
+    {
+      "id": "R2.3",
+      "objetivo": "OE2",
+      "titulo": "Correspondencia de identificadores y numeración",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/bio/sifts.ts", "packages/bioinformatica/src/bio/glue.ts"],
+      "pruebas": ["packages/bioinformatica/test/bio/sifts.test.ts", "packages/bioinformatica/test/bio/glue.test.ts"],
+      "pendiente": "Existe lectura de SIFTS con sello de versión y utilidades de correspondencia; falta integrar los contratos de marcos y validar la regla de modelos predichos frente a discordancias reales multicadena.",
+      "fase_cierre": "F3",
+      "medicion": null
+    },
+    {
+      "id": "R2.4",
+      "objetivo": "OE2",
+      "titulo": "Validador estático y recorrido sin datos",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/authoring.ts"],
+      "pruebas": ["packages/bioinformatica/test/nfcore/authoring.test.ts"],
+      "pendiente": "El lint no verifica semántica de identificadores ni numeración entre pasos. Implementar comprobación del grafo completo y compuerta obligatoria de ejecución, además de resolución de configuración y recorrido en seco.",
+      "fase_cierre": "F3",
+      "medicion": null
+    },
+    {
+      "id": "R2.5",
+      "objetivo": "OE2",
+      "titulo": "Informe de validación",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/validation.ts", "packages/bioinformatica/src/nfcore/authoring.ts"],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/validation.test.ts",
+        "packages/bioinformatica/test/nfcore/authoring.test.ts"
+      ],
+      "pendiente": "Hay informes de validación nf-core; falta el informe por composición TRP con comprobaciones realizadas, omitidas y motivo, enlazado a la ejecución efectiva.",
+      "fase_cierre": "F3",
+      "medicion": null
+    },
+    {
+      "id": "R2.6",
+      "objetivo": "OE2",
+      "titulo": "Corpus de composiciones inválidas",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Construir al menos 30 casos con incompatibilidad declarada y cobertura de todos los modos; medir aceptación indebida con el denominador visible.",
+      "fase_cierre": "F6",
+      "medicion": null
+    },
+    {
+      "id": "R3.1",
+      "objetivo": "OE3",
+      "titulo": "Inventario de recursos",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/environment/detect.ts"],
+      "pruebas": [],
+      "pendiente": "Se detectan herramientas, CPU y memoria. Falta inventario de presupuesto de cómputo, disco y llamadas externas fijado para cada decisión de admisión.",
+      "fase_cierre": "F4",
+      "medicion": null
+    },
+    {
+      "id": "R3.2",
+      "objetivo": "OE3",
+      "titulo": "Contador de demanda",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Implementar conteo derivado del grafo con llamadas, estructuras y tareas; declarar supuestos de almacenamiento. El tiempo mínimo por límite de tasa no garantiza el tiempo total.",
+      "fase_cierre": "F4",
+      "medicion": null
+    },
+    {
+      "id": "R3.3",
+      "objetivo": "OE3",
+      "titulo": "Rechazo tipificado de admisión",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Implementar negativas por recurso y cantidad antes de ejecutar; probar límites exactos y presupuestos ausentes. Los rechazos del protocolo conversacional no sustituyen esta capa.",
+      "fase_cierre": "F4",
+      "medicion": null
+    },
+    {
+      "id": "R3.4",
+      "objetivo": "OE3",
+      "titulo": "Acierto y falso rechazo",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Medir matriz de decisión frente a ejecución observada en condiciones controladas. Un caso rechazado que no se ejecutó para contraste no demuestra un rechazo correcto.",
+      "fase_cierre": "F6",
+      "medicion": null
+    },
+    {
+      "id": "R4.1",
+      "objetivo": "OE4",
+      "titulo": "Manifiesto verificable en frío",
+      "estado": "parcial",
+      "codigo": [
+        "packages/bioinformatica/src/bio/snapshot.ts",
+        "packages/bioinformatica/src/nfcore/manifest.ts",
+        "packages/bioinformatica/src/nfcore/verify.ts",
+        "packages/bioinformatica/src/nfcore/dossier.ts"
+      ],
+      "pruebas": [
+        "packages/bioinformatica/test/bio/snapshot.test.ts",
+        "packages/bioinformatica/test/nfcore/manifest.test.ts",
+        "packages/bioinformatica/test/nfcore/verify.test.ts",
+        "packages/bioinformatica/test/nfcore/dossier.test.ts",
+        "packages/bioinformatica/test/bio/independent-verify.test.ts"
+      ],
+      "pendiente": "Los corpus registran hash, filas y bytes; el manifiesto de ejecución aún referencia artefactos sin sus hashes. F1 añade un verificador independiente de corpus; falta cerrar la cobertura de ejecuciones y su portabilidad.",
+      "fase_cierre": "F4",
+      "medicion": null
+    },
+    {
+      "id": "R4.2",
+      "objetivo": "OE4",
+      "titulo": "Registro de decisiones y rechazos",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/protocol.ts", "packages/bioinformatica/src/nfcore/record.ts"],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/protocol.test.ts",
+        "packages/bioinformatica/test/nfcore/record.test.ts"
+      ],
+      "pendiente": "Existen registros de protocolo y ejecuciones; falta integrar y contrastar las tres fuentes del objetivo: permisos, negativas de admisión y violaciones del protocolo en la ruta real del agente.",
+      "fase_cierre": "F4",
+      "medicion": null
+    },
+    {
+      "id": "R4.3",
+      "objetivo": "OE4",
+      "titulo": "Conteo de intervenciones",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/handcount.ts"],
+      "pruebas": ["packages/bioinformatica/test/nfcore/handcount.test.ts"],
+      "pendiente": "Hay taxonomía y clasificador determinista con reglas en inglés; falta validación externa, cobertura del idioma del corpus y reporte emparejado con corrección. Las autoetiquetas de prueba no acreditan kappa externo.",
+      "fase_cierre": "F6",
+      "medicion": null
+    },
+    {
+      "id": "R4.4",
+      "objetivo": "OE4",
+      "titulo": "Métodos derivados del manifiesto",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/manifest.ts", "packages/bioinformatica/src/nfcore/handcount.ts"],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/manifest.test.ts",
+        "packages/bioinformatica/test/nfcore/handcount.test.ts"
+      ],
+      "pendiente": "Las versiones de pipeline y el párrafo del conteo no cubren métodos TRP completos. Falta plantilla con revisión y digest de imagen por herramienta, y rechazo de campos sin procedencia.",
+      "fase_cierre": "F4",
+      "medicion": null
+    },
+    {
+      "id": "R5.1",
+      "objetivo": "OE5",
+      "titulo": "Catálogo de fallos silenciosos",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Convertir los hallazgos de la literatura y los apuntes históricos en un catálogo versionado: fuente, criterio mecánico, umbral y veredictos; declarar los fallos que no admiten automatización.",
+      "fase_cierre": "F5",
+      "medicion": null
+    },
+    {
+      "id": "R5.2",
+      "objetivo": "OE5",
+      "titulo": "Batería de controles",
+      "estado": "parcial",
+      "codigo": ["packages/bioinformatica/src/nfcore/census.ts"],
+      "pruebas": ["packages/bioinformatica/test/nfcore/census.test.ts"],
+      "pendiente": "El censo detecta pérdidas de identificadores, un control genérico. Faltan los controles estructurales de escala de confianza, numeración, cobertura y geometría, con valores y umbrales explícitos.",
+      "fase_cierre": "F5",
+      "medicion": null
+    },
+    {
+      "id": "R5.3",
+      "objetivo": "OE5",
+      "titulo": "Artefacto de controles por instancia",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Emitir una fila por instancia con fuente, versión de modelo, escala de confianza y veredicto por control; enlazar el archivo y su hash al manifiesto.",
+      "fase_cierre": "F5",
+      "medicion": null
+    },
+    {
+      "id": "R5.4",
+      "objetivo": "OE5",
+      "titulo": "Sensibilidad y especificidad",
+      "estado": "sin_evidencia",
+      "codigo": [],
+      "pruebas": [],
+      "pendiente": "Recuperar los casos publicados de fallo y la anotación de referencia, separar desarrollo y reserva y medir ambas tasas. No asumir que una alarma de PAE detecta los casos de Pratt et al.",
+      "fase_cierre": "F6",
+      "medicion": null
+    }
+  ]
+}
