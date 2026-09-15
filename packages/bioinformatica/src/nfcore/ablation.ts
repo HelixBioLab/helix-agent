@@ -135,6 +135,9 @@ export function spec(state: State): string {
  * enabled with the layer off — a switch that disables less than it says.
  */
 export const SPECIALIZATION_TOOLS: readonly string[] = [
+  "trp_catalog",
+  "trp_prepare",
+  "trp_run",
   // nf-core execution and authoring
   "nfcore_pipeline_search",
   "nfcore_samplesheet_schema",

@@ -18,7 +18,9 @@
         "packages/bioinformatica/src/bio/repeatsdb.ts",
         "packages/bioinformatica/src/bio/sifts.ts",
         "packages/bioinformatica/src/trp/catalog.ts",
-        "packages/bioinformatica/src/trp/catalog.json"
+        "packages/bioinformatica/src/trp/catalog.json",
+        "packages/bioinformatica/src/tool/trp.ts",
+        "packages/bioinformatica/src/trp/workflow.ts"
       ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/registry.test.ts",
@@ -26,30 +28,46 @@
         "packages/bioinformatica/test/bio/sifts.test.ts",
         "packages/bioinformatica/test/trp/catalog.test.ts"
       ],
-      "pendiente": "F2 entrega catálogo 1.0.0: dos operaciones con referencias verificadas, tres candidatas y un comparador web. Falta integrar resolución en el agente, admitir detección y verificar el marco de RepeatsDB. Los servicios remotos no exponen imagen de servidor. Se conserva alcance parcial y se traslada la ampliación a F3.",
-      "fase_cierre": "F3",
+      "pendiente": "Catálogo 1.1.0 integrado, dos operaciones admitidas. STRPsearch ya tiene una referencia candidata tras retirar ligandos/agua, además de la ejecución original fallida; faltan receta congelada, contrato y propagación de fallos. ReUPred y marco/licencia de la API actual RepeatsDB pendientes. Ampliación necesaria antes de descubrimiento o reserva de F6.",
+      "fase_cierre": "F4-F5, antes de F6",
       "medicion": {
         "tipo": "referencia_tecnica_no_evaluacion_empirica",
         "admitidas": 2,
         "universo_auditado": 6,
         "referencias_verificadas": 2,
         "pruebas_catalogo": 16,
-        "evidencia": "evaluation/trp/reference/audit.json"
+        "evidencia": "docs/tesis/evidencia/fase3.json"
       }
     },
     {
       "id": "R1.2",
       "objetivo": "OE1",
       "titulo": "Módulo de elicitación",
-      "estado": "parcial",
-      "codigo": ["packages/bioinformatica/src/nfcore/objective.ts", "packages/bioinformatica/src/tool/question.ts"],
+      "estado": "implementado",
+      "codigo": [
+        "packages/bioinformatica/src/nfcore/objective.ts",
+        "packages/bioinformatica/src/tool/question.ts",
+        "packages/bioinformatica/src/trp/specification.ts",
+        "packages/bioinformatica/src/trp/graph.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/objective.test.ts",
-        "packages/bioinformatica/test/tool/question.test.ts"
+        "packages/bioinformatica/test/tool/question.test.ts",
+        "packages/bioinformatica/test/trp/graph.test.ts",
+        "packages/bioinformatica/test/trp/workflow.test.ts",
+        "packages/bioinformatica/test/trp/preflight.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
       ],
-      "pendiente": "El objetivo de campaña y las preguntas no constituyen una especificación completa del análisis. Falta registrar el origen de cada parámetro y vincular la aprobación al contenido exacto que se ejecuta.",
+      "pendiente": "Implementado para la ruta PDB/GeomeTRe: fuentes declaradas, aprobación por Question.Service y digest del paquete. La autenticación de fuentes y el desempeño lingüístico externo no se deducen de esta implementación; R1.3 se evalúa en F6.",
       "fase_cierre": "F3",
-      "medicion": null
+      "medicion": {
+        "tipo": "desarrollo_no_reserva",
+        "evidencia": "docs/tesis/evidencia/fase3.json"
+      }
     },
     {
       "id": "R1.3",
@@ -88,62 +106,148 @@
       "id": "R2.2",
       "objetivo": "OE2",
       "titulo": "Motor de composición",
-      "estado": "parcial",
-      "codigo": ["packages/bioinformatica/src/nfcore/command.ts", "packages/bioinformatica/src/nfcore/authoring.ts"],
+      "estado": "implementado",
+      "codigo": [
+        "packages/bioinformatica/src/nfcore/command.ts",
+        "packages/bioinformatica/src/nfcore/authoring.ts",
+        "packages/bioinformatica/src/trp/specification.ts",
+        "packages/bioinformatica/src/trp/graph.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/command.test.ts",
-        "packages/bioinformatica/test/nfcore/authoring.test.ts"
+        "packages/bioinformatica/test/nfcore/authoring.test.ts",
+        "packages/bioinformatica/test/trp/graph.test.ts",
+        "packages/bioinformatica/test/trp/workflow.test.ts",
+        "packages/bioinformatica/test/trp/preflight.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
       ],
-      "pendiente": "Se construyen comandos nf-core y se orquesta lint; falta emitir la cadena TRP sobre Nextflow desde la especificación aprobada y demostrar su ejecución sin edición manual.",
+      "pendiente": "Emisor DSL2 integrado y referencia real con CSV idéntico al anterior, dos tareas simuladas y dos reales. Falta ampliar más allá de la ruta admitida y medir la reserva de 50 especificaciones en F6.",
       "fase_cierre": "F3",
-      "medicion": null
+      "medicion": {
+        "tipo": "desarrollo_no_reserva",
+        "evidencia": "docs/tesis/evidencia/fase3.json"
+      }
     },
     {
       "id": "R2.3",
       "objetivo": "OE2",
       "titulo": "Correspondencia de identificadores y numeración",
       "estado": "parcial",
-      "codigo": ["packages/bioinformatica/src/bio/sifts.ts", "packages/bioinformatica/src/bio/glue.ts"],
-      "pruebas": ["packages/bioinformatica/test/bio/sifts.test.ts", "packages/bioinformatica/test/bio/glue.test.ts"],
-      "pendiente": "Existe lectura de SIFTS con sello de versión y utilidades de correspondencia; falta integrar los contratos de marcos y validar la regla de modelos predichos frente a discordancias reales multicadena.",
-      "fase_cierre": "F3",
-      "medicion": null
+      "codigo": [
+        "packages/bioinformatica/src/bio/sifts.ts",
+        "packages/bioinformatica/src/bio/glue.ts",
+        "packages/bioinformatica/src/trp/specification.ts",
+        "packages/bioinformatica/src/trp/graph.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
+      "pruebas": [
+        "packages/bioinformatica/test/bio/sifts.test.ts",
+        "packages/bioinformatica/test/bio/glue.test.ts",
+        "packages/bioinformatica/test/trp/graph.test.ts",
+        "packages/bioinformatica/test/trp/workflow.test.ts",
+        "packages/bioinformatica/test/trp/preflight.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
+      ],
+      "pendiente": "Compatibilidad e identidad comprobadas sobre PDB de autor; no se infieren conversiones. Continúan pendientes los adaptadores SIFTS/label/autor, discordancias multicadena y modelos predichos antes de la reserva, coordinados con F5.",
+      "fase_cierre": "F5",
+      "medicion": {
+        "tipo": "desarrollo_no_reserva",
+        "evidencia": "docs/tesis/evidencia/fase3.json"
+      }
     },
     {
       "id": "R2.4",
       "objetivo": "OE2",
       "titulo": "Validador estático y recorrido sin datos",
-      "estado": "parcial",
-      "codigo": ["packages/bioinformatica/src/nfcore/authoring.ts"],
-      "pruebas": ["packages/bioinformatica/test/nfcore/authoring.test.ts"],
-      "pendiente": "El lint no verifica semántica de identificadores ni numeración entre pasos. Implementar comprobación del grafo completo y compuerta obligatoria de ejecución, además de resolución de configuración y recorrido en seco.",
+      "estado": "implementado",
+      "codigo": [
+        "packages/bioinformatica/src/nfcore/authoring.ts",
+        "packages/bioinformatica/src/trp/specification.ts",
+        "packages/bioinformatica/src/trp/graph.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/authoring.test.ts",
+        "packages/bioinformatica/test/trp/graph.test.ts",
+        "packages/bioinformatica/test/trp/workflow.test.ts",
+        "packages/bioinformatica/test/trp/preflight.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
+      ],
+      "pendiente": "Esquema, grafo, contratos, bytes, resolución de configuración y stub obligatorios en la ruta TRP. Ampliar los contratos con el catálogo y evaluar la reserva en F6; no se afirma una restricción universal sobre el shell del agente general.",
       "fase_cierre": "F3",
-      "medicion": null
+      "medicion": {
+        "tipo": "desarrollo_no_reserva",
+        "evidencia": "docs/tesis/evidencia/fase3.json"
+      }
     },
     {
       "id": "R2.5",
       "objetivo": "OE2",
       "titulo": "Informe de validación",
-      "estado": "parcial",
-      "codigo": ["packages/bioinformatica/src/nfcore/validation.ts", "packages/bioinformatica/src/nfcore/authoring.ts"],
+      "estado": "implementado",
+      "codigo": [
+        "packages/bioinformatica/src/nfcore/validation.ts",
+        "packages/bioinformatica/src/nfcore/authoring.ts",
+        "packages/bioinformatica/src/trp/specification.ts",
+        "packages/bioinformatica/src/trp/graph.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/validation.test.ts",
-        "packages/bioinformatica/test/nfcore/authoring.test.ts"
+        "packages/bioinformatica/test/nfcore/authoring.test.ts",
+        "packages/bioinformatica/test/trp/graph.test.ts",
+        "packages/bioinformatica/test/trp/workflow.test.ts",
+        "packages/bioinformatica/test/trp/preflight.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
       ],
-      "pendiente": "Hay informes de validación nf-core; falta el informe por composición TRP con comprobaciones realizadas, omitidas y motivo, enlazado a la ejecución efectiva.",
+      "pendiente": "Informe estático, comprobaciones de configuración/stub y éxito/fallo guardados con digest. F4 completará la verificación portable de todo el paquete; controles omitidos no cuentan como aprobados.",
       "fase_cierre": "F3",
-      "medicion": null
+      "medicion": {
+        "tipo": "desarrollo_no_reserva",
+        "evidencia": "docs/tesis/evidencia/fase3.json"
+      }
     },
     {
       "id": "R2.6",
       "objetivo": "OE2",
       "titulo": "Corpus de composiciones inválidas",
-      "estado": "sin_evidencia",
-      "codigo": [],
-      "pruebas": [],
-      "pendiente": "Construir al menos 30 casos con incompatibilidad declarada y cobertura de todos los modos; medir aceptación indebida con el denominador visible.",
+      "estado": "parcial",
+      "codigo": [
+        "packages/bioinformatica/src/trp/specification.ts",
+        "packages/bioinformatica/src/trp/graph.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
+      "pruebas": [
+        "packages/bioinformatica/test/trp/graph.test.ts",
+        "packages/bioinformatica/test/trp/workflow.test.ts",
+        "packages/bioinformatica/test/trp/preflight.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
+      ],
+      "pendiente": "Corpus de desarrollo implementado: 33 casos inválidos, 0 aceptados y 33 motivos esperados detectados. La reserva T-GRAPH no está evaluada y permanece para F6.",
       "fase_cierre": "F6",
-      "medicion": null
+      "medicion": {
+        "tipo": "desarrollo_no_reserva",
+        "evidencia": "docs/tesis/evidencia/fase3.json",
+        "invalidas_desarrollo": 33,
+        "aceptadas_desarrollo": 0,
+        "reserva_evaluada": false
+      }
     },
     {
       "id": "R3.1",

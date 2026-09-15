@@ -1,0 +1,55 @@
+mkdir -p failed for path /root/.config/matplotlib: [Errno 30] Read-only file system: '/root/.config'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-f9d0gw9g because there was an issue with the default path ({configdir}); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+
+Fontconfig error: No writable cache directories
+	/opt/conda/envs/strpsearch_env_ch_before/var/cache/fontconfig
+	/root/.cache/fontconfig
+	/root/.fontconfig
+                                                                                
+ Usage: strpsearch.py query-file [OPTIONS] {input_file} {out_dir}               
+                                                                                
+ Query an existing PDB/CIF formatted structure file by providing the file path. 
+                                                                                
+╭─ Arguments ──────────────────────────────────────────────────────────────────╮
+│ *    input_file      <str>  Path to the input structure file to query        │
+│                             (PDB/mmCIF).                                     │
+│                             [required]                                       │
+│ *    out_dir         <str>  Path to the output directory. [required]         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --chain                           <str>                 Specific chain to    │
+│                                                         query from the       │
+│                                                         structures.          │
+│                                                         [default: all]       │
+│ --temp-dir                        <str>                 Path to the          │
+│                                                         temporary directory. │
+│                                                         [default: /tmp]      │
+│ --max-eval                        <float range> [x>=0]  Maximum E-value of   │
+│                                                         the targets to       │
+│                                                         prefilter.           │
+│                                                         [default: 0.1]       │
+│ --min-height                      <str>                 Minimum height of    │
+│                                                         TM-score signals to  │
+│                                                         be processed.        │
+│                                                         [default: auto]      │
+│ --keep-temp     --no-keep-temp                          Whether to keep the  │
+│                                                         temporary directory  │
+│                                                         and files.           │
+│                                                         [default:            │
+│                                                         no-keep-temp]        │
+│ --pymol-pse     --no-pymol-pse                          Whether to create    │
+│                                                         and output PyMOL     │
+│                                                         session files.       │
+│                                                         [default:            │
+│                                                         no-pymol-pse]        │
+│ --db                              <str>                 Path to the database │
+│                                                         to use.              │
+│ --chainsaw      --no-chainsaw                           Whether to use       │
+│                                                         Chainsaw for domain  │
+│                                                         trimming.            │
+│                                                         [default:            │
+│                                                         no-chainsaw]         │
+│ --help                                                  Show this message    │
+│                                                         and exit.            │
+╰──────────────────────────────────────────────────────────────────────────────╯
+

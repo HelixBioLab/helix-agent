@@ -1,0 +1,124 @@
+/** Explicit engineering integration run. Replies are synthetic test-driver input,
+ * not evidence of human agreement or thesis language/annotation performance. */
+import { expect } from "bun:test"
+import { Effect, Fiber, Queue } from "effect"
+import { LayerNode } from "@bioinformatica/core/effect/layer-node"
+import fs from "node:fs/promises"
+import path from "node:path"
+import { TrpWorkflow } from "../../src/trp/workflow"
+import { TrpSpecification } from "../../src/trp/specification"
+import { TrpPrepareTool, TrpRunTool } from "../../src/tool/trp"
+import { Question } from "../../src/question"
+import { EventV2Bridge } from "../../src/event-v2-bridge"
+import { Agent } from "../../src/agent/agent"
+import { Truncate } from "../../src/tool/truncate"
+import { InstanceState } from "../../src/effect/instance-state"
+import { SessionID, MessageID } from "../../src/session/schema"
+import { testEffect } from "../lib/effect"
+import source from "../../../../evaluation/trp/development/f3-reference-spec.json"
+
+const root = path.resolve(import.meta.dir, "../../../..")
+const it = testEffect(
+  LayerNode.compile(LayerNode.group([TrpWorkflow.node, Question.node, EventV2Bridge.node, Agent.node, Truncate.node])),
+)
+const run = process.env.TRP_LIVE_REFERENCE === "1" ? it.instance : it.instance.skip
+
+run(
+  "real Nextflow geometry through the agent tools (synthetic approval driver)",
+  () =>
+    Effect.gen(function* () {
+      const directory = yield* InstanceState.directory
+      yield* Effect.promise(() =>
+        fs.copyFile(path.join(root, source.structure.value.path), path.join(directory, "input.pdb")),
+      )
+      const raw = structuredClone(source)
+      raw.structure.value.path = "input.pdb"
+      const ctx = {
+        sessionID: SessionID.make("ses_trp-engineering-reference"),
+        messageID: MessageID.make("msg_trp-engineering-reference"),
+        callID: "reference-driver",
+        agent: "build",
+        abort: new AbortController().signal,
+        messages: [],
+        metadata: () => Effect.void,
+        ask: () => Effect.void,
+      }
+      const prepare = yield* (yield* TrpPrepareTool).init()
+      const runTool = yield* (yield* TrpRunTool).init()
+      const prepared = yield* prepare.execute({ specification: TrpSpecification.parse(raw), evidence_root: root }, ctx)
+      const preview = prepared.metadata
+      const question = yield* Question.Service
+      const events = yield* EventV2Bridge.Service
+      const asked = yield* Queue.unbounded<void>()
+      const off = yield* events.listen((event) => {
+        if (event.type === Question.Event.Asked.type) Queue.offerUnsafe(asked, undefined)
+        return Effect.void
+      })
+      yield* Effect.addFinalizer(() => off)
+      const fiber = yield* runTool.execute({ id: preview.id, digest: preview.digest }, ctx).pipe(Effect.forkScoped)
+      for (;;) {
+        const item = (yield* question.list()).find((q) => q.sessionID === ctx.sessionID)
+        if (!item) {
+          yield* Queue.take(asked).pipe(Effect.timeout("5 seconds"))
+          continue
+        }
+        expect(item.questions[0].question).toContain(preview.digest)
+        yield* question.reply({ requestID: item.id, answers: [["Aprobar y ejecutar"]] })
+        break
+      }
+      const execution = yield* Fiber.join(fiber).pipe(
+        Effect.onExit((exit) =>
+          exit._tag === "Failure" && process.env.TRP_REFERENCE_OUTPUT
+            ? Effect.promise(async () => {
+                const from = path.join(directory, ".bioinformatica", "trp")
+                if (await fs.stat(from).catch(() => undefined))
+                  await fs.cp(from, `${process.env.TRP_REFERENCE_OUTPUT}-failure-${Date.now()}`, { recursive: true })
+              })
+            : Effect.void,
+        ),
+      )
+      const result = execution.metadata
+      expect(result.digest).toBe(preview.digest)
+      const actual = yield* Effect.promise(() =>
+        fs.readFile(path.join(result.directory, "results", "geometry.csv"), "utf8"),
+      )
+      const reference = yield* Effect.promise(() =>
+        fs.readFile(path.join(root, "evaluation/trp/reference/geometre/geometry.csv"), "utf8"),
+      )
+      expect(actual).toBe(reference)
+      const target = process.env.TRP_REFERENCE_OUTPUT
+      if (target)
+        yield* Effect.promise(async () => {
+          await fs.mkdir(target, { recursive: false })
+          for (const entry of await fs.readdir(result.directory, { withFileTypes: true })) {
+            if (entry.isFile())
+              await fs.copyFile(path.join(result.directory, entry.name), path.join(target, entry.name))
+          }
+          await fs.cp(path.join(result.directory, "results"), path.join(target, "results"), { recursive: true })
+          await fs.mkdir(path.join(target, "dry-run"))
+          for (const name of ["stdout.log", "stderr.log", "trace.tsv", "results/geometry.csv"]) {
+            const destination = path.join(target, "dry-run", name)
+            await fs.mkdir(path.dirname(destination), { recursive: true })
+            await fs.copyFile(path.join(result.directory, "dry-run", name), destination)
+          }
+          await fs.writeFile(
+            path.join(target, "engineering-reference.json"),
+            JSON.stringify(
+              {
+                kind: "development-reference",
+                approvalDriver: "synthetic Question.Service.reply in reference.live.test.ts",
+                humanEvaluation: false,
+                expectedCsvSha256: TrpSpecification.sha256(reference),
+                actualCsvSha256: TrpSpecification.sha256(actual),
+                equal: actual === reference,
+                toolPath: ["trp_prepare", "trp_run"],
+                digest: preview.digest,
+              },
+              null,
+              2,
+            ),
+          )
+        })
+    }),
+  600_000,
+)

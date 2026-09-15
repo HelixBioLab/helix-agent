@@ -1,0 +1,237 @@
+{
+  "kind": "candidate-reconstruction-probe",
+  "date": "2026-09-15",
+  "source": "https://github.com/BioComputingUP/STRPsearch",
+  "revision": "ed325a7f6b77578ee96753f31dbdcfda4931cca8",
+  "image": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+  "architecture": "amd64",
+  "database_zip_sha256": "8c7341b2c789e6e0769c751bce4e5bfaeb3d750bde90985c406b51f2f4d8854d",
+  "raw_run": {
+    "exit_code": 0,
+    "errors_reported": 2,
+    "scientific_success": false,
+    "detail": "Both Foldseek hits failed in Savitzky-Golay smoothing with nonfinite values. Generated fragments included water-only HETATM records. A zero CLI exit is insufficient.",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "tesis-strpsearch-f3-reference",
+      "--rm",
+      "--network",
+      "none",
+      "--read-only",
+      "--user",
+      "1000:1000",
+      "--tmpfs",
+      "/tmp:rw,nosuid,size=1g",
+      "--cpus",
+      "2",
+      "--memory",
+      "8g",
+      "--pids-limit",
+      "256",
+      "-e",
+      "MPLCONFIGDIR=/tmp/matplotlib",
+      "-e",
+      "XDG_CACHE_HOME=/tmp/cache",
+      "-e",
+      "OMP_NUM_THREADS=2",
+      "-e",
+      "OPENBLAS_NUM_THREADS=1",
+      "-v",
+      "/tmp/tesis-f3/strpsearch-run:/work",
+      "-v",
+      "/tmp/tesis-f3/mime.types:/etc/mime.types:ro",
+      "tesis/strpsearch:candidate-f3",
+      "query-file",
+      "/work/2xqh.cif",
+      "/work/results",
+      "--chain",
+      "A",
+      "--temp-dir",
+      "/work/tmp",
+      "--db",
+      "/app/data/databases",
+      "--min-height",
+      "0.4",
+      "--max-eval",
+      "0.01",
+      "--keep-temp",
+      "--no-pymol-pse",
+      "--no-chainsaw"
+    ]
+  },
+  "protein_only_run": {
+    "exit_code": 0,
+    "errors_reported": 0,
+    "regions": 1,
+    "units": 7,
+    "bounds": [
+      162,
+      269
+    ],
+    "reviewed": false,
+    "detail": "Diagnostic transformation removed ligands/waters; upstream algorithm code unchanged. Family is in the bundled database, so this is not held-out detection evidence.",
+    "command": [
+      "docker",
+      "run",
+      "--name",
+      "tesis-strpsearch-f3-protein-reference",
+      "--rm",
+      "--network",
+      "none",
+      "--read-only",
+      "--user",
+      "1000:1000",
+      "--tmpfs",
+      "/tmp:rw,nosuid,size=1g",
+      "--cpus",
+      "2",
+      "--memory",
+      "8g",
+      "--pids-limit",
+      "256",
+      "-e",
+      "MPLCONFIGDIR=/tmp/matplotlib",
+      "-e",
+      "XDG_CACHE_HOME=/tmp/cache",
+      "-e",
+      "OMP_NUM_THREADS=2",
+      "-e",
+      "OPENBLAS_NUM_THREADS=1",
+      "-v",
+      "/tmp/tesis-f3/strpsearch-run:/work",
+      "-v",
+      "/tmp/tesis-f3/mime.types:/etc/mime.types:ro",
+      "tesis/strpsearch:candidate-f3",
+      "query-file",
+      "/work/protein-only/2xqh.cif",
+      "/work/results-protein",
+      "--chain",
+      "A",
+      "--temp-dir",
+      "/work/tmp-protein",
+      "--db",
+      "/app/data/databases",
+      "--min-height",
+      "0.4",
+      "--max-eval",
+      "0.01",
+      "--keep-temp",
+      "--no-pymol-pse",
+      "--no-chainsaw"
+    ]
+  },
+  "admitted": false,
+  "pending": [
+    "Frozen rebuild recipe for the full environment",
+    "Reviewed identifier/residue/alternate-location contract",
+    "Failure propagation and output validator before automatic composition"
+  ],
+  "files": [
+    {
+      "path": "2xqh.cif",
+      "bytes": 428116,
+      "sha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b"
+    },
+    {
+      "path": "failed-debug.log",
+      "bytes": 4982,
+      "sha256": "15980917992e59ce0558d79e222993af1dd02e35d782113114040d68379e5ab4"
+    },
+    {
+      "path": "mime.types",
+      "bytes": 42,
+      "sha256": "c722df3d6b7fe299b1c815177faccac7d08087bb91b1e1d004954ddbe8f69ea9"
+    },
+    {
+      "path": "prepare-protein.py",
+      "bytes": 671,
+      "sha256": "9e88961cfb6169bd8c1761b0c2a3a027b0ab6317a530b8321916581d9463eb25"
+    },
+    {
+      "path": "protein-debug.log",
+      "bytes": 330,
+      "sha256": "ef8d582393e15e97fa48149701353fa880fd845d5b3c4324bf99c8f3ca5dce37"
+    },
+    {
+      "path": "protein-fs_output.tsv",
+      "bytes": 50997,
+      "sha256": "35c70967df7e8181b52727bdaae44ff208a8c5280ac62251c023728329f5cb71"
+    },
+    {
+      "path": "protein-only-transform.json",
+      "bytes": 368,
+      "sha256": "5687b4abe970d1074818327dcc922bc502ff7b4cbd9386af11c82ce60f0d953c"
+    },
+    {
+      "path": "protein-only.cif",
+      "bytes": 236212,
+      "sha256": "69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548"
+    },
+    {
+      "path": "raw-fs_output.tsv",
+      "bytes": 50997,
+      "sha256": "35c70967df7e8181b52727bdaae44ff208a8c5280ac62251c023728329f5cb71"
+    },
+    {
+      "path": "region_1/2XQH_A_162_269.cif",
+      "bytes": 50502,
+      "sha256": "f8d139fc236bf63a6080936c75f4f682022e989b59a67c21357007334af71e19"
+    },
+    {
+      "path": "region_1/2XQH_A_162_269.json",
+      "bytes": 1546,
+      "sha256": "1c17ea0f35b60cf1b8550576ac8b2c82847d55a886bcea1817ff926434e44f9b"
+    },
+    {
+      "path": "region_1/2XQH_A_162_269.png",
+      "bytes": 71242,
+      "sha256": "2d146ed32dfb67d7cb0ebc676671e819bf8d11e3070b5e702c9cbcf2c2b945e0"
+    },
+    {
+      "path": "region_1/2XQH_A_162_269_profile.json",
+      "bytes": 9960,
+      "sha256": "98c716dc17a0f9a06214ffca78ff299c7feae214e75eb9e8e2e950bf91d30ded"
+    },
+    {
+      "path": "strpsearch-build.log",
+      "bytes": 73212,
+      "sha256": "b3c44728b582cfceab9623e669809fb2f81988ace4c677e6d23f354cdf348d54"
+    },
+    {
+      "path": "strpsearch-environment.log",
+      "bytes": 25816,
+      "sha256": "4726cfd701be5b9754ddb371ea1b3cef53a2d2aec3190579947f7f8ab7a97044"
+    },
+    {
+      "path": "strpsearch-help.log",
+      "bytes": 5141,
+      "sha256": "987c990816c0e6b5249176a14739a6f5214e76b9a5085095519e9a8a0be2a53c"
+    },
+    {
+      "path": "strpsearch-protein-run.log",
+      "bytes": 1092,
+      "sha256": "6df2b03e45cace6c525b52ec4602e0ed50ba4102323e3998bbbfd5bd96d8c621"
+    },
+    {
+      "path": "strpsearch-run-mime.log",
+      "bytes": 928,
+      "sha256": "86689d01a3355d723ea4585324088d0549fff8fb2684215d7da495cb73c69391"
+    },
+    {
+      "path": "strpsearch-run.log",
+      "bytes": 61,
+      "sha256": "debb67efd0667b841da5b103c184c0963918b58f2235c2b3688034bc64c542c6"
+    }
+  ],
+  "build_command": [
+    "docker",
+    "build",
+    "-t",
+    "tesis/strpsearch:candidate-f3",
+    "-f",
+    "script/tesis/strpsearch-candidate.Dockerfile",
+    "/tmp/tesis-f2/STRPsearch"
+  ]
+}

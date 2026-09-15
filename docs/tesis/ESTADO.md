@@ -2,6 +2,18 @@
 
 Actualizado: 15 de septiembre de 2026.
 
+## Fase 3: núcleo completado sobre el catálogo admitido inicial
+
+- Integradas `trp_catalog`, `trp_prepare` y `trp_run` en el agente, con esquema, fuentes declaradas, aprobación por el servicio de preguntas y digest del paquete. Una revisión o entrada alterada invalida la propuesta; una aprobación consumida no puede reutilizarse.
+- Emisor Nextflow DSL2 y validación de grafo, identidad, cadena, formato, numeración, inserciones y escalas. La ruta acepta geometría sobre unidades suministradas en PDB de autor; rechaza conversiones todavía no implementadas. [Algoritmo y límites](F3-ALGORITMO.md).
+- Referencia real con Nextflow 25.10.4: configuración resuelta, dos tareas simuladas y dos reales completadas; CSV idéntico al de GeomeTRe en F2. La respuesta de aprobación de esta prueba se identifica como sintética. [Evidencia](../../evaluation/trp/reference/nextflow-f3/engineering-reference.json).
+- **432 pruebas aprobadas, cero fallos**, más la referencia externa aprobada por separado. Un test externo se omite en la suite ordinaria porque requiere Docker; se ejecutó expresamente. Tipos sin errores y código nuevo sin advertencias de lint. [Registro](evidencia/fase3.json).
+- Corpus técnico de **33 composiciones inválidas: 0 aceptadas y 33 motivos esperados detectados**. No sustituye la reserva T-GRAPH ni mide comprensión del lenguaje.
+- STRPsearch reconstruido: la entrada completa produjo errores científicos con salida de proceso cero; una copia sin ligandos/agua produjo una región candidata con siete unidades. Se conservan ambas ejecuciones. Continúa candidato hasta cerrar reconstrucción, contratos y propagación de fallos. [Sondeo](../../evaluation/trp/F3.md).
+- Word actualizado en capítulos 4 y 5 y Anexo A.17: esquema, algoritmo y evidencia. Mantiene cinco capítulos, bibliografía y cuatro ilustraciones; PDF de 123 páginas, con 27 notas rojas en cursiva. Se corrigió la exportación mediante reapertura del Word para evitar texto próximo al pie. [Auditoría](evidencia/documento-fase3.json).
+
+**Pendientes de alcance:** R1.1 y R2.3 siguen parciales. F4 puede avanzar con inventario, admisión y manifiestos sobre esta ruta mientras la ampliación del instrumental y los mapeos se resuelve antes de F6. Los controles de modelos predichos se coordinan con F5. Anotador y clúster siguen sin confirmación; se mantienen julio de 2027 y el borrador objetivo al 4 de junio. No se ejecutaron inferencias de evaluación ni se enviaron mensajes a terceros.
+
 ## Fase 2 completada en su alcance inicial
 
 - Catálogo TRP 1.0.0 implementado con seis recursos auditados: **dos operaciones admitidas**, tres candidatas y un comparador web. Conserva contratos de identificadores, numeración y escalas, con términos EDAM y anclas de bio.tools comprobados. [Catálogo y alcance](../../evaluation/trp/README.md).

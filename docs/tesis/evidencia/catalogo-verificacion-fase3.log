@@ -1,0 +1,25 @@
+{
+  "version": "trp-catalog/1.1.0",
+  "verified": [
+    "rcsb.structure",
+    "geometre.geometry"
+  ],
+  "excluded": [
+    {
+      "id": "repeatsdb.annotations",
+      "status": "candidate"
+    },
+    {
+      "id": "reupred.detect",
+      "status": "candidate"
+    },
+    {
+      "id": "strpsearch.detect",
+      "status": "candidate"
+    },
+    {
+      "id": "repeatsdb-lite.web",
+      "status": "web-comparator"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "phase": "F3",
+  "date": "2026-09-15",
+  "scope": "Core specification/approval/composition for the admitted author-PDB geometry route; catalogue expansion and nonidentity mappings remain pending. No empirical evaluation.",
+  "checks": {
+    "domain": {
+      "passed": 432,
+      "failed": 0,
+      "skipped": 1,
+      "files": 37,
+      "log": "docs/tesis/evidencia/dominio-fase3.log",
+      "skip": "Live Docker/Nextflow test executed separately"
+    },
+    "live_reference": {
+      "passed": 1,
+      "failed": 0,
+      "log": "docs/tesis/evidencia/nextflow-fase3.log",
+      "approval_driver": "synthetic test input to Question.Service, explicitly labelled"
+    },
+    "typecheck": {
+      "exit_code": 0
+    },
+    "new_code_lint": {
+      "warnings": 0,
+      "errors": 0,
+      "files": 13
+    },
+    "graph_development": {
+      "invalid": 33,
+      "accepted_invalid": 0,
+      "expected_reasons_detected": 33,
+      "held_out": false
+    }
+  },
+  "catalogue": {
+    "version": "trp-catalog/1.1.0",
+    "admitted": 2,
+    "audited": 6
+  },
+  "reference": "evaluation/trp/reference/nextflow-f3/engineering-reference.json",
+  "strpsearch_probe": "evaluation/trp/reference/strpsearch-probe-f3/probe.json",
+  "previous_user_file": {
+    "path": "packages/sdk/js/src/v2/client.ts",
+    "sha256": "99fa8d8e31a4b95c5b7ad2814319f94b8d96a27e22331e78b05d179e232311ba",
+    "included_in_commit": false
+  },
+  "pending": [
+    "Full catalogue coverage (ReUPred, STRPsearch admission, current RepeatsDB frame/license)",
+    "SIFTS/label/author mappings and predicted-model contracts",
+    "F4 inventory, budget admission, portable execution manifest",
+    "F5 structural controls",
+    "F6 independent annotator, held-out cases, model and budget; cluster if claim retained"
+  ]
+}

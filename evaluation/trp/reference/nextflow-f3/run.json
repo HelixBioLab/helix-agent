@@ -1,0 +1,14 @@
+{
+  "directory": "/tmp/bioinformatica-test-44ftmze764u/.bioinformatica/trp/ce6f46fad80e-f8a3aa3e-1a13-4952-b29d-842858e7b30f",
+  "digest": "ce6f46fad80e583175d5027f1766a4b1f4afc8d36cfb4a04d702d43a77cc84a4",
+  "status": "succeeded",
+  "geometry": {
+    "units": 12,
+    "firstUnit": "zero placeholder; not an observed alignment",
+    "summaries": [
+      "mean",
+      "std"
+    ],
+    "sha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f"
+  }
+}

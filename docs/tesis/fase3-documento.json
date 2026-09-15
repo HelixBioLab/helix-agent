@@ -1,0 +1,232 @@
+{
+  "phase": "F3",
+  "date": "2026-09-15",
+  "replace_sections": [
+    {
+      "heading": "R1.1. Catálogo declarativo del dominio",
+      "paragraph_count": 5,
+      "blocks": [
+        {
+          "text": "El catálogo TRP 1.1.0 integra seis recursos auditados, dos operaciones admitidas, tres candidatas y un comparador web. En F3 se conecta con las herramientas trp_catalog, trp_prepare y trp_run del agente. La resolución comprueba referencias, versiones y bytes antes de admitir GeomeTRe en una composición; los términos EDAM y los contratos declarados se conservan desde F2.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La imagen de GeomeTRe añade procps 2:4.0.2-3 para la traza de Nextflow y mantiene sus dependencias científicas. Se verificó primero su ejecución directa y después el flujo generado. Ambas conservan exactamente el CSV de la referencia F2: 12 filas de unidades y dos de resumen sobre 2xqh/A. GeomeTRe calcula geometría de límites suministrados; no detecta repeticiones.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "STRPsearch pudo reconstruirse y ejecutarse sin red. Su entorno original tenía una discrepancia de nombre y carecía de tipos MIME para reconocer PDB/mmCIF. La referencia con la estructura completa terminó con código cero, pero informó dos errores por valores no finitos y no produjo regiones válidas. Esta observación demuestra por qué el estado del proceso debe contrastarse con los artefactos científicos.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Una copia de diagnóstico preparada con gemmi, retirando ligandos y agua, permitió obtener una región candidata entre 162 y 269 con siete unidades y reviewed=false. Se conservaron las entradas, la transformación, el entorno, las dos ejecuciones y sus registros. La familia está en la base de STRPsearch; el caso pertenece al desarrollo y no prueba generalización. ReUPred y el marco de RepeatsDB continúan pendientes. R1.1 mantiene alcance parcial.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. Antes de admitir STRPsearch en composición automática deben fijarse una receta reconstruible, el contrato de cadena/numeración y la propagación de fallos. No convertir la ejecución de diagnóstico en una cifra de sensibilidad. La licencia y el marco de la API actual de RepeatsDB todavía necesitan confirmación documental; no inferirlos únicamente del sitio histórico.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "heading": "R1.2. Módulo de elicitación",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "F3 implementa trp-spec/1.0.0. La especificación contiene objetivo, archivo y hash, identificador PDB, cadena, ordinal del modelo, intervalos de unidades e inserciones, además del grafo de operaciones. Cada grupo de parámetros registra tipo de origen, referencia y explicación. El agente debe aclarar las ausencias antes de preparar una propuesta; no se completan parámetros científicos con valores tácitos.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La propuesta se identifica mediante SHA-256 de la versión del motor y los hashes de todos sus archivos, incluidos especificación, configuración, adaptadores y comandos de ejecución. La herramienta trp_run presenta el contenido completo, límites y omisiones mediante el servicio de preguntas. Un permiso configurado como automático no sustituye la respuesta explícita del investigador; el modelo no puede introducir la aprobación como argumento.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La aprobación se vincula a sesión, identificador y digest. Cambiar la propuesta, incluso por una revisión inválida, anula la anterior; modificar una entrada durante la revisión impide ejecutar. Tras recibir la respuesta, se releen entradas y evidencias y se compara el paquete regenerado. La aprobación se consume una sola vez y queda registrada con la ejecución. Reiniciar el agente exige preparar y revisar una nueva propuesta.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. La procedencia registrada es declarada; la aprobación no autentica la autoría de las fuentes ni garantiza corrección científica. La comprensión de enunciados y su estabilidad todavía requieren el corpus y el anotador externo de R1.3.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "heading": "R2.2. Motor de composición",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "El motor emite un flujo DSL2 de Nextflow a partir del grafo validado. El alcance inicial tiene cuatro nodos lógicos: estructura de entrada, unidades de entrada, selección comprobada y geometría. Los dos primeros son canales; selección y geometría son dos procesos. El texto libre y los parámetros permanecen en archivos JSON y no se interpretan como comandos.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Se ejecutó la referencia completa a través de trp_prepare y trp_run con Nextflow 25.10.4 y la imagen admitida por digest. La prueba resuelve configuración, ejecuta dos tareas simuladas y luego dos tareas reales. La salida de las 12 unidades coincide byte por byte con la referencia anterior de GeomeTRe, sin edición manual del flujo generado para ese caso.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "El recorrido está integrado en el registro real de herramientas y se desactiva junto con la especialización. La respuesta de aprobación de esta prueba proviene de un controlador sintético identificado como evidencia de ingeniería. No representa evaluación humana, rendimiento del modelo ni cumplimiento de la meta de 95% sobre 50 especificaciones reservadas.",
+          "kind": "paragraph"
+        }
+      ]
+    },
+    {
+      "heading": "R2.3. Correspondencia de identificadores y numeración",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "El validador contrasta, por arista y para las unidades, proteína, cadena, formato, numeración, tratamiento de inserciones, confianza y escala. La identidad se comprueba también contra HEADER y los intervalos contra los residuos observados del modelo y cadena seleccionados. La selección mantiene numeración de autor y no inventa desplazamientos de índices.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La ruta inicial acepta PDB clásico con cadena de autor explícita e intervalos positivos. Rechaza códigos de inserción y conformaciones alternativas que el adaptador no puede tratar sin ambigüedad, así como residuos solicitados sin un único CA. B-factor conserva su interpretación y unidades de desplazamiento experimental; no se reetiqueta como pLDDT.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "R2.3 sigue parcial respecto del dominio completo: las conversiones UniProt/SIFTS, label_seq_id/auth_seq_id, los casos multicadena y los modelos predichos requieren adaptadores y referencias adicionales. Las incompatibilidades se rechazan; esa conducta no equivale a haber implementado las conversiones. Su cierre precede a la reserva de evaluación y se coordina con los controles de F5.",
+          "kind": "paragraph"
+        }
+      ]
+    },
+    {
+      "heading": "R2.4. Validador estático y recorrido sin datos",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "La compuerta comprueba esquema, versiones, fuentes de parámetros, unicidad de nodos, operaciones permitidas, dependencias, entradas obligatorias y ausencia de ciclos mediante ordenamiento topológico. La validación semántica se complementa con inspección de los bytes PDB y de las referencias del catálogo.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Después de aprobar el paquete se comprueba la imagen local exacta y Nextflow 25.10.4, se resuelve la configuración y se realiza un recorrido con -stub-run en un directorio separado. Las salidas simuladas llevan una marca explícita y nunca se interpretan como resultados científicos. Si cualquier paso falla, no se inicia el análisis real; la ejecución conserva el motivo.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Las comprobaciones del paquete se repiten antes y después de ejecutar. Esta garantía corresponde a la ruta TRP integrada; el agente general conserva herramientas de shell y edición, por lo que no se afirma un aislamiento absoluto frente a cambios deliberados del entorno. El control de inventario y presupuesto completo corresponde a F4.",
+          "kind": "paragraph"
+        }
+      ]
+    },
+    {
+      "heading": "R2.5. Informe de validación",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "Cada propuesta válida devuelve un informe con controles aprobados, fallidos u omitidos y su motivo. Se conserva validation.json con la composición, preflight.json con configuración y recorrido en seco, y run.json con éxito o fallo. Los registros enlazan el digest aprobado, versiones, traza y CSV validado.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Se declaran como omitidas la autenticación externa de las fuentes, la detección de repeticiones, los controles pLDDT/PAE, la admisión por inventario y presupuesto y la anotación independiente. Un control omitido no cuenta como aprobado. La verificación del CSV exige identidad, límites y número de unidades, valores finitos, escala de TM-score, primera fila de relleno y resúmenes etiquetados.",
+          "kind": "paragraph"
+        }
+      ]
+    },
+    {
+      "heading": "R2.6. Corpus de composiciones inválidas",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "El corpus de desarrollo incorpora 33 composiciones inválidas: tres casos para cada uno de once modos de fallo, incluidos ciclos, pasos ausentes, operación excluida, formato, identidad, cadena, numeración, inserciones, confianza, escala y parámetro requerido. Se registran la especificación alterada, el fallo esperado y los rechazos observados.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "El verificador rechazó las 33 composiciones y detectó el motivo esperado en todas: aceptación indebida observada de 0/33 en este conjunto de desarrollo. Las pruebas adicionales cubren alteración de datos y código, rutas que escapan del proyecto, aprobación, sesión, fallos de configuración y recorrido en seco. Son comprobaciones de regresión, no una estimación de desempeño fuera de esos casos.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La reserva T-GRAPH de F6 permanece separada y sin evaluar. No se traslada el resultado 0/33 al indicador empírico ni se ajustan retrospectivamente sus metas. R2.6 tiene corpus técnico implementado, con medición reservada pendiente.",
+          "kind": "paragraph"
+        }
+      ]
+    }
+  ],
+  "replace_paragraphs": [
+    {
+      "old": "Las dos primeras fases establecen una línea base verificable y un catálogo inicial con referencias reales para una tesis que combina construcción de software y evaluación instrumental. La auditoría distingue el armazón heredado, las capacidades bioinformáticas existentes y los resultados TRP que aún requieren construcción o evidencia. Esta distinción permite orientar el cierre hacia los cinco objetivos específicos sin atribuir a la investigación capacidades que solo aparecen en el diseño.",
+      "new": "Las tres primeras fases construyen una base verificable, un catálogo inicial y una ruta de composición ejecutable para la tesis. La especificación, sus fuentes declaradas, la aprobación vinculada al contenido y la validación antes de ejecutar ya están conectadas al agente. La referencia de ingeniería permite comprobar esta cadena de forma concreta, sin atribuirle el cumplimiento empírico de los cinco objetivos."
+    },
+    {
+      "old": "Respecto del OE1, se dispone de un catálogo declarativo inicial y de comprobación de sus referencias; todavía faltan la especificación completa con procedencia de parámetros, su aprobación vinculada al contenido y la validación externa de estabilidad ante reformulación. Respecto del OE2, el protocolo de los 21 resultados está definido antes de la campaña; la compatibilidad de marcos en una cadena TRP exige integrar el validador y construir el corpus adversarial en F3. El ensayo de GeomeTRe demuestra ejecución de una operación geométrica con límites conocidos, sin demostrar detección de repeticiones ni cierre de ambos objetivos.",
+      "new": "Respecto del OE1, se implementaron el catálogo inicial y la especificación con procedencia y aprobación; la cobertura del catálogo y la evaluación externa del lenguaje siguen pendientes. Respecto del OE2, existe composición validada con Nextflow, recorrido en seco e informe de controles. La referencia de geometría reproduce el CSV previo y el corpus técnico rechaza 33 composiciones inválidas; el dominio de conversiones y la reserva empírica aún no están cerrados. El diagnóstico de STRPsearch aporta una ejecución candidata y revela que un código de salida cero puede coexistir con fallos científicos."
+    }
+  ],
+  "engineering": [
+    {
+      "kind": "heading",
+      "text": "Verificación de ingeniería de F3"
+    },
+    {
+      "text": "La comprobación atraviesa las herramientas reales del agente, utiliza el servicio de preguntas y ejecuta Nextflow con contenedores. La aprobación de la referencia está marcada como respuesta sintética del controlador de pruebas. Se mantienen separados los registros del recorrido simulado y los del análisis real. Los artefactos de desarrollo, comandos y hashes se conservan en evaluation/trp/reference/nextflow-f3 y docs/tesis/evidencia."
+    },
+    {
+      "text": "La configuración limita cada tarea a dos CPU, 2 GB y tres minutos, sin reintentos ni red en el contenedor. Estos límites no acreditan por sí solos admisión presupuestaria ni viabilidad en un clúster. El anotador y el acceso a clúster siguen sin confirmación; la sustentación permanece en julio de 2027 y el borrador completo tiene como fecha objetivo el 4 de junio."
+    }
+  ],
+  "appendix": [
+    {
+      "kind": "heading",
+      "text": "A.17. Especificación y algoritmo de composición implementados"
+    },
+    {
+      "text": "Entrada: especificación trp-spec/1.0.0, bytes de una estructura PDB, catálogo con evidencia local y sesión del investigador. Salida: paquete verificable de ejecución o rechazo tipificado. El alcance inicial corresponde a geometría de unidades suministradas y no incluye descubrimiento automático."
+    },
+    {
+      "kind": "subheading",
+      "text": "A.17.1. Contenido de la especificación"
+    },
+    {
+      "text": "La especificación incluye version y catalogHash; intent; structure con path, sha256 y pdb; chain; model como ordinal desde uno; units con contrato e intervalos inclusivos; insertions; y graph con nodos, operaciones y aristas. Cada parámetro científico incorpora origin.kind, origin.reference y origin.detail. Las fuentes pueden ser del usuario, una referencia o una derivación, y se presentan como declaradas."
+    },
+    {
+      "text": "Cada contrato de arista explicita protein, chain, format, numbering, insertionCodes, confidence y scale. El ejemplo de desarrollo usa 2xqh, cadena A, numeración pdb-author, confianza none, coordenadas en angstrom y B-factor en angstrom². Las unidades suministradas se declaran en intervalos de autor; no se obtiene una correspondencia por igualdad casual de números."
+    },
+    {
+      "kind": "subheading",
+      "text": "A.17.2. Algoritmo y vínculo con la implementación"
+    },
+    {
+      "text": "1. Decodificar la especificación y comprobar revisiones, campos requeridos y fuentes declaradas (TrpSpecification.parse y TrpGraph.validate)."
+    },
+    {
+      "text": "2. Comprobar nodos únicos, operaciones admitidas, puertos, dependencias y ausencia de ciclos mediante recorrido de Kahn (TrpGraph.validate)."
+    },
+    {
+      "text": "3. Contrastar identidad, cadena, formato, numeración, inserciones, confianza y escala en todas las aristas y anotaciones (TrpSpecification.contract y TrpGraph.validate)."
+    },
+    {
+      "text": "4. Verificar hash y HEADER de la entrada; seleccionar modelo y cadena; exigir coordenadas finitas, CA inequívocos y cobertura de intervalos. Ante un fallo, devolver rechazo y motivo (TrpGraph.validate)."
+    },
+    {
+      "text": "5. Resolver las referencias del catálogo y emitir las plantillas Nextflow y los parámetros JSON; calcular H como SHA-256 de la versión del motor y los hashes de los archivos ordenados canónicamente (TrpCatalog.resolve, TrpNextflow.prepare y bundleDigest)."
+    },
+    {
+      "text": "6. Presentar especificación completa, H, límites y omisiones al investigador mediante Question.Service.ask. La aprobación nunca es un parámetro del modelo (TrpWorkflow.run)."
+    },
+    {
+      "text": "7. Rechazar respuestas no explícitas, otra sesión, propuestas sustituidas o aprobación ya consumida. Releer entradas y referencias y comparar el digest regenerado con H (TrpWorkflow.run)."
+    },
+    {
+      "text": "8. Materializar y verificar el paquete; comprobar imagen y versión; resolver configuración y ejecutar el recorrido en seco en un directorio separado. Un fallo impide el análisis real (TrpNextflow y AppProcess.Service)."
+    },
+    {
+      "text": "9. Ejecutar el flujo real y comprobar identidad, número y límites de unidades, valores finitos, TM-score y resúmenes del CSV; verificar que los archivos aprobados no cambiaron (TrpNextflow.validateGeometry y verifyMaterialized)."
+    },
+    {
+      "text": "10. Conservar aprobación, controles, versiones, comandos, registros, traza y estado de éxito o fallo. Devolver la ubicación de las evidencias (TrpWorkflow.run)."
+    },
+    {
+      "text": "Para V nodos, E aristas, B bytes y R posiciones de intervalos, la validación tiene costo O(V + E + B + R) y memoria del mismo orden. La serialización canónica añade el ordenamiento de claves de cada objeto, O(Σ k log k). Estas cotas excluyen la ejecución de los algoritmos científicos."
+    },
+    {
+      "kind": "subheading",
+      "text": "A.17.3. Evidencia y trabajo pendiente"
+    },
+    {
+      "text": "La referencia ejecuta dos tareas simuladas y dos tareas reales. El CSV de 12 unidades reproduce exactamente la referencia anterior; el corpus de desarrollo rechaza 33 composiciones inválidas. La aprobación sintética de la prueba no equivale a validación por un investigador externo. No se midió desempeño del proveedor OpenAI en esta fase."
+    },
+    {
+      "text": "Permanecen pendientes la ampliación del catálogo, las conversiones con SIFTS y modelos predichos, el inventario y la admisión presupuestaria, los controles de confianza y la evaluación reservada. El diagnóstico de STRPsearch conserva tanto el fallo con la entrada completa como la salida candidata tras retirar ligandos y agua; su admisión automática requiere revisar esa transformación y sus contratos."
+    },
+    {
+      "kind": "note",
+      "text": "NOTA PARA EL AUTOR. Figura propia recomendada: diagrama de secuencia de preparación, revisión, invalidación por cambio y ejecución. El archivo docs/tesis/F3-ALGORITMO.md incluye un diagrama Mermaid alineado con el código; docs/tesis/fase3-algoritmo.tex contiene pseudocódigo numerado para una eventual edición en LaTeX. Mantener visible la diferencia entre prueba técnica y evaluación reservada."
+    }
+  ]
+}

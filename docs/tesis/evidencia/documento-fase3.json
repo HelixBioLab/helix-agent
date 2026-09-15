@@ -1,0 +1,34 @@
+{
+  "phase": "F3",
+  "source_sha256": "b665e59133214ff83144e0c2532fd63226d384ef465ce523f42f54887f81e54b",
+  "docx": {
+    "path": "/home/webiwabou/Projects/Tesis.docx",
+    "sha256": "0eb83e571276d6069ba3e81265f799eb2d2558fbb3245d753187a23b45e7d962"
+  },
+  "pdf": {
+    "path": "/home/webiwabou/Projects/Tesis-fase3.pdf",
+    "sha256": "dd91cfe7093c0f19989db536f69a95b68fed022bae53f347e91636f8c4b7e895",
+    "pages": 123,
+    "automatic_section_separator_pages": [10]
+  },
+  "checks": {
+    "bibliography_paragraphs_preserved": 99,
+    "active_figures_preserved": 4,
+    "sections_preserved": 3,
+    "red_italic_author_notes": 27,
+    "r21_table_populated_after_render": true,
+    "five_chapters": true,
+    "chapter_4_and_5_titles_correct": true,
+    "toc_has_21_results_once_each": true,
+    "appendix_sections": 17,
+    "toc_duplicates": 0,
+    "footer_total_matches_pdf": true,
+    "all_F3_sections_and_appendix_blocks_preserved": true
+  },
+  "visual_review_pages": [86, 123],
+  "footer_layout": {
+    "pages_checked": 113,
+    "text_collisions": 0,
+    "method": "PDF bounding boxes after reopening the exported DOCX"
+  }
+}

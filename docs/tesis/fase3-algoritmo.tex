@@ -1,0 +1,39 @@
+% Include with \usepackage{algorithm,algpseudocode}; mapping: F3-ALGORITMO.md.
+\begin{algorithm}[t]
+\caption{Composición TRP con aprobación vinculada al contenido}
+\label{alg:trp-aprobacion}
+\begin{algorithmic}[1]
+\Require Especificación $S$, bytes PDB $B$, catálogo $C$, sesión $s$
+\Ensure Paquete de resultados verificados o rechazo con causa
+\State Decodificar $S$ y comprobar versiones y procedencia declarada
+\State Validar nodos, entradas obligatorias y orden topológico de $S.G$
+\ForAll{aristas $e$ de $S.G$}
+  \State Comprobar identidad, cadena, formato, numeración, inserciones y escala
+\EndFor
+\State Verificar hash de $B$, modelo, cadena, coordenadas y cobertura de intervalos
+\If{existe una comprobación fallida}
+  \State \Return rechazo con comprobaciones y omisiones
+\EndIf
+\State Resolver referencias de $C$ y emitir paquete fijo $P$
+\State $H \gets \operatorname{SHA256}(\operatorname{canon}(\text{motor},\{(f,\operatorname{SHA256}(P_f))\}))$
+\State Presentar $(S,H,\text{límites},\text{omisiones})$ al investigador
+\State Recibir respuesta mediante el servicio de preguntas
+\If{respuesta no explícita, sesión distinta o propuesta sustituida}
+  \State \Return rechazo sin ejecución
+\EndIf
+\State Releer entradas y referencias; regenerar $P'$ y calcular $H'$
+\If{$H' \neq H$ o la propuesta perdió vigencia}
+  \State \Return rechazo por invalidación
+\EndIf
+\State Consumir la aprobación y materializar $P'$
+\State Comprobar archivos, imagen y versión; resolver configuración y recorrer con stub
+\If{falla una comprobación previa}
+  \State \Return rechazo sin análisis real
+\EndIf
+\State Ejecutar el análisis real en Nextflow
+\State Comprobar CSV, identidad, límites, escala y hashes del paquete
+\State Guardar éxito o fallo junto con la aprobación y los registros
+\State \Return resultado y ubicación de evidencias
+\end{algorithmic}
+\end{algorithm}
+% Validation: O(V+E+B+R); canonical sorting adds O(sum k log k).

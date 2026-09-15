@@ -57,6 +57,18 @@ const replacements = [
 ] as const
 
 const it = testEffect(LayerNode.compile(root, replacements))
+const withTrp = testEffect(
+  LayerNode.compile(root, [
+    [Config.node, configLayer],
+    [RuntimeFlags.node, RuntimeFlags.layer({ client: "cli" })],
+  ]),
+)
+const withoutSpecialization = testEffect(
+  LayerNode.compile(root, [
+    [Config.node, configLayer],
+    [RuntimeFlags.node, RuntimeFlags.layer({ client: "cli", ablate: "all" })],
+  ]),
+)
 const withCodeMode = testEffect(
   LayerNode.compile(root, [
     [Config.node, configLayer],
@@ -100,6 +112,20 @@ afterEach(async () => {
 })
 
 describe("tool.registry", () => {
+  withTrp.instance("registers the TRP proposal and human approval route in interactive clients", () =>
+    Effect.gen(function* () {
+      const registry = yield* ToolRegistry.Service
+      const ids = yield* registry.ids()
+      for (const id of ["trp_catalog", "trp_prepare", "trp_run"]) expect(ids).toContain(id)
+    }),
+  )
+  withoutSpecialization.instance("removes all TRP tools in the bare arm", () =>
+    Effect.gen(function* () {
+      const registry = yield* ToolRegistry.Service
+      const ids = yield* registry.ids()
+      for (const id of ["trp_catalog", "trp_prepare", "trp_run"]) expect(ids).not.toContain(id)
+    }),
+  )
   it.instance("does not expose task_status", () =>
     Effect.gen(function* () {
       const registry = yield* ToolRegistry.Service
@@ -361,10 +387,14 @@ describe("tool.registry", () => {
         yield* Effect.promise(() => fs.mkdir(path.join(plugin, "dist"), { recursive: true }))
         yield* Effect.promise(() => fs.mkdir(customTools, { recursive: true }))
         yield* Effect.promise(() =>
-          fs.cp(path.dirname(fileURLToPath(import.meta.resolve("zod"))), path.join(bioinformatica, "node_modules", "zod"), {
-            dereference: true,
-            recursive: true,
-          }),
+          fs.cp(
+            path.dirname(fileURLToPath(import.meta.resolve("zod"))),
+            path.join(bioinformatica, "node_modules", "zod"),
+            {
+              dereference: true,
+              recursive: true,
+            },
+          ),
         )
         yield* Effect.promise(() =>
           Bun.write(

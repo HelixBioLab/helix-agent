@@ -1,0 +1,63 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from geometre-nextflow.Dockerfile
+#1 transferring dockerfile: 414B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/tesis/geometre:1.0-frozen
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/tesis/geometre:1.0-frozen@sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2
+#4 resolve docker.io/tesis/geometre:1.0-frozen@sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2 0.0s done
+#4 DONE 0.1s
+
+#5 [2/2] RUN apt-get update     && apt-get install --no-install-recommends -y procps=2:4.0.2-3     && dpkg-query -W > /opt/os-packages.txt     && rm -rf /var/lib/apt/lists/*
+#5 0.610 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#5 0.781 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#5 0.868 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#5 0.947 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+#5 1.747 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+#5 1.753 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [338 kB]
+#5 2.538 Fetched 9377 kB in 2s (4169 kB/s)
+#5 2.538 Reading package lists...
+#5 2.968 Reading package lists...
+#5 3.384 Building dependency tree...
+#5 3.488 Reading state information...
+#5 3.588 The following additional packages will be installed:
+#5 3.588   libproc2-0
+#5 3.589 Recommended packages:
+#5 3.589   psmisc
+#5 3.616 The following NEW packages will be installed:
+#5 3.616   libproc2-0 procps
+#5 3.732 0 upgraded, 2 newly installed, 0 to remove and 40 not upgraded.
+#5 3.732 Need to get 772 kB of archives.
+#5 3.732 After this operation, 2379 kB of additional disk space will be used.
+#5 3.732 Get:1 http://deb.debian.org/debian bookworm/main amd64 libproc2-0 amd64 2:4.0.2-3 [62.8 kB]
+#5 3.752 Get:2 http://deb.debian.org/debian bookworm/main amd64 procps amd64 2:4.0.2-3 [709 kB]
+#5 3.903 debconf: delaying package configuration, since apt-utils is not installed
+#5 3.923 Fetched 772 kB in 0s (4307 kB/s)
+#5 3.940 Selecting previously unselected package libproc2-0:amd64.
+#5 3.940 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6688 files and directories currently installed.)
+#5 3.961 Preparing to unpack .../libproc2-0_2%3a4.0.2-3_amd64.deb ...
+#5 4.051 Unpacking libproc2-0:amd64 (2:4.0.2-3) ...
+#5 4.083 Selecting previously unselected package procps.
+#5 4.085 Preparing to unpack .../procps_2%3a4.0.2-3_amd64.deb ...
+#5 4.096 Unpacking procps (2:4.0.2-3) ...
+#5 4.164 Setting up libproc2-0:amd64 (2:4.0.2-3) ...
+#5 4.169 Setting up procps (2:4.0.2-3) ...
+#5 4.199 Processing triggers for libc-bin (2.36-9+deb12u10) ...
+#5 DONE 4.3s
+
+#6 exporting to image
+#6 exporting layers 0.1s done
+#6 exporting manifest sha256:f16265475eab0b47886d42c7cf46889acb5d74261b953425a295f4a005e89304 done
+#6 exporting config sha256:3537b59ef453ef9d8df88bcc15a42b8fdf66455ef7c73c3f4ff032bde2f31468 done
+#6 exporting attestation manifest sha256:1d0234423b1fd53c52d164d7ed97c95838b54e32f698bd8d0d19008c684e389a 0.0s done
+#6 exporting manifest list sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a 0.0s done
+#6 naming to docker.io/tesis/geometre:nextflow-f3 done
+#6 unpacking to docker.io/tesis/geometre:nextflow-f3 0.0s done
+#6 DONE 0.2s

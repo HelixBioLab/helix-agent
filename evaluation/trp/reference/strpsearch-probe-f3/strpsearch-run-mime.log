@@ -1,0 +1,27 @@
+Created temporary directory: /work/tmp
+Protein information saved to: /work/results/2XQH/protein_info.json
+Using temporary subdirectory: /work/tmp/tmpuz7n8ikb
+Protein length: 435 residues
+
+[15:52:51] Running PredSTRP with the following parameters:
+Input directory: /work/results/2XQH/query_structures
+Output directory: /work/results/2XQH
+Temporary directory: /work/tmp/tmpuz7n8ikb
+Maximum E-value: 0.01
+[15:52:51] Finding potential hits ...
+
+[15:52:54] Processing hit 1/2 ...
+Query: 2XQH_A
+Target: 2xqhA_305_416
+Classification: Alpha helical coiled coil
+Using minimum height for peak detection: 0.4
+
+WARNING: Error occurred in hit 1/2: array must not contain infs or NaNs
+[15:52:55] Processing hit 2/2 ...
+Query: 2XQH_A
+Target: 2xqhA_161_276
+Classification: Beta-solenoid
+Using minimum height for peak detection: 0.4
+
+WARNING: Error occurred in hit 2/2: array must not contain infs or NaNs
+[15:52:56] Task finished with 2 errors

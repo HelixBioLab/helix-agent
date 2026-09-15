@@ -1,0 +1,332 @@
+[
+  {
+    "id": "cycle-1",
+    "expected": "cycle",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "from"],
+        "value": "select"
+      }
+    ]
+  },
+  {
+    "id": "missing-step-1",
+    "expected": "required-step",
+    "changes": [
+      {
+        "path": ["graph", "nodes", 0],
+        "remove": true
+      }
+    ]
+  },
+  {
+    "id": "excluded-1",
+    "expected": "excluded-operation",
+    "changes": [
+      {
+        "path": ["graph", "nodes", 3, "operation"],
+        "value": "reupred.detect"
+      }
+    ]
+  },
+  {
+    "id": "format-1",
+    "expected": "edge-format",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "format"],
+        "value": "mmcif"
+      }
+    ]
+  },
+  {
+    "id": "protein-1",
+    "expected": "edge-protein",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "protein"],
+        "value": "1a0c"
+      }
+    ]
+  },
+  {
+    "id": "chain-1",
+    "expected": "edge-chain",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "chain"],
+        "value": "B"
+      }
+    ]
+  },
+  {
+    "id": "numbering-1",
+    "expected": "edge-numbering",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "numbering"],
+        "value": "uniprot"
+      }
+    ]
+  },
+  {
+    "id": "insertions-1",
+    "expected": "edge-insertionCodes",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "insertionCodes"],
+        "value": "excluded"
+      }
+    ]
+  },
+  {
+    "id": "confidence-1",
+    "expected": "edge-confidence",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "confidence"],
+        "value": "plddt-0-100"
+      }
+    ]
+  },
+  {
+    "id": "scale-1",
+    "expected": "edge-scale",
+    "changes": [
+      {
+        "path": ["graph", "edges", 0, "contract", "scale"],
+        "value": "nanometer"
+      }
+    ]
+  },
+  {
+    "id": "missing-parameter-1",
+    "expected": "schema",
+    "changes": [
+      {
+        "path": ["chain"],
+        "remove": true
+      }
+    ]
+  },
+  {
+    "id": "cycle-2",
+    "expected": "cycle",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "from"],
+        "value": "geometry"
+      }
+    ]
+  },
+  {
+    "id": "missing-step-2",
+    "expected": "required-step",
+    "changes": [
+      {
+        "path": ["graph", "nodes", 1],
+        "remove": true
+      }
+    ]
+  },
+  {
+    "id": "excluded-2",
+    "expected": "excluded-operation",
+    "changes": [
+      {
+        "path": ["graph", "nodes", 3, "operation"],
+        "value": "strpsearch.detect"
+      }
+    ]
+  },
+  {
+    "id": "format-2",
+    "expected": "edge-format",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "format"],
+        "value": "json"
+      }
+    ]
+  },
+  {
+    "id": "protein-2",
+    "expected": "edge-protein",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "protein"],
+        "value": "1iq1"
+      }
+    ]
+  },
+  {
+    "id": "chain-2",
+    "expected": "edge-chain",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "chain"],
+        "value": "a"
+      }
+    ]
+  },
+  {
+    "id": "numbering-2",
+    "expected": "edge-numbering",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "numbering"],
+        "value": "label-seq-id"
+      }
+    ]
+  },
+  {
+    "id": "insertions-2",
+    "expected": "edge-insertionCodes",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "insertionCodes"],
+        "value": "preserved"
+      }
+    ]
+  },
+  {
+    "id": "confidence-2",
+    "expected": "edge-confidence",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "confidence"],
+        "value": "pae-angstrom"
+      }
+    ]
+  },
+  {
+    "id": "scale-2",
+    "expected": "edge-scale",
+    "changes": [
+      {
+        "path": ["graph", "edges", 1, "contract", "scale"],
+        "value": "B:plddt"
+      }
+    ]
+  },
+  {
+    "id": "missing-parameter-2",
+    "expected": "schema",
+    "changes": [
+      {
+        "path": ["model"],
+        "remove": true
+      }
+    ]
+  },
+  {
+    "id": "cycle-3",
+    "expected": "cycle",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "from"],
+        "value": "geometry"
+      }
+    ]
+  },
+  {
+    "id": "missing-step-3",
+    "expected": "required-step",
+    "changes": [
+      {
+        "path": ["graph", "nodes", 2],
+        "remove": true
+      }
+    ]
+  },
+  {
+    "id": "excluded-3",
+    "expected": "excluded-operation",
+    "changes": [
+      {
+        "path": ["graph", "nodes", 3, "operation"],
+        "value": "shell.exec"
+      }
+    ]
+  },
+  {
+    "id": "format-3",
+    "expected": "edge-format",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "format"],
+        "value": "pdb"
+      }
+    ]
+  },
+  {
+    "id": "protein-3",
+    "expected": "edge-protein",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "protein"],
+        "value": "P12345"
+      }
+    ]
+  },
+  {
+    "id": "chain-3",
+    "expected": "edge-chain",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "chain"],
+        "value": "label:A"
+      }
+    ]
+  },
+  {
+    "id": "numbering-3",
+    "expected": "edge-numbering",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "numbering"],
+        "value": "unresolved"
+      }
+    ]
+  },
+  {
+    "id": "insertions-3",
+    "expected": "edge-insertionCodes",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "insertionCodes"],
+        "value": "unresolved"
+      }
+    ]
+  },
+  {
+    "id": "confidence-3",
+    "expected": "edge-confidence",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "confidence"],
+        "value": "unresolved"
+      }
+    ]
+  },
+  {
+    "id": "scale-3",
+    "expected": "edge-scale",
+    "changes": [
+      {
+        "path": ["graph", "edges", 2, "contract", "scale"],
+        "value": "zero-based-index"
+      }
+    ]
+  },
+  {
+    "id": "missing-parameter-3",
+    "expected": "schema",
+    "changes": [
+      {
+        "path": ["units"],
+        "remove": true
+      }
+    ]
+  }
+]

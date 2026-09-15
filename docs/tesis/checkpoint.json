@@ -1,8 +1,8 @@
 {
   "project": "Bioinformática.org — tesis TRP",
   "updated": "2026-09-15",
-  "phases_completed": ["F1", "F2"],
-  "next_phase": "F3",
+  "phases_completed": ["F1", "F2", "F3"],
+  "next_phase": "F4",
   "schedule": {
     "defense_month": "2027-07",
     "defense_month_status": "confirmed_by_user",
@@ -22,7 +22,7 @@
   "phases": {
     "F1": "complete",
     "F2": "complete",
-    "F3": "planned",
+    "F3": "complete_initial_scope",
     "F4": "planned",
     "F5": "planned",
     "F6": "planned",
@@ -32,15 +32,17 @@
     "plan": "docs/tesis/PLAN.md",
     "status": "docs/tesis/ESTADO.md",
     "traceability": "docs/tesis/trazabilidad.json",
-    "document_content": "docs/tesis/fase2-documento.json",
-    "engineering_evidence": "docs/tesis/evidencia/fase2.json",
-    "document_evidence": "docs/tesis/evidencia/documento-fase2.json",
+    "document_content": "docs/tesis/fase3-documento.json",
+    "engineering_evidence": "docs/tesis/evidencia/fase3.json",
+    "document_evidence": "docs/tesis/evidencia/documento-fase3.json",
     "docx": "/home/webiwabou/Projects/Tesis.docx",
-    "pdf": "/home/webiwabou/Projects/Tesis-fase2.pdf",
+    "pdf": "/home/webiwabou/Projects/Tesis-fase3.pdf",
     "verifier": "script/tesis/verify_snapshot.py",
     "catalogue": "packages/bioinformatica/src/trp/catalog.json",
     "protocol": "evaluation/trp/PROTOCOL.md",
-    "annotation_guide": "evaluation/trp/ANNOTATION.md"
+    "annotation_guide": "evaluation/trp/ANNOTATION.md",
+    "algorithm": "docs/tesis/F3-ALGORITMO.md",
+    "nextflow_reference": "evaluation/trp/reference/nextflow-f3/engineering-reference.json"
   },
   "external_dependencies": [
     "Authentic FCI approval document and official title",
@@ -56,7 +58,7 @@
     "model_id": null,
     "evaluation_budget": null
   },
-  "current_phase": null,
+  "current_phase": "F3",
   "resource_availability": {
     "annotator": "unconfirmed_user_confirmed_pending",
     "cluster": "unconfirmed_user_confirmed_pending",
@@ -67,6 +69,13 @@
     "audited": 6,
     "R1.1": "partial; detection tools and RepeatsDB mapping move to F3",
     "R2.1": "design implemented; empirical campaign not started",
+    "document_installed": true
+  },
+  "phase3_scope": {
+    "core_milestones": "H3.1-H3.6 complete for the admitted author-PDB geometry route",
+    "R1.1": "partial; detector admission and RepeatsDB mapping pending",
+    "R2.3": "partial; SIFTS/label/author and predicted-model mappings pending",
+    "empirical_evaluation": false,
     "document_installed": true
   }
 }

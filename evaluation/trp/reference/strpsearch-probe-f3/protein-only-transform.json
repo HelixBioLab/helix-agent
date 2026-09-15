@@ -1,0 +1,11 @@
+{
+  "method": "gemmi.Structure.remove_ligands_and_waters; diagnostic input transformation, not upstream default",
+  "input_sha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b",
+  "output_sha256": "69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548",
+  "residues_before": {
+    "A": 435
+  },
+  "residues_after": {
+    "A": 258
+  }
+}

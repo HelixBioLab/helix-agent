@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "operation": "geometre.geometry",
+  "revision": "8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9",
+  "started_at": "2026-09-15T15:57:37.179556+00:00",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "thesis-geometre-526fee62f1b34a52a5dee512a18cb420",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "128",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "--tmpfs",
+    "/tmp",
+    "--user",
+    "1000:1000",
+    "--mount",
+    "type=bind,src=/tmp/tesis-f3/geometre-nextflow-reference,dst=/work",
+    "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
+    "single",
+    "/work/2xqh.pdb",
+    "A",
+    "/work/geometry.csv",
+    "161_175,176_189,190_203,204_217,218_233,234_249,250_263,264_276,305_326,327_350,373_392,393_416",
+    "-ins_def",
+    "351_372"
+  ],
+  "image": {
+    "id": "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
+    "identity_kind": "local-docker-image-id",
+    "repo_digests": [
+      "tesis/geometre@sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  "inputs": [
+    {
+      "file": "2xqh.pdb",
+      "bytes": 359397,
+      "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
+    },
+    {
+      "file": "units.json",
+      "bytes": 327,
+      "sha256": "43e08616015fab47bb74f82398270d5c57380ee1271eb526202d7378cee3a186"
+    }
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.744408,
+  "unit_rows": 12,
+  "summary_rows": 2,
+  "validation_errors": [],
+  "passed": true,
+  "outputs": [
+    {
+      "file": "environment.txt",
+      "bytes": 461,
+      "sha256": "e3c078e170db172c87d23be30cc022a7b111aca47b5d7acf6bf9e0b05a6c603c"
+    },
+    {
+      "file": "geometry.csv",
+      "bytes": 992,
+      "sha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f"
+    },
+    {
+      "file": "geometry.npy",
+      "bytes": 13452,
+      "sha256": "a81eff2c96ae2eb645d4246759b31612f0b682c31d6d42fc51c789e9401205bb"
+    },
+    {
+      "file": "stderr.log",
+      "bytes": 75,
+      "sha256": "6aa66e7e0ae36ac1b9b1d43048c6bed16b0723613b5e30985fb57f6955ffc4cc"
+    },
+    {
+      "file": "stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

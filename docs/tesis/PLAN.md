@@ -108,6 +108,14 @@ El catálogo inicial incluye seis recursos auditados y admite dos operaciones co
 
 F3 debe comenzar por resolver esas referencias y mapeos para cualquier tarea de detección; puede avanzar en paralelo lógico con especificación, aprobación y validación de la cadena acotada ya ejecutable. GeomeTRe no sustituye a un detector. La validación integrada y el corpus reservado todavía no existen. Este traslado de trabajo queda explícito en la matriz de trazabilidad.
 
+## Cierre del núcleo F3 y dependencias conservadas (15 de septiembre de 2026)
+
+H3.1–H3.6 están implementados y verificados para la ruta acotada de geometría en PDB de autor: especificación con fuentes declaradas, aprobación por digest, emisor Nextflow, comprobación del grafo y datos, informe de controles y 33 composiciones inválidas de desarrollo. La referencia real atraviesa las herramientas del agente, resuelve configuración y ejecuta el recorrido simulado antes del análisis. La prohibición de ejecutar sin validación/aprobación se refiere a esta ruta TRP; el agente general conserva shell y edición. El corpus reservado sigue sin evaluar.
+
+El sondeo de STRPsearch resolvió el entorno y obtuvo una referencia candidata tras una transformación explícita de la entrada. Conserva también fallos científicos con código de proceso cero. No se admite automáticamente hasta congelar reconstrucción y verificar contratos y errores. ReUPred y marco/licencia de la API RepeatsDB siguen pendientes. No se declara cerrado R1.1.
+
+R2.3 comprueba identidad y compatibilidad del marco admitido; todavía no convierte SIFTS/UniProt/label_seq_id ni valida modelos predichos. La ampliación de estos adaptadores se conserva como dependencia antes de F6, junto con los controles de F5. F4 puede trabajar ya en inventario, presupuesto y manifiestos de la ruta ejecutable. Esta precisión del alcance no elimina resultados ni sustituye evaluación externa por pruebas de componentes.
+
 ## Estado y continuación
 
 Consultar [ESTADO.md](ESTADO.md) y [trazabilidad.json](trazabilidad.json). Cada fase registra comandos, resultados, artefactos y lo que falta. Los commits tienen exclusivamente un título en inglés, sin cuerpo ni firma de coautor. El cambio previo del usuario en `packages/sdk/js/src/v2/client.ts` queda fuera de ellos.

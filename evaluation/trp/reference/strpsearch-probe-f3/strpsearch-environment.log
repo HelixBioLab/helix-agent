@@ -1,0 +1,424 @@
+annotated-doc @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_annotated-doc_1785335690/work
+annotated-types==0.8.0
+backports.zstd @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_backports.zstd_1788491295/work
+biopython @ file:///home/conda/feedstock_root/build_artifacts/biopython_1789126198612/work
+Brotli @ file:///home/conda/feedstock_root/build_artifacts/brotli-split_1788480187707/work
+certifi @ file:///home/conda/feedstock_root/build_artifacts/certifi_1784717589373/work/certifi
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1786835581063/work
+cloudpickle==3.1.2
+colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1733218098505/work
+contourpy @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_contourpy_1789310435/work
+cuda-bindings==13.4.1
+cuda-pathfinder==1.8.1
+cuda-toolkit==13.0.3.0
+cycler @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_cycler_1764466758/work
+einops==0.8.2
+filelock==3.32.6
+fonttools @ file:///home/conda/feedstock_root/build_artifacts/fonttools_1789076212595/work
+formulaic @ file:///home/conda/feedstock_root/build_artifacts/formulaic_1780453742147/work
+fsspec==2026.7.0
+gemmi @ file:///home/conda/feedstock_root/build_artifacts/gemmi_1772445762536/work
+GridDataFormats==1.2.0
+h2 @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_h2_1785796355/work
+hpack @ file:///home/conda/feedstock_root/build_artifacts/hpack_1782283902770/work
+hyperframe @ file:///home/conda/feedstock_root/build_artifacts/hyperframe_1737618333194/work
+idna @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_idna_1787059857/work
+interface_meta @ file:///home/conda/feedstock_root/build_artifacts/interface_meta_1734284382083/work
+Jinja2==3.1.6
+joblib==1.6.0
+kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_kiwisolver_1788505643/work
+markdown-it-py @ file:///home/conda/feedstock_root/build_artifacts/markdown-it-py_1778169583724/work
+MarkupSafe==3.0.3
+matplotlib==3.11.1
+mda-xdrlib==0.2.0
+MDAnalysis==2.10.0
+mdurl @ file:///home/conda/feedstock_root/build_artifacts/mdurl_1733255585584/work
+mmtf-python==1.1.3
+mpmath==1.3.0
+mrcfile==1.5.4
+msgpack==1.2.2
+narwhals @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_narwhals_1788964134/work
+natsort==8.4.0
+networkx==3.6.1
+numpy @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_numpy_1788731992/work/dist/numpy-2.5.3-cp312-cp312-linux_x86_64.whl#sha256=1be3ad2bf4cb9ea719274cad1e6d3549db345e5a88225accb0a2d8f166d43787
+nvidia-cublas==13.1.1.3
+nvidia-cuda-cupti==13.0.85
+nvidia-cuda-nvrtc==13.0.88
+nvidia-cuda-runtime==13.0.96
+nvidia-cudnn-cu13==9.24.0.43
+nvidia-cufft==12.0.0.61
+nvidia-cufile==1.15.1.6
+nvidia-curand==10.4.0.35
+nvidia-cusolver==12.0.4.66
+nvidia-cusparse==12.6.3.3
+nvidia-cusparselt-cu13==0.8.1
+nvidia-nccl-cu13==2.30.7
+nvidia-nvjitlink==13.4.52
+nvidia-nvshmem-cu13==3.4.5
+nvidia-nvtx==13.0.85
+packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work
+pandas @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pandas_1785276227/work
+patsy @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_patsy_1788106018/work
+pillow @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pillow_1789122647/work
+ply @ file:///home/conda/feedstock_root/build_artifacts/ply_1733239724146/work
+protein_domain_segmentation==0.1.4
+pydantic==2.13.5
+pydantic_core==2.46.5
+Pygments @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pygments_1786995678/work
+pymol==3.1.0
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pyparsing_1769003998/work
+PyQt5==5.15.11
+PyQt5_sip==12.17.0
+PySide6==6.11.2
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1733217236728/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_python-dateutil_1751104122/work
+requests @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_requests_1778851103/work
+rich @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_rich_1775991661/work/dist
+rotary-embedding-torch==0.9.1
+scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy-split_1789136380884/work/dist/scipy-1.18.1-cp312-cp312-linux_x86_64.whl#sha256=785b18004f7632bec45a14d616e96dc054d069b7835eb1eded74b6ab1eb6a8de
+seaborn @ file:///home/conda/feedstock_root/build_artifacts/seaborn-split_1733730015268/work
+setuptools==84.0.0
+shellingham @ file:///home/conda/feedstock_root/build_artifacts/shellingham_1762858192781/work
+shiboken6==6.11.2
+sip @ file:///home/conda/feedstock_root/build_artifacts/sip_1759437825022/work
+six @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_six_1753199211/work
+statsmodels @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_statsmodels_1788196477/work
+sympy==1.14.0
+threadpoolctl==3.6.0
+toml @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_toml_1764486833/work
+tomli @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_tomli_1774492402/work
+torch==2.14.0
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1789076887956/work
+tqdm==4.70.1
+triton==3.8.0
+typer @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_typer_1787921102/work
+typing-inspection==0.4.4
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_typing_extensions_1783002732/work
+unicodedata2 @ file:///home/conda/feedstock_root/build_artifacts/unicodedata2_1788554021017/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1778188571305/work
+wheel==0.48.0
+wrapt @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_wrapt_1789161059/work
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: linux-64
+# created-by: conda 26.7.2
+@EXPLICIT
+https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.7.22-hbd8a1cb_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_4.conda
+https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda
+https://conda.anaconda.org/conda-forge/noarch/nlohmann_json-abi-3.12.0-h0f90c79_2.conda
+https://conda.anaconda.org/conda-forge/noarch/pybind11-abi-11-hc364b38_1.conda
+https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda
+https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
+https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda
+https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_102.conda
+https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_4.conda
+https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda
+https://conda.anaconda.org/conda-forge/linux-64/c-ares-1.34.8-hebe6cf0_2.conda
+https://conda.anaconda.org/conda-forge/linux-64/keyutils-1.6.3-h7cc23a3_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libev-4.33-h280c20c_3.conda
+https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.8.1-hecca717_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libiconv-1.18-h0cb94f2_3.conda
+https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda
+https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_4.conda
+https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.3-hcfc3c73_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/lzo-2.10-hebe6cf0_1003.conda
+https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.4-h781a0a9_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/reproc-14.2.8.post0-hee9eb32_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda
+https://conda.anaconda.org/conda-forge/linux-64/cpp-expected-1.3.1-h171cf75_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/fmt-12.1.0-h76c4fd7_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/icu-78.3-py310h44b86e0_2.conda
+https://conda.anaconda.org/conda-forge/linux-64/libedit-3.1.20250104-pl5321h373387f_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libmsgpack-c-6.1.0-h54a6638_7.conda
+https://conda.anaconda.org/conda-forge/linux-64/libnghttp2-1.68.1-h74cf4be_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.7-hdc7f604_106_cp314.conda
+https://conda.anaconda.org/conda-forge/linux-64/libsolv-0.7.39-h72ddc62_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libssh2-1.11.1-h6154650_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/lz4-c-1.10.0-hee9eb32_2.conda
+https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/reproc-cpp-14.2.8.post0-h1c70be6_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/simdjson-4.6.11-h4dbf13b_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/yaml-cpp-0.8.0-h54a6638_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/krb5-1.22.2-hbc21106_2.conda
+https://conda.anaconda.org/conda-forge/linux-64/libpsl-0.23.1-hd9e3e90_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.4-h13e7031_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libxml2-16-2.15.4-hf3af7cc_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/spdlog-1.17.0-hb6aa676_2.conda
+https://conda.anaconda.org/conda-forge/linux-64/libcurl-8.22.0-ha042cf0_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/libxml2-2.15.4-h7df9aa5_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/python-3.14.7-hcd007b5_106_cp314.conda
+https://conda.anaconda.org/conda-forge/linux-64/libarchive-3.8.9-gpl_h3152399_101.conda
+https://conda.anaconda.org/conda-forge/noarch/tomli-w-1.2.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/libmamba-2.9.0-py314h6ba947b_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/menuinst-2.5.2-py314h9e666f3_2.conda
+https://conda.anaconda.org/conda-forge/noarch/archspec-0.2.5-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/backports.zstd-1.7.0-py314h680f03e_1.conda
+https://conda.anaconda.org/conda-forge/noarch/boltons-26.2.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/brotli-python-1.2.0-py314hcd2bdb6_4.conda
+https://conda.anaconda.org/conda-forge/noarch/cached_property-2.0.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/certifi-2026.7.22-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/charset-normalizer-3.5.1-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda
+https://conda.anaconda.org/conda-forge/noarch/cpython-3.14.7-py314hd8ed1ab_106.conda
+https://conda.anaconda.org/conda-forge/noarch/distro-1.9.0-pyhd8ed1ab_1.conda
+https://conda.anaconda.org/conda-forge/noarch/frozendict-2.4.7-pyh851646a_2.conda
+https://conda.anaconda.org/conda-forge/noarch/hpack-4.2.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/hyperframe-6.1.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/idna-3.19-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/libmamba-spdlog-2.9.0-h5efa3ab_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/mamba-2.9.0-h9649d4f_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/markupsafe-3.0.3-py314h67df5f8_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/msgpack-python-1.2.2-py314h5383ef5_2.conda
+https://conda.anaconda.org/conda-forge/noarch/packaging-26.3-pyhc364b38_0.conda
+https://conda.anaconda.org/conda-forge/noarch/pip-26.2.1-pyh145f28c_0.conda
+https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.11.6-pyh5ded981_0.conda
+https://conda.anaconda.org/conda-forge/noarch/pluggy-1.6.0-pyhf9edf01_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/pycosat-0.6.6-py314h89acca1_5.conda
+https://conda.anaconda.org/conda-forge/noarch/pysocks-1.7.1-pyha55dd90_7.conda
+https://conda.anaconda.org/conda-forge/noarch/python-installer-1.0.1-pyh332efcf_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/ruamel.yaml.clib-0.2.15-py314hfe1a184_5.conda
+https://conda.anaconda.org/conda-forge/noarch/setuptools-84.0.0-pyh332efcf_0.conda
+https://conda.anaconda.org/conda-forge/noarch/sniffio-1.3.1-pyhd8ed1ab_2.conda
+https://conda.anaconda.org/conda-forge/noarch/tomli-2.4.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/tqdm-4.70.0-pyh8f84b5b_0.conda
+https://conda.anaconda.org/conda-forge/noarch/truststore-0.10.4-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.16.0-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/anyio-4.15.1-pyh5ded981_1.conda
+https://conda.anaconda.org/conda-forge/noarch/cached-property-2.0.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-package-streaming-0.13.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/h11-0.16.0-pyhcf101f3_1.conda
+https://conda.anaconda.org/conda-forge/noarch/h2-4.4.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-9.0.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda
+https://conda.anaconda.org/conda-forge/linux-64/libmambapy-2.9.0-py314h959206d_0.conda
+https://conda.anaconda.org/conda-forge/noarch/pyproject_hooks-1.2.0-pyhd8ed1ab_1.conda
+https://conda.anaconda.org/conda-forge/noarch/python-gil-3.14.7-h4df99d1_106.conda
+https://conda.anaconda.org/conda-forge/noarch/ruamel.yaml-0.19.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.16.0-h69aa097_0.conda
+https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.4-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_3.conda
+https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.8.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-libmamba-solver-26.7.0-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/httpcore-1.0.9-pyh29332c3_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/pydantic-core-2.46.5-py314h7e8cd81_1.conda
+https://conda.anaconda.org/conda-forge/noarch/python-build-1.6.0-pyhc364b38_0.conda
+https://conda.anaconda.org/conda-forge/noarch/urllib3-2.7.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/httpx-0.28.1-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/py-rattler-0.25.0-py310hefeb9ab_5.conda
+https://conda.anaconda.org/conda-forge/noarch/pydantic-2.13.5-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/requests-2.34.2-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-package-handling-2.6.0-pyh5ded981_0.conda
+https://conda.anaconda.org/conda-forge/noarch/unearth-0.18.3-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-index-0.13.0-pyh5ded981_0.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-pypi-0.11.0-pyh5ded981_2.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-lockfiles-0.2.1-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-rattler-solver-0.1.1-pyhcf101f3_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/conda-26.7.2-py314h9e666f3_1.conda
+https://conda.anaconda.org/conda-forge/noarch/conda-self-0.2.1-pyhd8ed1ab_0.conda
+
+ ********************************************************************
+ * US-align (Version 20241108)                                      *
+ * Universal Structure Alignment of Proteins and Nucleic Acids      *
+ * Reference: C Zhang, M Shine, AM Pyle, Y Zhang. (2022) Nat Methods*
+ *            C Zhang, AM Pyle (2022) iScience.                     *
+ * Please email comments and suggestions to zhang@zhanggroup.org    *
+ ********************************************************************
+
+Usage: USalign PDB1.pdb PDB2.pdb [Options]
+
+Options:
+    -mol  Type of molecule(s) to align.
+          auto: (default) align both protein and nucleic acids.
+          prot: only align proteins in a structure.
+          RNA : only align RNA and DNA in a structure.
+
+     -mm  Multimeric alignment option:
+          0: (default) alignment of two monomeric structures
+          1: alignment of two multi-chain oligomeric structures
+          2: alignment of individual chains to an oligomeric structure
+             $ USalign -dir1 monomers/ list oligomer.pdb -ter 0 -mm 2
+          3: alignment of circularly permuted structure
+          4: MSTA, i.e., alignment of multiple monomeric chains into a
+             consensus alignment
+             $ USalign -dir chains/ list -suffix .pdb -mm 4
+          5: fully non-sequential (fNS) alignment
+          6: semi-non-sequential (sNS) alignment
+          To use -mm 1 or -mm 2, '-ter' option must be 0 or 1.
+
+    -ter  Number of chains to align.
+          0: align all chains from all models (recommended for aligning
+             biological assemblies, i.e. biounits)
+          1: align all chains of the first model (recommended for aligning
+             asymmetric units, default for -mm 1,2 and -TMscore 2,6,7)
+          2: (default for other cases) only align the first chain
+          3: only align the first chain, or the first segment of the
+             first chain as marked by the 'TER' string in PDB file
+
+ -TMscore Whether to perform TM-score superposition without structure-based
+          alignment. The same as -byresi.
+          0: (default) sequence independent structure alignment
+          1: superpose two structures by assuming that a pair of residues
+             with the same residue index are equivalent between the two
+             structures
+          2: superpose two complex structures, assuming that a pair of
+             residues with the same residue index and the same chain ID
+             are equivalent between the two structures
+          5: sequence dependent alignment: perform glocal sequence
+             alignment followed by TM-score superposition.
+             -byresi 5 is the same as -seq
+          6: superpose two complex structures by first deriving optimal
+             chain mapping, followed by TM-score superposition for residues
+             with the same residue ID
+          7: sequence dependent alignment of two complex structures:
+             perform global sequence alignment of each chain pair, derive
+             optimal chain mapping, and then superpose two complex
+             structures by TM-score
+
+      -I  Use the final alignment specified by FASTA file 'align.txt'
+
+      -i  Use alignment specified by 'align.txt' as an initial alignment
+
+      -m  Output rotation matrix for superposition, e.g., '-m matrix.txt'
+          prints the matrix to 'matrix.txt'; '-m -' prints to stdout.
+
+      -d  TM-score scaled by an assigned d0, e.g., '-d 3.5' reports MaxSub
+          score, where d0 is 3.5 Angstrom. -d does not change final alignment.
+
+      -u  TM-score normalized by an assigned length. It should be >= length
+          of protein to avoid TM-score >1. -u does not change final alignment.
+
+      -o  Output superposed structure1 to sup.* for PyMOL viewing.
+          $ USalign structure1.pdb structure2.pdb -o sup
+          $ pymol -d @sup.pml                # C-alpha trace aligned region
+          $ pymol -d @sup_all.pml            # C-alpha trace whole chain
+          $ pymol -d @sup_atm.pml            # full-atom aligned region
+          $ pymol -d @sup_all_atm.pml        # full-atom whole chain
+          $ pymol -d @sup_all_atm_lig.pml    # full-atom with all molecules
+
+ -rasmol  Output superposed structure1 to sup.* for RasMol viewing.
+          $ USalign structure1.pdb structure2.pdb -rasmol sup
+          $ rasmol -script sup               # C-alpha trace aligned region
+          $ rasmol -script sup_all           # C-alpha trace whole chain
+          $ rasmol -script sup_atm           # full-atom aligned region
+          $ rasmol -script sup_all_atm       # full-atom whole chain
+          $ rasmol -script sup_all_atm_lig   # full-atom with all molecules
+
+-chimerax Output superposed structure1 to sup.* for ChimeraX viewing.
+          $ USalign structure1.pdb structure2.pdb -chimerax sup
+          $ chimerax --script sup.cxc             # C-alpha trace aligned region
+          $ chimerax --script sup_all.cxc         # C-alpha trace whole chain
+          $ chimerax --script sup_atm.cxc         # full-atom aligned region
+          $ chimerax --script sup_all_atm.cxc     # full-atom whole chain
+          $ chimerax --script sup_all_atm_lig.cxc # full-atom with all molecules
+
+     -do  Output distance of aligned residue pairs
+
+Example usages ('gunzip' program is needed to read .gz compressed files):
+    USalign 101m.cif.gz 1mba.pdb             # pairwise monomeric protein alignment
+    USalign 1qf6.cif 5yyn.pdb.gz -mol RNA    # pairwise monomeric RNA alignment
+    USalign model.pdb native.pdb -TMscore 1  # calculate TM-score between two conformations of a monomer
+    USalign 4v4a.cif 4v49.cif -mm 1 -ter 1   # oligomeric alignment for asymmetic units
+    USalign 3ksc.pdb1 4lej.pdb1 -mm 1 -ter 0 # oligomeric alignment for biological units
+    USalign 1ajk.pdb.gz 2ayh.pdb.gz -mm 3    # circular permutation alignment
+
+Additional options:
+      -v  Print the version of US-align
+
+      -a  TM-score normalized by the average length of two structures
+          T or F, (default F). -a does not change the final alignment.
+
+   -fast  Fast but slightly inaccurate alignment
+
+    -dir  Perform all-against-all alignment among the list of PDB
+          chains listed by 'chain_list' under 'chain_folder'.
+          $ USalign -dir chain_folder/ chain_list
+
+   -dir1  Use chain2 to search a list of PDB chains listed by 'chain1_list'
+          under 'chain1_folder'.
+          $ USalign -dir1 chain1_folder/ chain1_list chain2
+
+   -dir2  Use chain1 to search a list of PDB chains listed by 'chain2_list'
+          under 'chain2_folder'
+          $ USalign chain1 -dir2 chain2_folder/ chain2_list
+
+ -suffix  (Only when -dir1 and/or -dir2 are set, default is empty)
+          add file name suffix to files listed by chain1_list or chain2_list
+
+   -atom  4-character atom name used to represent a residue.
+          Default is " C3'" for RNA/DNA and " CA " for proteins
+          (note the spaces before and after CA).
+
+  -split  Whether to split PDB file into multiple chains
+           0: treat the whole structure as one single chain
+              (default for -TMscore 2)
+           1: treat each MODEL as a separate chain
+           2: (default for other cases) treat each chain as a separate chain
+
+ -outfmt  Output format
+           0: (default) full output
+           1: fasta format compact output
+           2: tabular format very compact output
+          -1: full output, but without version or citation information
+
+  -TMcut  -1: (default) do not consider TMcut
+          Values in [0.5,1): Do not proceed with TM-align for this
+          structure pair if TM-score is unlikely to reach TMcut.
+          TMcut is normalized as set by -a option:
+          -2: normalized by longer structure length
+          -1: normalized by shorter structure length
+           0: (default, same as F) normalized by second structure
+           1: same as T, normalized by average structure length
+
+ -mirror  Whether to align the mirror image of input structure
+           0: (default) do not align mirrored structure
+           1: align mirror of Structure_1 to origin Structure_2,
+              which usually requires the '-het 1' option:
+              $ USalign 4glu.pdb 3p9w.pdb -mirror 1 -het 1
+
+    -het  Whether to align residues marked as 'HETATM' in addition to 'ATOM  '
+           0: (default) only align 'ATOM  ' residues
+           1: align both 'ATOM  ' and 'HETATM' residues
+           2: align both 'ATOM  ' and MSE residues
+
+   -full  Whether to show full pairwise alignment of individual chains for
+          -mm 2 or 4. T or F, (default F)
+
+   -se    Do not perform superposition. Useful for extracting alignment from
+          superposed structure pairs
+
+ -infmt1  Input format for structure_1
+ -infmt2  Input format for structure_2
+          -1: (default) automatically detect PDB or PDBx/mmCIF format
+           0: PDB format
+           1: SPICKER format
+           3: PDBx/mmCIF format
+
+-chainmap (only useful for -mm 1) use the final chain mapping 'chainmap.txt'
+          specified by user. 'chainmap.txt' is a tab-seperated text with two
+          columns, one for each complex
+
+-chain1   Chains to parse in structure_1
+-chain2   Chains to parse in structure_2. Use _ for a chain without chain ID.
+          Multiple chains can be separated by commas, e.g.,
+          USalign -chain1 C,D,E,F 5jdo.pdb -chain2 A,B,C,D 3wtg.pdb -ter 0
+
+-model1   Models to parse in structure_1
+-model2   Models to parse in structure_2.
+          Multiple models can be separated by commas, e.g.,
+          USalign -model1 1,2 1a03.pdb -model2 3,4 1a0n.pdb -ter 0
+
+Advanced usage 1 (generate an image for a pair of superposed structures):
+    USalign 1cpc.pdb 1mba.pdb -o sup
+    pymol -c -d @sup_all_atm.pml -g sup_all_atm.png
+
+Advanced usage 2 (a quick search of query.pdb against I-TASSER PDB library):
+    wget https://zhanggroup.org/library/PDB.tar.bz2
+    tar -xjvf PDB.tar.bz2
+    USalign query.pdb -dir2 PDB/ PDB/list -suffix .pdb -outfmt 2 -fast
+

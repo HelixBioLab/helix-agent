@@ -37,6 +37,8 @@ import { Census } from "@/nfcore/census"
 import { NfcoreSamplesheetSchemaTool, NfcoreSamplesheetValidateTool } from "./nfcore-samplesheet"
 import { Samplesheet } from "@/nfcore/samplesheet"
 import { NfcoreRunTool } from "./nfcore-run"
+import { TrpCatalogTool, TrpPrepareTool, TrpRunTool } from "./trp"
+import { TrpWorkflow } from "../trp/workflow"
 import { NfcoreResourcesTool } from "./nfcore-resources"
 import { NfcoreParamsTool } from "./nfcore-params"
 import { Params } from "@/nfcore/params"
@@ -159,6 +161,9 @@ const layer = Layer.effect(
     const nfcoreschematool = yield* NfcoreSamplesheetSchemaTool
     const nfcorevalidatetool = yield* NfcoreSamplesheetValidateTool
     const nfcoreruntool = yield* NfcoreRunTool
+    const trpcatalogtool = yield* TrpCatalogTool
+    const trppreparetool = yield* TrpPrepareTool
+    const trpruntool = yield* TrpRunTool
     const nfcoreresourcestool = yield* NfcoreResourcesTool
     const nfcoreparamstool = yield* NfcoreParamsTool
     const nfcorediagnosetool = yield* NfcoreDiagnoseTool
@@ -288,6 +293,9 @@ const layer = Layer.effect(
           nfcoreSchema: Tool.init(nfcoreschematool),
           nfcoreValidate: Tool.init(nfcorevalidatetool),
           nfcoreRun: Tool.init(nfcoreruntool),
+          trpCatalog: Tool.init(trpcatalogtool),
+          trpPrepare: Tool.init(trppreparetool),
+          trpRun: Tool.init(trpruntool),
           nfcoreResources: Tool.init(nfcoreresourcestool),
           nfcoreParams: Tool.init(nfcoreparamstool),
           nfcoreDiagnose: Tool.init(nfcorediagnosetool),
@@ -351,6 +359,9 @@ const layer = Layer.effect(
             tool.nfcoreSchema,
             tool.nfcoreValidate,
             tool.nfcoreRun,
+            tool.trpCatalog,
+            tool.trpPrepare,
+            ...(questionEnabled ? [tool.trpRun] : []),
             tool.nfcoreResources,
             tool.nfcoreParams,
             tool.nfcoreDiagnose,
@@ -591,6 +602,7 @@ export const node = LayerNode.make({
     Manifest.node,
     Report.node,
     Authoring.node,
+    TrpWorkflow.node,
     Fork.node,
     Entrez.node,
     Ensembl.node,

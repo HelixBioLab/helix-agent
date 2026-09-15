@@ -1,5 +1,5 @@
 {
-  "version": "trp-catalog/1.0.0",
+  "version": "trp-catalog/1.1.0",
   "entries": [
     {
       "id": "rcsb.structure",
@@ -249,7 +249,8 @@
         "Admission covers single mode and PDB format. Batch, mmCIF, alternate conformations, multichain structures and general missing-coordinate handling are not validated by this reference.",
         "The upstream implementation can discard empty units and can exit successfully without a CSV. The wrapper checks the output explicitly.",
         "The auxiliary NPY contains Python objects; recorded as opaque bytes and never loaded by the verifier.",
-        "A local Docker digest identifies the tested image; this phase does not publish an image to a registry."
+        "A local Docker digest identifies the tested image; this phase does not publish an image to a registry.",
+        "F3 reference image adds procps 2:4.0.2-3 for Nextflow task metrics; scientific packages and reference CSV are unchanged. The original F2 reference is retained."
       ],
       "reference": {
         "revision": "8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9",
@@ -257,6 +258,8 @@
           "docker",
           "run",
           "--rm",
+          "--name",
+          "thesis-geometre-526fee62f1b34a52a5dee512a18cb420",
           "--network",
           "none",
           "--read-only",
@@ -275,8 +278,8 @@
           "--user",
           "1000:1000",
           "--mount",
-          "type=bind,src=/tmp/tesis-f2/geometre-reference-frozen,dst=/work",
-          "sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2",
+          "type=bind,src=/tmp/tesis-f3/geometre-nextflow-reference,dst=/work",
+          "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
           "single",
           "/work/2xqh.pdb",
           "A",
@@ -286,49 +289,49 @@
           "351_372"
         ],
         "exitCode": 0,
-        "image": "sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2",
+        "image": "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
         "record": {
-          "path": "evaluation/trp/reference/geometre/reference.json",
-          "bytes": 2368,
-          "sha256": "7c9ea839ee13a30dfca04a836ac656d74c7e9d846f01db563a4ad58d6f3b36a8"
+          "path": "evaluation/trp/reference/geometre-nextflow/reference.json",
+          "bytes": 2440,
+          "sha256": "a7d1b0ad15eb0b1fb5ea0a1db93ed2337f47af53613af07bf96791878045a6ef"
         },
         "inputs": [
           {
-            "path": "evaluation/trp/reference/geometre/2xqh.pdb",
+            "path": "evaluation/trp/reference/geometre-nextflow/2xqh.pdb",
             "bytes": 359397,
             "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b"
           },
           {
-            "path": "evaluation/trp/reference/geometre/units.json",
+            "path": "evaluation/trp/reference/geometre-nextflow/units.json",
             "bytes": 327,
             "sha256": "43e08616015fab47bb74f82398270d5c57380ee1271eb526202d7378cee3a186"
           }
         ],
         "outputs": [
           {
-            "path": "evaluation/trp/reference/geometre/environment.txt",
-            "bytes": 461,
-            "sha256": "e3c078e170db172c87d23be30cc022a7b111aca47b5d7acf6bf9e0b05a6c603c"
-          },
-          {
-            "path": "evaluation/trp/reference/geometre/geometry.csv",
+            "path": "evaluation/trp/reference/geometre-nextflow/geometry.csv",
             "bytes": 992,
             "sha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f"
           },
           {
-            "path": "evaluation/trp/reference/geometre/geometry.npy",
+            "path": "evaluation/trp/reference/geometre-nextflow/geometry.npy",
             "bytes": 13452,
             "sha256": "a81eff2c96ae2eb645d4246759b31612f0b682c31d6d42fc51c789e9401205bb"
           },
           {
-            "path": "evaluation/trp/reference/geometre/stderr.log",
-            "bytes": 75,
-            "sha256": "02e530ec11441bb7a75c19fc173a654fcc13d7ed955484575c11e318304c942b"
+            "path": "evaluation/trp/reference/geometre-nextflow/environment.txt",
+            "bytes": 461,
+            "sha256": "e3c078e170db172c87d23be30cc022a7b111aca47b5d7acf6bf9e0b05a6c603c"
           },
           {
-            "path": "evaluation/trp/reference/geometre/stdout.log",
+            "path": "evaluation/trp/reference/geometre-nextflow/stdout.log",
             "bytes": 0,
             "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "evaluation/trp/reference/geometre-nextflow/stderr.log",
+            "bytes": 75,
+            "sha256": "6aa66e7e0ae36ac1b9b1d43048c6bed16b0723613b5e30985fb57f6955ffc4cc"
           }
         ]
       }

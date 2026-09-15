@@ -1,0 +1,66 @@
+2026-09-15 15:52:54,140 - root - INFO - Query: 2XQH, query_chain: A, Target: 2xqhA_305_416, Classification: Alpha helical coiled coil, E-value: 1.528e-09, Min Height: 0.4
+2026-09-15 15:52:55,219 - root - ERROR - Traceback (most recent call last):
+  File "/app/src/execute_strpsearch.py", line 225, in execute_predstrp
+    y = gu.smooth_graph(y=y, target_avg_len=target_avg_len, window_p=window_p)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/general_utils.py", line 624, in smooth_graph
+    y = savgol_filter(y, window_size, poly_order)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 386, in savgol_filter
+    y = _fit_edges_polyfit(x, window_length, polyorder, deriv, delta, axis, y)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 255, in _fit_edges_polyfit
+    y = _fit_edge(x, n - window_length, n, n - halflen, n, axis,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 212, in _fit_edge
+    poly_coeffs = _pu.polyfit(
+                  ^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_polyutils.py", line 213, in polyfit
+    c, _, rank, _ = _lstsq(lhs, y, rcond=rcond, xp=xp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_polyutils.py", line 87, in _lstsq
+    return s_lstsq(a, b, cond=rcond)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/linalg/_basic.py", line 1396, in lstsq
+    b1 = np.atleast_1d(_asarray_validated(b, check_finite=check_finite))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/_lib/_util.py", line 409, in _asarray_validated
+    a = toarray(a)
+        ^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 684, in asarray_chkfinite
+    raise ValueError(
+ValueError: array must not contain infs or NaNs
+
+2026-09-15 15:52:55,222 - root - INFO - Query: 2XQH, query_chain: A, Target: 2xqhA_161_276, Classification: Beta-solenoid, E-value: 0.0006511, Min Height: 0.4
+2026-09-15 15:52:56,157 - root - ERROR - Traceback (most recent call last):
+  File "/app/src/execute_strpsearch.py", line 225, in execute_predstrp
+    y = gu.smooth_graph(y=y, target_avg_len=target_avg_len, window_p=window_p)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/general_utils.py", line 624, in smooth_graph
+    y = savgol_filter(y, window_size, poly_order)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 386, in savgol_filter
+    y = _fit_edges_polyfit(x, window_length, polyorder, deriv, delta, axis, y)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 255, in _fit_edges_polyfit
+    y = _fit_edge(x, n - window_length, n, n - halflen, n, axis,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 212, in _fit_edge
+    poly_coeffs = _pu.polyfit(
+                  ^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_polyutils.py", line 213, in polyfit
+    c, _, rank, _ = _lstsq(lhs, y, rcond=rcond, xp=xp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/signal/_polyutils.py", line 87, in _lstsq
+    return s_lstsq(a, b, cond=rcond)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/linalg/_basic.py", line 1396, in lstsq
+    b1 = np.atleast_1d(_asarray_validated(b, check_finite=check_finite))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/scipy/_lib/_util.py", line 409, in _asarray_validated
+    a = toarray(a)
+        ^^^^^^^^^^
+  File "/opt/conda/envs/strpsearch_env_ch_before/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 684, in asarray_chkfinite
+    raise ValueError(
+ValueError: array must not contain infs or NaNs
+

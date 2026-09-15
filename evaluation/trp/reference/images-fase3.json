@@ -1,0 +1,185 @@
+[
+    {
+        "Id": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+        "RepoTags": [
+            "tesis/strpsearch:candidate-f3"
+        ],
+        "RepoDigests": [
+            "tesis/strpsearch@sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-15T10:27:54.468107461-05:00",
+        "Config": {
+            "Env": [
+                "PATH=/opt/conda/envs/strpsearch_env_ch_before/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "CONDA_DIR=/opt/conda",
+                "LANG=C.UTF-8",
+                "LC_ALL=C.UTF-8",
+                "MPLBACKEND=Agg"
+            ],
+            "Entrypoint": [
+                "python",
+                "/app/bin/strpsearch.py"
+            ],
+            "WorkingDir": "/app",
+            "Labels": {
+                "org.opencontainers.image.version": "24.04"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 8123688775,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:b9a65b3c65ab22d490085bd0bf5490e2409da8748b406870f2463bdc41cd6795",
+                "sha256:ae7a1ce2baa1d1a50470f5da979fc98fb7e252b849e8173cec7aa4dd153abe76",
+                "sha256:942e8252c8c8c02e1a50b144342bb83f0e2de301640c6634df3697b72a9770ee",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:bfcbe559cf785bdbf75cd0c3363dd881e9a5de39f38aac463a7f8072ba8c1070",
+                "sha256:cadfade87b2fcf7f287478b9424107321645520eac77e51f8477db6f93679d4a"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-15T15:33:59.024372617Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "x3qcmdvojz3shegx0jhj6fva5",
+                    "CreatedAt": "2026-09-15T10:35:42.919333928-05:00"
+                }
+            ]
+        }
+    },
+    {
+        "Id": "sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2",
+        "RepoTags": [
+            "tesis/geometre:1.0-frozen"
+        ],
+        "RepoDigests": [
+            "tesis/geometre@sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-15T09:31:15.402306572-05:00",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.11",
+                "PYTHON_SHA256=2a9920c7a0cd236de33644ed980a13cbbc21058bfdc528febb6081575ed73be3",
+                "OPENBLAS_NUM_THREADS=1",
+                "OMP_NUM_THREADS=1",
+                "MKL_NUM_THREADS=1",
+                "PYTHONUNBUFFERED=1"
+            ],
+            "Entrypoint": [
+                "geometre"
+            ],
+            "WorkingDir": "/work"
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 206467741,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:ea680fbff095473bb8a6c867938d6d851e11ef0c177fce983ccc83440172bd72",
+                "sha256:f65ccd2650d020c55a770b55ff2a4fc959eaa77297b46c442ea957e2c8867e38",
+                "sha256:08f694c3ad40a16273bf1b4bd651e45a351c2acece2b660952a7e2d1ae141b79",
+                "sha256:fab19f6d5974bd2f41c10832eef92a78602d5f8069a78a7fdf45f0426e7a2828",
+                "sha256:17a9f0c00e4e9ceb20f0944bf87de0096ef007deddb3aea0427d9407ffcedcbb",
+                "sha256:20307ba214a082a5873b5c2c530cfc789ad5972d0b498d55ec2e45468a4c98f3",
+                "sha256:4d330fb77a7b58f3b1907f18b9043e3767ab4e3a4936c2bd209b5245eb98edcc"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-15T14:31:33.786960724Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:c10ef2d44297822270231bd26ac1ed0ab1b951525247bb6363de50057946fac2",
+            "size": 856
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "docker.io/tesis/geometre"
+                }
+            ],
+            "Build": [
+                {
+                    "Ref": "z3cfr8grtpfkzwjboojey6hqk",
+                    "CreatedAt": "2026-09-15T09:31:38.801681305-05:00"
+                }
+            ]
+        }
+    },
+    {
+        "Id": "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
+        "RepoTags": [
+            "tesis/geometre:nextflow-f3"
+        ],
+        "RepoDigests": [
+            "tesis/geometre@sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-15T10:52:45.27402691-05:00",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.11",
+                "PYTHON_SHA256=2a9920c7a0cd236de33644ed980a13cbbc21058bfdc528febb6081575ed73be3",
+                "OPENBLAS_NUM_THREADS=1",
+                "OMP_NUM_THREADS=1",
+                "MKL_NUM_THREADS=1",
+                "PYTHONUNBUFFERED=1"
+            ],
+            "Entrypoint": [
+                "geometre"
+            ],
+            "WorkingDir": "/work"
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 206862809,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:ea680fbff095473bb8a6c867938d6d851e11ef0c177fce983ccc83440172bd72",
+                "sha256:f65ccd2650d020c55a770b55ff2a4fc959eaa77297b46c442ea957e2c8867e38",
+                "sha256:08f694c3ad40a16273bf1b4bd651e45a351c2acece2b660952a7e2d1ae141b79",
+                "sha256:fab19f6d5974bd2f41c10832eef92a78602d5f8069a78a7fdf45f0426e7a2828",
+                "sha256:17a9f0c00e4e9ceb20f0944bf87de0096ef007deddb3aea0427d9407ffcedcbb",
+                "sha256:20307ba214a082a5873b5c2c530cfc789ad5972d0b498d55ec2e45468a4c98f3",
+                "sha256:4d330fb77a7b58f3b1907f18b9043e3767ab4e3a4936c2bd209b5245eb98edcc",
+                "sha256:43886f3a5d74e8568a09a66a90391415004c9234dcd1ce5a49a23db411af3e26"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-15T15:52:45.457443359Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "uycv1g59063s8z7q5b728v2lt",
+                    "CreatedAt": "2026-09-15T10:52:45.497931477-05:00"
+                }
+            ]
+        }
+    }
+]
