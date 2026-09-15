@@ -246,7 +246,8 @@ export function validate(raw: unknown, pdb: Uint8Array): Report {
     {
       code: "resource-admission",
       status: "omitted",
-      detail: "Fixed local task limits; inventory and budget admission belong to F4",
+      detail:
+        "Static graph validation does not observe resources; TrpWorkflow must attach dated inventory and budget admission",
     },
     {
       code: "external-annotation",

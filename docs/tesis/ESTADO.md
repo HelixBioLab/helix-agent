@@ -2,6 +2,16 @@
 
 Actualizado: 15 de septiembre de 2026.
 
+## Fase 4: implementación inicial; R3.2 sigue abierto
+
+- Inventario fechado, presupuesto explícito para revisión y negativas por recurso integrados en `trp_prepare`/`trp_run`. Se reobservan recursos después de aprobar y antes del análisis real. El estado y las restricciones del protocolo forman parte del contenido protegido. [Diseño y límites](F4-ADMISION.md).
+- Copia portable de todos los archivos de ejecución, verificador Python independiente, eventos con causas y métodos por plantilla. Referencia final: **121 archivos; 250/250 fallos inyectados detectados**. [Auditoría](evidencia/portable-audit-fase4.json).
+- Referencia real: dos tareas simuladas y dos reales; CSV de 12 unidades idéntico a F2/F3. Aprobación sintética identificada, inventario local observado y presupuesto de ingeniería. **472 pruebas correctas, una omitida por defecto y cero fallos**; referencia real correcta por separado. Tipos y lint sin errores. [Evidencia](evidencia/fase4.json).
+- Reglas de intervención en español e inglés, con texto y señales conservados. El acuerdo externo sigue sin medir; los ejemplos de desarrollo no son etiquetas independientes.
+- Word: capítulos 4 y 5 actualizados, anexo A.18, 29 notas rojas en cursiva y cinco capítulos conservados. [Auditoría documental](evidencia/documento-fase4.json).
+
+**La compuerta completa de F4 sigue abierta por R3.2.** La reserva de disco es una estimación, no una cuota; una solicitud de cuota estricta se rechaza. Faltan cuotas/reservas efectivas y contraste del margen, sin cambiar el protocolo F2. F5 puede avanzar con controles estructurales sobre la ruta disponible; este trabajo de F4 sigue siendo requisito antes de F6. R1.1/R2.3, anotador, clúster y modelo/presupuesto de evaluación también permanecen pendientes. Se mantienen julio de 2027 y el borrador objetivo al 4 de junio.
+
 ## Fase 3: núcleo completado sobre el catálogo admitido inicial
 
 - Integradas `trp_catalog`, `trp_prepare` y `trp_run` en el agente, con esquema, fuentes declaradas, aprobación por el servicio de preguntas y digest del paquete. Una revisión o entrada alterada invalida la propuesta; una aprobación consumida no puede reutilizarse.

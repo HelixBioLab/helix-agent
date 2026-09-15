@@ -1,0 +1,28 @@
+% Requires algorithm and algpseudocode. Correspondence: F4-ADMISION.md.
+\begin{algorithm}
+\caption{Admisión y evidencia de la ruta geométrica TRP}
+\begin{algorithmic}[1]
+\Require Especificación $S$, estructura $X$, catálogo $C$, presupuesto propuesto $B$, sesión $U$
+\Ensure Evidencia portable o rechazo registrado; ninguna estimación se presenta como cuota
+\State Invalidar la propuesta anterior de $U$
+\State $P \gets \Call{PrepararYValidar}{S,X,C}$
+\State $I \gets \Call{ObservarRecursos}{}$; $D \gets \Call{Contar}{P}$
+\State $A \gets \Call{Admitir}{I,D,B}$
+\If{$\neg A.aceptada$} \State \Return \Call{RegistrarRechazo}{$A$} \EndIf
+\State $Q \gets \Call{ComprobarProtocolo}{S,P}$
+\If{$Q.vinculante \land (Q.violado \lor Q.noEvaluado)$}
+\State \Return \Call{RegistrarRechazo}{$Q$}
+\EndIf
+\State $H \gets \Call{HashPaquete}{P,I,D,B,A,Q}$
+\State \Call{RegistrarPermiso}{U,H}
+\If{$\neg\Call{AprobacionExplicita}{U,S,H,B,D,Q}$} \State \Return \Call{RegistrarDenegacion}{} \EndIf
+\State \Call{ReleerYComparar}{X,C,Q,H}
+\State \Call{ReobservarYAdmitir}{D,B}
+\State \Call{ComprobarEntornoYRecorrerEnSeco}{P}
+\State \Call{ReobservarYAdmitir}{D,B}
+\State $Y \gets \Call{EjecutarYValidar}{P}$
+\State \Call{RegistrarEstadoYMetodos}{P,Y}
+\State $E \gets \Call{ExportarCopiaCerrada}{P,Y}$
+\State \Return $E,\Call{SHA256}{E.manifiesto}$
+\end{algorithmic}
+\end{algorithm}

@@ -15,6 +15,7 @@ import { Truncate } from "../../src/tool/truncate"
 import { InstanceState } from "../../src/effect/instance-state"
 import { SessionID, MessageID } from "../../src/session/schema"
 import { testEffect } from "../lib/effect"
+import budget from "../../../../evaluation/trp/development/f4-budget.json"
 import source from "../../../../evaluation/trp/development/f3-reference-spec.json"
 
 const root = path.resolve(import.meta.dir, "../../../..")
@@ -45,7 +46,10 @@ run(
       }
       const prepare = yield* (yield* TrpPrepareTool).init()
       const runTool = yield* (yield* TrpRunTool).init()
-      const prepared = yield* prepare.execute({ specification: TrpSpecification.parse(raw), evidence_root: root }, ctx)
+      const prepared = yield* prepare.execute(
+        { specification: TrpSpecification.parse(raw), evidence_root: root, budget },
+        ctx,
+      )
       const preview = prepared.metadata
       const question = yield* Question.Service
       const events = yield* EventV2Bridge.Service
@@ -94,6 +98,7 @@ run(
             if (entry.isFile())
               await fs.copyFile(path.join(result.directory, entry.name), path.join(target, entry.name))
           }
+          await fs.cp(path.join(result.directory, "evidence"), path.join(target, "evidence"), { recursive: true })
           await fs.cp(path.join(result.directory, "results"), path.join(target, "results"), { recursive: true })
           await fs.mkdir(path.join(target, "dry-run"))
           for (const name of ["stdout.log", "stderr.log", "trace.tsv", "results/geometry.csv"]) {

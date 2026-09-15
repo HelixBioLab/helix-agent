@@ -1,0 +1,193 @@
+{
+  "phase": "F4",
+  "date": "2026-09-15",
+  "replace_sections": [
+    {
+      "heading": "R3.1. Inventario de recursos",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "La ruta TRP incorpora un inventario observado por el programa, con fecha, sistema, arquitectura, equipo, directorio de trabajo, sistema de archivos, CPU accesibles, memoria disponible y bytes libres. Registra las fuentes de cada medición y sus límites. El agente propone un presupuesto explícito con su origen; la aprobación humana vincula ese presupuesto y el inventario al digest de la composición."
+        },
+        {
+          "text": "La admisión compara capacidad, demanda y presupuesto. Un inventario ausente, incompleto, no legible o con antigüedad superior a cinco minutos no concede admisión. La capacidad se vuelve a observar después de la aprobación y antes del análisis real. El ejecutor admite únicamente la ruta Linux x64 con Docker local; el acceso a clúster continúa sin confirmar."
+        },
+        {
+          "text": "El inventario representa capacidad compartida del anfitrión, no una reserva exclusiva ni un derecho de uso de cgroups. La disponibilidad del contenedor y la versión de Nextflow se comprueban por separado. Las llamadas y el costo del proveedor del agente quedan fuera de esta medición; su presupuesto de evaluación sigue pendiente."
+        }
+      ]
+    },
+    {
+      "heading": "R3.2. Contador de demanda",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "El contador distingue los dos canales de entrada de las tareas ejecutables: prevé dos tareas de recorrido simulado y dos tareas reales, sin reintentos. Las trazas contrastan ambas cantidades y el registro de procesos conserva los seis comandos del controlador, sus salidas, tiempos y truncamientos. Las llamadas científicas remotas previstas son cero; esta cifra no cuenta la conversación con el proveedor."
+        },
+        {
+          "text": "Sean B los bytes UTF-8 del paquete generado antes de añadir admisión y P los bytes de la estructura seleccionada. Se reserva almacenamiento mediante D = 64 × 1048576 + 4B + 4P bytes, con supuestos explícitos sobre copias y registros. Se reservan tres CPU y 4 GiB para tareas y controlador, y 1080 segundos para los tiempos máximos configurados de sus comandos. La reserva del controlador no equivale a una cuota de memoria o CPU del proceso completo."
+        },
+        {
+          "text": "La fórmula de almacenamiento es una estimación de ingeniería y se reproduce en frío desde los archivos. No es una cota superior garantizada: el adaptador no impone una cuota agregada del sistema de archivos. Si se solicita esa garantía, devuelve storage-quota-unavailable antes de ejecutar. Por ello, R3.2 permanece parcial respecto de cotas garantizadas y ajuste del margen; la referencia única no demuestra la meta de sobreestimación mediana ni el comportamiento del corpus T-RESOURCE."
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. Conservar esta limitación en las tablas finales. Antes de exigir cero sobrepasos bajo presupuestos estrictos, incorporar una cuota verificable de trabajo y una reserva efectiva del controlador, o formular una enmienda prospectiva y justificada del alcance. No renombrar una estimación como cota ni ajustar el margen a una sola referencia.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "heading": "R3.3. Rechazo tipificado de admisión",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "Cada negativa de recursos conserva código, recurso, demanda y disponibilidad, además del inventario, presupuesto y fecha asociados cuando existen. Se comprueban presupuestos ausentes, límites insuficientes, plataforma o arquitectura no admitida, datos desactualizados y ausencia de cuota estricta. Las negativas quedan registradas antes de solicitar aprobación o lanzar comandos."
+        },
+        {
+          "text": "Las pruebas de integración comprueban que una disminución del espacio durante la revisión detiene el flujo antes del primer comando. Los protocolos vinculantes con violaciones o restricciones no evaluadas también bloquean la preparación, y modificar el protocolo invalida una propuesta aprobada. Son pruebas de mecanismos; R3.4 aún requiere el contraste reservado con condiciones observadas."
+        }
+      ]
+    },
+    {
+      "heading": "R4.1. Manifiesto verificable en frío",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "F4 exporta una copia cerrada con todos los archivos del directorio de ejecución: entradas, selección, catálogo y referencias codificadas, especificación, adaptadores, configuración, aprobación, inventarios, decisiones, métodos, trazas, registros y archivos de trabajo de Nextflow. Los enlaces internos a archivos se convierten en copias ordinarias; enlaces externos, directorios enlazados y archivos especiales impiden exportar."
+        },
+        {
+          "text": "Cada archivo tiene ruta relativa, tamaño y SHA-256. El manifiesto enlaza también el digest aprobado; el verificador independiente se incluye como verify.py y utiliza únicamente Python estándar. Detecta archivos faltantes, alterados o añadidos, rutas inseguras y vínculos inconsistentes entre entrada, inventario, presupuesto, aprobación y salida. Las capas de imagen y las distribuciones compartidas se identifican, pero no se incluyen; verificar integridad no exige disponer de ellas."
+        },
+        {
+          "text": "La copia final de la referencia 2xqh contiene 121 archivos declarados y pasa la verificación sin modelo ni red. La auditoría introdujo 250 fallos, incluidos ausencia y alteración de cada archivo, rutas inseguras, archivo adicional, enlace externo y ancla incorrecta; detectó los 250. El hash del manifiesto se conserva por separado en la evidencia del repositorio. Estas pruebas demuestran integridad en los casos de desarrollo, no autenticidad ni corrección biológica."
+        }
+      ]
+    },
+    {
+      "heading": "R4.2. Registro de decisiones y rechazos",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "La ruta integrada registra eventos de permisos, admisión, protocolo, aprobación y ejecución, con secuencia, fecha, causa y hash del evento anterior. Los registros se generan en los límites de los servicios y procesos, sin pedir al modelo que relate lo sucedido. Un permiso resuelto por configuración se registra como retorno permitido; no se atribuye falsamente a una respuesta humana."
+        },
+        {
+          "text": "Se reutiliza el protocolo existente y se conserva su estado y sus registros. El flujo exige una respuesta explícita de Question.Service para el contenido preparado, y conserva rechazo, cancelación y fallo. Cada proceso registra sus argumentos, duración, estado y cobertura de salida capturada. La cobertura exhaustiva de una sesión completa debe contrastarse con una fuente independiente en F6; estos eventos corresponden a la ruta TRP instrumentada."
+        }
+      ]
+    },
+    {
+      "heading": "R4.3. Conteo de intervenciones",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "El clasificador trp-handcount-es-en/1.0.0 incorpora señales superficiales en español y reutiliza las reglas existentes en inglés. Mantiene seis clases: corrección factual, rechazo, redirección, desambiguación, aprobación y otros. Conserva texto, clase, reglas activadas y versión; excluye texto inyectado, código y citas según el extractor existente."
+        },
+        {
+          "text": "El registro cuenta la instantánea de mensajes proporcionada a la herramienta; las respuestas de la interfaz de aprobación se conservan separadamente en los eventos. Otros significa que no se encontró una señal reconocida, no ausencia demostrada de intervención. Las pruebas usan ejemplos de desarrollo y no sustituyen etiquetas externas. El acuerdo externo permanece nulo hasta disponer de anotador independiente y corpus T-TURNS; no se calcula un kappa ficticio."
+        }
+      ]
+    },
+    {
+      "heading": "R4.4. Métodos derivados del manifiesto",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "La plantilla produce methods.json y methods.md sin generación libre. Cada campo afirmado enlaza un archivo y una ruta de claves: proteína, cadena, modelo, unidades, inserciones, marco, hash de entrada, revisión de GeomeTRe, contrato de parámetros, motor, imagen, orden, conteos, reserva de almacenamiento y estado. Si la consulta de versión de Nextflow termina correctamente, se añade su salida observada; de lo contrario se declara indisponible."
+        },
+        {
+          "text": "El verificador comprueba los campos obligatorios y sus valores contra los registros incluidos en la copia. Los métodos explicitan que GeomeTRe trabaja sobre unidades suministradas, que los ceros de la primera unidad son relleno y que B-factor no es pLDDT. Se conservan las limitaciones de recursos, anotación y evaluación, y no se rellenan modelo, costo del proveedor o versiones desconocidas con valores supuestos."
+        }
+      ]
+    }
+  ],
+  "replace_paragraphs": [
+    {
+      "old": "Las tres primeras fases construyen una base verificable, un catálogo inicial y una ruta de composición ejecutable para la tesis. La especificación, sus fuentes declaradas, la aprobación vinculada al contenido y la validación antes de ejecutar ya están conectadas al agente. La referencia de ingeniería permite comprobar esta cadena de forma concreta, sin atribuirle el cumplimiento empírico de los cinco objetivos.",
+      "new": "Las cuatro primeras fases construyen una base verificable, un catálogo inicial, composición aprobada y una primera capa de admisión y proveniencia. La ruta local enlaza entradas, contratos, presupuesto revisado y ejecución con una copia verificable sin el agente. Esta evidencia sostiene afirmaciones de ingeniería delimitadas; el cumplimiento empírico de los cinco objetivos sigue sujeto a la campaña reservada."
+    },
+    {
+      "old": "Respecto del OE3, detectar el entorno no demuestra que una ejecución quepa en sus recursos: el inventario debe vincularse a una demanda explícita y la decisión debe contrastarse con consumo observado. Respecto del OE4, se puede comprobar la integridad de instantáneas sin modelo ni red; falta extender esa cobertura a todos los artefactos de ejecución y a los métodos. Respecto del OE5, los controles genéricos de completitud no sustituyen la medición de fallos estructurales del dominio.",
+      "new": "Respecto del OE3, se implementaron inventarios fechados, conteos, estimaciones y negativas previas a ejecutar; siguen pendientes la cuota agregada, la reserva efectiva del controlador y el contraste empírico de decisiones. Respecto del OE4, el paquete incluye artefactos de ejecución, eventos y métodos verificables en frío, con clasificación inicial en español e inglés; el acuerdo y la cobertura externos requieren evaluación independiente. Respecto del OE5, los controles estructurales permanecen pendientes y no quedan sustituidos por comprobar hashes o completitud."
+    },
+    {
+      "old": "Las comprobaciones del paquete se repiten antes y después de ejecutar. Esta garantía corresponde a la ruta TRP integrada; el agente general conserva herramientas de shell y edición, por lo que no se afirma un aislamiento absoluto frente a cambios deliberados del entorno. El control de inventario y presupuesto completo corresponde a F4.",
+      "new": "Las comprobaciones del paquete se repiten antes y después de ejecutar. F4 añade inventario, presupuesto revisado y protocolo al contenido protegido, junto con nuevas observaciones de recursos. La garantía corresponde a la ruta TRP integrada; el agente general conserva herramientas de shell y edición. No se afirma aislamiento absoluto ni cuota agregada de disco."
+    },
+    {
+      "old": "Se declaran como omitidas la autenticación externa de las fuentes, la detección de repeticiones, los controles pLDDT/PAE, la admisión por inventario y presupuesto y la anotación independiente. Un control omitido no cuenta como aprobado. La verificación del CSV exige identidad, límites y número de unidades, valores finitos, escala de TM-score, primera fila de relleno y resúmenes etiquetados.",
+      "new": "Se declaran como omitidas la autenticación externa de las fuentes, la detección de repeticiones, los controles pLDDT/PAE y la anotación independiente. En F4 la ruta de ejecución añade el resultado de admisión y declara por separado la ausencia de cuota estricta. Un control omitido no cuenta como aprobado. La verificación del CSV exige identidad, límites y número de unidades, valores finitos, escala de TM-score, primera fila de relleno y resúmenes etiquetados."
+    },
+    {
+      "old": "Permanecen pendientes la ampliación del catálogo, las conversiones con SIFTS y modelos predichos, el inventario y la admisión presupuestaria, los controles de confianza y la evaluación reservada. El diagnóstico de STRPsearch conserva tanto el fallo con la entrada completa como la salida candidata tras retirar ligandos y agua; su admisión automática requiere revisar esa transformación y sus contratos.",
+      "new": "Permanecen pendientes la ampliación del catálogo, las conversiones con SIFTS y modelos predichos, las cuotas y reservas efectivas de recursos, los controles de confianza y la evaluación reservada. F4 implementa inventario observado, presupuesto explícito y manifiesto portable, detallados en A.18. El diagnóstico de STRPsearch continúa como candidato: su admisión requiere revisar la transformación, los contratos y la propagación de fallos."
+    }
+  ],
+  "engineering": [
+    {
+      "text": "Verificación de ingeniería de F4",
+      "kind": "heading"
+    },
+    {
+      "text": "La referencia final atraviesa trp_prepare y trp_run, observa inventario local, revisa un presupuesto de ingeniería explícito y reproduce exactamente el CSV de 12 unidades de 2xqh/A. Se observaron dos tareas simuladas y dos reales. La aprobación corresponde al controlador sintético de la prueba. La copia de 121 archivos y el informe de 250 fallos inyectados se conservan en evaluation/trp/reference/nextflow-f4 y docs/tesis/evidencia."
+    },
+    {
+      "text": "La suite de dominio registra 472 pruebas correctas, una referencia real omitida por defecto y cero fallos; la referencia se ejecutó por separado y terminó correctamente. Estos resultados verifican componentes y su integración. No constituyen evaluación de estabilidad lingüística, sensibilidad estructural, acuerdo entre anotadores ni acierto empírico de admisión."
+    },
+    {
+      "text": "F4 completa una primera implementación de admisión y proveniencia para la ruta geométrica local. Siguen abiertos la cuota agregada y la reserva efectiva del controlador, la ampliación del catálogo y de los mapeos, los controles estructurales y la evaluación reservada. Se mantiene julio de 2027 para la sustentación y el 4 de junio de 2027 como objetivo del borrador completo."
+    }
+  ],
+  "appendix": [
+    {
+      "text": "A.18. Admisión y paquete portable de ejecución",
+      "kind": "heading"
+    },
+    {
+      "text": "A.18.1. Inventario y presupuesto",
+      "kind": "subheading"
+    },
+    {
+      "text": "Inventory registra versión, observedAt, platform, architecture, host, workspace, filesystem, cpus, memoryBytes, freeBytes, sources y limitations. Budget exige cpus, memoryBytes, workBytes, wallSeconds, requireHardStorageLimit y origin. El inventario lo observa el programa; el presupuesto es una propuesta que debe presentarse al investigador junto con el cálculo y sus supuestos."
+    },
+    {
+      "text": "El caso de ingeniería autoriza una reserva de tres CPU, 4 GiB, 256 MiB de trabajo y 1080 segundos, y declara requireHardStorageLimit=false. Son valores de esa prueba local; no fijan el presupuesto de API ni los recursos de la campaña de tesis. La solicitud de cuota estricta devuelve una negativa tipificada porque esta ruta no puede imponerla."
+    },
+    {
+      "text": "A.18.2. Secuencia implementada",
+      "kind": "subheading"
+    },
+    {
+      "text": "1. Invalidar la propuesta anterior; validar especificación, estructura y catálogo. 2. Observar inventario y contar tareas y bytes. 3. Comparar demanda, capacidad y presupuesto; conservar cualquier rechazo. 4. Comprobar protocolo y rechazar restricciones vinculantes violadas o no evaluadas. 5. Incorporar inventario, presupuesto, admisión y protocolo al digest de archivos preparados."
+    },
+    {
+      "text": "6. Registrar solicitud y resolución del permiso y solicitar aprobación explícita del contenido. 7. Releer fuentes y protocolo, comprobar el digest y volver a observar recursos. 8. Verificar Docker local, imagen y versión; resolver configuración y completar el recorrido simulado. 9. Repetir admisión antes del análisis real, ejecutar, contrastar trazas y validar CSV. 10. Conservar eventos, procesos, estado y métodos; exportar copia cerrada y devolver el hash del manifiesto."
+    },
+    {
+      "text": "El conteo de la ruta es constante en número de procesos y lineal en los bytes del paquete. La exportación y verificación recorren archivos y bytes; ordenar nombres y claves añade el costo de ordenamiento. La complejidad del cálculo científico, el acceso a disco y la variación de carga del anfitrión se reportan separadamente y no se deducen de este conteo."
+    },
+    {
+      "text": "A.18.3. Verificación desde una copia",
+      "kind": "subheading"
+    },
+    {
+      "text": "Copiar el directorio evidence completo a otra ubicación. Ejecutar verify.py con Python 3, pasando la ruta de la copia como primer argumento y el hash del manifiesto conservado por separado mediante la opción --sha256. El programa comprueba el cierre del conjunto de archivos, tamaños y hashes, entradas, catálogo, digest aprobado, decisiones, eventos, conteos y campos de métodos. No ejecuta adaptadores ni deserializa los objetos científicos binarios contenidos en la evidencia."
+    },
+    {
+      "text": "La referencia final incluye 121 archivos declarados. El informe portable-audit-fase4.json enumera 250 fallos introducidos en una copia y su detección, además de comprobar la restauración del paquete. Modificar a la vez datos y manifiesto exige contrastar un hash conservado fuera de ambos. Un conjunto autoconsistente por sí solo no prueba quién lo produjo."
+    },
+    {
+      "text": "Los archivos de trabajo se conservan como evidencia; eso no garantiza reanudación de Nextflow en otra máquina. La reejecución necesita la imagen y la distribución identificadas. El mapeo portable de la entrada es run/source.pdb, independientemente de la ruta original declarada en la especificación."
+    },
+    {
+      "text": "A.18.4. Alcance de las conclusiones y dependencias",
+      "kind": "subheading"
+    },
+    {
+      "text": "R3.1 y R3.3 cuentan con mecanismos verificados en la ruta local. R3.2 reproduce conteos y estimaciones, pero conserva pendiente la cota de almacenamiento y la evaluación de su margen. R3.4, la cobertura independiente de R4.2 y el kappa de R4.3 requieren los corpus reservados. El anotador, el clúster y el modelo y presupuesto de evaluación continúan sin confirmación; no se sustituyen por las respuestas sintéticas de los ensayos."
+    },
+    {
+      "text": "NOTA PARA EL AUTOR. Ilustración propia recomendada: diagrama que conecte inventario, demanda, protocolo, aprobación y paquete de evidencias, señalando las dos observaciones posteriores de recursos. El esquema y el pseudocódigo se conservan en docs/tesis/F4-ADMISION.md. Mantener como pendientes de la tesis las cuotas, mapeos y evaluación; no trasladarlos a trabajos futuros para dar por cerrado el alcance.",
+      "kind": "note"
+    }
+  ]
+}

@@ -50,3 +50,13 @@ python3 script/tesis/update_phase2_docx.py /ruta/copia-fase1.docx /tmp/nueva-fas
 El renderizador usa una sola fuente de encabezados para evitar duplicados en el índice, actualiza campos y conserva las páginas automáticas entre secciones. `FilterData` se pasa a UNO como una secuencia tipada de propiedades; de otro modo Writer ignora la opción de páginas vacías y el PDF puede tener menos páginas que el campo `NUMPAGES`.
 
 **Corrección del registro de F1:** su script insertaba un `w:r` directamente en celdas vacías, y LibreOffice descartaba ese texto inválido. F2 coloca el texto dentro de `w:p`, corrige también el script histórico y comprueba las dos celdas de R2.1 en el DOCX ya renderizado. El registro de F1 que las daba por llenas no constituye evidencia de que hubieran sobrevivido a aquella exportación.
+
+## F4: admisión y evidencia portable
+
+- `update_phase4_docx.py` exige el hash del Word instalado de F3 y aplica `docs/tesis/fase4-documento.json` a un archivo nuevo.
+- `render_docx.py` exporta, reabre el Word y actualiza de nuevo índices/campos antes de la entrega final. F4 conserva páginas automáticas de separación y comprueba que NUMPAGES coincide con el PDF físico.
+- `audit_phase4_docx.py` audita la revisión renderizada contra el F3 todavía instalado. Tras instalar F4, este guardia histórico deja de ser aplicable a `Tesis.docx`; la evidencia final conserva ambos hashes. Es intencional: no se debe volver a aplicar la fase ni alterar su hash esperado para forzar una nueva revisión.
+- `audit_trp_bundle.py BUNDLE OUTPUT.json` verifica una copia con el verificador independiente del repositorio y prueba la ausencia/alteración de cada archivo, rutas inseguras y otras discrepancias. El contenido binario científico se comprueba por bytes; no se deserializa.
+- `packages/bioinformatica/src/trp/verify_bundle.py.txt` es la fuente del verificador que se publica como `verify.py` en cada paquete. Se puede ejecutar directamente con Python 3.
+
+La referencia de F4, sus limitaciones y el pseudocódigo se documentan en `docs/tesis/F4-ADMISION.md`. R3.2 conserva pendientes la cuota agregada y las reservas efectivas; la fórmula de almacenamiento es una estimación declarada.

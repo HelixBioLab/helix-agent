@@ -1,0 +1,50 @@
+{
+  "phase": "F4",
+  "date": "2026-09-15",
+  "scope": "Initial resource admission and complete portable evidence for the local author-PDB geometry route. R3.2 strict resource guarantees remain partial; no empirical campaign.",
+  "checks": {
+    "domain": {
+      "passed": 472,
+      "failed": 0,
+      "skipped": 1,
+      "files": 40,
+      "log": "docs/tesis/evidencia/dominio-fase4.log",
+      "skip": "Live Docker/Nextflow reference executed separately"
+    },
+    "live_reference": {
+      "passed": 1,
+      "failed": 0,
+      "log": "docs/tesis/evidencia/nextflow-fase4.log",
+      "approval_driver": "synthetic Question.Service.reply test driver"
+    },
+    "typecheck": {
+      "exit_code": 0
+    },
+    "new_code_lint": {
+      "warnings": 0,
+      "errors": 0,
+      "files": 18
+    },
+    "portable": {
+      "files": 121,
+      "payload_bytes": 3843052,
+      "manifest_sha256": "1c1a81f55fdf9e3e1d33c0eb3ec045055169e1a738321a5c4bba2affacd71bb3",
+      "faults_injected": 250,
+      "faults_detected": 250,
+      "report": "docs/tesis/evidencia/portable-audit-fase4.json"
+    }
+  },
+  "reference": "evaluation/trp/reference/nextflow-f4/engineering-reference.json",
+  "previous_user_file": {
+    "path": "packages/sdk/js/src/v2/client.ts",
+    "sha256": "99fa8d8e31a4b95c5b7ad2814319f94b8d96a27e22331e78b05d179e232311ba",
+    "included_in_commit": false
+  },
+  "pending": [
+    "R3.2 hard storage quota and effective controller reservation; overestimation metric remains unevaluated",
+    "R1.1 detector admission and RepeatsDB contracts",
+    "R2.3 SIFTS/label/author/predicted-model mappings",
+    "F5 structural controls",
+    "F6 independent annotator, held-out cases, evaluation model and budget; cluster if claim retained"
+  ]
+}

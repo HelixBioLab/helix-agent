@@ -1,0 +1,73 @@
+Sep-15 12:10:07.772 [main] DEBUG nextflow.cli.Launcher - $> nextflow -C nextflow.config run main.nf -ansi-log false -with-trace trace.tsv -stub-run
+Sep-15 12:10:07.843 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.4
+Sep-15 12:10:07.868 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/webiwabou/.nextflow/plugins; core-plugins: nf-amazon@3.4.4,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.5,nf-k8s@1.2.2,nf-tower@1.17.5,nf-wave@1.16.1
+Sep-15 12:10:07.890 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Sep-15 12:10:07.890 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Sep-15 12:10:07.893 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Sep-15 12:10:07.906 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Sep-15 12:10:07.939 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /tmp/bioinformatica-test-2x3gaxqwy/.bioinformatica/trp/5bf4785bc7b7-e4b646a2-5b0a-44ea-b6c6-6aa60e0d6d82/dry-run/nextflow.config
+Sep-15 12:10:07.968 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Sep-15 12:10:08.388 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Sep-15 12:10:08.388 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Sep-15 12:10:08.403 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/webiwabou/.nextflow/secrets/store.json
+Sep-15 12:10:08.406 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@d5d5353] - activable => nextflow.secret.LocalSecretsProvider@d5d5353
+Sep-15 12:10:08.417 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Sep-15 12:10:08.429 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [chaotic_miescher] DSL2 - revision: 0f14c41768
+Sep-15 12:10:08.474 [main] DEBUG nextflow.Session - Session UUID: e44c9e0d-5a73-4602-9893-9769af887788
+Sep-15 12:10:08.475 [main] DEBUG nextflow.Session - Run name: chaotic_miescher
+Sep-15 12:10:08.475 [main] DEBUG nextflow.Session - Executor pool size: 16
+Sep-15 12:10:08.484 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Sep-15 12:10:08.490 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sep-15 12:10:08.510 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.10.4 build 11173
+  Created: 10-02-2026 15:17 UTC (10:17 PEST)
+  System: Linux 7.2.0-1-cachyos
+  Runtime: Groovy 4.0.28 on OpenJDK 64-Bit Server VM 21.0.12+8
+  Encoding: UTF-8 (UTF-8)
+  Process: 370866@cachyos-x8664 [127.0.1.1]
+  CPUs: 16 - Mem: 15 GB (4.4 GB) - Swap: 15 GB (11.2 GB)
+Sep-15 12:10:08.537 [main] DEBUG nextflow.Session - Work-dir: /tmp/bioinformatica-test-2x3gaxqwy/.bioinformatica/trp/5bf4785bc7b7-e4b646a2-5b0a-44ea-b6c6-6aa60e0d6d82/dry-run/work [tmpfs]
+Sep-15 12:10:08.538 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /tmp/bioinformatica-test-2x3gaxqwy/.bioinformatica/trp/5bf4785bc7b7-e4b646a2-5b0a-44ea-b6c6-6aa60e0d6d82/dry-run/bin
+Sep-15 12:10:08.547 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Sep-15 12:10:08.557 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Sep-15 12:10:08.560 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Sep-15 12:10:08.604 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Sep-15 12:10:08.613 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 17; maxThreads: 1000
+Sep-15 12:10:08.661 [main] DEBUG nextflow.Session - Session start
+Sep-15 12:10:08.665 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: trace.tsv
+Sep-15 12:10:08.923 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Sep-15 12:10:09.045 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-15 12:10:09.045 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-15 12:10:09.055 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Sep-15 12:10:09.064 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=16; memory=15 GB; capacity=16; pollInterval=100ms; dumpInterval=5m
+Sep-15 12:10:09.068 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Sep-15 12:10:09.101 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'SELECT': maxForks=1; fair=false; array=0
+Sep-15 12:10:09.165 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-15 12:10:09.165 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-15 12:10:09.166 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'GEOMETRY': maxForks=1; fair=false; array=0
+Sep-15 12:10:09.171 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: SELECT, GEOMETRY
+Sep-15 12:10:09.173 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
+Sep-15 12:10:09.174 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > SELECT
+Sep-15 12:10:09.174 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GEOMETRY
+Sep-15 12:10:09.175 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_c1aa1074afbfdfe7: /tmp/bioinformatica-test-2x3gaxqwy/.bioinformatica/trp/5bf4785bc7b7-e4b646a2-5b0a-44ea-b6c6-6aa60e0d6d82/dry-run/main.nf
+Sep-15 12:10:09.175 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Sep-15 12:10:09.175 [main] DEBUG nextflow.Session - Session await
+Sep-15 12:10:09.416 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Sep-15 12:10:09.419 [Task submitter] INFO  nextflow.Session - [97/b1cf5b] Submitted process > SELECT
+Sep-15 12:10:09.860 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: SELECT; status: COMPLETED; exit: 0; error: -; workDir: /tmp/bioinformatica-test-2x3gaxqwy/.bioinformatica/trp/5bf4785bc7b7-e4b646a2-5b0a-44ea-b6c6-6aa60e0d6d82/dry-run/work/97/b1cf5be9a0049eb038b48772f9c098]
+Sep-15 12:10:09.861 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sep-15 12:10:09.893 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Sep-15 12:10:09.894 [Task submitter] INFO  nextflow.Session - [37/0d788d] Submitted process > GEOMETRY
+Sep-15 12:10:10.223 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: GEOMETRY; status: COMPLETED; exit: 0; error: -; workDir: /tmp/bioinformatica-test-2x3gaxqwy/.bioinformatica/trp/5bf4785bc7b7-e4b646a2-5b0a-44ea-b6c6-6aa60e0d6d82/dry-run/work/37/0d788dee6eb44b35bab1c43257bf90]
+Sep-15 12:10:10.237 [TaskFinalizer-2] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=48; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sep-15 12:10:10.238 [main] DEBUG nextflow.Session - Session await > all processes finished
+Sep-15 12:10:10.324 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Sep-15 12:10:10.324 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Sep-15 12:10:10.326 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Sep-15 12:10:10.326 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Sep-15 12:10:10.335 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=18ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=2; peakMemory=2 GB; ]
+Sep-15 12:10:10.335 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Sep-15 12:10:10.339 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Sep-15 12:10:10.366 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Sep-15 12:10:10.366 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

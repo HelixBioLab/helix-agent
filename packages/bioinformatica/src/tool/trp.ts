@@ -2,6 +2,7 @@ import { Effect, Schema } from "effect"
 import { TrpCatalog } from "../trp/catalog"
 import { TrpSpecification } from "../trp/specification"
 import { TrpWorkflow } from "../trp/workflow"
+import { TrpResources } from "../trp/resources"
 import * as Tool from "./tool"
 
 export const TrpCatalogTool = Tool.define(
@@ -36,16 +37,20 @@ export const TrpPrepareTool = Tool.define(
     const workflow = yield* TrpWorkflow.Service
     return {
       description:
-        "Validate a complete TRP specification against actual PDB bytes and catalogue evidence, and prepare immutable Nextflow code for review. Each parameter requires a declared source. Every edge must explicitly agree on protein, chain, format, numbering, insertion codes, confidence and scale. Use pdb/xyz:angstrom;B:angstrom^2 for structure, json/author-residue-interval for units, pdb-author numbering and none confidence. Source structure preserves insertion codes; checked selection and units exclude them. Replaces any previous draft in this session. Does not execute scientific tasks. If invalid, report failed checks and clarify missing information with the user.",
+        "Validate a complete TRP specification against actual PDB bytes and catalogue evidence, and prepare immutable Nextflow code for review. Each parameter requires a declared source. Every edge must explicitly agree on protein, chain, format, numbering, insertion codes, confidence and scale. Use pdb/xyz:angstrom;B:angstrom^2 for structure, json/author-residue-interval for units, pdb-author numbering and none confidence. Source structure preserves insertion codes; checked selection and units exclude them. Replaces any previous draft in this session. Supply an explicit budget (CPU, memoryBytes, workBytes, wallSeconds, requireHardStorageLimit and its origin) for human review; omission is a typed refusal. Inventory is observed by the host, never supplied by the model. Storage is estimated; hard quotas are unsupported. Does not execute scientific tasks. If invalid, report failed checks and clarify missing information with the user.",
       parameters: Schema.Struct({
         specification: TrpSpecification.Specification,
+        budget: Schema.optional(TrpResources.Budget),
         evidence_root: Schema.String.annotate({
           description: "Root of the checkout or evidence package containing the catalogue reference artifacts",
         }),
       }),
-      execute: (args: { specification: TrpSpecification.Specification; evidence_root: string }, ctx: Tool.Context) =>
+      execute: (
+        args: { specification: TrpSpecification.Specification; evidence_root: string; budget?: TrpResources.Budget },
+        ctx: Tool.Context,
+      ) =>
         Effect.gen(function* () {
-          const preview = yield* workflow.prepare(args.specification, args.evidence_root, ctx.sessionID)
+          const preview = yield* workflow.prepare(args.specification, args.evidence_root, ctx.sessionID, args.budget)
           return {
             title: "TRP specification ready for review",
             metadata: { id: preview.id, digest: preview.digest },
@@ -62,14 +67,18 @@ export const TrpRunTool = Tool.define(
     const workflow = yield* TrpWorkflow.Service
     return {
       description:
-        "Show the exact prepared TRP specification to the user for explicit approval through the question UI, then execute its validated Nextflow bundle locally. Requires the draft id and digest returned by trp_prepare. The model cannot supply approval. Rejection, changed input, replaced specification or reuse prevents execution. Results and checks are saved under .bioinformatica/trp/. This bounded route has fixed task limits; full inventory/budget admission is pending F4.",
+        "Show the prepared TRP specification, resource reservation, budget and protocol to the user through the question UI, then execute locally. Requires the draft id and digest returned by trp_prepare. The model cannot supply approval. Resources are observed again after approval; changed inputs/protocol, rejection or reuse prevent execution. Results, events and an offline-verifiable evidence copy are saved under .bioinformatica/trp/. Disk space uses an explicit estimate; a requested hard disk quota is rejected as unsupported.",
       parameters: Schema.Struct({ id: Schema.String, digest: Schema.String }),
       execute: (args: { id: string; digest: string }, ctx: Tool.Context) =>
         Effect.gen(function* () {
           const result = yield* workflow.run(args.id, args.digest, ctx)
           return {
             title: "TRP geometry completed",
-            metadata: { directory: result.directory, digest: result.digest },
+            metadata: {
+              directory: result.directory,
+              digest: result.digest,
+              manifestSha256: result.evidence.manifestSha256,
+            },
             output: JSON.stringify(result, null, 2),
           }
         }),

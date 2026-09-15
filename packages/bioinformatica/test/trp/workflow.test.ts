@@ -14,6 +14,9 @@ import { Truncate } from "../../src/tool/truncate"
 import { InstanceState } from "../../src/effect/instance-state"
 import { SessionID, MessageID } from "../../src/session/schema"
 import { testEffect } from "../lib/effect"
+import { TrpResources } from "../../src/trp/resources"
+import { resourceLayer } from "./resource-fixture"
+import budget from "../../../../evaluation/trp/development/f4-budget.json"
 import source from "../../../../evaluation/trp/development/f3-reference-spec.json"
 
 const root = path.resolve(import.meta.dir, "../../../..")
@@ -27,6 +30,7 @@ const processLayer = Layer.mock(AppProcess.Service, {
 const it = testEffect(
   LayerNode.compile(LayerNode.group([TrpWorkflow.node, Question.node, EventV2Bridge.node, Agent.node, Truncate.node]), [
     [AppProcess.node, processLayer],
+    [TrpResources.node, resourceLayer],
   ]),
 )
 const ctx = {
@@ -66,7 +70,7 @@ const setup = Effect.gen(function* () {
   const raw = structuredClone(source)
   raw.structure.value.path = "input.pdb"
   const workflow = yield* TrpWorkflow.Service
-  const preview = yield* workflow.prepare(raw, root, ctx.sessionID)
+  const preview = yield* workflow.prepare(raw, root, ctx.sessionID, budget)
   return { raw, workflow, preview, directory }
 })
 
@@ -93,7 +97,7 @@ describe("TRP approval through the actual question service", () => {
       const fiber = yield* workflow.run(preview.id, preview.digest, ctx).pipe(Effect.exit, Effect.forkScoped)
       const request = yield* pending()
       raw.intent.value += " Nueva revisión."
-      const revised = yield* workflow.prepare(raw, root, ctx.sessionID)
+      const revised = yield* workflow.prepare(raw, root, ctx.sessionID, budget)
       expect(revised.digest).not.toBe(preview.digest)
       expect(
         Exit.isFailure(
@@ -120,7 +124,7 @@ describe("TRP approval through the actual question service", () => {
     Effect.gen(function* () {
       const { workflow, preview, raw } = yield* setup
       raw.graph.nodes[3].operation = "reupred.detect"
-      expect(Exit.isFailure(yield* workflow.prepare(raw, root, ctx.sessionID).pipe(Effect.exit))).toBe(true)
+      expect(Exit.isFailure(yield* workflow.prepare(raw, root, ctx.sessionID, budget).pipe(Effect.exit))).toBe(true)
       expect(Exit.isFailure(yield* workflow.run(preview.id, preview.digest, ctx).pipe(Effect.exit))).toBe(true)
       expect(launches).toBe(0)
     }),
@@ -139,7 +143,10 @@ describe("TRP approval through the actual question service", () => {
       const { raw } = yield* setup
       const prepare = yield* (yield* TrpPrepareTool).init()
       const run = yield* (yield* TrpRunTool).init()
-      const result = yield* prepare.execute({ specification: TrpSpecification.parse(raw), evidence_root: root }, ctx)
+      const result = yield* prepare.execute(
+        { specification: TrpSpecification.parse(raw), evidence_root: root, budget },
+        ctx,
+      )
       const preview = result.metadata
       const question = yield* Question.Service
       const fiber = yield* run

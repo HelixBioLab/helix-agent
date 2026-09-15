@@ -2,7 +2,7 @@
   "project": "Bioinformática.org — tesis TRP",
   "updated": "2026-09-15",
   "phases_completed": ["F1", "F2", "F3"],
-  "next_phase": "F4",
+  "next_phase": "F5",
   "schedule": {
     "defense_month": "2027-07",
     "defense_month_status": "confirmed_by_user",
@@ -23,7 +23,7 @@
     "F1": "complete",
     "F2": "complete",
     "F3": "complete_initial_scope",
-    "F4": "planned",
+    "F4": "complete_initial_scope_with_R3_2_open",
     "F5": "planned",
     "F6": "planned",
     "F7": "planned"
@@ -32,17 +32,18 @@
     "plan": "docs/tesis/PLAN.md",
     "status": "docs/tesis/ESTADO.md",
     "traceability": "docs/tesis/trazabilidad.json",
-    "document_content": "docs/tesis/fase3-documento.json",
-    "engineering_evidence": "docs/tesis/evidencia/fase3.json",
-    "document_evidence": "docs/tesis/evidencia/documento-fase3.json",
+    "document_content": "docs/tesis/fase4-documento.json",
+    "engineering_evidence": "docs/tesis/evidencia/fase4.json",
+    "document_evidence": "docs/tesis/evidencia/documento-fase4.json",
     "docx": "/home/webiwabou/Projects/Tesis.docx",
-    "pdf": "/home/webiwabou/Projects/Tesis-fase3.pdf",
+    "pdf": "/home/webiwabou/Projects/Tesis-fase4.pdf",
     "verifier": "script/tesis/verify_snapshot.py",
     "catalogue": "packages/bioinformatica/src/trp/catalog.json",
     "protocol": "evaluation/trp/PROTOCOL.md",
     "annotation_guide": "evaluation/trp/ANNOTATION.md",
-    "algorithm": "docs/tesis/F3-ALGORITMO.md",
-    "nextflow_reference": "evaluation/trp/reference/nextflow-f3/engineering-reference.json"
+    "algorithm": "docs/tesis/F4-ADMISION.md",
+    "nextflow_reference": "evaluation/trp/reference/nextflow-f4/engineering-reference.json",
+    "execution_verifier": "packages/bioinformatica/src/trp/verify_bundle.py.txt"
   },
   "external_dependencies": [
     "Authentic FCI approval document and official title",
@@ -58,7 +59,7 @@
     "model_id": null,
     "evaluation_budget": null
   },
-  "current_phase": "F3",
+  "current_phase": "F4",
   "resource_availability": {
     "annotator": "unconfirmed_user_confirmed_pending",
     "cluster": "unconfirmed_user_confirmed_pending",
@@ -77,5 +78,18 @@
     "R2.3": "partial; SIFTS/label/author and predicted-model mappings pending",
     "empirical_evaluation": false,
     "document_installed": true
-  }
+  },
+  "phase4_scope": {
+    "core_milestones": "H4.1/H4.3-H4.6 initial local-route implementation verified; H4.2 counts and estimates implemented but quota/bounds incomplete",
+    "full_exit_gate_satisfied": false,
+    "R3.2": "partial; aggregate storage quota, effective controller reservation and margin evaluation remain required before F6",
+    "R4.3": "Spanish/English heuristic implemented; independent annotation and kappa pending",
+    "empirical_evaluation": false,
+    "document_installed": true,
+    "next_work": "F5 structural controls may proceed on this route; preserve F4 resource guarantees as an open thesis requirement before F6"
+  },
+  "implementation_dependencies": [
+    "R3.2 aggregate storage quota and effective controller reservation before budget guarantees",
+    "Detector admission and validated RepeatsDB/SIFTS/label-author mappings before F6"
+  ]
 }

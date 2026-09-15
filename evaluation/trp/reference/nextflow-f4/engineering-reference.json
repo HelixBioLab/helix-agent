@@ -1,0 +1,19 @@
+{
+  "kind": "development-reference",
+  "approvalDriver": "synthetic Question.Service.reply in reference.live.test.ts",
+  "humanEvaluation": false,
+  "expectedCsvSha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+  "actualCsvSha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+  "equal": true,
+  "toolPath": [
+    "trp_prepare",
+    "trp_run"
+  ],
+  "digest": "5bf4785bc7b7e6b5b6d7c1c99cecd13271e04bb6141140ee03f0320a5ec6834c",
+  "engine": "trp-nextflow/1.1.0",
+  "manifestSha256": "1c1a81f55fdf9e3e1d33c0eb3ec045055169e1a738321a5c4bba2affacd71bb3",
+  "portableFiles": 121,
+  "faultsInjected": 250,
+  "faultsDetected": 250,
+  "resourceClaim": "Host inventory and explicit estimate-based budget; no aggregate storage quota or guaranteed controller reservation"
+}

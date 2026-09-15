@@ -1,0 +1,1 @@
+2026-09-15 12:10:12	3.8s	tender_poitras	OK	0f14c417687983164ca521ee32549653	a814e37f-8304-41b8-abdc-4f45d6a3f1de	nextflow -C nextflow.config run main.nf -ansi-log false -with-trace trace.tsv

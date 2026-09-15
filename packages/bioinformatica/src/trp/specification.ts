@@ -5,7 +5,7 @@ import { createHash } from "node:crypto"
 import { TrpCatalog } from "./catalog"
 
 export const VERSION = "trp-spec/1.0.0"
-export const ENGINE = "trp-nextflow/1.0.0"
+export const ENGINE = "trp-nextflow/1.1.0"
 
 export class WorkflowError extends Error {
   constructor(

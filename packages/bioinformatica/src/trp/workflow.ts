@@ -12,11 +12,22 @@ import { InstanceState } from "../effect/instance-state"
 import type { Tool } from "../tool/tool"
 import { TrpSpecification as S } from "./specification"
 import { TrpNextflow as N } from "./nextflow"
+import { TrpResources as R } from "./resources"
+import { TrpEvidence as E } from "./evidence"
+import { Protocol } from "../nfcore/protocol"
+import { HandCount } from "../nfcore/handcount"
+import { TrpInterventions } from "./interventions"
 
 interface Draft {
   id: string
   bundle: N.Bundle
   evidenceRoot: string
+  directory: string
+  validationBytes: number
+  demand: R.Demand
+  budget: R.Budget
+  event: ReturnType<typeof E.ledger>
+  evidence?: Awaited<ReturnType<typeof E.pack>>
   abort: AbortController
   status: "prepared" | "reviewing" | "consumed"
 }
@@ -28,15 +39,19 @@ export interface Preview {
   files: Record<string, string>
   command: readonly string[]
   limits: string
+  admission: R.Decision
+  inventory: R.Inventory
+  budget: R.Budget
 }
 export interface RunResult {
   directory: string
   digest: string
   status: "succeeded"
   geometry: ReturnType<typeof N.validateGeometry>
+  evidence: Awaited<ReturnType<typeof E.pack>>
 }
 export interface Interface {
-  prepare: (raw: unknown, evidenceRoot: string, session: string) => Effect.Effect<Preview>
+  prepare: (raw: unknown, evidenceRoot: string, session: string, budget?: R.Budget) => Effect.Effect<Preview>
   run: (id: string, digest: string, ctx: Tool.Context) => Effect.Effect<RunResult>
 }
 export class Service extends Context.Service<Service, Interface>()("@bioinformatica/TrpWorkflow") {}
@@ -46,12 +61,15 @@ const layer = Layer.effect(
   Effect.gen(function* () {
     const process = yield* AppProcess.Service
     const question = yield* Question.Service
+    const resources = yield* R.Service
+    const protocol = yield* Protocol.Service
     const state = yield* InstanceState.make(() =>
       Effect.succeed({ drafts: new Map<string, Draft>(), generations: new Map<string, string>() }),
     )
-    const prepare: Interface["prepare"] = (raw, evidenceRoot, session) =>
+    const prepare: Interface["prepare"] = (raw, evidenceRoot, session, budget) =>
       Effect.gen(function* () {
         const directory = yield* InstanceState.directory
+        budget = budget ? structuredClone(budget) : undefined
         const { drafts, generations } = yield* InstanceState.get(state)
         // A new proposal invalidates the previous proposal immediately, even if validation fails.
         drafts.get(session)?.abort.abort(new Error("Proposal replaced"))
@@ -65,11 +83,97 @@ const layer = Layer.effect(
           generations.delete(oldest)
         }
         const bundle = yield* Effect.promise(() => N.prepare(raw, evidenceRoot, directory))
+        const demand = R.count(bundle.files)
+        const parent = yield* Effect.promise(() => E.parent(directory))
+        const observation = yield* resources.observe(directory).pipe(Effect.exit)
+        if (observation._tag === "Failure") {
+          const admission = R.admit(demand, undefined, budget)
+          yield* Effect.promise(() =>
+            E.write(parent, `rejected-${generation}.json`, {
+              session,
+              inventory: null,
+              budget: budget ?? null,
+              admission,
+              cause: String(observation.cause),
+            }),
+          )
+          return yield* Effect.die(new S.WorkflowError("inventory-unavailable", S.canonical(admission)))
+        }
+        const inventory = observation.value
+        const admission = R.admit(demand, inventory, budget)
+        if (!admission.accepted || !budget) {
+          yield* Effect.promise(() =>
+            E.write(parent, `rejected-${generation}.json`, { session, inventory, budget: budget ?? null, admission }),
+          )
+          return yield* Effect.die(new S.WorkflowError("resource-rejected", S.canonical(admission)))
+        }
+        const action = {
+          request: bundle.spec.intent.value,
+          detail: S.canonical(bundle.spec) + " " + N.command.join(" "),
+        }
+        const guarded = yield* protocol.guard(action)
+        const protocolSnapshot = {
+          state: (yield* protocol.read()) ?? null,
+          ledger: yield* protocol.ledger(),
+          check: guarded.result,
+        }
+        if (guarded.result.refused || (guarded.result.enforced && guarded.result.unevaluated.length)) {
+          yield* Effect.promise(() =>
+            E.write(parent, `rejected-${generation}.json`, {
+              session,
+              inventory,
+              budget,
+              admission,
+              protocol: protocolSnapshot,
+            }),
+          )
+          return yield* Effect.die(
+            new S.WorkflowError("protocol-rejected", "Binding protocol violated or contains unevaluated constraints"),
+          )
+        }
+        const validationBytes = Buffer.byteLength(bundle.files["validation.json"])
+        bundle.report.checks = bundle.report.checks.map((check) =>
+          check.code === "resource-admission"
+            ? {
+                ...check,
+                status: "passed" as const,
+                detail:
+                  "Dated inventory and explicit budget checked; storage is an estimate, not a quota. See admission.json.",
+              }
+            : check,
+        )
+        Object.assign(bundle.files, {
+          "validation.json": S.canonical(bundle.report) + "\n",
+          "inventory.json": S.canonical(inventory) + "\n",
+          "budget.json": S.canonical(budget) + "\n",
+          "admission.json": S.canonical(admission) + "\n",
+          "protocol.json": S.canonical(protocolSnapshot) + "\n",
+        })
+        bundle.digest = N.bundleDigest(bundle.files)
         if (generations.get(session) !== generation)
           return yield* Effect.die(
             new S.WorkflowError("proposal-superseded", "A newer proposal replaced this preparation"),
           )
-        const draft: Draft = { id: generation, bundle, evidenceRoot, abort: new AbortController(), status: "prepared" }
+        const destination = path.join(parent, `${bundle.digest.slice(0, 12)}-${generation}`)
+        yield* Effect.promise(() => N.materialize(bundle, destination))
+        const event = E.ledger(destination)
+        yield* Effect.promise(async () => {
+          await event("admission", "accepted-for-review", admission)
+          await event("protocol", guarded.result.committed ? "checked" : "not-committed", protocolSnapshot)
+          await E.write(destination, "run.json", { digest: bundle.digest, status: "prepared", outputs: [] })
+        })
+        const draft: Draft = {
+          id: generation,
+          bundle,
+          evidenceRoot,
+          directory: destination,
+          validationBytes,
+          demand,
+          budget,
+          event,
+          abort: new AbortController(),
+          status: "prepared",
+        }
         drafts.set(session, draft)
         if (drafts.size > 100) {
           const oldest = drafts.keys().next().value!
@@ -84,8 +188,11 @@ const layer = Layer.effect(
           validation: structuredClone(bundle.report),
           files: Object.fromEntries(Object.entries(bundle.files).map(([name, text]) => [name, S.sha256(text)])),
           command: N.command,
+          admission: structuredClone(admission),
+          inventory: structuredClone(inventory),
+          budget: structuredClone(budget),
           limits:
-            "Local Docker; two stub tasks followed by two real tasks, each at most 2 CPUs, 2 GB RAM and 3 minutes. No cluster or budget admission claim. No automatic retries.",
+            "Local Docker; two stub tasks followed by two real tasks, each at most 2 CPUs, 2 GB RAM and 3 minutes. Host inventory and reviewed budget required; storage is an estimate with no aggregate quota. No automatic retries.",
         }
       }).pipe(Effect.orDie)
 
@@ -104,15 +211,60 @@ const layer = Layer.effect(
         }
         draft.status = "reviewing"
         const signal = AbortSignal.any([ctx.abort, draft.abort.signal])
+        const destination = draft.directory
+        const log = (source: E.Event["source"], outcome: string, detail: unknown) =>
+          Effect.promise(() => draft.event(source, outcome, detail))
+        const runProcess: typeof process.run = (command, options) =>
+          Effect.gen(function* () {
+            const startedAt = new Date().toISOString(),
+              start = Date.now()
+            const argv =
+              command._tag === "StandardCommand" ? [command.command, ...command.args] : ["unsupported-pipeline"]
+            const result = yield* process.run(command, options).pipe(
+              Effect.onExit((exit) =>
+                Effect.promise(async () => {
+                  const value =
+                    exit._tag === "Success"
+                      ? {
+                          exitCode: exit.value.exitCode,
+                          stdoutBytes: exit.value.stdout.length,
+                          stderrBytes: exit.value.stderr.length,
+                          stdoutTruncated: exit.value.stdoutTruncated,
+                          stderrTruncated: exit.value.stderrTruncated,
+                        }
+                      : { failure: String(exit.cause) }
+                  await fs.appendFile(
+                    path.join(destination, "processes.jsonl"),
+                    S.canonical({ argv, startedAt, durationMs: Date.now() - start, ...value }) + "\n",
+                  )
+                }),
+              ),
+            )
+            return result
+          })
         return yield* Effect.gen(function* () {
           // Permissions can be configured to auto-allow; they are distinct from the
           // scientific confirmation below, which is never supplied as an LLM argument.
-          yield* ctx.ask({
-            permission: "trp_run",
-            patterns: [digest],
-            always: [],
-            metadata: { digest, command: N.command, specification: draft.bundle.spec },
+          yield* log("permission", "requested", { digest, permission: "trp_run" })
+          yield* ctx
+            .ask({
+              permission: "trp_run",
+              patterns: [digest],
+              always: [],
+              metadata: { digest, command: N.command, specification: draft.bundle.spec },
+            })
+            .pipe(
+              Effect.onExit((exit) =>
+                exit._tag === "Failure"
+                  ? log("permission", "denied-or-error", { cause: String(exit.cause) })
+                  : Effect.void,
+              ),
+            )
+          yield* log("permission", "returned-allowed", {
+            digest,
+            mode: "human-or-policy; ctx.ask does not expose which",
           })
+          yield* log("approval", "requested", { digest, channel: "Question.Service" })
           const answers = yield* question
             .ask({
               sessionID: ctx.sessionID,
@@ -120,7 +272,7 @@ const layer = Layer.effect(
               questions: [
                 {
                   header: "Ejecutar análisis TRP",
-                  question: `Aprobación de la especificación ${digest}.\nSe comprobará la configuración y se ejecutarán dos tareas simuladas de recorrido en seco, seguidas de dos tareas reales con Docker y Nextflow (máximo por tarea: 2 CPU, 2 GB, 3 minutos), sin reintentos. Se guardarán entradas, código, aprobación, validación y resultados en .bioinformatica/trp/. Esta ruta calcula geometría de unidades suministradas; no detecta repeticiones.\n\nEspecificación completa y fuentes declaradas:\n${JSON.stringify(draft.bundle.spec, null, 2)}\n\nComprobaciones omitidas:\n${draft.bundle.report.checks
+                  question: `Aprobación de la especificación ${digest}.\nSe comprobará la configuración y se ejecutarán dos tareas simuladas de recorrido en seco, seguidas de dos tareas reales con Docker y Nextflow (máximo por tarea: 2 CPU, 2 GB, 3 minutos), sin reintentos. Se guardarán entradas, código, aprobación, validación y resultados en .bioinformatica/trp/. Esta ruta calcula geometría de unidades suministradas; no detecta repeticiones.\n\nPresupuesto propuesto (su aprobación autoriza estos límites):\n${JSON.stringify(draft.budget, null, 2)}\nReserva calculada y supuestos:\n${JSON.stringify(draft.demand, null, 2)}\nEl espacio de trabajo es una estimación sin cuota agregada. El presupuesto global de API no está medido por esta ruta.\nProtocolo comprobado:\n${draft.bundle.files["protocol.json"]}\n\nEspecificación completa y fuentes declaradas:\n${JSON.stringify(draft.bundle.spec, null, 2)}\n\nComprobaciones omitidas:\n${draft.bundle.report.checks
                     .filter((c) => c.status === "omitted")
                     .map((c) => c.detail)
                     .join(
@@ -138,7 +290,15 @@ const layer = Layer.effect(
                 },
               ],
             })
-            .pipe(Effect.raceFirst(AppProcess.waitForAbort(signal)))
+            .pipe(
+              Effect.raceFirst(AppProcess.waitForAbort(signal)),
+              Effect.onExit((exit) =>
+                exit._tag === "Failure"
+                  ? log("approval", "rejected-or-cancelled", { cause: String(exit.cause) })
+                  : Effect.void,
+              ),
+            )
+          yield* log("approval", "answered", { answers, channel: "Question.Service", digest })
           if (answers.length !== 1 || answers[0].length !== 1 || answers[0][0] !== "Aprobar y ejecutar") {
             return yield* Effect.die(new S.WorkflowError("approval-denied", "The proposal was not approved"))
           }
@@ -148,21 +308,31 @@ const layer = Layer.effect(
             )
           // Re-read source and catalogue reference evidence after the human response.
           const fresh = yield* Effect.promise(() => N.prepare(draft.bundle.spec, draft.evidenceRoot, directory))
+          const protocolNow = {
+            state: (yield* protocol.read()) ?? null,
+            ledger: yield* protocol.ledger(),
+            check: yield* protocol.check({
+              request: fresh.spec.intent.value,
+              detail: S.canonical(fresh.spec) + " " + N.command.join(" "),
+            }),
+          }
+          if (S.canonical(protocolNow) + "\n" !== draft.bundle.files["protocol.json"])
+            return yield* Effect.die(
+              new S.WorkflowError("protocol-changed", "Protocol changed during approval; prepare again"),
+            )
+          for (const name of ["inventory.json", "budget.json", "admission.json", "protocol.json", "validation.json"])
+            fresh.files[name] = draft.bundle.files[name]
+          fresh.report = draft.bundle.report
+          fresh.digest = N.bundleDigest(fresh.files)
           if (fresh.digest !== digest || signal.aborted || drafts.get(ctx.sessionID) !== draft)
             return yield* Effect.die(new S.WorkflowError("approval-invalidated", "Bundle changed during review"))
-          const parent = path.join(directory, ".bioinformatica", "trp")
-          yield* Effect.promise(async () => {
-            // Existing symlinked bookkeeping directories must not redirect the run outside the project.
-            const workspace = await fs.realpath(directory)
-            for (const component of [path.join(directory, ".bioinformatica"), parent]) {
-              await fs.mkdir(component, { recursive: true })
-              const rel = path.relative(workspace, await fs.realpath(component))
-              if (rel === ".." || rel.startsWith(`..${path.sep}`) || path.isAbsolute(rel))
-                throw new S.WorkflowError("output-escape", component)
-            }
-          })
-          const destination = path.join(parent, `${digest.slice(0, 12)}-${randomUUID()}`)
-          yield* Effect.promise(() => N.materialize(fresh, destination))
+          const observed = yield* resources.observe(directory)
+          const decision = R.admit(draft.demand, observed, draft.budget)
+          yield* Effect.promise(() => E.write(destination, "recheck.json", { inventory: observed, decision }))
+          yield* log("admission", decision.accepted ? "recheck-accepted" : "recheck-rejected", decision)
+          if (!decision.accepted)
+            return yield* Effect.die(new S.WorkflowError("resource-rejected", S.canonical(decision)))
+          yield* Effect.promise(() => N.verifyMaterialized(fresh, destination))
           yield* Effect.promise(() =>
             fs.writeFile(
               path.join(destination, "approval.json"),
@@ -184,7 +354,19 @@ const layer = Layer.effect(
           )
           const execute = Effect.gen(function* () {
             yield* Effect.promise(() => N.verifyMaterialized(fresh, destination))
-            const image = yield* process.run(
+            const endpoint = yield* runProcess(
+              ChildProcess.make("docker", ["context", "inspect", "--format", "{{.Endpoints.docker.Host}}"]),
+              { signal, timeout: "15 seconds", maxOutputBytes: 4096, maxErrorBytes: 8192 },
+            )
+            const endpointText = globalThis.process.env.DOCKER_HOST || endpoint.stdout.toString().trim()
+            yield* Effect.promise(() =>
+              E.write(destination, "docker-endpoint.json", { endpoint: endpointText, exitCode: endpoint.exitCode }),
+            )
+            if (endpoint.exitCode !== 0 || !endpointText.startsWith("unix://"))
+              return yield* Effect.die(
+                new S.WorkflowError("docker-remote", "Inventory applies only to a local Unix-socket Docker daemon"),
+              )
+            const image = yield* runProcess(
               ChildProcess.make("docker", ["image", "inspect", "--format", "{{.Id}}", fresh.image]),
               { signal, timeout: "15 seconds", maxOutputBytes: 4096, maxErrorBytes: 8192 },
             )
@@ -195,7 +377,7 @@ const layer = Layer.effect(
                   "Exact admitted image must already exist locally; no tag substitution or automatic pull",
                 ),
               )
-            const version = yield* process.run(
+            const version = yield* runProcess(
               ChildProcess.make("nextflow", ["-version"], {
                 cwd: destination,
                 extendEnv: true,
@@ -209,7 +391,10 @@ const layer = Layer.effect(
                 new S.WorkflowError("nextflow-version", "This adapter requires the tested Nextflow 25.10.4 release"),
               )
             yield* Effect.promise(() => fs.writeFile(path.join(destination, "nextflow-version.txt"), versionText))
-            const config = yield* process.run(
+            yield* Effect.promise(() =>
+              E.write(destination, "software.json", { nextflowVersionOutput: versionText, image: fresh.image }),
+            )
+            const config = yield* runProcess(
               ChildProcess.make(N.configCommand[0], N.configCommand.slice(1), {
                 cwd: destination,
                 extendEnv: true,
@@ -231,7 +416,7 @@ const layer = Layer.effect(
               )
             const dryDirectory = path.join(destination, "dry-run")
             yield* Effect.promise(() => N.materialize(fresh, dryDirectory))
-            const dry = yield* process.run(
+            const dry = yield* runProcess(
               ChildProcess.make(N.dryCommand[0], N.dryCommand.slice(1), {
                 cwd: dryDirectory,
                 extendEnv: true,
@@ -264,7 +449,15 @@ const layer = Layer.effect(
               )
             yield* Effect.promise(() => N.verifyMaterialized(fresh, dryDirectory))
             yield* Effect.promise(() => N.verifyMaterialized(fresh, destination))
-            const result = yield* process.run(
+            const finalInventory = yield* resources.observe(directory)
+            const finalDecision = R.admit(draft.demand, finalInventory, draft.budget)
+            yield* Effect.promise(() =>
+              E.write(destination, "analysis-admission.json", { inventory: finalInventory, decision: finalDecision }),
+            )
+            yield* log("admission", finalDecision.accepted ? "analysis-accepted" : "analysis-rejected", finalDecision)
+            if (!finalDecision.accepted)
+              return yield* Effect.die(new S.WorkflowError("resource-rejected", S.canonical(finalDecision)))
+            const result = yield* runProcess(
               ChildProcess.make(N.command[0], N.command.slice(1), {
                 cwd: destination,
                 extendEnv: true,
@@ -287,25 +480,68 @@ const layer = Layer.effect(
                 fresh.spec,
               ),
             )
-            const record = { directory: destination, digest, status: "succeeded" as const, geometry }
+            const measuredTasks = yield* Effect.promise(async () => {
+              const counts = []
+              for (const name of ["trace.tsv", "dry-run/trace.tsv"]) {
+                const lines = (await fs.readFile(path.join(destination, name), "utf8"))
+                  .trim()
+                  .split(/\r?\n/)
+                  .map((line) => line.split("\t"))
+                const status = lines[0].indexOf("status"),
+                  exit = lines[0].indexOf("exit")
+                if (
+                  lines.length !== 3 ||
+                  status < 0 ||
+                  exit < 0 ||
+                  lines.slice(1).some((r) => r[status] !== "COMPLETED" || r[exit] !== "0")
+                )
+                  throw new S.WorkflowError("trace-count", "Expected exactly two completed tasks per traversal")
+                counts.push(lines.length - 1)
+              }
+              return { scientificTasks: counts[0], stubTasks: counts[1] }
+            })
+            yield* log("execution", "completed", { digest, geometry, measuredTasks })
+            const record = {
+              digest,
+              status: "succeeded" as const,
+              geometry,
+              measuredTasks,
+              outputs: ["results/geometry.csv"],
+            }
             yield* Effect.promise(() =>
               fs.writeFile(path.join(destination, "run.json"), JSON.stringify(record, null, 2)),
             )
-            return record
+            return { ...record, directory: destination }
           })
-          return yield* execute.pipe(
-            Effect.onExit((exit) =>
-              exit._tag === "Failure"
-                ? Effect.promise(() =>
-                    fs.writeFile(
-                      path.join(destination, "run.json"),
-                      JSON.stringify({ status: "failed", digest, error: String(exit.cause) }, null, 2),
-                    ),
-                  )
-                : Effect.void,
-            ),
-          )
+          return yield* execute
         }).pipe(
+          Effect.onExit((exit) =>
+            Effect.promise(async () => {
+              if (exit._tag === "Failure") {
+                await draft.event("execution", "failed-or-rejected", { error: String(exit.cause) })
+                await E.write(destination, "run.json", {
+                  status: "failed",
+                  digest,
+                  error: String(exit.cause),
+                  outputs: [],
+                })
+              }
+              await E.write(destination, "interventions.json", {
+                source:
+                  "Tool.Context.messages at run entry; Question.Service answers are separately recorded in events.jsonl",
+                coverage: "provided transcript snapshot only; not a full-session coverage claim",
+                taxonomy: HandCount.TAXONOMY_VERSION,
+                classifier: TrpInterventions.VERSION,
+                tally: TrpInterventions.tally(HandCount.turnsFromMessages(ctx.messages)),
+                externalAgreement: null,
+                limitation: "Spanish/English surface-cue heuristic; independent annotation and kappa remain pending.",
+              })
+              await E.methods(destination)
+              draft.evidence = await E.pack(destination, draft.bundle, draft.validationBytes)
+              await E.write(destination, "evidence-location.json", draft.evidence)
+            }),
+          ),
+          Effect.map((result) => ({ ...result, evidence: draft.evidence! })),
           Effect.ensuring(
             Effect.sync(() => {
               draft.status = "consumed"
@@ -317,4 +553,8 @@ const layer = Layer.effect(
   }),
 )
 
-export const node = LayerNode.make({ service: Service, layer, deps: [AppProcess.node, Question.node] })
+export const node = LayerNode.make({
+  service: Service,
+  layer,
+  deps: [AppProcess.node, Question.node, R.node, Protocol.node],
+})

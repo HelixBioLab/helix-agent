@@ -1,0 +1,3 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	69/0e2f35	371445	SELECT	COMPLETED	0	2026-09-15 12:10:13.089	393ms	32ms	103.2%	16 MB	21.3 MB	1.4 MB	147.6 KB
+2	e8/cd2755	371660	GEOMETRY	COMPLETED	0	2026-09-15 12:10:13.516	2.2s	1.9s	97.2%	179.8 MB	417.3 MB	32.7 MB	14.4 KB

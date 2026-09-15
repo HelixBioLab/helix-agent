@@ -43,6 +43,15 @@ export async function prepare(raw: unknown, evidenceRoot: string, workspace: str
   if (!report.valid || !report.selected) throw new S.WorkflowError("invalid-composition", JSON.stringify(report))
   const entry = await TrpCatalog.resolve("geometre.geometry", evidenceRoot)
   const image = entry.reference!.image!
+  const reference = entry.reference!
+  const evidence = await Promise.all(
+    [reference.record, ...reference.inputs, ...reference.outputs].map(async (artifact) => {
+      const bytes = await fs.readFile(path.join(evidenceRoot, artifact.path))
+      if (bytes.length !== artifact.bytes || S.sha256(bytes) !== artifact.sha256)
+        throw new S.WorkflowError("reference-changed", artifact.path)
+      return { ...artifact, base64: bytes.toString("base64") }
+    }),
+  )
   const selection = report.selected
   const { selected: _selected, ...publicReport } = report
   const settings = {
@@ -58,6 +67,8 @@ export async function prepare(raw: unknown, evidenceRoot: string, workspace: str
   const select = spec.graph.nodes.find((node) => node.operation === "pdb.select")!.id.toUpperCase()
   const geometry = spec.graph.nodes.find((node) => node.operation === "geometre.geometry")!.id.toUpperCase()
   const files: Record<string, string> = {
+    "catalogue.json": S.canonical(TrpCatalog.catalog) + "\n",
+    "catalogue_evidence.json": S.canonical(evidence) + "\n",
     "execution.json":
       S.canonical({
         engine: S.ENGINE,
