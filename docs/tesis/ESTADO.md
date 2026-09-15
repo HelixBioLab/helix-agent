@@ -29,12 +29,14 @@ Las pruebas de ingeniería no acreditan los indicadores biológicos o de elicita
 
 **Conexión resuelta por confirmación del usuario:** el agente ya está conectado con OpenAI. No es necesario solicitar esa conexión otra vez. F1 no ejecutó llamadas al modelo; la identidad exacta del modelo y su configuración se verificarán al preparar el protocolo.
 
+**Plazo confirmado por el usuario:** sustentación en julio de 2027, con un borrador completo previo. El plan mantiene el 4 de junio como fecha objetivo del borrador y reserva el resto de junio para revisión y correcciones. No se necesita volver a preguntar por el mes de sustentación.
+
 1. Copia auténtica del Tema FCI y denominación oficial del título. La sección se llenó con el alcance y una nota roja de pendiente administrativo; no se fabricó una aprobación institucional.
-2. Confirmación de dedicación, fecha de sustentación y presupuesto. Se usó el escenario del contexto: julio de 2027, con entrega interna en junio. Las 640 horas y S/23 204,50 son supuestos de planificación detallados en el anexo.
-3. Anotador externo para R1.3 y R4.3 y acceso a clúster para la ejecución declarada en esa infraestructura. No se presupone su disponibilidad.
+2. Confirmación de dedicación y presupuesto; programación institucional del día exacto de sustentación dentro de julio de 2027. Las 640 horas y S/23 204,50 siguen siendo supuestos de planificación detallados en el anexo; la confirmación del plazo no confirma esos recursos.
+3. Anotador externo para R1.3 y R4.3 y acceso a clúster: el usuario confirmó que ninguno está asegurado y pidió registrarlos como dependencias pendientes. Preparar los instrumentos sin atribuirles participación ni disponibilidad.
 4. Instrumentos TRP ejecutables y con condiciones verificadas; datos originales de los fallos publicados; modelo, configuración y límite de costo de la evaluación.
 
-## Próxima fase: F2, catálogo y protocolo TRP
+## Fase en ejecución: F2, catálogo y protocolo TRP
 
 1. Releer el Word actualizado y la matriz; no reiniciar con los antiguos objetivos nf-core.
 2. Inspeccionar interfaces y condiciones actuales de las herramientas TRP en fuentes primarias. Ejecutar una invocación mínima por candidata y guardar entrada, salida, versión y hashes. Priorizar el ensayo técnico de ReUPred señalado en el contexto.

@@ -3,11 +3,25 @@
   "updated": "2026-09-15",
   "phases_completed": ["F1"],
   "next_phase": "F2",
+  "schedule": {
+    "defense_month": "2027-07",
+    "defense_month_status": "confirmed_by_user",
+    "complete_draft_before_defense": true,
+    "complete_draft_target": "2027-06-04",
+    "draft_target_status": "planned",
+    "review_window": {
+      "start": "2027-06-05",
+      "end": "2027-06-30"
+    },
+    "defense_day": null,
+    "weekly_hours_status": "unconfirmed",
+    "budget_status": "unconfirmed"
+  },
   "thesis_complete": false,
   "implementation_complete": false,
   "phases": {
     "F1": "complete",
-    "F2": "planned",
+    "F2": "in_progress",
     "F3": "planned",
     "F4": "planned",
     "F5": "planned",
@@ -37,5 +51,11 @@
     "verification": "User confirmed in this session; no inference call performed in F1",
     "model_id": null,
     "evaluation_budget": null
+  },
+  "current_phase": "F2",
+  "resource_availability": {
+    "annotator": "unconfirmed_user_confirmed_pending",
+    "cluster": "unconfirmed_user_confirmed_pending",
+    "reason": "User explicitly asked to register both as pending dependencies"
   }
 }

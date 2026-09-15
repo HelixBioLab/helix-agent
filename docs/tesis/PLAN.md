@@ -69,7 +69,9 @@ Las observaciones usan exactamente el patrón existente: **NOTA PARA EL AUTOR.**
 
 ## Calendario y presupuesto de trabajo
 
-Escenario de planificación pendiente de confirmación: 20 horas semanales del tesista, 600 horas de construcción/evaluación/redacción más 40 horas de reuniones y revisión, a S/25 por hora como costo de oportunidad supuesto. No representa un salario, una cotización ni gasto autorizado. Se reserva aproximadamente 20% de holgura en la duración: 38 semanas desde septiembre de 2026, con entrega interna en junio de 2027 y margen previo a la sustentación de julio de 2027 mencionada en el contexto.
+**Plazo confirmado por el usuario:** mantener la sustentación en **julio de 2027** y preparar un borrador completo antes. Se conserva el **4 de junio de 2027** como fecha objetivo del borrador completo y se reserva del **5 al 30 de junio** para revisión y correcciones. El día exacto de la sustentación queda sujeto a la programación institucional.
+
+Supuestos de dedicación y costo pendientes de confirmación: 20 horas semanales del tesista, 600 horas de construcción/evaluación/redacción más 40 horas de reuniones y revisión, a S/25 por hora como costo de oportunidad supuesto. No representa un salario, una cotización ni gasto autorizado. Se reserva aproximadamente 20% de holgura en la duración: 38 semanas desde septiembre de 2026 hasta el borrador completo de junio de 2027.
 
 | Fase                             | Horas del tesista |      Duración estimada a 20 h/semana | Ventana programada                | Costo humano supuesto |
 | -------------------------------- | ----------------: | -----------------------------------: | --------------------------------- | --------------------: |
@@ -83,7 +85,7 @@ Escenario de planificación pendiente de confirmación: 20 horas semanales del t
 | Reuniones y revisión transversal |                40 | 2 semanas equivalentes, distribuidas | 15 sep 2026–4 jun 2027            |               S/1 000 |
 | **Total**                        |           **640** |          **32 semanas equivalentes** | **263 días naturales inclusivos** |          **S/16 000** |
 
-El calendario son ventanas propuestas, no duración observada de esta sesión ni compromiso institucional. La capacidad semanal reservada durante todo el intervalo cubre las reuniones; las vacaciones y el calendario de los cursos deben ajustarse antes de congelarlo. El presupuesto detallado y su reserva están en el Anexo A. Ninguna cifra de presupuesto se usa como resultado experimental.
+Las ventanas de cada fase siguen siendo propuestas; el mes de sustentación y la necesidad de un borrador previo ya están confirmados por el usuario. La capacidad semanal reservada durante todo el intervalo cubre las reuniones; las vacaciones y el calendario de los cursos deben ajustarse antes de congelarlo. El presupuesto detallado y su reserva están en el Anexo A. Ninguna cifra de presupuesto se usa como resultado experimental.
 
 ## Dependencias y decisiones que requieren contexto externo
 
