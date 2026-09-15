@@ -1,0 +1,160 @@
+{
+  "phase": "F5",
+  "date": "2026-09-15",
+  "replace_sections": [
+    {
+      "heading": "R5.1. Catálogo de fallos silenciosos",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "Se implementó un catálogo versionado de nueve controles: escala de confianza, dirección del filtro, PAE entre unidades, marco de residuos, señales de constructos y etiquetas, errores de ensamblaje/anotación, discrepancias de límites de unidades, cobertura de elementos y plausibilidad del pliegue. Cada entrada enlaza una fuente primaria y explicita el observable, el criterio y la limitación de automatización. El anexo A.19 desarrolla estos contratos."
+        },
+        {
+          "text": "Los veredictos son aprobado, fallo, no evaluable y no aplicable. No evaluable indica que faltan datos o un método admitido para resolver el control; no se contabiliza como aprobado. No aplicable se reserva para condiciones ajenas a la instancia, como PAE de AlphaFold en coordenadas experimentales o un filtro que no fue solicitado. La plausibilidad física y los errores genómicos no se deducen de confianza local ni de integridad de archivos."
+        },
+        {
+          "text": "El catálogo documenta los nueve controles del inventario inicial. Esta cobertura documental no mide la capacidad de detectar todos los fallos descritos por la literatura. Las señales de etiquetas son motivos de revisión y no etiquetas de verdad biológica; los casos de Pratt et al. (2025) se conservan como una evaluación separada."
+        }
+      ]
+    },
+    {
+      "heading": "R5.2. Batería de controles",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "La herramienta trp_inspect lee mmCIF mediante Gemmi 0.7.5 y conserva modelo, cadena de autor, label_seq_id, auth_seq_id y código de inserción. No convierte numeraciones por igualdad ni por desplazamiento. Comprueba observaciones Cα únicas y finitas, cobertura completa y ausencia de solapamientos. Los códigos de inserción y conformaciones alternativas ambiguos se rechazan en este adaptador acotado; no se eliminan silenciosamente."
+        },
+        {
+          "text": "La escala se establece desde el método experimental o desde el productor AlphaFold Monomer y las métricas locales de mmCIF, con contraste entre pLDDT y el campo B. Para PAE se exige la correspondencia de entrada, versión, cadena, secuencia completa, dimensiones y URLs declaradas con la respuesta de AFDB archivada. La matriz no se vincula únicamente por su longitud. Se evalúan ambos bloques dirigidos entre cada par de unidades, porque PAE puede ser asimétrica."
+        },
+        {
+          "text": "El perfil inicial de ingeniería usa pLDDT mínimo de 70 y máximo de PAE entre unidades de 5 Å, parametrizables y guardados antes del análisis; no son umbrales universales ni resultados calibrados del corpus reservado. Cada fallo conserva valores y umbrales. La herramienta inspecciona y reporta: no recorta estructuras, no ejecuta un predictor y no valida por sí misma la pertenencia de residuos a una repetición."
+        },
+        {
+          "text": "Las referencias de desarrollo son el mmCIF experimental 2xqh y AF-P69905-F1, versión 6, con respuesta API y PAE recuperadas de AFDB. La hemoglobina P69905 verifica el tratamiento de confianza y la correspondencia de ejes; sus dos intervalos artificiales de prueba no constituyen una anotación de repeticiones ni un control biológico de T-STRUCT. Ambos casos quedan fuera de la evaluación reservada."
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. La ruta de ejecución GeomeTRe continúa limitada a PDB experimental con unidades suministradas. Inspeccionar un mmCIF predicho no incorpora automáticamente ese modelo al catálogo ejecutable ni resuelve SIFTS/UniProt. La cobertura estructural del dominio completo debe conservarse como requisito pendiente antes de F6.",
+          "kind": "note"
+        }
+      ]
+    },
+    {
+      "heading": "R5.3. Artefacto de controles por instancia",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "Cada inspección conserva estructura, opciones, API y PAE cuando existen, catálogo, programa y reporte, con tamaños y SHA-256 en un manifiesto verificable sin red. El reporte identifica parser y versión de Python, estructura, modelo, productor, versión de AFDB cuando está disponible, marco, escala, correspondencias y veredicto por control. Las URLs y referencias de anotación son procedencia declarada; la verificación de integridad no autentica a sus autores."
+        },
+        {
+          "text": "La preparación de Nextflow añade automáticamente el reporte estructural, el catálogo y el programa exacto al contenido aprobado; la nueva versión del motor es trp-nextflow/1.2.0. Un fallo mecánico o una escala necesaria no evaluable impide preparar la ejecución. El reporte se recalcula al revisar el contenido después de la aprobación y queda enlazado desde los métodos y el manifiesto portable. Los controles físicos o genómicos no evaluables permanecen visibles aun cuando la geometría experimental sea ejecutable."
+        },
+        {
+          "text": "R5.3 dispone de evidencia de ingeniería por instancia en las referencias conservadas. El resumen distingue admisión mecánica de validez biológica no establecida. La cobertura en el conjunto completo de la tesis y la calidad de las referencias externas aún deben medirse en F6."
+        }
+      ]
+    },
+    {
+      "heading": "R5.4. Sensibilidad y especificidad",
+      "paragraph_count": 2,
+      "blocks": [
+        {
+          "text": "La auditoría de recuperación del artículo de Pratt et al. (2025) y de sus suplementos públicos identificó 78 filas de predicciones en la tabla adicional, además de figuras. En el paquete descargado no se encontraron archivos de coordenadas ni matrices PAE de esos modelos. Las 78 filas no se reinterpretan como 78 fallos independientes confirmados. Se conserva la tabla original, el inventario de archivos, el artículo, sus hashes y un reporte reproducible de recuperación."
+        },
+        {
+          "text": "Se evaluaron cero modelos originales de ese estudio con la batería implementada; sensibilidad y especificidad permanecen sin calcular. Esta observación no demuestra que los autores carezcan de los archivos. Recuperarlos y disponer de etiquetas independientes sigue siendo necesario para T-STRUCT; generar predicciones nuevas no sustituiría los modelos publicados. Los ensayos adversariales de desarrollo tampoco sustituyen esa reserva."
+        },
+        {
+          "text": "El protocolo F2 mantiene sensibilidad ≥80%, especificidad ≥90% y cobertura evaluable ≥90%, con reporte conservador de no evaluables. No se modificaron estas metas para adaptar la evaluación a los datos disponibles. También siguen pendientes el anotador, el modelo y presupuesto de evaluación, y el clúster si se mantiene esa afirmación de ejecución."
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. Conservar explícita la diferencia entre confianza y plausibilidad. Pratt et al. muestran errores que pueden persistir con confianza alta; no afirmar que una alarma PAE/pLDDT detecta sus casos sin datos originales y contraste independiente. Si la recuperación no es posible, documentar la limitación y decidir una enmienda prospectiva antes de abrir la reserva.",
+          "kind": "note"
+        }
+      ]
+    }
+  ],
+  "replace_paragraphs": [
+    {
+      "old": "Las cuatro primeras fases construyen una base verificable, un catálogo inicial, composición aprobada y una primera capa de admisión y proveniencia. La ruta local enlaza entradas, contratos, presupuesto revisado y ejecución con una copia verificable sin el agente. Esta evidencia sostiene afirmaciones de ingeniería delimitadas; el cumplimiento empírico de los cinco objetivos sigue sujeto a la campaña reservada.",
+      "new": "Las cinco fases desarrolladas construyen una base verificable, un catálogo inicial, composición aprobada, admisión de recursos con límites explícitos y controles estructurales por instancia. La ruta local enlaza entradas, contratos, presupuesto, controles y ejecución con una copia verificable sin el agente. F4 conserva abierta la garantía estricta de recursos y F5 no certifica plausibilidad física ni cobertura completa del dominio. El cumplimiento empírico de los cinco objetivos sigue sujeto a la campaña reservada."
+    },
+    {
+      "old": "Respecto del OE3, se implementaron inventarios fechados, conteos, estimaciones y negativas previas a ejecutar; siguen pendientes la cuota agregada, la reserva efectiva del controlador y el contraste empírico de decisiones. Respecto del OE4, el paquete incluye artefactos de ejecución, eventos y métodos verificables en frío, con clasificación inicial en español e inglés; el acuerdo y la cobertura externos requieren evaluación independiente. Respecto del OE5, los controles estructurales permanecen pendientes y no quedan sustituidos por comprobar hashes o completitud.",
+      "new": "Respecto del OE3, se implementaron inventarios fechados, conteos, estimaciones y negativas previas a ejecutar; siguen pendientes la cuota agregada, la reserva efectiva del controlador y el contraste empírico de decisiones. Respecto del OE4, el paquete incluye artefactos de ejecución, eventos, controles y métodos verificables en frío; el acuerdo y la cobertura externos requieren evaluación independiente. Respecto del OE5, se implementaron lectura semántica y controles de marcos, escalas, cobertura y confianza con referencias de desarrollo. Su capacidad para detectar los fallos físicos publicados y su desempeño reservado permanecen sin medir."
+    },
+    {
+      "old": "Se declaran como omitidas la autenticación externa de las fuentes, la detección de repeticiones, los controles pLDDT/PAE y la anotación independiente. En F4 la ruta de ejecución añade el resultado de admisión y declara por separado la ausencia de cuota estricta. Un control omitido no cuenta como aprobado. La verificación del CSV exige identidad, límites y número de unidades, valores finitos, escala de TM-score, primera fila de relleno y resúmenes etiquetados.",
+      "new": "Se mantienen pendientes la autenticación externa de las fuentes, la detección admitida de repeticiones y la anotación independiente. F4 añadió la admisión y declaró la ausencia de cuota estricta; F5 añade el reporte estructural obligatorio para la ruta experimental y una inspección separada de mmCIF/AFDB con pLDDT/PAE. Un control no evaluable no cuenta como aprobado. La verificación del CSV exige identidad, límites y número de unidades, valores finitos, escala de TM-score, primera fila de relleno y resúmenes etiquetados."
+    },
+    {
+      "old": "Permanecen pendientes la ampliación del catálogo, las conversiones con SIFTS y modelos predichos, las cuotas y reservas efectivas de recursos, los controles de confianza y la evaluación reservada. F4 implementa inventario observado, presupuesto explícito y manifiesto portable, detallados en A.18. El diagnóstico de STRPsearch continúa como candidato: su admisión requiere revisar la transformación, los contratos y la propagación de fallos.",
+      "new": "Permanecen pendientes la ampliación del catálogo, los mapeos con SIFTS/UniProt y la ejecución admitida sobre modelos predichos, las cuotas y reservas efectivas de recursos y la evaluación reservada. F4 implementó inventario observado, presupuesto explícito y manifiesto portable (A.18); F5 incorpora inspección semántica, confianza y controles por instancia (A.19). STRPsearch continúa candidato: su admisión requiere revisar la transformación, los contratos y la propagación de fallos."
+    }
+  ],
+  "engineering": [
+    { "text": "Verificación de ingeniería de F5", "kind": "heading" },
+    {
+      "text": "Se ejecutaron 35 pruebas estructurales sobre fuentes reales y perturbaciones identificadas, además de seis pruebas de integración del adaptador y de la herramienta del agente. Incluyen PAE asimétrica, secuencia o versión incorrectas, confianza inconsistente, filtros invertidos, numeración incompatible, pérdida o duplicación de Cα, solapamiento, señales de etiquetas y referencia de límites discrepante. Se comprueba asimismo que una confianza favorable no cambia a aprobado el control de plausibilidad física."
+    },
+    {
+      "text": "Las dos referencias de inspección conservan todos los controles y distinguen cuatro no evaluables: interpretación del constructo, ensamblaje/anotación, límites sin referencia independiente y plausibilidad del pliegue. La referencia real de Nextflow conserva dos tareas simuladas y dos reales y reproduce el CSV de 12 unidades. Los logs, hashes y resultados de regresión están registrados en docs/tesis/evidencia/fase5.json. Son comprobaciones de ingeniería; no son sensibilidad, especificidad ni acuerdo de anotación."
+    }
+  ],
+  "appendix": [
+    { "text": "A.19. Controles estructurales y evidencia de F5", "kind": "heading" },
+    { "text": "A.19.1. Contrato de entrada y lectura semántica", "kind": "subheading" },
+    {
+      "text": "El adaptador recibe bytes de estructura, formato, ordinal de modelo desde uno, cadena de autor, marco explícito e intervalos ordenados. mmCIF se interpreta con Gemmi 0.7.5; se conserva cada correspondencia label_seq_id/auth_seq_id/código de inserción y cada observación Cα. PDB utiliza únicamente el lector acotado de la ruta existente. El adaptador admite archivos locales de hasta 20 MB, rechaza solicitudes excesivas y conserva valores faltantes; no adivina identidad, productor ni conversión a UniProt."
+    },
+    {
+      "text": "La inspección requiere Python; mmCIF exige Gemmi en la versión fijada. El entorno local se instala desde script/tesis/requirements-structural.txt y puede seleccionarse con BIOINFORMATICA_TRP_PYTHON. La herramienta no descarga dependencias ni consulta servicios al evaluar una instancia. Los archivos crudos de referencia y sus URLs versionadas permiten repetir la inspección sin red."
+    },
+    { "text": "A.19.2. Inventario y criterios mecánicos", "kind": "subheading" },
+    {
+      "text": "C1. Escala de confianza. Se reconoce B experimental desde el método y pLDDT desde AlphaFold Monomer y las métricas locales. Los valores deben pertenecer al dominio declarado; el contraste del B de Cα con pLDDT local admite diferencia absoluta ≤0,011 por redondeo. Productor o escala insuficientes producen no evaluable; discrepancias o valores fuera de dominio producen fallo. B en Å² y pLDDT entre 0 y 100 no se intercambian (documentación de AlphaFold DB)."
+    },
+    {
+      "text": "C2. Dirección del filtro. Una solicitud de retener valores bajos de B no se aplica a pLDDT. Para pLDDT se exige operador ≥ y para B experimental ≤, junto con la escala y el dominio correctos del umbral. No se transforma automáticamente 0–1 a 0–100 ni se invierte un operador propuesto; se reporta el conflicto y no se recortan residuos."
+    },
+    {
+      "text": "C3. Confianza entre unidades. El PAE de AFDB necesita respuesta API, identidad de entrada y versión, cadena, secuencia completa y ejes contiguos verificables. Se exige matriz cuadrada, finita y dentro de su máximo declarado. Para cada par de unidades se calcula el máximo de PAE(a,b) y PAE(b,a) sobre todos los pares de residuos, uno de cada unidad. El perfil inicial compara ese máximo con 5 Å y el pLDDT mínimo seleccionado con 70. Se reportan ambos máximos dirigidos. Sin PAE o vínculo suficiente el caso es no evaluable, no aprobado. Los umbrales son elecciones de ingeniería pendientes de evaluación."
+    },
+    {
+      "text": "C4. Marco de residuos. Se usa la correspondencia declarada en atom_site, con modelo y cadena fijados. Identificadores de autor, etiqueta y códigos de inserción se conservan por separado. Duplicados, códigos o conformaciones alternativas incompatibles con intervalos simples producen una negativa. La igualdad numérica entre label_seq_id y auth_seq_id no constituye evidencia de correspondencia (diccionario wwPDB)."
+    },
+    {
+      "text": "C5. Constructos y etiquetas. Se reportan las categorías de fuente sintética y diferencias respecto de secuencia de referencia. Una señal de seis histidinas consecutivas entre los doce residuos terminales, si intersecta la selección, activa revisión. Es una señal heurística, no una prueba de etiqueta de purificación. Fuera de esa señal, la interpretación del constructo continúa no evaluable; ni una ausencia de señal prueba origen nativo ni una expresión recombinante invalida por sí sola la estructura."
+    },
+    {
+      "text": "C6. Ensamblaje y anotación. Tørresen et al. (2019) describen errores de regiones repetitivas que se propagan desde ensamblajes y anotaciones. Un archivo de coordenadas no permite verificarlos: el reporte solicita ensamblaje genómico, lecturas y anotación independiente y conserva no evaluable. No se presenta una medida de confianza estructural como diagnóstico de error genómico."
+    },
+    {
+      "text": "C7. Límites de unidades. Si existe referencia, debe coincidir el hash de la estructura, modelo, cadena y marco y debe declarar su fuente. Se comparan cantidad de unidades y desplazamiento máximo de sus extremos con una tolerancia previa, cero por defecto. Un desacuerdo se reporta sin elegir silenciosamente una anotación. Sin referencia independiente, las unidades suministradas no se validan a sí mismas."
+    },
+    {
+      "text": "C8. Cobertura. Cada residuo pedido requiere exactamente una observación Cα con coordenadas finitas. Se registran esperados, observados, ausentes, ambiguos, coordenadas inválidas y solapamientos. La exigencia es cobertura completa, sin faltantes ni duplicaciones; una pérdida de unidades no se interpreta como un resultado científico vacío."
+    },
+    {
+      "text": "C9. Plausibilidad física. Pratt et al. (2025) muestran modelos repetitivos de confianza alta y conformación poco plausible. La batería no implementa un clasificador físico validado: este control permanece no evaluable y exige evidencia independiente. Aprobar C1–C3 nunca cambia esa conclusión. Su capacidad de detectar los fallos publicados se evaluará separadamente cuando se recuperen los modelos originales."
+    },
+    { "text": "A.19.3. Algoritmo, integración y límites", "kind": "subheading" },
+    {
+      "text": "El procedimiento verifica límites de entrada, lee semántica y observaciones, resuelve el marco, ejecuta cada control, agrega fallos y no evaluables y guarda reporte y manifiesto. Una falla mecánica o falta de escala/PAE exigible impide admisión mecánica; un juicio físico no evaluable impide afirmar validez biológica. El grafo experimental incluye reporte, catálogo y programa en el digest aprobado y los vuelve a comprobar antes de ejecutar. El algoritmo formal, su correspondencia con el código y un diagrama de secuencia se conservan en docs/tesis/F5-CONTROLES.md y algoritmo-fase5.tex."
+    },
+    {
+      "text": "Para A observaciones atómicas, R residuos solicitados y una matriz PAE de n×n, el costo dominante es O(A + R + n²) en los casos admisibles, con almacenamiento O(A + R + n²). La verificación de intervalos no solapados evita contar pares más de una vez por sentido. El parser, los programas científicos y los datos se identifican por versión y hash; estos límites algorítmicos no resuelven la cuota agregada ni la reserva efectiva del controlador que siguen abiertas en R3.2."
+    },
+    { "text": "A.19.4. Recuperación, reserva y presentación", "kind": "subheading" },
+    {
+      "text": "Se conserva el artículo y los suplementos de Pratt bajo CC BY 4.0. La tabla contiene 78 predicciones, pero el paquete descargado no contiene sus coordenadas ni PAE; el reporte de recuperación no declara que esos datos sean inexistentes fuera del paquete. No se enviaron solicitudes a autores ni se generaron modelos sustitutos. La evaluación estructural final requiere las entradas originales y etiquetas justificadas, además de controles pertinentes e independientes."
+    },
+    {
+      "text": "Los casos 2xqh y P69905 y sus perturbaciones pertenecen a desarrollo. Los resultados técnicos, incluidas las alarmas esperadas, no se mezclan con T-STRUCT. Se mantienen sin calcular sensibilidad, especificidad y acuerdo externo. La ampliación del catálogo, los mapeos pendientes y las garantías estrictas de recursos se conservan como requisitos previos a F6."
+    },
+    {
+      "text": "NOTA PARA EL AUTOR. Se recomienda una ilustración propia que muestre la correspondencia label_seq_id/auth_seq_id de 2xqh junto a los dos bloques dirigidos de una PAE. Rotular que es una explicación del mecanismo, no una medida de exactitud biológica. Mantener la atribución de Pratt en las ilustraciones existentes y revisar la pertinencia de añadir una figura de sus suplementos durante F7.",
+      "kind": "note"
+    }
+  ]
+}

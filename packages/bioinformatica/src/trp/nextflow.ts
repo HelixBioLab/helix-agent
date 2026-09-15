@@ -5,6 +5,7 @@ import path from "node:path"
 import { TrpCatalog } from "./catalog"
 import { TrpSpecification as S } from "./specification"
 import { TrpGraph } from "./graph"
+import { TrpStructural } from "./structural"
 
 export interface Bundle {
   spec: S.Specification
@@ -41,6 +42,9 @@ export async function prepare(raw: unknown, evidenceRoot: string, workspace: str
   const bytes = await fs.readFile(file)
   const report = TrpGraph.validate(spec, bytes)
   if (!report.valid || !report.selected) throw new S.WorkflowError("invalid-composition", JSON.stringify(report))
+  const structural = await TrpStructural.legacy(spec, bytes)
+  if (!structural.summary.mechanicalAdmission)
+    throw new S.WorkflowError("structural-refusal", JSON.stringify(structural))
   const entry = await TrpCatalog.resolve("geometre.geometry", evidenceRoot)
   const image = entry.reference!.image!
   const reference = entry.reference!
@@ -81,6 +85,9 @@ export async function prepare(raw: unknown, evidenceRoot: string, workspace: str
       }) + "\n",
     "specification.json": S.canonical(spec) + "\n",
     "validation.json": S.canonical(publicReport) + "\n",
+    "structural_report.json": S.canonical(structural) + "\n",
+    "structural_catalogue.json": S.canonical(TrpStructural.catalog) + "\n",
+    "inspect_structure.py": TrpStructural.SCRIPT,
     "source.pdb": new TextDecoder().decode(bytes),
     "selection.pdb": selection,
     "settings.json": S.canonical(settings) + "\n",

@@ -1,0 +1,10 @@
+{
+  "digest": "98a42d41430a0737f1f995210891e6a76efd181882a48ec4abeff61d2176ca75",
+  "engine": "trp-nextflow/1.2.0",
+  "sessionID": "ses_trp-engineering-reference",
+  "messageID": "msg_trp-engineering-reference",
+  "callID": "reference-driver",
+  "channel": "Question.Service",
+  "answer": "Aprobar y ejecutar",
+  "recordedAt": "2026-09-15T19:58:05.117Z"
+}

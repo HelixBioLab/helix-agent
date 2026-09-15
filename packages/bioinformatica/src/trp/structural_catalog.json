@@ -1,0 +1,60 @@
+{
+  "version": "trp-structural-catalog/1.0.0",
+  "scope": "Mechanical screening, not certification of a fold or a repeat annotation",
+  "controls": [
+    {
+      "id": "confidence-scale",
+      "failure": "B-factor and pLDDT confused, or inconsistent local confidence metadata",
+      "source": "https://alphafold.ebi.ac.uk/faq",
+      "criterion": "Experimental method or AlphaFold monomer producer plus local pLDDT metadata; values in domain; B/local agreement within 0.011"
+    },
+    {
+      "id": "filter-direction",
+      "failure": "Crystallographic low-B filter applied to pLDDT",
+      "source": "https://www.ebi.ac.uk/training/online/courses/alphafold/inputs-and-outputs/evaluating-alphafolds-predicted-structures-using-confidence-scores/plddt-understanding-local-confidence/",
+      "criterion": "Requested scale equals observed scale; pLDDT retains >= threshold; experimental B retains <= threshold; never silently filter"
+    },
+    {
+      "id": "interunit-pae",
+      "failure": "Relative unit orientation inferred from local confidence alone",
+      "source": "https://alphafold.ebi.ac.uk/faq",
+      "criterion": "AFDB API, sequence, chain, model and full PAE axes agree; both directed interunit blocks <= declared angstrom threshold"
+    },
+    {
+      "id": "residue-frame",
+      "failure": "Join of label_seq_id, auth_seq_id or model positions by numeric offset",
+      "source": "https://mmcif.wwpdb.org/dictionaries/mmcif_ma.dic/Items/_atom_site.auth_seq_id.html",
+      "criterion": "Explicit selected model/chain atom-site correspondence; unique requested residues and unique label/auth/insertion tuples; no inferred UniProt offset"
+    },
+    {
+      "id": "construct-tags",
+      "failure": "Engineering construct or purification tag mistaken for native repeat",
+      "source": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx.dic/Categories/struct_ref_seq_dif.html",
+      "criterion": "Report synthetic-source/sequence-difference metadata; selected terminal poly-His motif triggers review, never automatic trimming; other engineering signals remain non-evaluable"
+    },
+    {
+      "id": "assembly-annotation",
+      "failure": "Repeat-region assembly or gene-annotation error",
+      "source": "https://doi.org/10.1093/nar/gkz841",
+      "criterion": "Not evaluable from a protein coordinate file alone; requires genomic assembly, reads and independently checked annotation"
+    },
+    {
+      "id": "unit-boundaries",
+      "failure": "Disagreement between supplied and reference repeat boundaries",
+      "source": "https://doi.org/10.1093/nar/gkw1136",
+      "criterion": "Same byte identity, chain and frame; compare all interval endpoints with declared tolerance; reference origin is declared, not authenticated"
+    },
+    {
+      "id": "element-coverage",
+      "failure": "Silent loss or duplicate assignment of requested residues",
+      "source": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx.dic/Categories/atom_site.html",
+      "criterion": "Every requested residue has exactly one finite CA observation; every unit is nonempty and units do not overlap"
+    },
+    {
+      "id": "fold-plausibility",
+      "failure": "Confident but implausible repeat fold (Pratt et al.)",
+      "source": "https://doi.org/10.1016/j.csbj.2025.01.016",
+      "criterion": "Not evaluable by pLDDT/PAE screening; requires independent physical/experimental evidence and separate evaluation on recoverable published cases"
+    }
+  ]
+}

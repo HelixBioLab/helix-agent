@@ -144,7 +144,9 @@
         "packages/bioinformatica/src/trp/graph.ts",
         "packages/bioinformatica/src/trp/nextflow.ts",
         "packages/bioinformatica/src/trp/workflow.ts",
-        "packages/bioinformatica/src/tool/trp.ts"
+        "packages/bioinformatica/src/tool/trp.ts",
+        "packages/bioinformatica/src/trp/structural.ts",
+        "packages/bioinformatica/src/trp/inspect_structure.py.txt"
       ],
       "pruebas": [
         "packages/bioinformatica/test/bio/sifts.test.ts",
@@ -153,9 +155,11 @@
         "packages/bioinformatica/test/trp/workflow.test.ts",
         "packages/bioinformatica/test/trp/preflight.test.ts",
         "packages/bioinformatica/test/trp/reference.live.test.ts",
-        "packages/bioinformatica/test/tool/registry.test.ts"
+        "packages/bioinformatica/test/tool/registry.test.ts",
+        "script/tesis/test_structural_controls.py",
+        "packages/bioinformatica/test/trp/structural.test.ts"
       ],
-      "pendiente": "Compatibilidad e identidad comprobadas sobre PDB de autor; no se infieren conversiones. Continúan pendientes los adaptadores SIFTS/label/autor, discordancias multicadena y modelos predichos antes de la reserva, coordinados con F5.",
+      "pendiente": "F5 comprueba pares label_seq_id/auth_seq_id por modelo/cadena en mmCIF y los ejes AFDB monómero sin offsets. La ejecución GeomeTRe sigue en PDB de autor; faltan SIFTS/UniProt, contratos de ejecución predicha y contraste independiente antes de F6.",
       "fase_cierre": "F5",
       "medicion": {
         "tipo": "desarrollo_no_reserva",
@@ -431,43 +435,92 @@
       "id": "R5.1",
       "objetivo": "OE5",
       "titulo": "Catálogo de fallos silenciosos",
-      "estado": "sin_evidencia",
-      "codigo": [],
-      "pruebas": [],
-      "pendiente": "Convertir los hallazgos de la literatura y los apuntes históricos en un catálogo versionado: fuente, criterio mecánico, umbral y veredictos; declarar los fallos que no admiten automatización.",
+      "estado": "implementado",
+      "codigo": [
+        "packages/bioinformatica/src/trp/structural.ts",
+        "packages/bioinformatica/src/trp/inspect_structure.py.txt",
+        "packages/bioinformatica/src/trp/structural_catalog.json",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
+      "pruebas": [
+        "script/tesis/test_structural_controls.py",
+        "packages/bioinformatica/test/trp/structural.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
+      ],
+      "pendiente": "Inventario inicial de nueve controles documentado; no implica detección de todos los fallos físicos ni evaluación de sensibilidad.",
       "fase_cierre": "F5",
-      "medicion": null
+      "medicion": {
+        "tipo": "cobertura_documental_del_inventario_inicial",
+        "documentados": 9,
+        "inventario": 9,
+        "evidencia": "docs/tesis/evidencia/fase5.json"
+      }
     },
     {
       "id": "R5.2",
       "objetivo": "OE5",
       "titulo": "Batería de controles",
       "estado": "parcial",
-      "codigo": ["packages/bioinformatica/src/nfcore/census.ts"],
-      "pruebas": ["packages/bioinformatica/test/nfcore/census.test.ts"],
-      "pendiente": "El censo detecta pérdidas de identificadores, un control genérico. Faltan los controles estructurales de escala de confianza, numeración, cobertura y geometría, con valores y umbrales explícitos.",
+      "codigo": [
+        "packages/bioinformatica/src/nfcore/census.ts",
+        "packages/bioinformatica/src/trp/structural.ts",
+        "packages/bioinformatica/src/trp/inspect_structure.py.txt",
+        "packages/bioinformatica/src/trp/structural_catalog.json",
+        "packages/bioinformatica/src/tool/trp.ts"
+      ],
+      "pruebas": [
+        "packages/bioinformatica/test/nfcore/census.test.ts",
+        "script/tesis/test_structural_controls.py",
+        "packages/bioinformatica/test/trp/structural.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts"
+      ],
+      "pendiente": "Controles mecánicos integrados, con referencias reales y perturbaciones; falta cubrir ejecución predicha y validar constructos/fallos físicos. Ensamblaje y plausibilidad quedan no evaluables, nunca aprobados por PAE/pLDDT.",
       "fase_cierre": "F5",
-      "medicion": null
+      "medicion": {
+        "tipo": "referencia_tecnica_no_evaluacion_empirica",
+        "referencias_inspeccion": 2,
+        "controles_reportados_por_instancia": 9,
+        "pruebas_python": 35,
+        "evidencia": "docs/tesis/evidencia/fase5.json"
+      }
     },
     {
       "id": "R5.3",
       "objetivo": "OE5",
       "titulo": "Artefacto de controles por instancia",
-      "estado": "sin_evidencia",
-      "codigo": [],
-      "pruebas": [],
-      "pendiente": "Emitir una fila por instancia con fuente, versión de modelo, escala de confianza y veredicto por control; enlazar el archivo y su hash al manifiesto.",
+      "estado": "implementado",
+      "codigo": [
+        "packages/bioinformatica/src/trp/structural.ts",
+        "packages/bioinformatica/src/trp/inspect_structure.py.txt",
+        "packages/bioinformatica/src/trp/structural_catalog.json",
+        "packages/bioinformatica/src/tool/trp.ts",
+        "packages/bioinformatica/src/trp/nextflow.ts",
+        "packages/bioinformatica/src/trp/evidence.ts",
+        "packages/bioinformatica/src/trp/verify_inspection.py.txt"
+      ],
+      "pruebas": [
+        "script/tesis/test_structural_controls.py",
+        "packages/bioinformatica/test/trp/structural.test.ts",
+        "packages/bioinformatica/test/tool/registry.test.ts",
+        "packages/bioinformatica/test/trp/reference.live.test.ts"
+      ],
+      "pendiente": "Reporte y manifiesto implementados en el alcance inicial; cobertura completa y referencias independientes se evalúan en F6.",
       "fase_cierre": "F5",
-      "medicion": null
+      "medicion": {
+        "tipo": "referencia_tecnica_no_evaluacion_empirica",
+        "inspecciones_reales": 2,
+        "ejecuciones_nextflow": 1,
+        "evidencia": "docs/tesis/evidencia/fase5.json"
+      }
     },
     {
       "id": "R5.4",
       "objetivo": "OE5",
       "titulo": "Sensibilidad y especificidad",
-      "estado": "sin_evidencia",
-      "codigo": [],
+      "estado": "parcial",
+      "codigo": ["script/tesis/audit_pratt_recoverability.py"],
       "pruebas": [],
-      "pendiente": "F2 fija sensibilidad ≥80%, especificidad ≥90% y cobertura evaluable ≥90%, con reporte conservador. Recuperar casos publicados independientes y controles pertinentes revisados; no atribuir capacidad de detección a PAE sin evaluación.",
+      "pendiente": "F2 conserva sensibilidad ≥80%, especificidad ≥90% y cobertura ≥90%. Se recuperaron 78 filas de predicciones de Pratt, sin coordenadas/PAE en el paquete descargado: cero modelos originales ejecutados, tasas sin calcular. Recuperar modelos y etiquetas, controles pertinentes independientes y separar desarrollo antes de F6.",
       "fase_cierre": "F6",
       "medicion": null
     }

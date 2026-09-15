@@ -1,0 +1,13 @@
+{
+  "kind": "development-reference",
+  "approvalDriver": "synthetic Question.Service.reply in reference.live.test.ts",
+  "humanEvaluation": false,
+  "expectedCsvSha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+  "actualCsvSha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+  "equal": true,
+  "toolPath": [
+    "trp_prepare",
+    "trp_run"
+  ],
+  "digest": "98a42d41430a0737f1f995210891e6a76efd181882a48ec4abeff61d2176ca75"
+}

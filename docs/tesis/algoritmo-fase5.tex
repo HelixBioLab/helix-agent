@@ -1,0 +1,31 @@
+% Include with \usepackage{algorithm,algpseudocode,amsmath,amssymb}.
+\begin{algorithm}
+\caption{Inspección estructural con evidencia insuficiente explícita}
+\label{alg:trp-structural}
+\begin{algorithmic}[1]
+\Require Bytes $X$, formato, modelo $m$, cadena $c$, marco $f$, unidades $U$, metadatos $D$, PAE $P$ opcional, umbrales $\tau$
+\Ensure Reporte $Q$ con valores, umbrales, correspondencias y veredictos; no certifica validez biológica
+\State Verificar límites de entrada, intervalos y dominios de $\tau$
+\State $A \gets \Call{LecturaSemantica}{X,m,c}$ \Comment{Gemmi 0.7.5 para mmCIF}
+\State $M \gets \Call{CorrespondenciasExplicitas}{A,f}$
+\State Registrar faltantes, duplicados, inserciones y observaciones no finitas
+\State $Q \gets \Call{EscalaFiltroMarcoCobertura}{A,M,U,D,\tau}$
+\If{PAE es exigible y sus ejes se vinculan a $X,D,M$}
+  \For{cada par de unidades disjuntas $U_i,U_j$, $i<j$}
+    \State $p_{ij}\gets\max_{a\in U_i,b\in U_j} P_{ab}$
+    \State $p_{ji}\gets\max_{a\in U_i,b\in U_j} P_{ba}$
+    \State Registrar $p_{ij},p_{ji}$ y comparar $\max(p_{ij},p_{ji})\leq\tau_{PAE}$
+  \EndFor
+  \State Contrastar pLDDT mínimo seleccionado con $\tau_{local}$
+\Else
+  \State Registrar PAE no evaluable o no aplicable, con motivo
+\EndIf
+\State Añadir señales de constructo y comparación de límites, si hay referencia
+\State Registrar ensamblaje/anotación y plausibilidad como no evaluables
+\State $B\gets$ fallos mecánicos y controles necesarios no evaluables
+\State $Q.admisionMecanica\gets(B=\varnothing)$
+\State $Q.validezBiologica\gets\text{no establecida}$
+\State Guardar $X,D,P,U,\tau,Q$, catálogo, programas y manifiesto SHA-256
+\State \Return $Q$
+\end{algorithmic}
+\end{algorithm}

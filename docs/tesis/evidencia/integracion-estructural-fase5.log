@@ -1,0 +1,14 @@
+bun test v1.3.14 (0d9b296a)
+
+test/trp/structural.test.ts:
+(pass) preparation binds structural report, catalogue and exact parser to approval [70.04ms]
+(pass) unestablished experimental method cannot be admitted by legacy preparation [43.36ms]
+(pass) model ordinal selects second model without flattening it [43.95ms]
+(pass) aborted inspection cannot return a report [1.90ms]
+(pass) input symlinks cannot escape workspace [1.48ms]
+(pass) agent inspection writes portable evidence that detects every changed or missing artifact [1343.85ms]
+
+ 6 pass
+ 0 fail
+ 23 expect() calls
+Ran 6 tests across 1 file. [3.27s]

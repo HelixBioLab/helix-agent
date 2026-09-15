@@ -1,0 +1,14 @@
+{
+  "format": "mmcif",
+  "model": 1,
+  "chain": "A",
+  "frame": "label_seq_id",
+  "units": [
+    { "start": 10, "end": 20 },
+    { "start": 21, "end": 30 }
+  ],
+  "plddtMin": 70,
+  "paeMax": 5,
+  "structureUrl": "https://alphafold.ebi.ac.uk/files/AF-P69905-F1-model_v6.cif",
+  "paeUrl": "https://alphafold.ebi.ac.uk/files/AF-P69905-F1-predicted_aligned_error_v6.json"
+}

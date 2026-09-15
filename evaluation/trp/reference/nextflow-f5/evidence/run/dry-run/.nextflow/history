@@ -1,0 +1,1 @@
+2026-09-15 14:58:09	2.1s	adoring_williams	OK	0f14c417687983164ca521ee32549653	e2d14e26-9e6b-47d1-8e9a-f0134eac3f99	nextflow -C nextflow.config run main.nf -ansi-log false -with-trace trace.tsv -stub-run

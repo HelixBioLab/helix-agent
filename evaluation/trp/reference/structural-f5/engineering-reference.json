@@ -1,0 +1,147 @@
+{
+  "phase": "F5",
+  "date": "2026-09-15",
+  "kind": "development; not R5.4",
+  "engineSha256": "dc5e0ffca18abab21784c3f948d784063b6338a9ea52e2185cc5310b3640586a",
+  "references": [
+    {
+      "case": "experimental",
+      "parser": "gemmi/0.7.5",
+      "summary": {
+        "failed": [],
+        "notEvaluable": [
+          "construct-tags",
+          "assembly-annotation",
+          "unit-boundaries",
+          "fold-plausibility"
+        ],
+        "mechanicalAdmission": true,
+        "blocking": [],
+        "biologicalValidity": "not_established"
+      }
+    },
+    {
+      "case": "alphafold",
+      "parser": "gemmi/0.7.5",
+      "summary": {
+        "failed": [],
+        "notEvaluable": [
+          "construct-tags",
+          "assembly-annotation",
+          "unit-boundaries",
+          "fold-plausibility"
+        ],
+        "mechanicalAdmission": true,
+        "blocking": [],
+        "biologicalValidity": "not_established"
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "alphafold/afdb-api.json",
+      "bytes": 1987,
+      "sha256": "af907bb73c411790ac6a24764314287e5cd331c0ed5b13eae9924ce45b27d8f9"
+    },
+    {
+      "path": "alphafold/afdb.cif",
+      "bytes": 137559,
+      "sha256": "eb7adbdd79775b0d694bacfa4b29872e05f4e56af26af880960d755c3036e230"
+    },
+    {
+      "path": "alphafold/pae.json",
+      "bytes": 40977,
+      "sha256": "9d6bfee2b49f0391f3be41fdc617bfb70e0b976660d48b422b69b96c2b92fa85"
+    },
+    {
+      "path": "alphafold/report.json",
+      "bytes": 38194,
+      "sha256": "9339ddfd80763d0b8a3b5e3af7cdcf4dc684d5abf54fac7ef81987aa73d0257b"
+    },
+    {
+      "path": "experimental/2xqh.cif",
+      "bytes": 428116,
+      "sha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b"
+    },
+    {
+      "path": "experimental/report.json",
+      "bytes": 75779,
+      "sha256": "952228316452330e4b70c4ba9a61feebce3bd238c6230bd69b95075f0f745154"
+    },
+    {
+      "path": "inspection/api.json",
+      "bytes": 1987,
+      "sha256": "af907bb73c411790ac6a24764314287e5cd331c0ed5b13eae9924ce45b27d8f9"
+    },
+    {
+      "path": "inspection/catalogue.json",
+      "bytes": 3067,
+      "sha256": "a5575484ed085e54d19fcc2a0f97cfcdab939cabc67b908d6778a4af6b4cb5d6"
+    },
+    {
+      "path": "inspection/manifest.json",
+      "bytes": 1053,
+      "sha256": "ee6eb300c57a13a1311f483e8b906bea6263868e34ed3cd00f11fc3c9a9e4a1c"
+    },
+    {
+      "path": "inspection/options.json",
+      "bytes": 310,
+      "sha256": "c4b7d0f4751d86562ead3ac4eca115a1855a66f235a764f96292865274386517"
+    },
+    {
+      "path": "inspection/pae.json",
+      "bytes": 40977,
+      "sha256": "9d6bfee2b49f0391f3be41fdc617bfb70e0b976660d48b422b69b96c2b92fa85"
+    },
+    {
+      "path": "inspection/report.json",
+      "bytes": 21034,
+      "sha256": "b257bf536ab38d05ce3e14b277fdf3f06e52a26f294c84b9a6724c95cd39d55a"
+    },
+    {
+      "path": "inspection/structure.txt",
+      "bytes": 137559,
+      "sha256": "eb7adbdd79775b0d694bacfa4b29872e05f4e56af26af880960d755c3036e230"
+    },
+    {
+      "path": "inspection/trp_inspect.py",
+      "bytes": 19528,
+      "sha256": "dc5e0ffca18abab21784c3f948d784063b6338a9ea52e2185cc5310b3640586a"
+    },
+    {
+      "path": "inspection/verify.py",
+      "bytes": 3178,
+      "sha256": "1b80794e6ad49a35b4e0bedbc8117fb93c444fe55b6d66911100ffd4a5394012"
+    },
+    {
+      "path": "pratt/mmc1.docx",
+      "bytes": 5143204,
+      "sha256": "7014ba25de4befa842f8a31599e25a3299f0704d7e5dc881192de742ecca0e12"
+    },
+    {
+      "path": "pratt/mmc2.xlsx",
+      "bytes": 28848,
+      "sha256": "3df99d5ff9397f1db9c8496d5d131ada8967bfb1b85a064031e89c6d12e6848e"
+    },
+    {
+      "path": "pratt/pratt.xml",
+      "bytes": 121938,
+      "sha256": "2d9b5e2efd489cdda5948bbd0ec7703ce8393681475cdc665ab8bb464233f126"
+    },
+    {
+      "path": "pratt/recoverability.json",
+      "bytes": 36968,
+      "sha256": "8ee32fd106ca42421087e1c8e43f8ea0f1922df7599e5f3b1f6cc8f968fea143"
+    },
+    {
+      "path": "pratt/supplement-inventory.json",
+      "bytes": 1740,
+      "sha256": "cbafebce30cc0022cc03cd9d716940903db5036241da1d5caa86a266d7fd99f6"
+    },
+    {
+      "path": "pratt/supplement-text.txt",
+      "bytes": 1026,
+      "sha256": "0f9bd4b551b240ca8b0800ca9854c11f7ed5017ade86ccccb7a66dc02d23f7d9"
+    }
+  ]
+}

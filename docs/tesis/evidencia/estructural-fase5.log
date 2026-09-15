@@ -1,0 +1,40 @@
+test_alternate_CA_refused (__main__.StructuralControls.test_alternate_CA_refused) ... ok
+test_assembly_never_certified_by_high_confidence (__main__.StructuralControls.test_assembly_never_certified_by_high_confidence) ... ok
+test_author_insertion_code_refused (__main__.StructuralControls.test_author_insertion_code_refused) ... ok
+test_confidence_values_disagree_with_local_metric (__main__.StructuralControls.test_confidence_values_disagree_with_local_metric) ... ok
+test_correct_filter_checks_without_trimming (__main__.StructuralControls.test_correct_filter_checks_without_trimming) ... ok
+test_duplicate_CA_never_first_wins (__main__.StructuralControls.test_duplicate_CA_never_first_wins) ... ok
+test_every_negative_has_value_threshold_reason (__main__.StructuralControls.test_every_negative_has_value_threshold_reason) ... ok
+test_experimental_B_filter_wrong_direction (__main__.StructuralControls.test_experimental_B_filter_wrong_direction) ... ok
+test_explicit_label_mapping_preserves_residues (__main__.StructuralControls.test_explicit_label_mapping_preserves_residues) ... ok
+test_independent_boundaries_equal_and_disagree (__main__.StructuralControls.test_independent_boundaries_equal_and_disagree) ... ok
+test_inverted_filter_rejected (__main__.StructuralControls.test_inverted_filter_rejected) ... ok
+test_limits_and_invalid_intervals (__main__.StructuralControls.test_limits_and_invalid_intervals) ... ok
+test_local_confidence_threshold_is_separate (__main__.StructuralControls.test_local_confidence_threshold_is_separate) ... ok
+test_malformed_cif_refused (__main__.StructuralControls.test_malformed_cif_refused) ... ok
+test_missing_CA_does_not_disappear_silently (__main__.StructuralControls.test_missing_CA_does_not_disappear_silently) ... ok
+test_missing_api_is_not_evaluable (__main__.StructuralControls.test_missing_api_is_not_evaluable) ... ok
+test_missing_pae_is_not_evaluable (__main__.StructuralControls.test_missing_pae_is_not_evaluable) ... ok
+test_multiblock_cif_refused (__main__.StructuralControls.test_multiblock_cif_refused) ... ok
+test_no_implicit_multiple_entry_choice (__main__.StructuralControls.test_no_implicit_multiple_entry_choice) ... ok
+test_nonfinite_coordinate (__main__.StructuralControls.test_nonfinite_coordinate) ... ok
+test_overlapping_units (__main__.StructuralControls.test_overlapping_units) ... ok
+test_pae_asymmetric_reverse_block (__main__.StructuralControls.test_pae_asymmetric_reverse_block) ... ok
+test_pae_negative_value (__main__.StructuralControls.test_pae_negative_value) ... ok
+test_pratt_failure_not_certified_by_pae_pass (__main__.StructuralControls.test_pratt_failure_not_certified_by_pae_pass) ... ok
+test_real_afdb_bound_pae (__main__.StructuralControls.test_real_afdb_bound_pae) ... ok
+test_real_experimental_author_label_mapping (__main__.StructuralControls.test_real_experimental_author_label_mapping) ... ok
+test_same_number_wrong_frame_loses_coverage (__main__.StructuralControls.test_same_number_wrong_frame_loses_coverage) ... ok
+test_scale_cannot_be_silently_normalized (__main__.StructuralControls.test_scale_cannot_be_silently_normalized) ... ok
+test_terminal_histidine_signal_is_review_not_auto_trim (__main__.StructuralControls.test_terminal_histidine_signal_is_review_not_auto_trim) ... ok
+test_unknown_producer_not_guessed_from_B (__main__.StructuralControls.test_unknown_producer_not_guessed_from_B) ... ok
+test_wrong_chain_api (__main__.StructuralControls.test_wrong_chain_api) ... ok
+test_wrong_entry_same_sequence (__main__.StructuralControls.test_wrong_entry_same_sequence) ... ok
+test_wrong_pae_shape (__main__.StructuralControls.test_wrong_pae_shape) ... ok
+test_wrong_sequence_even_same_length (__main__.StructuralControls.test_wrong_sequence_even_same_length) ... ok
+test_wrong_version_url (__main__.StructuralControls.test_wrong_version_url) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.742s
+
+OK

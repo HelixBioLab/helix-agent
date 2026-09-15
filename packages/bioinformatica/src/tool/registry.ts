@@ -37,7 +37,7 @@ import { Census } from "@/nfcore/census"
 import { NfcoreSamplesheetSchemaTool, NfcoreSamplesheetValidateTool } from "./nfcore-samplesheet"
 import { Samplesheet } from "@/nfcore/samplesheet"
 import { NfcoreRunTool } from "./nfcore-run"
-import { TrpCatalogTool, TrpPrepareTool, TrpRunTool } from "./trp"
+import { TrpCatalogTool, TrpPrepareTool, TrpRunTool, TrpInspectTool } from "./trp"
 import { TrpWorkflow } from "../trp/workflow"
 import { NfcoreResourcesTool } from "./nfcore-resources"
 import { NfcoreParamsTool } from "./nfcore-params"
@@ -162,6 +162,7 @@ const layer = Layer.effect(
     const nfcorevalidatetool = yield* NfcoreSamplesheetValidateTool
     const nfcoreruntool = yield* NfcoreRunTool
     const trpcatalogtool = yield* TrpCatalogTool
+    const trpinspecttool = yield* TrpInspectTool
     const trppreparetool = yield* TrpPrepareTool
     const trpruntool = yield* TrpRunTool
     const nfcoreresourcestool = yield* NfcoreResourcesTool
@@ -294,6 +295,7 @@ const layer = Layer.effect(
           nfcoreValidate: Tool.init(nfcorevalidatetool),
           nfcoreRun: Tool.init(nfcoreruntool),
           trpCatalog: Tool.init(trpcatalogtool),
+          trpInspect: Tool.init(trpinspecttool),
           trpPrepare: Tool.init(trppreparetool),
           trpRun: Tool.init(trpruntool),
           nfcoreResources: Tool.init(nfcoreresourcestool),
@@ -360,6 +362,7 @@ const layer = Layer.effect(
             tool.nfcoreValidate,
             tool.nfcoreRun,
             tool.trpCatalog,
+            tool.trpInspect,
             tool.trpPrepare,
             ...(questionEnabled ? [tool.trpRun] : []),
             tool.nfcoreResources,

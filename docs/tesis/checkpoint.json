@@ -2,7 +2,7 @@
   "project": "Bioinformática.org — tesis TRP",
   "updated": "2026-09-15",
   "phases_completed": ["F1", "F2", "F3"],
-  "next_phase": "F5",
+  "next_phase": "F6",
   "schedule": {
     "defense_month": "2027-07",
     "defense_month_status": "confirmed_by_user",
@@ -24,7 +24,7 @@
     "F2": "complete",
     "F3": "complete_initial_scope",
     "F4": "complete_initial_scope_with_R3_2_open",
-    "F5": "planned",
+    "F5": "complete_initial_scope_with_domain_gate_open",
     "F6": "planned",
     "F7": "planned"
   },
@@ -32,25 +32,27 @@
     "plan": "docs/tesis/PLAN.md",
     "status": "docs/tesis/ESTADO.md",
     "traceability": "docs/tesis/trazabilidad.json",
-    "document_content": "docs/tesis/fase4-documento.json",
-    "engineering_evidence": "docs/tesis/evidencia/fase4.json",
-    "document_evidence": "docs/tesis/evidencia/documento-fase4.json",
+    "document_content": "docs/tesis/fase5-documento.json",
+    "engineering_evidence": "docs/tesis/evidencia/fase5.json",
+    "document_evidence": "docs/tesis/evidencia/documento-fase5.json",
     "docx": "/home/webiwabou/Projects/Tesis.docx",
-    "pdf": "/home/webiwabou/Projects/Tesis-fase4.pdf",
+    "pdf": "/home/webiwabou/Projects/Tesis-fase5.pdf",
     "verifier": "script/tesis/verify_snapshot.py",
     "catalogue": "packages/bioinformatica/src/trp/catalog.json",
     "protocol": "evaluation/trp/PROTOCOL.md",
     "annotation_guide": "evaluation/trp/ANNOTATION.md",
-    "algorithm": "docs/tesis/F4-ADMISION.md",
-    "nextflow_reference": "evaluation/trp/reference/nextflow-f4/engineering-reference.json",
-    "execution_verifier": "packages/bioinformatica/src/trp/verify_bundle.py.txt"
+    "algorithm": "docs/tesis/F5-CONTROLES.md",
+    "nextflow_reference": "evaluation/trp/reference/nextflow-f5/engineering-reference.json",
+    "execution_verifier": "packages/bioinformatica/src/trp/verify_bundle.py.txt",
+    "structural_reference": "evaluation/trp/reference/structural-f5/engineering-reference.json"
   },
   "external_dependencies": [
     "Authentic FCI approval document and official title",
     "Independent annotator for R1.3 and R4.3",
     "Confirmed cluster access if the cluster execution claim is retained",
     "Confirmed evaluation model, compute and API budget",
-    "Executable detection references and validated RepeatsDB coordinate frame before discovery workflows"
+    "Executable detection references and validated RepeatsDB coordinate frame before discovery workflows",
+    "Original Pratt et al. model/PAE files and independently justified structural failure labels; downloaded supplements contain metadata only"
   ],
   "provider_connection": {
     "provider": "OpenAI",
@@ -59,7 +61,7 @@
     "model_id": null,
     "evaluation_budget": null
   },
-  "current_phase": "F4",
+  "current_phase": "F5",
   "resource_availability": {
     "annotator": "unconfirmed_user_confirmed_pending",
     "cluster": "unconfirmed_user_confirmed_pending",
@@ -91,5 +93,17 @@
   "implementation_dependencies": [
     "R3.2 aggregate storage quota and effective controller reservation before budget guarantees",
     "Detector admission and validated RepeatsDB/SIFTS/label-author mappings before F6"
-  ]
+  ],
+  "phase5_scope": {
+    "core_milestones": "H5.1-H5.4 implemented and verified for bounded mechanical screening; full-domain exit gate remains open",
+    "full_exit_gate_satisfied": false,
+    "document_installed": true,
+    "empirical_evaluation": false,
+    "R5.1": "Nine controls documented with primary sources and explicit non-automatable modes",
+    "R5.2": "Semantic mmCIF, AFDB confidence/PAE and explicit frames; admitted execution remains experimental PDB. Construct interpretation, genomic and physical validation incomplete or non-evaluable.",
+    "R5.3": "Per-instance reports and offline integrity; experimental report bound to Nextflow approval and methods",
+    "R5.4": "No original Pratt models executed; 78 metadata rows recovered, no coordinates/PAE in downloaded supplements; sensitivity/specificity null",
+    "next_work": "Close R3.2, detector/coordinate/execution contracts and original structural data/reference dependencies before F6; do not silently amend F2",
+    "local_parser_environment": ".bioinformatica/trp-python (Gemmi 0.7.5; untracked; requirements in script/tesis/requirements-structural.txt)"
+  }
 }

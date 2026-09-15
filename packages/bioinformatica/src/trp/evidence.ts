@@ -116,6 +116,14 @@ export async function methods(directory: string): Promise<void> {
     { name: "status", artifact: "run.json", pointer: ["status"], value: run.status },
   ]
   const software = await read("software.json").catch(() => undefined)
+  const structural = await read("structural_report.json").catch(() => undefined)
+  if (structural)
+    fields.push({
+      name: "structural controls",
+      artifact: "structural_report.json",
+      pointer: ["summary"],
+      value: structural.summary,
+    })
   if (software)
     fields.push({
       name: "Nextflow version output",

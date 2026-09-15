@@ -3,7 +3,28 @@ import { TrpCatalog } from "../trp/catalog"
 import { TrpSpecification } from "../trp/specification"
 import { TrpWorkflow } from "../trp/workflow"
 import { TrpResources } from "../trp/resources"
+import { TrpStructural } from "../trp/structural"
+import { InstanceState } from "../effect/instance-state"
 import * as Tool from "./tool"
+
+export const TrpInspectTool = Tool.define(
+  "trp_inspect",
+  Effect.succeed({
+    description:
+      "Inspect local mmCIF or PDB with explicit model, author chain and residue frame. Saves a per-instance report with values, thresholds, provenance and separate failed, non-evaluable and non-applicable checks. mmCIF requires Gemmi 0.7.5. Python selection: operator-configured BIOINFORMATICA_TRP_PYTHON, workspace .bioinformatica/trp-python/bin/python, then python3. Optional AFDB PAE and API JSON must match sequence, chain, entry and versioned URLs. Default engineering thresholds are pLDDT 70 and max bidirectional interunit PAE 5 angstrom; biological detection accuracy remains unevaluated. This inspection never authorizes execution, certifies a fold, trims residues, or invents a mapping. GeomeTRe execution remains the admitted experimental PDB route through trp_prepare/trp_run.",
+    parameters: TrpStructural.Parameters,
+    execute: (args: TrpStructural.Parameters, ctx: Tool.Context) =>
+      Effect.gen(function* () {
+        const directory = yield* InstanceState.directory
+        const result = yield* Effect.promise(() => TrpStructural.inspectFiles(args, directory, ctx.abort))
+        return {
+          title: "TRP structural inspection",
+          metadata: { directory: result.directory, manifestSha256: result.manifestSha256 },
+          output: JSON.stringify(result, null, 2),
+        }
+      }),
+  }),
+)
 
 export const TrpCatalogTool = Tool.define(
   "trp_catalog",

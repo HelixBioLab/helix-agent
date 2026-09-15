@@ -1,0 +1,75 @@
+{
+  "phase": "F5",
+  "date": "2026-09-15",
+  "scope": "Bounded mechanical structural screening, semantic mmCIF/AFDB and approved experimental PDB execution. Full domain gate remains open; no held-out campaign.",
+  "checks": {
+    "domain": {
+      "passed": 478,
+      "failed": 0,
+      "skipped": 1,
+      "files": 41,
+      "log": "docs/tesis/evidencia/dominio-fase5.log"
+    },
+    "structural_python": {
+      "passed": 35,
+      "failed": 0,
+      "log": "docs/tesis/evidencia/estructural-fase5.log"
+    },
+    "structural_integration": {
+      "passed": 6,
+      "failed": 0,
+      "included_in_domain_suite": true,
+      "log": "docs/tesis/evidencia/integracion-estructural-fase5.log"
+    },
+    "live_reference": {
+      "passed": 1,
+      "failed": 0,
+      "log": "docs/tesis/evidencia/nextflow-fase5.log",
+      "approval_driver": "synthetic Question.Service.reply; not human evaluation"
+    },
+    "typecheck": {
+      "exit_code": 0
+    },
+    "new_code_lint": {
+      "files": 9,
+      "warnings": 0,
+      "errors": 0,
+      "note": "Expanded lint also reports 11 pre-existing warnings in registry.ts and registry.test.ts; unrelated lines unchanged."
+    },
+    "portable": {
+      "files": 127,
+      "payload_bytes": 3959818,
+      "manifest_sha256": "245f11b45f74c601fab81e0096357b1dbecebe83cd1c4519b10ac29d762fed16",
+      "faults_injected": 262,
+      "faults_detected": 262,
+      "report": "docs/tesis/evidencia/portable-audit-fase5.json"
+    },
+    "inspection": {
+      "files": 8,
+      "manifest_sha256": "ee6eb300c57a13a1311f483e8b906bea6263868e34ed3cd00f11fc3c9a9e4a1c",
+      "path": "evaluation/trp/reference/structural-f5/inspection"
+    }
+  },
+  "references": [
+    "evaluation/trp/reference/structural-f5/engineering-reference.json",
+    "evaluation/trp/reference/nextflow-f5/engineering-reference.json"
+  ],
+  "pratt": {
+    "metadata_rows": 78,
+    "original_models_evaluated": 0,
+    "sensitivity": null,
+    "specificity": null,
+    "recoverability": "evaluation/trp/reference/structural-f5/pratt/recoverability.json"
+  },
+  "previous_user_file": {
+    "path": "packages/sdk/js/src/v2/client.ts",
+    "sha256": "99fa8d8e31a4b95c5b7ad2814319f94b8d96a27e22331e78b05d179e232311ba",
+    "included_in_commit": false
+  },
+  "pending": [
+    "R3.2 aggregate quota and effective controller reservation, empirical margin",
+    "Detector admission, SIFTS/UniProt and predicted execution contracts",
+    "Construct interpretation and independent physical/assembly evidence",
+    "Original published structural models, annotator, held-out campaign, model/API budget; cluster if claimed"
+  ]
+}

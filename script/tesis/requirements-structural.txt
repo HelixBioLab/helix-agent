@@ -1,0 +1,2 @@
+# Offline mmCIF parser used by trp_inspect; no biological predictor is installed.
+gemmi==0.7.5

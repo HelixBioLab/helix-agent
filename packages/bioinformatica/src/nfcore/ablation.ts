@@ -136,6 +136,7 @@ export function spec(state: State): string {
  */
 export const SPECIALIZATION_TOOLS: readonly string[] = [
   "trp_catalog",
+  "trp_inspect",
   "trp_prepare",
   "trp_run",
   // nf-core execution and authoring

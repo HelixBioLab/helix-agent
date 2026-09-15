@@ -2,6 +2,19 @@
 
 Actualizado: 15 de septiembre de 2026.
 
+## Fase 5: controles implementados en el alcance inicial
+
+- Catálogo versionado de **nueve controles**, lector mmCIF con Gemmi 0.7.5 y herramienta `trp_inspect`. Cada control conserva valor, umbral y motivo; diferencia fallos, no evaluables y no aplicables. [Método, algoritmo y límites](F5-CONTROLES.md).
+- El motor `trp-nextflow/1.2.0` incorpora automáticamente reporte, catálogo y programa al digest aprobado de la ruta PDB experimental, y a los métodos/manifiesto. La inspección de modelos predichos no los admite a GeomeTRe ni certifica su plausibilidad.
+- Referencias reales 2xqh/mmCIF y AF-P69905-F1 v6 con API y PAE. P69905 prueba confianza y ejes mediante intervalos artificiales; no es anotación de repeticiones. Ambos casos y sus perturbaciones son desarrollo excluido de T-STRUCT.
+- **478 pruebas de regresión correctas, una referencia omitida por defecto, cero fallos; 35 pruebas estructurales Python correctas.** La referencia real de Nextflow pasó por separado y conserva el CSV de 12 unidades. Su copia contiene **127 archivos; 262/262 fallos de integridad detectados**. [Evidencia F5](evidencia/fase5.json).
+- Auditoría de Pratt: 78 filas de predicciones publicadas en los suplementos; **cero archivos de coordenadas/PAE originales encontrados en el paquete descargado, cero modelos originales ejecutados**. Las filas no son etiquetas de fallo verificadas. Sensibilidad y especificidad permanecen sin calcular. [Auditoría de recuperación](../../evaluation/trp/reference/structural-f5/pratt/recoverability.json).
+- Word: R5.1–R5.4, conclusiones y anexo A.19 actualizados; se conservan los cinco capítulos, cuatro ilustraciones y bibliografía. Notas nuevas en rojo y cursiva. [Auditoría documental](evidencia/documento-fase5.json).
+
+**F5 no cierra la cobertura del dominio completo ni habilita todavía F6.** Persisten la ejecución admitida sobre modelos predichos, SIFTS/UniProt, detección, interpretación completa de constructos y evaluación independiente de fallos físicos. Los modos de ensamblaje y plausibilidad son explícitamente no evaluables con esta batería. La falta de archivos originales de Pratt es una dependencia de recuperación, no una tasa de acierto.
+
+**R3.2 es deuda de implementación y evaluación, no de redacción.** El documento ya la registra: falta cuota agregada de disco, reserva efectiva del controlador y medir el margen del estimador. No hay una respuesta pendiente del autor que impida programarlo; anotador y clúster no bloquean esa implementación local. Se avanzó a F5 por indicación del usuario, conservando esos requisitos antes de F6. [Detalle por componente](F5-CONTROLES.md#qué-falta-exactamente-en-r32-de-f4).
+
 ## Fase 4: implementación inicial; R3.2 sigue abierto
 
 - Inventario fechado, presupuesto explícito para revisión y negativas por recurso integrados en `trp_prepare`/`trp_run`. Se reobservan recursos después de aprobar y antes del análisis real. El estado y las restricciones del protocolo forman parte del contenido protegido. [Diseño y límites](F4-ADMISION.md).

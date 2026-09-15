@@ -1,0 +1,1 @@
+2026-09-15 14:58:13	3.8s	romantic_mirzakhani	OK	0f14c417687983164ca521ee32549653	9c97b961-8817-42df-b77d-d7a93cd4228a	nextflow -C nextflow.config run main.nf -ansi-log false -with-trace trace.tsv

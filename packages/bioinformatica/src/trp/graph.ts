@@ -241,7 +241,8 @@ export function validate(raw: unknown, pdb: Uint8Array): Report {
     {
       code: "structural-confidence",
       status: "omitted",
-      detail: "Experimental PDB only; pLDDT/PAE controls belong to F5",
+      detail:
+        "Static graph validation is not a structural assessment; preparation must attach the separate versioned structural report",
     },
     {
       code: "resource-admission",

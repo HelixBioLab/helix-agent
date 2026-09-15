@@ -120,7 +120,6 @@ R2.3 comprueba identidad y compatibilidad del marco admitido; todavía no convie
 
 Consultar [ESTADO.md](ESTADO.md) y [trazabilidad.json](trazabilidad.json). Cada fase registra comandos, resultados, artefactos y lo que falta. Los commits tienen exclusivamente un título en inglés, sin cuerpo ni firma de coautor. El cambio previo del usuario en `packages/sdk/js/src/v2/client.ts` queda fuera de ellos.
 
-
 ## Avance F4 y compuerta abierta
 
 F4 implementa inventario observado, presupuesto explícito, rechazo previo, integración de protocolo, eventos, métodos y un paquete completo verificable en frío. La ruta local real reproduce las cuatro tareas previstas; su copia de 121 archivos supera una auditoría de 250 fallos introducidos. La suite registra 472 pruebas correctas y la referencia real se ejecuta por separado. Véase [F4-ADMISION.md](F4-ADMISION.md).
@@ -128,3 +127,11 @@ F4 implementa inventario observado, presupuesto explícito, rechazo previo, inte
 **H4.2/R3.2 permanece parcial y la compuerta completa de F4 no está satisfecha.** Los conteos se reproducen y los supuestos de almacenamiento son explícitos, pero no hay cuota agregada ni reserva efectiva del controlador. Una exigencia de cuota estricta se rechaza; no se afirma cero sobrepasos garantizados ni se ajusta una estimación con un único caso para aparentar el margen ≤25%. El protocolo F2 permanece intacto.
 
 F5 puede comenzar sus controles estructurales sobre la ruta disponible. Antes de F6 se deben cerrar las garantías de recursos de F4, la ampliación del catálogo y los mapeos pendientes de F3, o registrar una enmienda prospectiva justificada que el autor decida. No se eliminan esos compromisos ni se trasladan a trabajos futuros. Anotador, clúster, modelo y presupuesto de evaluación siguen pendientes; la fecha de sustentación permanece en julio de 2027.
+
+## Avance F5 y condiciones para F6
+
+El usuario indicó continuar con F5 aun conservando R3.2 abierto. Se implementaron H5.1–H5.4 en el ámbito mecánico: catálogo de nueve controles, lectura semántica mmCIF, correspondencias y confianza, herramienta del agente y reporte enlazado al contenido aprobado de Nextflow. Se verificaron dos fuentes reales y perturbaciones adversariales, regresión y una ejecución científica real. Véanse [F5-CONTROLES.md](F5-CONTROLES.md) y [las exclusiones de desarrollo](../../evaluation/trp/F5.md).
+
+La compuerta completa del dominio permanece abierta: no hay certificación física ni diagnóstico genómico desde coordenadas aisladas; los constructos requieren interpretación adicional. El paquete público de Pratt contiene 78 filas de metadatos, pero no se recuperaron coordenadas/PAE originales de sus predicciones. R5.4 sigue sin medir. No se reducen sus metas ni se sustituyen los casos publicados por ejemplos sintéticos.
+
+Antes de F6 deben resolverse R3.2, admisión del instrumental y mapeos pendientes, datos originales recuperables y anotaciones independientes. Las dependencias externas permanecen registradas. La implementación local de cuotas/reservas puede avanzar sin esperar al anotador o al clúster. La sustentación sigue prevista para julio de 2027 y el borrador completo para el 4 de junio.

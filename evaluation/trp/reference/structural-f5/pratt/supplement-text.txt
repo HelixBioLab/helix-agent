@@ -1,0 +1,20 @@
+Supplementary Material
+
+
+
+Figure S1: AF2 models with theoretical internal calcium ion stacks. A) AF2 model of sequence QTSTVIGTIASTETSSSTGI. B) Top view of AF2 model of sequence SMKLTDNQQDAAIIIIVDCFCI. C) Bottom view of AF2 model of sequence SMKLTDNQQDAAIIIIVDCFCI. Internally stacking acidic residues are shown in pink, residues clashing with the calcium ions are shown in blue, and residues that are non-clashing but inappropriate for a calcium binding site are shown in orange. Calcium ions are shown as green spheres. Figure made using PyMOL (pymol.org).
+
+
+Figure S2: The repeat unit length of each β-solenoid model plotted against the pLDDT. There are high pLDDT models (>70) across all repeat unit lengths.
+
+
+
+
+
+
+Figure S3: Dependence of pLDDT on predicted disorder for AF2 (a, c) and AF3 (b, d), for all structure predictions (a, b) or just for β-solenoid predictions (c, d)
+
+
+Table S2: The representative Pfam family sequence repeats as detected by RADAR showing significant sequence divergence post-duplication. 
+
+

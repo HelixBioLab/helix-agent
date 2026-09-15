@@ -1,0 +1,9 @@
+# Referencias estructurales de desarrollo F5
+
+- `experimental/2xqh.cif`: copia exacta de la entrada RCSB archivada en F3, SHA-256 `7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b`; PDB/wwPDB, datos del archivo público. URL: https://files.rcsb.org/download/2XQH.cif. Misma estructura experimental que F2/F3/F4.
+- `alphafold/`: AF-P69905-F1 v6, 142 residuos, recuperado el 2026-09-15. API https://alphafold.ebi.ac.uk/api/prediction/P69905; las URLs de mmCIF/PAE proceden de esa respuesta. Datos AFDB, CC BY 4.0. pLDDT mínimo 70 y PAE máximo 5 Å son umbrales de ingeniería. Los intervalos 10–20 y 21–30 son artificiales y **no anotan repeticiones**.
+- `inspection/`: salida completa del adaptador TypeScript que expone `trp_inspect`; ocho archivos declarados y verificador Python independiente. Ancla SHA-256 del manifiesto: `ee6eb300c57a13a1311f483e8b906bea6263868e34ed3cd00f11fc3c9a9e4a1c`.
+- `pratt/`: artículo y suplementos públicos, CC BY 4.0, DOI https://doi.org/10.1016/j.csbj.2025.01.016, recuperados mediante Europe PMC. `recoverability.json` conserva las 78 filas y las limitaciones. No hay modelos originales ejecutados; las filas no se convierten en etiquetas de fallo. Los campos de hoja se leen por coordenada de celda para no desplazar columnas vacías.
+- `engineering-reference.json`: tamaños, hashes, versión del parser y resúmenes derivados por `script/tesis/run_structural_reference.py`. El script no consulta la red. `script/tesis/audit_pratt_recoverability.py` reproduce la auditoría desde los originales archivados.
+
+Las dos inspecciones conservan cuatro controles no evaluables. Pasar los controles mecánicos no establece validez biológica, detección de repeticiones ni exactitud de geometría. Estas referencias y sus perturbaciones quedan excluidas de la reserva de F6, según [F5.md](../../F5.md).

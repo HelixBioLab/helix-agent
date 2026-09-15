@@ -1,0 +1,42 @@
+"""Offline integrity/link verification of an inspection; Python stdlib only."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+
+def verify(directory, expected=None):
+    root=Path(directory)
+    manifest=root/'manifest.json'
+    if root.is_symlink() or manifest.is_symlink(): raise ValueError('symlink')
+    digest=lambda data:hashlib.sha256(data).hexdigest()
+    raw=manifest.read_bytes(); anchor=digest(raw)
+    if expected and anchor!=expected: raise ValueError('manifest anchor mismatch')
+    m=json.loads(raw)
+    if m.get('version')!='trp-inspection-evidence/1.0.0': raise ValueError('manifest version')
+    listed=set()
+    for entry in m['files']:
+        name=entry['path']
+        if not isinstance(name,str) or not name or Path(name).name!=name or '/' in name or '\\' in name or name in ('.','..','manifest.json') or name in listed: raise ValueError('unsafe or duplicate path')
+        p=root/name
+        if p.is_symlink() or not p.is_file(): raise ValueError('not a regular artifact')
+        data=p.read_bytes()
+        if len(data)!=entry['bytes'] or digest(data)!=entry['sha256']: raise ValueError('artifact mismatch: '+name)
+        listed.add(name)
+    if {p.name for p in root.iterdir()}!=listed|{'manifest.json'}: raise ValueError('unlisted or missing file')
+    if not {'structure.txt','options.json','report.json','catalogue.json','trp_inspect.py','verify.py'}<=listed: raise ValueError('required artifacts missing')
+    r=json.loads((root/'report.json').read_bytes()); o=json.loads((root/'options.json').read_bytes())
+    if r['version']!='trp-structural/1.0.0' or r['provenance']['structureSha256']!=digest((root/'structure.txt').read_bytes()): raise ValueError('report source mismatch')
+    if r['provenance']['authorChain']!=o['chain'] or r['provenance']['frame']!=o['frame']: raise ValueError('report selection differs')
+    ids={c['id'] for c in json.loads((root/'catalogue.json').read_bytes())['controls']}
+    if len(r['checks'])!=len(ids) or {c['id'] for c in r['checks']}!=ids: raise ValueError('control inventory differs')
+    if any(c['status'] not in ('pass','fail','not_evaluable','not_applicable') or not c['reason'] for c in r['checks']): raise ValueError('invalid control verdict')
+    failed=[c['id'] for c in r['checks'] if c['status']=='fail']
+    unknown=[c['id'] for c in r['checks'] if c['status']=='not_evaluable']
+    blocking=failed+[c for c in unknown if c in ('confidence-scale','filter-direction','interunit-pae')]
+    if r['summary']!={'failed':failed,'notEvaluable':unknown,'blocking':blocking,'mechanicalAdmission':not blocking,'biologicalValidity':'not_established'}: raise ValueError('summary differs')
+    return {'ok':True,'files':len(listed),'manifestSha256':anchor,'externallyAnchored':bool(expected),'scope':'integrity and declared links; no scientific re-execution or authorship certification'}
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('directory');p.add_argument('--sha256');a=p.parse_args()
+    try: print(json.dumps(verify(a.directory,a.sha256),sort_keys=True))
+    except (OSError,ValueError,KeyError,TypeError) as e: p.exit(1,str(e)+'\n')
