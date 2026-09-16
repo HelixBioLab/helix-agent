@@ -114,4 +114,7 @@ for (const failure of modes)
         expect(check().status).toBe(0)
       })
     }),
+    // The image case starts Python twice for every artifact in the manifest.
+    // Its verification work exceeds Bun's 5-second default on shared hosts.
+    30_000,
   )

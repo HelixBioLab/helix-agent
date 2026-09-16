@@ -1,0 +1,22 @@
+bun test v1.3.14 (0d9b296a)
+
+test/trp/admission.test.ts:
+(pass) missing-budget records a typed refusal without approval or process launch [246.82ms]
+(pass) hard-quota records a typed refusal without approval or process launch [136.98ms]
+(pass) unreadable records a typed refusal without approval or process launch [121.35ms]
+(pass) insufficient records a typed refusal without approval or process launch [120.58ms]
+(pass) capacity lost during approval rejects before the first probe [290.43ms]
+(pass) binding protocol with unevaluated constraint blocks preparation [130.42ms]
+(pass) binding protocol with matching constraint blocks preparation [118.15ms]
+(pass) a protocol amendment after preparation invalidates approval [248.13ms]
+
+test/trp/enforcement.test.ts:
+(pass) operator resource allocation > hard budget accepts observed enforcement and rejects a larger effective quota [0.73ms]
+(pass) operator resource allocation > an invented yes/no enforcement flag never grants admission [0.45ms]
+(pass) operator resource allocation > untrusted state path cannot assert kernel limits [0.98ms]
+(pass) operator resource allocation > allocation cannot be reused by another preparation [7.29ms]
+
+ 12 pass
+ 0 fail
+ 39 expect() calls
+Ran 12 tests across 2 files. [3.93s]

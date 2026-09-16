@@ -1,0 +1,1090 @@
+{
+  "kind": "engineering-fault-injection; not held-out evaluation",
+  "baseline": {
+    "ok": true,
+    "files": 129,
+    "bytes": 3972812,
+    "manifestSha256": "9e15864c9c030f153f22dc0aeb8e64972d6b54161a1b4538ec915316b914fc45",
+    "status": "succeeded",
+    "externallyAnchored": true,
+    "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+  },
+  "restored": {
+    "ok": true,
+    "files": 129,
+    "bytes": 3972812,
+    "manifestSha256": "9e15864c9c030f153f22dc0aeb8e64972d6b54161a1b4538ec915316b914fc45",
+    "status": "succeeded",
+    "externallyAnchored": true,
+    "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+  },
+  "injected": 266,
+  "detected": 266,
+  "checks": [
+    {
+      "case": "missing:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/000003.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/000003.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/CURRENT",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/CURRENT",
+      "detected": true
+    },
+    {
+      "case": "missing:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/LOCK",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/LOCK",
+      "detected": true
+    },
+    {
+      "case": "missing:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/MANIFEST-000002",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/db/MANIFEST-000002",
+      "detected": true
+    },
+    {
+      "case": "missing:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/index.trusting_tuckerman",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow/cache/8b5ab0a5-8465-4f67-99c0-019773781012/index.trusting_tuckerman",
+      "detected": true
+    },
+    {
+      "case": "missing:run/.nextflow/history",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow/history",
+      "detected": true
+    },
+    {
+      "case": "missing:run/.nextflow.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/.nextflow.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/admission.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/admission.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/analysis-admission.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/analysis-admission.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/approval.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/approval.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/budget.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/budget.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/catalogue_evidence.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/catalogue_evidence.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/config.stderr.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/config.stderr.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/docker-endpoint.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/docker-endpoint.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/000003.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/000003.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/CURRENT",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/CURRENT",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/LOCK",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/LOCK",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/MANIFEST-000002",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/db/MANIFEST-000002",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/index.compassionate_albattani",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow/cache/8d26134f-3013-46fb-b898-112a6456701b/index.compassionate_albattani",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow/history",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow/history",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/.nextflow.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/.nextflow.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/admission.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/admission.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/budget.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/budget.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/catalogue_evidence.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/catalogue_evidence.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/enforcement.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/enforcement.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/execution.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/execution.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/inspect_structure.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/inspect_structure.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/inventory.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/inventory.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/main.nf",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/main.nf",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/nextflow.config",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/nextflow.config",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/protocol.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/protocol.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/results/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/results/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/settings.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/settings.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/specification.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/specification.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/stderr.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/stderr.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/stdout.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/stdout.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/structural_catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/structural_catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/structural_report.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/structural_report.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/trace.tsv",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/trace.tsv",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/validation.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/validation.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.err",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.err",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.out",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.out",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.run",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.run",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/settings.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/settings.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/5d/21de5a7ff21114ba7a58d8a800493a/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.err",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.err",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.out",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.out",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.run",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.run",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/settings.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/settings.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/dry-run/work/a8/5a12608a19b060166ac0ea766fb625/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/enforcement.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/enforcement.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/events.jsonl",
+      "detected": true
+    },
+    {
+      "case": "changed:run/events.jsonl",
+      "detected": true
+    },
+    {
+      "case": "missing:run/execution.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/execution.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/inspect_structure.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/inspect_structure.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/interventions.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/interventions.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/inventory.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/inventory.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/main.nf",
+      "detected": true
+    },
+    {
+      "case": "changed:run/main.nf",
+      "detected": true
+    },
+    {
+      "case": "missing:run/methods.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/methods.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/methods.md",
+      "detected": true
+    },
+    {
+      "case": "changed:run/methods.md",
+      "detected": true
+    },
+    {
+      "case": "missing:run/nextflow-version.txt",
+      "detected": true
+    },
+    {
+      "case": "changed:run/nextflow-version.txt",
+      "detected": true
+    },
+    {
+      "case": "missing:run/nextflow.config",
+      "detected": true
+    },
+    {
+      "case": "changed:run/nextflow.config",
+      "detected": true
+    },
+    {
+      "case": "missing:run/preflight.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/preflight.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/processes.jsonl",
+      "detected": true
+    },
+    {
+      "case": "changed:run/processes.jsonl",
+      "detected": true
+    },
+    {
+      "case": "missing:run/protocol.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/protocol.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/recheck.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/recheck.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/resolved.config.txt",
+      "detected": true
+    },
+    {
+      "case": "changed:run/resolved.config.txt",
+      "detected": true
+    },
+    {
+      "case": "missing:run/results/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "changed:run/results/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "missing:run/run.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/run.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/settings.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/settings.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/software.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/software.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/specification.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/specification.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/stderr.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/stderr.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/stdout.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/stdout.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/structural_catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/structural_catalogue.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/structural_report.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/structural_report.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/trace.tsv",
+      "detected": true
+    },
+    {
+      "case": "changed:run/trace.tsv",
+      "detected": true
+    },
+    {
+      "case": "missing:run/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/validation.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/validation.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.err",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.err",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.out",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.out",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.run",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.run",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/selection.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/settings.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/settings.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/source.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/0d/eb0b8edcae752ff919689719012b9c/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/0d/eb0b8edcae752ff919689719012b9c/trp_select.py",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.begin",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.err",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.err",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.log",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.log",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.out",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.out",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.run",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.run",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.sh",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.command.trace",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/.exitcode",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/2xqh.pdb",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/geometry.csv",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/geometry.npy",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/geometry.npy",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/settings.json",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/settings.json",
+      "detected": true
+    },
+    {
+      "case": "missing:run/work/d1/c9f12f659af8625f7047f787ed82b2/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "changed:run/work/d1/c9f12f659af8625f7047f787ed82b2/trp_geometry.py",
+      "detected": true
+    },
+    {
+      "case": "missing:verify.py",
+      "detected": true
+    },
+    {
+      "case": "changed:verify.py",
+      "detected": true
+    },
+    {
+      "case": "path:../escape",
+      "detected": true
+    },
+    {
+      "case": "path:/tmp/escape",
+      "detected": true
+    },
+    {
+      "case": "path:run/../escape",
+      "detected": true
+    },
+    {
+      "case": "path:C:\\escape",
+      "detected": true
+    },
+    {
+      "case": "path:run//source.pdb",
+      "detected": true
+    },
+    {
+      "case": "unlisted-file",
+      "detected": true
+    },
+    {
+      "case": "external-symlink",
+      "detected": true
+    },
+    {
+      "case": "wrong-anchor",
+      "detected": true
+    }
+  ],
+  "verifierSha256": "c089f6134841993a8e04d8f7160b1863bc05cab9af8e9c0acf50bef53cf45d0a"
+}

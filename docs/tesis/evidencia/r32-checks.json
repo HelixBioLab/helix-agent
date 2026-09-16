@@ -1,0 +1,32 @@
+{
+  "logs": [
+    {
+      "path": "evaluation/trp/reference/resources-r32/checks/regression-final.log",
+      "sha256": "fd5e672f0ef705ad20973ba0f71a5cdf939e8fdc97bd7b56d3c43ce9e493adc5",
+      "result": "482 passed; 1 live reference skipped by default; 0 failed"
+    },
+    {
+      "path": "evaluation/trp/reference/resources-r32/checks/final-guards.log",
+      "sha256": "0f66dfeeffd6548edbf56d9b50c9b32234cf30ecf1f291d37e3e30511bede224",
+      "result": "12 passed after final schema guard refinement"
+    },
+    {
+      "path": "evaluation/trp/reference/resources-r32/checks/typecheck-delivery.log",
+      "sha256": "ae47736bb2a9401aa9743893f2f64b9a605e65a99d78cd991a8021e0f7722d87",
+      "result": "TypeScript check passed"
+    },
+    {
+      "path": "evaluation/trp/reference/resources-r32/checks/lint-final.log",
+      "sha256": "37cc8c669c8bd0bfdcd507da195205299856e17f5df5e1e1b60a374fe47b5c2a",
+      "result": "0 warnings, 0 errors"
+    },
+    {
+      "path": "evaluation/trp/reference/resources-r32/checks/local-reference.log",
+      "sha256": "8e85c28ebf6957d34f9e88c3d496245d03c45929b25fb1090308ae8f6b8d8354",
+      "result": "local-host real Nextflow reference passed; intermediate estimator version"
+    }
+  ],
+  "remote_final_reference": "archives/deployment-smoke.tar.gz",
+  "portable_fault_injection": "docs/tesis/evidencia/portable-audit-r32.json",
+  "raw_reference_index": "evaluation/trp/reference/resources-r32/archives.json"
+}

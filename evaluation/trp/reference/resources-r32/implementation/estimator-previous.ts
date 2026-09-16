@@ -8,7 +8,7 @@ import path from "node:path"
 import { TrpSpecification as S } from "./specification"
 import { TrpEnforcement } from "./enforcement"
 
-export const VERSION = "trp-resources/1.2.0"
+export const VERSION = "trp-resources/1.1.0"
 export const MiB = 1024 ** 2
 export const Budget = Schema.Struct({
   cpus: Schema.Number,
@@ -78,9 +78,9 @@ export function count(files: Record<string, string>): Demand {
     counts: { scientificTasks: 2, stubTasks: 2, remoteScientificCalls: 0, retries: 0 },
     cpus: 3,
     memoryBytes: 4096 * MiB,
-    workBytes: Math.ceil((12 * MiB + 7 * bundleBytes + 4 * selectionBytes) / 4096) * 4096,
+    workBytes: Math.ceil((14 * MiB + 5 * bundleBytes + 4 * selectionBytes) / 4096) * 4096,
     wallSeconds: 1080,
-    storage: { kind: "estimate", formula: "ceil((12*1048576 + 7*bundleBytes + 4*selectionBytes)/4096)*4096", hardLimit: false },
+    storage: { kind: "estimate", formula: "ceil((14*1048576 + 5*bundleBytes + 4*selectionBytes)/4096)*4096", hardLimit: false },
     assumptions: [
       "Two sequential tasks per traversal; one stub traversal then one real traversal; no retry or resume.",
       "Task allocation: 2 CPUs/2 GiB. Controller allocation: 1 CPU/2 GiB; cgroup enforcement requires an independently verified operator sandbox. CPU bandwidth is not an exclusive core reservation.",

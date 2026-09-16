@@ -1,0 +1,76 @@
+{
+  "version": "trp-resource-freeze/1.1.0",
+  "frozenAt": "2026-09-16T00:08:11.675546+00:00",
+  "partition": "development; all 2xqh variants excluded from F6",
+  "formula": "ceil((12*1048576 + 7*bundleBytes + 4*selectionBytes)/4096)*4096",
+  "previousFormula": "ceil((14*1048576 + 5*bundleBytes + 4*selectionBytes)/4096)*4096",
+  "calibration": {
+    "id": "calibration-03",
+    "sampledPeakAllocatedBytes": 18157568,
+    "observationSha256": "5b1c6fa2ea23b5eca7f35b326df13e256281aeb448b67b8d2c1c7d27ee0270ed",
+    "setupAttempts": [
+      "calibration-01: Nextflow saw controller CPU budget instead of the separate task budget; refused before tasks",
+      "calibration-02: successful but test exporter duplicated evidence; corrected before final calibration"
+    ]
+  },
+  "contrastsBeforeObservation": [
+    {
+      "id": "verification-01",
+      "remarkTargetBytes": 0,
+      "quotaMiB": 24
+    },
+    {
+      "id": "verification-02",
+      "remarkTargetBytes": 262144,
+      "quotaMiB": 24
+    },
+    {
+      "id": "verification-03",
+      "remarkTargetBytes": 786432,
+      "quotaMiB": 32
+    },
+    {
+      "id": "verification-04",
+      "remarkTargetBytes": 1572864,
+      "quotaMiB": 40
+    },
+    {
+      "id": "verification-05",
+      "remarkTargetBytes": 3145728,
+      "quotaMiB": 48
+    },
+    {
+      "id": "verification-06",
+      "remarkTargetBytes": 5242880,
+      "quotaMiB": 64
+    },
+    {
+      "id": "verification-07",
+      "remarkTargetBytes": 7340032,
+      "quotaMiB": 80
+    }
+  ],
+  "pressureProbes": [
+    "aggregate two-file XFS exhaustion",
+    "four CPU burners under one-CPU controller limit",
+    "child memory allocation until kernel OOM"
+  ],
+  "sourceHashes": {
+    "packages/bioinformatica/src/trp/resources.ts": "c884dc6914ac7feb536c698634ec1d65c04133da0bcca9568d7409c3ac394fa6",
+    "script/tesis/trp_sandbox.py": "433c899cea3e948de6ec26bd42be1f26c93ebc6ff600529c2f47ae01e8fff7fe",
+    "packages/bioinformatica/test/trp/reference.live.test.ts": "884b39632265b7cc79ffd7a0e3bc6b215e5bf0755e98a0a9322a5428f9d6f4a7"
+  },
+  "thresholdsUnchanged": true,
+  "developmentCorrection": {
+    "previousRunIds": [
+      "validation-01",
+      "validation-02",
+      "validation-03",
+      "validation-04",
+      "validation-05",
+      "validation-06"
+    ],
+    "reason": "Two underestimates in v1.1.0. Portable export dereferences four source aliases; two materialized input copies and the original workspace input require seven possible copies. All prior outcomes retained.",
+    "thresholdsChanged": false
+  }
+}

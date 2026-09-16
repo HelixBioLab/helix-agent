@@ -1,0 +1,40 @@
+{
+  "phase": "R3.2",
+  "source_sha256": "73a40cea0d532c37c0d20ab7e454aa3d0c546f9350aa08017bbde4bdb7479c9e",
+  "docx": {
+    "path": "/home/webiwabou/Projects/Tesis.docx",
+    "sha256": "f6e3294e96d41b339fb504846a6f1a2757f4713d0e95fd66e408ea60e4655f3f"
+  },
+  "pdf": {
+    "path": "/home/webiwabou/Projects/Tesis-R3.2.pdf",
+    "sha256": "ec6d9ac78b5e36a1c31e061a10b100a7d2d9f7652d856d999b3aac3b637080d6",
+    "pages": 135,
+    "automatic_section_separator_pages": []
+  },
+  "checks": {
+    "bibliography_paragraphs_preserved": 99,
+    "active_figures_preserved": 4,
+    "sections_preserved": 3,
+    "red_italic_author_notes": 33,
+    "r21_table_populated_after_render": true,
+    "five_chapters": true,
+    "chapter_4_and_5_titles_correct": true,
+    "toc_has_21_results_once_each": true,
+    "appendix_sections": 20,
+    "toc_duplicates": 0,
+    "footer_total_matches_pdf": true,
+    "all_R32_sections_and_appendix_blocks_preserved": true
+  },
+  "visual_review_pages": [
+    90,
+    91,
+    134,
+    135
+  ],
+  "footer_layout": {
+    "pages_checked": 125,
+    "preliminary_pages": 10,
+    "text_collisions": 0,
+    "method": "PDF bounding boxes after reopening the exported DOCX; visual check of final new sections"
+  }
+}

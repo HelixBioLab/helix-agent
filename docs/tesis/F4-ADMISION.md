@@ -1,3 +1,5 @@
+> Actualización de cierre: este informe conserva la referencia histórica F4. La cuota, los límites del controlador y el estimador posterior se documentan en [R3.2-RECURSOS.md](R3.2-RECURSOS.md), con sus resultados completos y límites de interpretación.
+
 # F4: admisión y evidencia de la ruta TRP
 
 Fecha: 15 de septiembre de 2026. Motor: `trp-nextflow/1.1.0`. Especificación científica: `trp-spec/1.0.0`. Catálogo: `trp-catalog/1.1.0`.

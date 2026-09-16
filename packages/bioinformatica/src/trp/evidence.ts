@@ -117,6 +117,9 @@ export async function methods(directory: string): Promise<void> {
   ]
   const software = await read("software.json").catch(() => undefined)
   const structural = await read("structural_report.json").catch(() => undefined)
+  const enforcement = await read("enforcement.json").catch(() => undefined)
+  if (enforcement)
+    fields.push({ name: "resource enforcement", artifact: "enforcement.json", pointer: [], value: enforcement })
   if (structural)
     fields.push({
       name: "structural controls",
@@ -134,7 +137,9 @@ export async function methods(directory: string): Promise<void> {
   const limitations = [
     "Author-PDB numbering; supplied units, not repeat detection; experimental B-factor is not pLDDT.",
     "The first-unit geometry zeros are placeholders. External annotator, held-out evaluation and cluster are pending.",
-    "Host resource admission uses estimates and reservations; aggregate disk quota and controller memory enforcement are unavailable.",
+    enforcement
+      ? "Operator XFS quota and cgroup v2 bound controller and task resources. CPU quota is bandwidth, not exclusive cores. Full-run peaks are preserved by the external supervisor."
+      : "Host resource admission uses estimates and reservations; aggregate disk quota and controller memory enforcement are unavailable.",
     "Offline verification checks bytes and declared links, not scientific truth or an authenticated human identity.",
     "Agent provider/model/cost are not observed by this workflow; task software is identified by the pinned catalogue reference and image.",
   ]

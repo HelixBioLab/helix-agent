@@ -279,30 +279,45 @@
       "id": "R3.2",
       "objetivo": "OE3",
       "titulo": "Contador de demanda",
-      "estado": "parcial",
+      "estado": "implementado",
       "codigo": [
         "packages/bioinformatica/src/trp/resources.ts",
-        "packages/bioinformatica/src/trp/workflow.ts",
-        "packages/bioinformatica/src/trp/verify_bundle.py.txt"
+        "packages/bioinformatica/src/trp/enforcement.ts",
+        "script/tesis/trp_sandbox.py"
       ],
       "pruebas": [
         "packages/bioinformatica/test/trp/resources.test.ts",
-        "packages/bioinformatica/test/trp/reference.live.test.ts"
+        "packages/bioinformatica/test/trp/enforcement.test.ts",
+        "script/tesis/audit_resource_runs.py"
       ],
-      "pendiente": "Conteos y estimación reproducibles; 2 tareas simuladas y 2 reales observadas, 6 comandos registrados. Falta cota agregada de almacenamiento, reserva efectiva del controlador y contraste del margen ≤25%. Una cuota estricta solicitada se rechaza explícitamente; no se ha relajado el protocolo F2.",
-      "fase_cierre": "F4 antes de F6",
+      "pendiente": "Ingeniería cerrada para la ruta local admitida: cuota XFS, controlador/tareas cgroup v2 y siete contrastes finales. Permanece evaluación reservada T-RESOURCE de F6; no generalizar siete variantes de 2xqh como proteínas independientes.",
+      "fase_cierre": "F4 ingeniería cerrada; F6 indicador reservado",
       "medicion": {
-        "tipo": "ingenieria_no_evaluacion_reservada",
-        "evidencia": "docs/tesis/evidencia/fase4.json",
-        "reserva_evaluada": false
-      }
+        "tipo": "referencia_tecnica_no_evaluacion_empirica",
+        "ejecuciones_finales": 7,
+        "sobrepasos_presupuesto": 0,
+        "subestimaciones_observadas_finales": 0,
+        "margen_mediano": 0.13538732394366204,
+        "subestimaciones_desarrollo_anteriores_conservadas": 2,
+        "evidencia": "docs/tesis/evidencia/r32.json"
+      },
+      "evidencia": [
+        "packages/bioinformatica/src/trp/resources.ts",
+        "packages/bioinformatica/src/trp/enforcement.ts",
+        "script/tesis/trp_sandbox.py",
+        "docs/tesis/evidencia/r32.json",
+        "docs/tesis/R3.2-RECURSOS.md"
+      ]
     },
     {
       "id": "R3.3",
       "objetivo": "OE3",
       "titulo": "Rechazo tipificado de admisión",
       "estado": "implementado",
-      "codigo": ["packages/bioinformatica/src/trp/resources.ts", "packages/bioinformatica/src/trp/workflow.ts"],
+      "codigo": [
+        "packages/bioinformatica/src/trp/resources.ts",
+        "packages/bioinformatica/src/trp/workflow.ts"
+      ],
       "pruebas": [
         "packages/bioinformatica/test/trp/resources.test.ts",
         "packages/bioinformatica/test/trp/admission.test.ts"
@@ -518,7 +533,9 @@
       "objetivo": "OE5",
       "titulo": "Sensibilidad y especificidad",
       "estado": "parcial",
-      "codigo": ["script/tesis/audit_pratt_recoverability.py"],
+      "codigo": [
+        "script/tesis/audit_pratt_recoverability.py"
+      ],
       "pruebas": [],
       "pendiente": "F2 conserva sensibilidad ≥80%, especificidad ≥90% y cobertura ≥90%. Se recuperaron 78 filas de predicciones de Pratt, sin coordenadas/PAE en el paquete descargado: cero modelos originales ejecutados, tasas sin calcular. Recuperar modelos y etiquetas, controles pertinentes independientes y separar desarrollo antes de F6.",
       "fase_cierre": "F6",

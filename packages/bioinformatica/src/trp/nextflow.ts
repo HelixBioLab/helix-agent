@@ -6,6 +6,7 @@ import { TrpCatalog } from "./catalog"
 import { TrpSpecification as S } from "./specification"
 import { TrpGraph } from "./graph"
 import { TrpStructural } from "./structural"
+import { TrpEnforcement } from "./enforcement"
 
 export interface Bundle {
   spec: S.Specification
@@ -31,6 +32,7 @@ export const dryCommand = [...command, "-stub-run"] as const
 
 /** A caller-provided evidence root makes verification work from a copied checkout too. */
 export async function prepare(raw: unknown, evidenceRoot: string, workspace: string): Promise<Bundle> {
+  const enforced = await TrpEnforcement.observe(workspace)
   const spec = S.parse(raw)
   const file = await fs.realpath(path.resolve(workspace, spec.structure.value.path))
   const base = await fs.realpath(workspace)
@@ -163,13 +165,14 @@ process.time = '3 min'
 process.errorStrategy = 'terminate'
 process.maxRetries = 0
 process.maxForks = 1
-docker.enabled = true
-docker.runOptions = '--entrypoint="" --user $(id -u):$(id -g) --network none --read-only --cap-drop ALL --security-opt no-new-privileges --pids-limit 128 --cpus 2 --tmpfs /tmp:rw,nosuid,size=256m'
+${enforced ? "executor.cpus = 2\nexecutor.memory = '2 GB'\n" : ""}docker.enabled = true
+docker.runOptions = '--entrypoint="" --user $(id -u):$(id -g) --network none --read-only --cap-drop ALL --security-opt no-new-privileges --pids-limit 128 --cpus 2 --tmpfs /tmp:rw,nosuid,size=256m${enforced ? TrpEnforcement.dockerOptions(enforced.config) : ""}'
 env.OPENBLAS_NUM_THREADS = '1'
 env.OMP_NUM_THREADS = '1'
 env.MKL_NUM_THREADS = '1'
 `,
   }
+  if (enforced) files["enforcement.json"] = S.canonical(enforced.config) + "\n"
   const digest = bundleDigest(files)
   return { spec, report: publicReport, files, digest, image }
 }

@@ -1,0 +1,150 @@
+{
+  "phase": "R3.2",
+  "date": "2026-09-15",
+  "replace_sections": [
+    {
+      "heading": "R3.2. Contador de demanda",
+      "paragraph_count": 4,
+      "blocks": [
+        {
+          "text": "El contador distingue los canales de entrada de las tareas ejecutables: prevé dos tareas simuladas y dos reales, sin reintentos ni llamadas científicas remotas. Las trazas y los eventos Docker contrastan estas cantidades; se conservan además los seis comandos del controlador. El contador no incluye como llamadas científicas la conversación con el proveedor ni las consultas del supervisor de recursos.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Sean B los bytes UTF-8 del paquete generado antes de añadir admisión y P los bytes de la estructura seleccionada. El estimador trp-resources/1.2.0 calcula 12 × 1048576 + 7B + 4P bytes y redondea hacia arriba a un múltiplo de 4096. El coeficiente considera la entrada original, las copias materializadas y la exportación que convierte enlaces de Nextflow en archivos. La fórmula se reproduce en frío desde los artefactos; sigue siendo una estimación, mientras que la cuota aprobada constituye el límite efectivo.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Un ejecutor de operador crea un sistema XFS privado con cuota agregada de proyecto para trabajo, registros, caché de ejecución y copia portable. El controlador tiene un límite de 1 CPU y 2 GiB, las tareas secuenciales de 2 CPU y 2 GiB y el grupo completo de 3 CPU y 4 GiB, sin swap. La jerarquía cgroup v2 incluye los contenedores lanzados por Docker y configura protección de memoria. La cuota de CPU no promete núcleos exclusivos. Una exigencia de límite estricto se rechaza fuera de una asignación comprobada.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "Se cerró la verificación de ingeniería en una segunda estación Linux de 8 CPU lógicas y 16 670 982 144 bytes de RAM. La serie final incluyó siete ejecuciones con variaciones de tamaño de 2xqh/A: todas reprodujeron el CSV y los conteos previstos, sin sobrepasos de presupuesto ni subestimaciones observadas; el margen mediano fue 13,54%. El máximo de memoria del grupo fue 683 126 784 bytes y la mayor duración observada 38,484 segundos. Estos valores corresponden a desarrollo y no a proteínas independientes ni al corpus reservado T-RESOURCE.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "La primera serie conservada detectó dos subestimaciones al no contar todas las copias de origen. Se corrigió el contador y se fijaron nuevos tamaños antes de ejecutarlos, sin cambiar los umbrales F2. Las pruebas de presión comprobaron agotamiento agregado de archivos, limitación de CPU y terminación OOM de un proceso hijo. Se conservan las observaciones, ambas congelaciones, resultados anteriores y verificadores en el repositorio; el anexo A.20 precisa su ámbito.",
+          "kind": "paragraph"
+        },
+        {
+          "text": "NOTA PARA EL AUTOR. Mantener separadas las pruebas de ingeniería y la evaluación reservada. El máximo de disco se obtiene mediante muestreo, mientras la cuota actúa en el kernel; no afirmar que el muestreo mide todos los picos. La garantía corresponde a bloques asignados dentro del proyecto XFS y excluye la infraestructura compartida declarada. Todavía debe ejecutarse la campaña T-RESOURCE de 40 escenarios.",
+          "kind": "note"
+        }
+      ]
+    }
+  ],
+  "replace_paragraphs": [
+    {
+      "old": "Las comprobaciones del paquete se repiten antes y después de ejecutar. F4 añade inventario, presupuesto revisado y protocolo al contenido protegido, junto con nuevas observaciones de recursos. La garantía corresponde a la ruta TRP integrada; el agente general conserva herramientas de shell y edición. No se afirma aislamiento absoluto ni cuota agregada de disco.",
+      "new": "Las comprobaciones del paquete se repiten antes y después de ejecutar. F4 añade inventario, presupuesto revisado y protocolo al contenido protegido; el cierre R3.2 incorpora cuota XFS y límites cgroup v2 comprobados y enlazados a la aprobación. La garantía corresponde a la ruta TRP dentro de una asignación de operador. El agente general conserva herramientas de shell y edición; no se afirma aislamiento absoluto frente a código arbitrario."
+    },
+    {
+      "old": "Se mantienen pendientes la autenticación externa de las fuentes, la detección admitida de repeticiones y la anotación independiente. F4 añadió la admisión y declaró la ausencia de cuota estricta; F5 añade el reporte estructural obligatorio para la ruta experimental y una inspección separada de mmCIF/AFDB con pLDDT/PAE. Un control no evaluable no cuenta como aprobado. La verificación del CSV exige identidad, límites y número de unidades, valores finitos, escala de TM-score, primera fila de relleno y resúmenes etiquetados.",
+      "new": "Se mantienen pendientes la autenticación externa de las fuentes, la detección admitida de repeticiones y la anotación independiente. F4 añadió admisión y proveniencia; el cierre R3.2 habilita límites estrictos dentro de una asignación comprobada. F5 añade el reporte estructural de la ruta experimental y la inspección separada mmCIF/AFDB con pLDDT/PAE. Un control no evaluable no cuenta como aprobado. La verificación del CSV exige identidad, límites, cantidad de unidades, valores finitos, escala TM-score, relleno inicial y resúmenes etiquetados."
+    },
+    {
+      "old": "F4 completa una primera implementación de admisión y proveniencia para la ruta geométrica local. Siguen abiertos la cuota agregada y la reserva efectiva del controlador, la ampliación del catálogo y de los mapeos, los controles estructurales y la evaluación reservada. Se mantiene julio de 2027 para la sustentación y el 4 de junio de 2027 como objetivo del borrador completo.",
+      "new": "F4 completa una primera implementación de admisión y proveniencia para la ruta geométrica local. Su cierre de ingeniería R3.2 añade cuota agregada y límites del controlador/tareas con siete contrastes posteriores a la corrección del estimador. Permanecen pendientes ampliación del catálogo, mapeos, cobertura estructural del dominio y evaluación reservada. Se mantiene julio de 2027 para la sustentación y el 4 de junio de 2027 como objetivo del borrador completo."
+    },
+    {
+      "old": "Las cinco fases desarrolladas construyen una base verificable, un catálogo inicial, composición aprobada, admisión de recursos con límites explícitos y controles estructurales por instancia. La ruta local enlaza entradas, contratos, presupuesto, controles y ejecución con una copia verificable sin el agente. F4 conserva abierta la garantía estricta de recursos y F5 no certifica plausibilidad física ni cobertura completa del dominio. El cumplimiento empírico de los cinco objetivos sigue sujeto a la campaña reservada.",
+      "new": "Las cinco fases desarrolladas construyen una base verificable, un catálogo inicial, composición aprobada, admisión de recursos y controles estructurales por instancia. La ruta local enlaza entradas, contratos, presupuesto y ejecución con una copia verificable sin el agente. El cierre R3.2 comprueba cuota y límites efectivos en una segunda estación. F5 no certifica plausibilidad física ni cobertura completa del dominio. El cumplimiento empírico de los objetivos sigue sujeto a la campaña reservada."
+    },
+    {
+      "old": "Respecto del OE3, se implementaron inventarios fechados, conteos, estimaciones y negativas previas a ejecutar; siguen pendientes la cuota agregada, la reserva efectiva del controlador y el contraste empírico de decisiones. Respecto del OE4, el paquete incluye artefactos de ejecución, eventos, controles y métodos verificables en frío; el acuerdo y la cobertura externos requieren evaluación independiente. Respecto del OE5, se implementaron lectura semántica y controles de marcos, escalas, cobertura y confianza con referencias de desarrollo. Su capacidad para detectar los fallos físicos publicados y su desempeño reservado permanecen sin medir.",
+      "new": "Respecto del OE3, se implementaron inventarios fechados, conteos, estimaciones, negativas y límites efectivos de almacenamiento, controlador y tareas; su contraste reservado sigue pendiente. Respecto del OE4, el paquete conserva artefactos, eventos, controles y métodos verificables en frío; acuerdo y cobertura externos requieren evaluación independiente. Respecto del OE5, se implementaron lectura semántica y controles de marcos, escalas, cobertura y confianza con referencias de desarrollo. La detección de fallos físicos publicados y el desempeño reservado permanecen sin medir."
+    },
+    {
+      "old": "Permanecen pendientes la ampliación del catálogo, los mapeos con SIFTS/UniProt y la ejecución admitida sobre modelos predichos, las cuotas y reservas efectivas de recursos y la evaluación reservada. F4 implementó inventario observado, presupuesto explícito y manifiesto portable (A.18); F5 incorpora inspección semántica, confianza y controles por instancia (A.19). STRPsearch continúa candidato: su admisión requiere revisar la transformación, los contratos y la propagación de fallos.",
+      "new": "Permanecen pendientes ampliación del catálogo, mapeos SIFTS/UniProt, ejecución admitida sobre modelos predichos y evaluación reservada. F4 implementó inventario, presupuesto y copia portable (A.18); F5 incorpora inspección semántica y controles (A.19); el cierre R3.2 implementa límites de recursos y contraste de ingeniería (A.20). STRPsearch continúa candidato: su admisión requiere revisar transformación, contratos y propagación de fallos."
+    },
+    {
+      "old": "El caso de ingeniería autoriza una reserva de tres CPU, 4 GiB, 256 MiB de trabajo y 1080 segundos, y declara requireHardStorageLimit=false. Son valores de esa prueba local; no fijan el presupuesto de API ni los recursos de la campaña de tesis. La solicitud de cuota estricta devuelve una negativa tipificada porque esta ruta no puede imponerla.",
+      "new": "El caso inicial de F4 autorizó tres CPU, 4 GiB, 256 MiB de trabajo y 1080 segundos con requireHardStorageLimit=false. Son valores históricos de esa prueba, no el presupuesto de API de la tesis. El cierre posterior R3.2 añade asignaciones estrictas verificadas y ensayos con cuotas de 24 a 80 MiB; una solicitud estricta sin asignación comprobada continúa produciendo una negativa tipificada."
+    },
+    {
+      "old": "NOTA PARA EL AUTOR. Ilustración propia recomendada: diagrama que conecte inventario, demanda, protocolo, aprobación y paquete de evidencias, señalando las dos observaciones posteriores de recursos. El esquema y el pseudocódigo se conservan en docs/tesis/F4-ADMISION.md. Mantener como pendientes de la tesis las cuotas, mapeos y evaluación; no trasladarlos a trabajos futuros para dar por cerrado el alcance.",
+      "new": "NOTA PARA EL AUTOR. Ilustración propia recomendada: conectar inventario, demanda, protocolo, aprobación, grupos de controlador/tareas, cuota y evidencias, señalando las reobservaciones. Los métodos se conservan en docs/tesis/F4-ADMISION.md y docs/tesis/R3.2-RECURSOS.md. Mantener pendientes los mapeos, ampliación del dominio y evaluación; no trasladarlos a trabajos futuros para dar por cerrado el alcance."
+    },
+    {
+      "old": "Para A observaciones atómicas, R residuos solicitados y una matriz PAE de n×n, el costo dominante es O(A + R + n²) en los casos admisibles, con almacenamiento O(A + R + n²). La verificación de intervalos no solapados evita contar pares más de una vez por sentido. El parser, los programas científicos y los datos se identifican por versión y hash; estos límites algorítmicos no resuelven la cuota agregada ni la reserva efectiva del controlador que siguen abiertas en R3.2.",
+      "new": "Para A observaciones atómicas, R residuos solicitados y una matriz PAE de n×n, el costo dominante es O(A + R + n²), con almacenamiento O(A + R + n²). Verificar intervalos no solapados evita contar pares repetidos por sentido. Parser, programas y datos se identifican por versión y hash. Estos límites algorítmicos se distinguen de los límites operativos XFS/cgroup v2 incorporados en R3.2; no predicen por sí solos el consumo de una estructura."
+    },
+    {
+      "old": "Los casos 2xqh y P69905 y sus perturbaciones pertenecen a desarrollo. Los resultados técnicos, incluidas las alarmas esperadas, no se mezclan con T-STRUCT. Se mantienen sin calcular sensibilidad, especificidad y acuerdo externo. La ampliación del catálogo, los mapeos pendientes y las garantías estrictas de recursos se conservan como requisitos previos a F6.",
+      "new": "Los casos 2xqh y P69905 y sus perturbaciones pertenecen a desarrollo. Esto incluye las variaciones de tamaño usadas para recursos: no se mezclan con los conjuntos reservados. Se mantienen sin calcular sensibilidad, especificidad y acuerdo externo. La ampliación del catálogo, los mapeos y la cobertura estructural pendiente siguen siendo requisitos para la medición dependiente de F6. Las garantías operativas de R3.2 se documentan en A.20."
+    },
+    {
+      "old": "El inventario representa capacidad compartida del anfitrión, no una reserva exclusiva ni un derecho de uso de cgroups. La disponibilidad del contenedor y la versión de Nextflow se comprueban por separado. Las llamadas y el costo del proveedor del agente quedan fuera de esta medición; su presupuesto de evaluación sigue pendiente.",
+      "new": "En la ruta ordinaria, el inventario representa capacidad compartida del anfitrión limitada por los cgroups heredados. En una asignación estricta verificada, registra la capacidad total asignada al flujo y la distingue de su consumo actual; no resta de nuevo los recursos ya consumidos por ese mismo flujo en las reobservaciones. Contenedor y versión Nextflow se comprueban por separado. Las llamadas y el coste del proveedor quedan fuera de esta medición; su presupuesto de evaluación sigue pendiente."
+    }
+  ],
+  "engineering": [
+    {
+      "text": "Cierre de ingeniería de R3.2",
+      "kind": "heading"
+    },
+    {
+      "text": "La segunda estación reproduce el flujo con límites reales y permite ensayos de presión sin contratar nube. La serie final satisface los criterios de desarrollo: siete ejecuciones, cero sobrepasos y subestimaciones observadas, cuatro tareas por ejecución y margen mediano 13,54%. La revisión conserva también las dos subestimaciones de la serie anterior y su corrección. Los artefactos, congelaciones y auditoría se encuentran en evaluation/trp/reference/resources-r32 y docs/tesis/evidencia/r32.json.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "El cierre elimina la deuda de implementación de cuota y controlador. No sustituye la evaluación reservada, el anotador, los datos originales de Pratt ni los contratos pendientes de F5. La segunda estación es un anfitrión local accesible por SSH; no se declara como clúster.",
+      "kind": "paragraph"
+    }
+  ],
+  "appendix": [
+    {
+      "text": "A.20. Cuotas y verificación de recursos de R3.2",
+      "kind": "heading"
+    },
+    {
+      "text": "A.20.1. Asignación y comprobación",
+      "kind": "subheading"
+    },
+    {
+      "text": "El operador crea una imagen XFS propia y un proyecto con cuota en un directorio nuevo. Sólo se monta esa imagen; no se alteran cuotas personales. La asignación usa un grupo padre cgroup v2, un servicio de controlador y un subgrupo de tareas Docker. Se comprueban límites, protección de memoria, ausencia de swap, pertenencia del proceso, identidad del dispositivo y cuota fechada. El estado del supervisor debe pertenecer a root y no ser modificable por el usuario; un argumento del modelo no lo sustituye.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Cada asignación permite una preparación. El archivo enforcement.json y las opciones Docker se incluyen en el contenido aprobado, y las observaciones se repiten al ejecutar. Sin entorno estricto se conserva la ruta ordinaria, cuya estimación no concede una cuota. Las distribuciones, imágenes precargadas y el servicio Docker son infraestructura compartida identificada por separado. El supervisor requiere privilegios de operador y no se instala como ejecutable setuid.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.20.2. Series, corrección y resultados",
+      "kind": "subheading"
+    },
+    {
+      "text": "Tras una calibración se fijó una serie de seis tamaños. Dos revelaron subestimación, sin exceder sus cuotas. Se identificaron cuatro copias de origen dentro de la evidencia, incluidas las que provienen de enlaces de los dos recorridos. El contador corregido contempla siete posibles copias en total, incluyendo las entradas materializadas y el original. Se archivó la fórmula anterior y se congeló otra serie antes de medirla; no se cambiaron los criterios F2.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "La serie final utiliza siete variaciones de una misma estructura experimental 2xqh/A, con registros REMARK que aumentan el tamaño sin alterar coordenadas. Todas producen el mismo CSV SHA-256 7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f. Se observaron cuatro contenedores por ejecución, dos tareas simuladas y dos reales. Las cuotas fueron de 24, 24, 32, 40, 48, 64 y 80 MiB. El margen mediano final fue 13,54%, sin subestimaciones observadas ni sobrepasos.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Los máximos muestreados de almacenamiento oscilaron entre 18 546 688 y 62 586 880 bytes. El máximo de memoria del grupo fue 683 126 784 bytes; la duración máxima fue 38,484 segundos. Los contadores, fechas, límites y presupuestos se conservan por ejecución. La inspección de Docker comprueba padre cgroup, límite de memoria, CPU y registros. La auditoría usa código confiable del repositorio y verifica manifiestos, enlaces declarados y conteos sin red.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "A.20.3. Presión, límites de interpretación y reproducción",
+      "kind": "subheading"
+    },
+    {
+      "text": "Las pruebas intencionales escriben alternadamente en dos archivos hasta agotar una cuota de 8 MiB, ejecutan cuatro procesos de CPU bajo un límite de una CPU y asignan memoria a un proceso hijo hasta que el kernel lo termina. El contador OOM registra una terminación y el máximo de memoria del controlador alcanza 2 147 483 648 bytes. Son verificaciones de mecanismos; no se presentan como análisis científicos fallidos o aciertos biológicos.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "El máximo de disco es muestreado, no un contador exacto de todos los picos. La cuota del kernel limita bloques asignados de todo el proyecto independientemente de ese muestreo. Los límites no prometen rendimiento exclusivo ni aislamiento frente a comandos arbitrarios del agente general. Los siete casos son variaciones de desarrollo de una proteína, no siete proteínas independientes. La evaluación reservada T-RESOURCE mantiene 40 escenarios y no se declara realizada.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "Reproducción: python3 script/tesis/audit_resource_runs.py. Los archivos cerrados y sus SHA-256 constan en evaluation/trp/reference/resources-r32/archives.json; las fórmulas y el orden previo se conservan en freeze-v1.json y freeze.json. Fuentes técnicas: documentación cgroup v2 del kernel Linux, https://docs.kernel.org/admin-guide/cgroup-v2.html; manual xfs_quota, https://www.man7.org/linux/man-pages/man8/xfs_quota.8.html; documentación Docker, https://docs.docker.com/engine/containers/run/.",
+      "kind": "paragraph"
+    },
+    {
+      "text": "NOTA PARA EL AUTOR. Figura propia sugerida: jerarquía del grupo agregado, controlador y tareas, con el proyecto XFS compartido y los puntos de observación. Para la evaluación final, graficar estimación frente a máximo observado e incluir todas las subestimaciones y casos no ejecutados. No usar la referencia de ingeniería como sustituto de la reserva de F6.",
+      "kind": "note"
+    }
+  ]
+}

@@ -4,18 +4,15 @@
 
 Se implementan H5.1–H5.4 en el ámbito mecánico: catálogo, lectura semántica, controles y reporte por instancia. `trp_inspect` inspecciona mmCIF/PDB y PAE de AFDB; `trp_prepare` incorpora automáticamente los controles de la ruta experimental PDB al digest aprobado. El motor pasa a `trp-nextflow/1.2.0`.
 
-**La validez biológica no queda establecida por pasar estos controles.** Los modos sin evidencia o método aplicable se conservan como `not_evaluable`. La ejecución de geometría sobre modelos predichos, SIFTS/UniProt, ampliación del catálogo y garantías estrictas de F4 siguen pendientes antes de F6. No se declara cerrada la cobertura del dominio completo.
+**La validez biológica no queda establecida por pasar estos controles.** Los modos sin evidencia o método aplicable se conservan como `not_evaluable`. La ejecución de geometría sobre modelos predichos, SIFTS/UniProt, ampliación del catálogo siguen pendientes antes de la medición dependiente de F6; las garantías operativas de F4 ya se incorporaron en el cierre R3.2. No se declara cerrada la cobertura del dominio completo.
 
-### Qué falta exactamente en R3.2 de F4
+### Cierre posterior de R3.2 de F4
 
-| Componente  | Implementado                                              | Pendiente                                                                            |
-| ----------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Tareas      | Dos simuladas y dos reales, sin reintentos                | Contraste reservado del corpus                                                       |
-| Disco       | Estimación `64 MiB + 4B + 4P`; observaciones de capacidad | Cuota agregada de trabajo, registros, caché y exportación que detenga el crecimiento |
-| Controlador | Se cuenta 1 CPU y 2 GiB adicionales a las tareas          | Reserva/límite efectivo de CPU y memoria del controlador de Nextflow                 |
-| Margen      | Fórmula reproducible en frío                              | Medición del consumo máximo y de la sobreestimación mediana, objetivo ≤25%           |
-
-Es **deuda de implementación y evaluación**, documentada en R3.2 y A.18 del Word. No falta una corrección del documento ni una respuesta del autor para programar esas garantías. El anotador y el clúster no bloquean su implementación local. La fase anterior limitó su alcance inicial; F5 avanza por indicación del usuario conservando esa deuda. Una solicitud de cuota estricta continúa produciendo `storage-quota-unavailable`.
+Se incorporó cuota XFS privada y jerarquía cgroup v2 con límites del controlador,
+tareas y grupo agregado. Siete contrastes finales reproducen geometría y conteos,
+sin sobrepasos ni subestimaciones observadas; margen mediano 13,54%. Los errores
+de la primera serie permanecen archivados. La reserva T-RESOURCE sigue pendiente.
+[Implementación, ensayos y límites](R3.2-RECURSOS.md).
 
 ## Inventario fijo inicial
 
@@ -46,7 +43,7 @@ El [algoritmo LaTeX](algoritmo-fase5.tex) formaliza el procedimiento. Su impleme
 5. `summary`: distingue `fail`, `not_evaluable` y `not_applicable`. `mechanicalAdmission` requiere cero fallos y evaluación suficiente de escala/filtro/PAE exigibles. `biologicalValidity` permanece `not_established`.
 6. `inspectFiles`: guarda bytes originales, opciones, reporte, catálogo, programas y manifiesto. `nextflow.prepare`: añade reporte, catálogo y programa al digest para la ruta experimental, revalidada después de aprobar.
 
-Para A observaciones, R posiciones solicitadas y PAE n×n, el costo dominante admisible es O(A+R+n²), con memoria del mismo orden. Los bloques entre unidades disjuntas no aumentan ese orden. Límites operativos: archivo ≤20 MB, solicitud JSON ≤40 MB, salida del parser ≤5 MB, 30 s; hasta 200 000 átomos mmCIF, 10 000 posiciones solicitadas y PAE de hasta 2 000 residuos. No equivalen a una cuota de memoria/disco; R3.2 sigue abierto.
+Para A observaciones, R posiciones solicitadas y PAE n×n, el costo dominante admisible es O(A+R+n²), con memoria del mismo orden. Los bloques entre unidades disjuntas no aumentan ese orden. Límites operativos: archivo ≤20 MB, solicitud JSON ≤40 MB, salida del parser ≤5 MB, 30 s; hasta 200 000 átomos mmCIF, 10 000 posiciones solicitadas y PAE de hasta 2 000 residuos. Estos límites del parser no equivalen a una cuota del flujo. R3.2 ya incorpora una asignación XFS/cgroup v2 independiente para la ruta de ejecución; véase el informe de cierre.
 
 ```mermaid
 sequenceDiagram

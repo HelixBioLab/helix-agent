@@ -13,7 +13,7 @@ describe("resource admission, development contrasts", () => {
     expect(demand.sourceBytes).toBe(3)
     expect(demand.bundleBytes).toBe(20)
     expect(demand.counts).toEqual({ scientificTasks: 2, stubTasks: 2, remoteScientificCalls: 0, retries: 0 })
-    expect(demand.workBytes).toBe(64 * 1048576 + 4 * 20 + 4 * 5)
+    expect(demand.workBytes).toBe(Math.ceil((12 * 1048576 + 7 * 20 + 4 * 5) / 4096) * 4096)
     expect(demand.storage.hardLimit).toBe(false)
   })
   test("exact threshold accepted and inventory hash is deterministic", () => {

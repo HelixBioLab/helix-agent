@@ -1,0 +1,59 @@
+{
+  "version": "trp-resource-freeze/1.0.0",
+  "frozenAt": "2026-09-15T23:57:05.085402+00:00",
+  "partition": "development; all 2xqh variants excluded from F6",
+  "formula": "ceil((14*1048576 + 5*bundleBytes + 4*selectionBytes)/4096)*4096",
+  "previousFormula": "64*1048576 + 4*bundleBytes + 4*selectionBytes",
+  "calibration": {
+    "id": "calibration-03",
+    "sampledPeakAllocatedBytes": 18157568,
+    "observationSha256": "5b1c6fa2ea23b5eca7f35b326df13e256281aeb448b67b8d2c1c7d27ee0270ed",
+    "setupAttempts": [
+      "calibration-01: Nextflow saw controller CPU budget instead of the separate task budget; refused before tasks",
+      "calibration-02: successful but test exporter duplicated evidence; corrected before final calibration"
+    ]
+  },
+  "contrastsBeforeObservation": [
+    {
+      "id": "validation-01",
+      "remarkTargetBytes": 0,
+      "quotaMiB": 24
+    },
+    {
+      "id": "validation-02",
+      "remarkTargetBytes": 131072,
+      "quotaMiB": 24
+    },
+    {
+      "id": "validation-03",
+      "remarkTargetBytes": 524288,
+      "quotaMiB": 32
+    },
+    {
+      "id": "validation-04",
+      "remarkTargetBytes": 1048576,
+      "quotaMiB": 32
+    },
+    {
+      "id": "validation-05",
+      "remarkTargetBytes": 2097152,
+      "quotaMiB": 48
+    },
+    {
+      "id": "validation-06",
+      "remarkTargetBytes": 4194304,
+      "quotaMiB": 64
+    }
+  ],
+  "pressureProbes": [
+    "aggregate two-file XFS exhaustion",
+    "four CPU burners under one-CPU controller limit",
+    "child memory allocation until kernel OOM"
+  ],
+  "sourceHashes": {
+    "packages/bioinformatica/src/trp/resources.ts": "4c6e4fa9b451b8ce5ebe225ccb1bd3f9c33f6fb45cfd3b289abced0ba0922b70",
+    "script/tesis/trp_sandbox.py": "433c899cea3e948de6ec26bd42be1f26c93ebc6ff600529c2f47ae01e8fff7fe",
+    "packages/bioinformatica/test/trp/reference.live.test.ts": "884b39632265b7cc79ffd7a0e3bc6b215e5bf0755e98a0a9322a5428f9d6f4a7"
+  },
+  "thresholdsUnchanged": true
+}

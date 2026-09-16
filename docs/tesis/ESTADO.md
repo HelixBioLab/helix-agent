@@ -1,11 +1,15 @@
 # Estado del cierre
 
+## Cierre de R3.2 — 15 de septiembre de 2026
+
+Motor actual `trp-nextflow/1.3.0`; contador `trp-resources/1.2.0`. Implementación, ensayos y Word actualizados. [Informe](R3.2-RECURSOS.md), [auditoría](evidencia/r32.json) y [decisiones pendientes](DECISIONES-PENDIENTES.md). No se usó API de modelos ni nube. Regresión: 482 pruebas correctas y una referencia externa omitida por defecto; referencia real ejecutada por separado. Auditoría portable: 266/266 alteraciones detectadas. Word: 135 páginas, anexo A.20 y 33 notas rojas en cursiva.
+
 Actualizado: 15 de septiembre de 2026.
 
 ## Fase 5: controles implementados en el alcance inicial
 
 - Catálogo versionado de **nueve controles**, lector mmCIF con Gemmi 0.7.5 y herramienta `trp_inspect`. Cada control conserva valor, umbral y motivo; diferencia fallos, no evaluables y no aplicables. [Método, algoritmo y límites](F5-CONTROLES.md).
-- El motor `trp-nextflow/1.2.0` incorpora automáticamente reporte, catálogo y programa al digest aprobado de la ruta PDB experimental, y a los métodos/manifiesto. La inspección de modelos predichos no los admite a GeomeTRe ni certifica su plausibilidad.
+- En F5, el motor `trp-nextflow/1.2.0` incorporó automáticamente reporte, catálogo y programa al digest aprobado de la ruta PDB experimental, y a los métodos/manifiesto. La inspección de modelos predichos no los admite a GeomeTRe ni certifica su plausibilidad.
 - Referencias reales 2xqh/mmCIF y AF-P69905-F1 v6 con API y PAE. P69905 prueba confianza y ejes mediante intervalos artificiales; no es anotación de repeticiones. Ambos casos y sus perturbaciones son desarrollo excluido de T-STRUCT.
 - **478 pruebas de regresión correctas, una referencia omitida por defecto, cero fallos; 35 pruebas estructurales Python correctas.** La referencia real de Nextflow pasó por separado y conserva el CSV de 12 unidades. Su copia contiene **127 archivos; 262/262 fallos de integridad detectados**. [Evidencia F5](evidencia/fase5.json).
 - Auditoría de Pratt: 78 filas de predicciones publicadas en los suplementos; **cero archivos de coordenadas/PAE originales encontrados en el paquete descargado, cero modelos originales ejecutados**. Las filas no son etiquetas de fallo verificadas. Sensibilidad y especificidad permanecen sin calcular. [Auditoría de recuperación](../../evaluation/trp/reference/structural-f5/pratt/recoverability.json).
@@ -13,9 +17,9 @@ Actualizado: 15 de septiembre de 2026.
 
 **F5 no cierra la cobertura del dominio completo ni habilita todavía F6.** Persisten la ejecución admitida sobre modelos predichos, SIFTS/UniProt, detección, interpretación completa de constructos y evaluación independiente de fallos físicos. Los modos de ensamblaje y plausibilidad son explícitamente no evaluables con esta batería. La falta de archivos originales de Pratt es una dependencia de recuperación, no una tasa de acierto.
 
-**R3.2 es deuda de implementación y evaluación, no de redacción.** El documento ya la registra: falta cuota agregada de disco, reserva efectiva del controlador y medir el margen del estimador. No hay una respuesta pendiente del autor que impida programarlo; anotador y clúster no bloquean esa implementación local. Se avanzó a F5 por indicación del usuario, conservando esos requisitos antes de F6. [Detalle por componente](F5-CONTROLES.md#qué-falta-exactamente-en-r32-de-f4).
+**R3.2 tiene la implementación y verificación de ingeniería completas.** La segunda PC ejecutó siete contrastes finales con cuota XFS y límites cgroup v2 de controlador/tareas: cero sobrepasos y subestimaciones observadas, margen mediano 13,54%. Se conservan dos subestimaciones de la primera serie y la corrección previa a la segunda. La evaluación reservada T-RESOURCE sigue pendiente. [Evidencia y ámbito](R3.2-RECURSOS.md).
 
-## Fase 4: implementación inicial; R3.2 sigue abierto
+## Fase 4: implementación de ingeniería completa; evaluación reservada pendiente
 
 - Inventario fechado, presupuesto explícito para revisión y negativas por recurso integrados en `trp_prepare`/`trp_run`. Se reobservan recursos después de aprobar y antes del análisis real. El estado y las restricciones del protocolo forman parte del contenido protegido. [Diseño y límites](F4-ADMISION.md).
 - Copia portable de todos los archivos de ejecución, verificador Python independiente, eventos con causas y métodos por plantilla. Referencia final: **121 archivos; 250/250 fallos inyectados detectados**. [Auditoría](evidencia/portable-audit-fase4.json).
@@ -23,7 +27,7 @@ Actualizado: 15 de septiembre de 2026.
 - Reglas de intervención en español e inglés, con texto y señales conservados. El acuerdo externo sigue sin medir; los ejemplos de desarrollo no son etiquetas independientes.
 - Word: capítulos 4 y 5 actualizados, anexo A.18, 29 notas rojas en cursiva y cinco capítulos conservados. [Auditoría documental](evidencia/documento-fase4.json).
 
-**La compuerta completa de F4 sigue abierta por R3.2.** La reserva de disco es una estimación, no una cuota; una solicitud de cuota estricta se rechaza. Faltan cuotas/reservas efectivas y contraste del margen, sin cambiar el protocolo F2. F5 puede avanzar con controles estructurales sobre la ruta disponible; este trabajo de F4 sigue siendo requisito antes de F6. R1.1/R2.3, anotador, clúster y modelo/presupuesto de evaluación también permanecen pendientes. Se mantienen julio de 2027 y el borrador objetivo al 4 de junio.
+**Se satisface la compuerta de ingeniería de F4 para la ruta local.** Una solicitud estricta requiere una asignación XFS/cgroup verificada; fuera de ella se rechaza. El protocolo F2 permanece intacto. La cobertura pendiente de F5, R1.1/R2.3, anotador, datos originales y modelo/presupuesto siguen condicionando las mediciones dependientes de F6. La segunda PC no acredita ejecución en clúster. Se mantienen julio de 2027 y el borrador objetivo al 4 de junio. [Requisitos y opciones](DECISIONES-PENDIENTES.md).
 
 ## Fase 3: núcleo completado sobre el catálogo admitido inicial
 

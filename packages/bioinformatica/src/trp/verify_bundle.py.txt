@@ -92,7 +92,7 @@ def verify(root, expected=None):
         return parse((root / 'run' / name).read_bytes())
     # The exact immutable file set is recorded independently from generated logs/results.
     bundle = m['bundle']
-    if bundle['engine'] == 'trp-nextflow/1.2.0':
+    if bundle['engine'] in {'trp-nextflow/1.2.0', 'trp-nextflow/1.3.0'}:
         needed = {'structural_report.json', 'structural_catalogue.json', 'inspect_structure.py'}
         if not needed <= set(bundle['files']):
             raise ValueError('missing approved structural controls')
@@ -116,6 +116,20 @@ def verify(root, expected=None):
         if digest((root / 'run' / name).read_bytes()) != sha:
             raise ValueError('approved bundle changed: ' + name)
     admission, inventory, budget = record('admission.json'), record('inventory.json'), record('budget.json')
+    if 'enforcement' in inventory:
+        enforced = record('enforcement.json')
+        if enforced != inventory['enforcement'] or 'enforcement.json' not in bundle['files']:
+            raise ValueError('unbound resource enforcement')
+        for key in ('cpus', 'memoryBytes', 'workBytes', 'wallSeconds'):
+            if enforced[key] > budget[key]:
+                raise ValueError('enforced limit exceeds approved budget: ' + key)
+        config = (root / 'run/nextflow.config').read_text()
+        for option in ('--cgroup-parent=' + enforced['dockerParent'], '--label=trp.sandbox=' + enforced['id'],
+                       '--memory-swap=2g', '--log-driver=none'):
+            if option not in config:
+                raise ValueError('Docker task allocation missing: ' + option)
+    elif budget['requireHardStorageLimit']:
+        raise ValueError('hard budget without enforcement')
     if admission['inventoryHash'] != digest(canonical(inventory)) or admission['budgetHash'] != digest(canonical(budget)):
         raise ValueError('admission hash links differ')
     d = admission['demand']
@@ -126,7 +140,15 @@ def verify(root, expected=None):
     base = {k: v for k, v in bundle['files'].items() if k not in {'inventory.json', 'budget.json', 'admission.json', 'protocol.json', 'validation.json'}}
     # validation.json is augmented after admission; its original size is recorded in countInputs.
     counted = sum((root / 'run' / k).stat().st_size for k in base) + m['countInputs']['validationBytes']
-    if counted != d['bundleBytes'] or d['workBytes'] != 64*1048576 + 4*d['bundleBytes'] + 4*d['selectionBytes']:
+    if d['version'] == 'trp-resources/1.0.0':
+        estimated = 64*1048576 + 4*d['bundleBytes'] + 4*d['selectionBytes']
+    elif d['version'] in {'trp-resources/1.1.0', 'trp-resources/1.2.0'}:
+        copies, headroom = (5, 14) if d['version'] == 'trp-resources/1.1.0' else (7, 12)
+        numerator = headroom*1048576 + copies*d['bundleBytes'] + 4*d['selectionBytes']
+        estimated = ((numerator + 4095) // 4096) * 4096
+    else:
+        raise ValueError('unknown resource estimator')
+    if counted != d['bundleBytes'] or d['workBytes'] != estimated:
         raise ValueError('cold storage calculation differs')
     if record('specification.json')['structure']['value']['sha256'] != digest((root / 'run/source.pdb').read_bytes()):
         raise ValueError('source identity differs')
@@ -154,6 +176,8 @@ def verify(root, expected=None):
             raise ValueError('run succeeded without accepted validation and admission')
         for name in ['recheck.json', 'analysis-admission.json']:
             r = record(name)
+            if r['inventory'].get('enforcement') != inventory.get('enforcement'):
+                raise ValueError('allocation changed during execution')
             if (not r['decision']['accepted'] or r['decision']['inventoryHash'] != digest(canonical(r['inventory']))
                     or r['decision']['budgetHash'] != admission['budgetHash'] or r['decision']['demand'] != d):
                 raise ValueError('resource recheck differs')
@@ -182,7 +206,7 @@ def verify(root, expected=None):
                         'counts', 'storage estimate', 'status'}
     if run['status'] == 'succeeded':
         required_methods.add('Nextflow version output')
-    if bundle['engine'] == 'trp-nextflow/1.2.0':
+    if bundle['engine'] in {'trp-nextflow/1.2.0', 'trp-nextflow/1.3.0'}:
         required_methods.add('structural controls')
     if not required_methods <= {item['name'] for item in methods['fields']}:
         raise ValueError('methods fields missing')

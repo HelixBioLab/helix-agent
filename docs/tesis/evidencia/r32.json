@@ -1,0 +1,576 @@
+{
+  "version": "trp-resource-audit/1.0.0",
+  "engineeringGatePassed": true,
+  "heldoutEvaluation": false,
+  "thresholdsChanged": false,
+  "metrics": {
+    "n": 7,
+    "successful": 7,
+    "budgetExceeded": 0,
+    "underestimated": 0,
+    "medianRelativeOverestimate": 0.13538732394366204,
+    "medianSignedMargin": 0.13538732394366204,
+    "maxPeakMemoryBytes": 683126784,
+    "maxElapsedSeconds": 38.484,
+    "previousUnderestimatesRetained": 2
+  },
+  "runs": [
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.0.0",
+      "sourceBytes": 359397,
+      "estimatedWorkBytes": 72124648,
+      "sampledPeakWorkBytes": 21381120,
+      "budgetWorkBytes": 134217728,
+      "signedRelativeMargin": 2.37328671276341,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 625594368,
+      "elapsedSeconds": 36.736,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "9f471582ae887ac67346f0fddb5658b65bdd5c86a8e45ee8365c50e9fe7d3e70",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 3970145,
+        "manifestSha256": "9f471582ae887ac67346f0fddb5658b65bdd5c86a8e45ee8365c50e9fe7d3e70",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "calibration-02"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.0.0",
+      "sourceBytes": 359397,
+      "estimatedWorkBytes": 72124648,
+      "sampledPeakWorkBytes": 18157568,
+      "budgetWorkBytes": 134217728,
+      "signedRelativeMargin": 2.97215353950485,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 634769408,
+      "elapsedSeconds": 33.804,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "2a22bbc9435775c376bfd6f8e11bd6e1f32f72d8dcd0237d1eb0233c1b33eb78",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 3970097,
+        "manifestSha256": "2a22bbc9435775c376bfd6f8e11bd6e1f32f72d8dcd0237d1eb0233c1b33eb78",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "calibration-03"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 359397,
+      "estimatedWorkBytes": 20910080,
+      "sampledPeakWorkBytes": 18546688,
+      "budgetWorkBytes": 25165824,
+      "signedRelativeMargin": 0.12742932862190814,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 609935360,
+      "elapsedSeconds": 37.532,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "9e15864c9c030f153f22dc0aeb8e64972d6b54161a1b4538ec915316b914fc45",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 3972812,
+        "manifestSha256": "9e15864c9c030f153f22dc0aeb8e64972d6b54161a1b4538ec915316b914fc45",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "deployment-smoke"
+    },
+    {
+      "kind": "intentional-kernel-limit-probe",
+      "mode": "cpu",
+      "scientificRun": false,
+      "elapsedSeconds": 4.090617571957409,
+      "before": {
+        "usage_usec": 62736,
+        "user_usec": 44812,
+        "system_usec": 17924,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 1,
+        "nr_throttled": 0,
+        "throttled_usec": 0,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "after": {
+        "usage_usec": 4156593,
+        "user_usec": 4130844,
+        "system_usec": 25749,
+        "core_sched.force_idle_usec": 0,
+        "nr_periods": 42,
+        "nr_throttled": 41,
+        "throttled_usec": 12190422,
+        "nr_bursts": 0,
+        "burst_usec": 0
+      },
+      "meanCpus": 1.000791916620316,
+      "passed": true,
+      "sampledPeakWorkBytes": 8192,
+      "id": "pressure-cpu"
+    },
+    {
+      "kind": "intentional-kernel-limit-probe",
+      "mode": "disk",
+      "scientificRun": false,
+      "errno": 28,
+      "message": "[Errno 28] No space left on device",
+      "writtenBytes": 8388608,
+      "passed": true,
+      "sampledPeakWorkBytes": 8388608,
+      "id": "pressure-disk-observed"
+    },
+    {
+      "kind": "intentional-kernel-limit-probe",
+      "mode": "memory",
+      "scientificRun": false,
+      "before": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "after": {
+        "low": 0,
+        "high": 0,
+        "max": 36,
+        "oom": 1,
+        "oom_kill": 1,
+        "oom_group_kill": 0
+      },
+      "childExitCode": -9,
+      "peakBytes": 2147483648,
+      "hardBytes": 2147483648,
+      "passed": true,
+      "sampledPeakWorkBytes": 8192,
+      "id": "pressure-memory"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.1.0",
+      "sourceBytes": 359397,
+      "estimatedWorkBytes": 20799488,
+      "sampledPeakWorkBytes": 18546688,
+      "budgetWorkBytes": 25165824,
+      "signedRelativeMargin": 0.12146643109540634,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 631201792,
+      "elapsedSeconds": 35.301,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "ec095673c858b5b65f257bb351add082611b3f26bbcebc6590da7b2f492b9cac",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 3972405,
+        "manifestSha256": "ec095673c858b5b65f257bb351add082611b3f26bbcebc6590da7b2f492b9cac",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "validation-01"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.1.0",
+      "sourceBytes": 490528,
+      "estimatedWorkBytes": 21454848,
+      "sampledPeakWorkBytes": 19333120,
+      "budgetWorkBytes": 25165824,
+      "signedRelativeMargin": 0.10974576271186431,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 604176384,
+      "elapsedSeconds": 35.338,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "19b4b3bc345f58306a7a7aa8ace9b72211aba2fabf8abbf74b34f0acf07a8405",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 4496875,
+        "manifestSha256": "19b4b3bc345f58306a7a7aa8ace9b72211aba2fabf8abbf74b34f0acf07a8405",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "validation-02"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.1.0",
+      "sourceBytes": 883690,
+      "estimatedWorkBytes": 23420928,
+      "sampledPeakWorkBytes": 21692416,
+      "budgetWorkBytes": 33554432,
+      "signedRelativeMargin": 0.0796827794561934,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 606781440,
+      "elapsedSeconds": 36.124,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "3f0bb2b6471010823a973e7821730d122950c19eb3f104c0ef07612f16dac716",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 6069551,
+        "manifestSha256": "3f0bb2b6471010823a973e7821730d122950c19eb3f104c0ef07612f16dac716",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "validation-03"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.1.0",
+      "sourceBytes": 1407983,
+      "estimatedWorkBytes": 26042368,
+      "sampledPeakWorkBytes": 24838144,
+      "budgetWorkBytes": 33554432,
+      "signedRelativeMargin": 0.048482849604221556,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 587186176,
+      "elapsedSeconds": 37.737,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "ef65a80096a2a3551876b7d3ca0e5dcbbf94ec50f1eedb47019681bf220b2aa8",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 8166706,
+        "manifestSha256": "ef65a80096a2a3551876b7d3ca0e5dcbbf94ec50f1eedb47019681bf220b2aa8",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "validation-04"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.1.0",
+      "sourceBytes": 2456569,
+      "estimatedWorkBytes": 31285248,
+      "sampledPeakWorkBytes": 33538048,
+      "budgetWorkBytes": 50331648,
+      "signedRelativeMargin": -0.06717147044455296,
+      "underestimated": true,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 605790208,
+      "elapsedSeconds": 37.701,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "f591910f8fc4642b1c618d0eb94c1ac84cf291be95577578f012f929add55318",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 12361076,
+        "manifestSha256": "f591910f8fc4642b1c618d0eb94c1ac84cf291be95577578f012f929add55318",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "validation-05"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.1.0",
+      "sourceBytes": 4553741,
+      "estimatedWorkBytes": 41771008,
+      "sampledPeakWorkBytes": 43712512,
+      "budgetWorkBytes": 67108864,
+      "signedRelativeMargin": -0.04441529235382313,
+      "underestimated": true,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 637362176,
+      "elapsedSeconds": 36.837,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "96cc97bf5041d3763e866f9c7763736b9484a4ff851ef9a81f352c1d732ad25e",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 20749708,
+        "manifestSha256": "96cc97bf5041d3763e866f9c7763736b9484a4ff851ef9a81f352c1d732ad25e",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "validation-06"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 359397,
+      "estimatedWorkBytes": 20910080,
+      "sampledPeakWorkBytes": 18546688,
+      "budgetWorkBytes": 25165824,
+      "signedRelativeMargin": 0.12742932862190814,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 609222656,
+      "elapsedSeconds": 37.107,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "d182d75d6d65b3ab580c7a74b76bbf8cd254b4f8e39c8f7d2dac9658f3853eab",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 3972669,
+        "manifestSha256": "d182d75d6d65b3ab580c7a74b76bbf8cd254b4f8e39c8f7d2dac9658f3853eab",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-01"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 621582,
+      "estimatedWorkBytes": 22745088,
+      "sampledPeakWorkBytes": 20119552,
+      "budgetWorkBytes": 25165824,
+      "signedRelativeMargin": 0.13049674267100975,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 601108480,
+      "elapsedSeconds": 37.081,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "b9a31df80e3294e883084b4e29d4618935ef422457bb32bbc2b8e44d0f8d8b7e",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 5021441,
+        "manifestSha256": "b9a31df80e3294e883084b4e29d4618935ef422457bb32bbc2b8e44d0f8d8b7e",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-02"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 1145875,
+      "estimatedWorkBytes": 26415104,
+      "sampledPeakWorkBytes": 23265280,
+      "budgetWorkBytes": 33554432,
+      "signedRelativeMargin": 0.13538732394366204,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 597737472,
+      "elapsedSeconds": 37.301,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "acba14934b8e12e58c37102db42e934db9bdbfa78c89ce258cf8725d92abb43c",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 7118519,
+        "manifestSha256": "acba14934b8e12e58c37102db42e934db9bdbfa78c89ce258cf8725d92abb43c",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-03"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 1932276,
+      "estimatedWorkBytes": 31920128,
+      "sampledPeakWorkBytes": 29888512,
+      "budgetWorkBytes": 41943040,
+      "signedRelativeMargin": 0.06797313964643004,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 612589568,
+      "elapsedSeconds": 36.129,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "3cb59682b10014c0e7815aa3ebdd43907d66e92208b230a1b671b9f04f524fd6",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 10264200,
+        "manifestSha256": "3cb59682b10014c0e7815aa3ebdd43907d66e92208b230a1b671b9f04f524fd6",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-04"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 3505155,
+      "estimatedWorkBytes": 42930176,
+      "sampledPeakWorkBytes": 37421056,
+      "budgetWorkBytes": 50331648,
+      "signedRelativeMargin": 0.1472197898423817,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 631959552,
+      "elapsedSeconds": 38.484,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "02aafafe85c7efcae0258a3f172b38e46ca22ca5a78967726ebf7d495cd098b0",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 16555726,
+        "manifestSha256": "02aafafe85c7efcae0258a3f172b38e46ca22ca5a78967726ebf7d495cd098b0",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-05"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 5602327,
+      "estimatedWorkBytes": 57610240,
+      "sampledPeakWorkBytes": 50003968,
+      "budgetWorkBytes": 67108864,
+      "signedRelativeMargin": 0.15211336828309308,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 683126784,
+      "elapsedSeconds": 38.3,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "89b58d8419e90108c6d7f9311ab02279d60cb8800ec7753eec3bcf94c74af4d5",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 24944335,
+        "manifestSha256": "89b58d8419e90108c6d7f9311ab02279d60cb8800ec7753eec3bcf94c74af4d5",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-06"
+    },
+    {
+      "kind": "workflow",
+      "estimator": "trp-resources/1.2.0",
+      "sourceBytes": 7699499,
+      "estimatedWorkBytes": 72290304,
+      "sampledPeakWorkBytes": 62586880,
+      "budgetWorkBytes": 83886080,
+      "signedRelativeMargin": 0.1550392670157068,
+      "underestimated": false,
+      "budgetExceeded": false,
+      "peakMemoryBytes": 679022592,
+      "elapsedSeconds": 38.158,
+      "containers": 4,
+      "measuredTasks": {
+        "scientificTasks": 2,
+        "stubTasks": 2
+      },
+      "geometrySha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "manifestSha256": "3715dba18894afd7f7c76812d23baac0f40234cad2427e69b1391d7193f31cb9",
+      "offlineVerification": {
+        "ok": true,
+        "files": 129,
+        "bytes": 33333099,
+        "manifestSha256": "3715dba18894afd7f7c76812d23baac0f40234cad2427e69b1391d7193f31cb9",
+        "status": "succeeded",
+        "externallyAnchored": true,
+        "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+      },
+      "id": "verification-07"
+    }
+  ],
+  "limitations": [
+    "Resource engineering contrasts use one development structure and REMARK-size perturbations, not seven independent proteins.",
+    "Storage peaks are samples, not an exact high-water kernel counter. Kernel quota separately enforces the approved budget.",
+    "Quota covers allocated XFS blocks; apparent sparse-file lengths and shared software/image caches are different quantities.",
+    "CPU bandwidth limits are not exclusive cores; memory.min protects used memory subject to kernel hierarchy.",
+    "The reserved 40-scenario T-RESOURCE campaign remains pending."
+  ]
+}
