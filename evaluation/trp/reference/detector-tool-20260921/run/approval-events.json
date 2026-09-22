@@ -1,0 +1,17 @@
+[
+  {
+    "stage": "prepare",
+    "digest": "1456bc7a955f7d1219d207f796f51c7f285b1c7607083633ebd2c0caf16f8983",
+    "channel": "Question.Service",
+    "sessionID": "ses_detector_engineering_reference",
+    "approved": true
+  },
+  {
+    "stage": "run",
+    "digest": "9b2bf0a9d584421e07b38250587782ff56254e54cd750bf2552015324c5d3f13",
+    "channel": "Question.Service",
+    "sessionID": "ses_detector_engineering_reference",
+    "approved": true,
+    "consumed": true
+  }
+]

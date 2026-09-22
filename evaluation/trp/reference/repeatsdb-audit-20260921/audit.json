@@ -1,0 +1,96 @@
+{
+  "retrievedAt": "2026-09-22T03:43:58.773235+00:00",
+  "method": "Read-only official-site schema and current JavaScript bundle inspection; no contacts",
+  "sources": [
+    {
+      "url": "https://repeatsdb.org/api/swagger-ui-init.js",
+      "bytes": 20657,
+      "sha256": "e4eac465aa7e559675260218128fcfdc629e503244b587ec7898ac4fa10b6608"
+    },
+    {
+      "url": "https://repeatsdb.org/407.6ed8712c6197e16c.js",
+      "bytes": 20764,
+      "sha256": "59bb31ea7f389e92784771b8feec819697e3fb755918cc9532928411f7f04399"
+    },
+    {
+      "url": "https://repeatsdb.org/main.7ebe3b5b1d1c03ca.js",
+      "bytes": 315528,
+      "sha256": "3dc88cf39c9b918a8a502c34ad2cc77c39130e2c8b5e6e8ddf89f9ecefbc947b"
+    }
+  ],
+  "license": {
+    "status": "current-site-CC-BY-4.0-confirmed",
+    "page": "https://repeatsdb.org/about/license",
+    "quote": "This work is licensed under a Creative Commons Attribution 4.0 International License.",
+    "apiSpecificDeclaration": false,
+    "interpretation": "Current website carries this notice, not just archived version. OpenAPI info does not separately describe scope for API responses."
+  },
+  "coordinates": {
+    "status": "unresolved",
+    "schemaDescription": "List of loci",
+    "schemaExample": {
+      "start": "0",
+      "end": "100"
+    },
+    "schemaFrameFields": [],
+    "frontendObservation": "Structure parser reads _atom_site.auth_seq_id; this does not establish that production annotation loci share that numbering or chain namespace.",
+    "decision": "No automatic API-to-geometry admission; require explicit coordinate mapping with independently checked identifiers and residue evidence."
+  },
+  "catalogChanged": false,
+  "openApiInfo": {
+    "title": "RepeatsDB & Bio-curation Tool Endpoints",
+    "description": "Complete description of APIs used by RepeastDB and the Bio-curation Tool",
+    "version": "2.0",
+    "contact": {}
+  },
+  "annotationSchema": {
+    "type": "object",
+    "properties": {
+      "loci": {
+        "description": "List of loci",
+        "example": [
+          {
+            "type": "region",
+            "start": "0",
+            "end": "100",
+            "class": "alpha"
+          },
+          {
+            "type": "unit",
+            "start": "0",
+            "end": "10",
+            "parent": 0
+          }
+        ],
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "chain": {
+        "type": "object",
+        "description": "Chain",
+        "example": {
+          "id": "1",
+          "structure": "1a0a",
+          "source": "PDB",
+          "hash": ""
+        }
+      },
+      "comment": {
+        "type": "string"
+      },
+      "features": {
+        "type": "object",
+        "description": "Features of the annotation",
+        "example": {
+          "feature": "value"
+        }
+      }
+    },
+    "required": [
+      "loci",
+      "chain"
+    ]
+  }
+}

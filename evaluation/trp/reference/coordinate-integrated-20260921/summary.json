@@ -1,0 +1,21 @@
+{
+  "status": "succeeded",
+  "kind": "engineering-reference",
+  "approval": "synthetic-test-driver-not-human-annotation",
+  "catalogHash": "f7a75c871095b163f3366fc48a91979b103eb9e72cf5c98c6d66ec73a6fecdd1",
+  "input": "2xqh chain A model 1 / Q9MCI8 via archived SIFTS",
+  "mappedResidues": 206,
+  "units": 12,
+  "geometryExactReference": true,
+  "manifestSha256": "07293b0c40b7dbeac80ea5d6289815cc772c2767fd3dafa22f5fb940e150aaa0",
+  "liveTests": {
+    "pass": 1,
+    "fail": 0
+  },
+  "trpTests": {
+    "pass": 137,
+    "skip": 1,
+    "fail": 0
+  },
+  "scope": "Observed positive integer residues with matching mmCIF/PDB identity, model, chain, CA coordinates and B factors; no insertions/alternate locations, no sequence alignment or inferred offsets; biological performance unmeasured"
+}

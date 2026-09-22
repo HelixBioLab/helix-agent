@@ -7,6 +7,7 @@ import { TrpSpecification as S } from "./specification"
 import { TrpGraph } from "./graph"
 import { TrpStructural } from "./structural"
 import { TrpEnforcement } from "./enforcement"
+import { TrpCoordinates } from "./coordinates"
 
 export interface Bundle {
   spec: S.Specification
@@ -33,7 +34,7 @@ export const dryCommand = [...command, "-stub-run"] as const
 /** A caller-provided evidence root makes verification work from a copied checkout too. */
 export async function prepare(raw: unknown, evidenceRoot: string, workspace: string): Promise<Bundle> {
   const enforced = await TrpEnforcement.observe(workspace)
-  const spec = S.parse(raw)
+  let spec = S.parse(raw)
   const file = await fs.realpath(path.resolve(workspace, spec.structure.value.path))
   const base = await fs.realpath(workspace)
   const relative = path.relative(base, file)
@@ -42,6 +43,8 @@ export async function prepare(raw: unknown, evidenceRoot: string, workspace: str
   if ((await fs.stat(file)).size > 20_000_000)
     throw new S.WorkflowError("input-size", "Legacy PDB input exceeds the 20 MB adapter limit")
   const bytes = await fs.readFile(file)
+  const mapped = await TrpCoordinates.prepare(spec, bytes, workspace)
+  spec = mapped.spec
   const report = TrpGraph.validate(spec, bytes)
   if (!report.valid || !report.selected) throw new S.WorkflowError("invalid-composition", JSON.stringify(report))
   const structural = await TrpStructural.legacy(spec, bytes)
@@ -73,6 +76,7 @@ export async function prepare(raw: unknown, evidenceRoot: string, workspace: str
   const select = spec.graph.nodes.find((node) => node.operation === "pdb.select")!.id.toUpperCase()
   const geometry = spec.graph.nodes.find((node) => node.operation === "geometre.geometry")!.id.toUpperCase()
   const files: Record<string, string> = {
+    ...mapped.files,
     "catalogue.json": S.canonical(TrpCatalog.catalog) + "\n",
     "catalogue_evidence.json": S.canonical(evidence) + "\n",
     "execution.json":

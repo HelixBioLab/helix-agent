@@ -1,0 +1,34 @@
+{
+  "total_length": 258,
+  "total_molecular_weight": 26246.13,
+  "chains": {
+    "A": {
+      "length": 258,
+      "molecular_weight": 26246.13,
+      "sequence": "SAALASGGPSVAVGAGAAATGLASTAVGSTAAAAGLGSTALGVGTTATAAASTALGSVAPVAATATTGTAAGAAALVALAATGGTALGALATVTALASVALGAASVTTAAAGVTIGTLTGTGSALTTGTAVLGGLSAGTAASAAATVGGLAALVGGVTAAVLAAITVGSGLGLLTTAGLTSGVAGLVGAATTVGVASAGLLTAAGGATLTIAVAAGLVALSGATAAIATAVGAIAGAVTAATGSIGLASLAIAAATAT",
+      "amino_acid_composition": {
+        "S": 19,
+        "A": 86,
+        "L": 30,
+        "G": 46,
+        "P": 2,
+        "V": 25,
+        "T": 43,
+        "I": 7
+      }
+    }
+  },
+  "amino_acid_composition": {
+    "S": 19,
+    "A": 86,
+    "L": 30,
+    "G": 46,
+    "P": 2,
+    "V": 25,
+    "T": 43,
+    "I": 7
+  },
+  "ligands": [],
+  "metal_ions": [],
+  "water_count": 0
+}

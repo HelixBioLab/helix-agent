@@ -26,9 +26,9 @@ async function copied(run: (directory: string) => Promise<void>) {
 }
 
 describe("TRP catalog admission", () => {
-  test("both admitted resources resolve from the recorded bytes, without network or Docker", async () => {
+  test("admitted resources resolve from the recorded bytes, without network or Docker", async () => {
     const ids = TrpCatalog.catalog.entries.filter((entry) => entry.status === "admitted").map((entry) => entry.id)
-    expect(ids).toEqual(["rcsb.structure", "geometre.geometry"])
+    expect(ids).toEqual(["rcsb.structure", "geometre.geometry", "strpsearch.detect"])
     for (const id of ids) expect((await TrpCatalog.resolve(id, root)).id).toBe(id)
   })
 

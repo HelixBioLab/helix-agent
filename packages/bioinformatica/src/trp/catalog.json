@@ -1,5 +1,5 @@
 {
-  "version": "trp-catalog/1.1.0",
+  "version": "trp-catalog/1.2.0",
   "entries": [
     {
       "id": "rcsb.structure",
@@ -169,7 +169,7 @@
           "insertionCodes": "excluded",
           "confidence": "none",
           "constraints": [
-            "Explicit approved unit boundaries, ordered and disjoint, with at least two nonempty units",
+            "Explicit approved unit boundaries, ordered and disjoint, with at least three nonempty units",
             "Unit boundaries are integer author residue numbers, not sequence offsets",
             "Missing residues and insertion intervals must be declared before execution"
           ],
@@ -483,7 +483,7 @@
     {
       "id": "strpsearch.detect",
       "name": "STRPsearch",
-      "status": "candidate",
+      "status": "admitted",
       "kind": "container",
       "source": {
         "url": "https://github.com/BioComputingUP/STRPsearch",
@@ -509,9 +509,9 @@
           "namespace": "pdb",
           "chain": "author",
           "numbering": "pdb-author",
-          "insertionCodes": "preserved",
+          "insertionCodes": "excluded",
           "confidence": "none",
-          "constraints": ["PDB identifiers are normalized to lowercase; chain identifiers remain case-sensitive"],
+          "constraints": ["Single model, canonical protein author chain; reject insertion codes, alternate locations and numbering gaps"],
           "scales": [
             {
               "field": "xyz",
@@ -540,23 +540,44 @@
             "term": "JSON"
           },
           "namespace": "pdb",
-          "chain": "unresolved",
-          "numbering": "unresolved",
-          "insertionCodes": "unresolved",
+          "chain": "author",
+          "numbering": "pdb-author",
+          "insertionCodes": "excluded",
           "confidence": "none",
           "constraints": [
-            "Preserve raw source labels and reviewed status",
-            "Do not reinterpret locus numbers as author or label numbering without evidence"
+            "Output boundaries are checked against observed source author residues",
+            "Prediction remains unreviewed; coordinate mapping and preprocessing hashes are retained"
           ],
           "scales": []
         }
       ],
-      "parameters": ["Not executable from this catalog version"],
+      "parameters": ["Guarded standalone prepare/run route; min-height=0.4, max-eval=0.01, chainsaw=false", "2 CPUs, 8 GiB RAM, 300 second timeout; offline immutable image"],
       "limitations": [
-        "Host launch fails because typer is absent; this is an environment failure, not evidence the algorithm fails.",
-        "Dockerfile selects strpsearch_env but environment.yml names strpsearch_env_ch_before. Requires a repaired, frozen build plus Foldseek, USalign and a successful reference using the bundled database.",
-        "The unconditional Chainsaw import introduces additional dependencies even when segmentation is disabled. Database archive sha256 is recorded in the audit."
-      ]
+        "Only the guarded adapter is admitted: raw STRPsearch may report scientific failure with exit code zero.",
+        "Protein-only preprocessing selects exactly one author chain from one model; rejects insertion codes, alternate locations, noncanonical polymer residues, coordinate gaps and nonfinite coordinates.",
+        "The reference family occurs in the bundled database. This establishes execution and coordinate consistency, not held-out detection accuracy.",
+        "No prediction output is indeterminate rather than a validated negative label. Automatic geometry composition still requires an explicit validated conversion.",
+        "Local image identity and explicit conda environment are frozen; the historical candidate Dockerfile alone does not guarantee a bit-identical rebuild."
+      ],
+      "reference": {
+        "revision": "ed325a7f6b77578ee96753f31dbdcfda4931cca8",
+        "image": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+        "command": ["python3", "script/tesis/strpsearch_guard.py", "run", "evaluation/trp/reference/detector-20260921", "--approve-sha256", "9b2bf0a9d584421e07b38250587782ff56254e54cd750bf2552015324c5d3f13"],
+        "exitCode": 0,
+        "record": {"path": "evaluation/trp/reference/detector-20260921/execution.json", "bytes": 1771, "sha256": "e92b244001ba58c3acb822b215501ff9125b42e54f392d90732acde4c6d1c0af"},
+        "inputs": [
+          {"path": "script/tesis/strpsearch_guard.py", "bytes": 12761, "sha256": "5d7b075e50998577299d15ca11be64454d83ec9bd79c7f7b23c6ef97ed6d013a"},
+          {"path": "packages/bioinformatica/src/trp/strpsearch_guard.py.txt", "bytes": 12761, "sha256": "5d7b075e50998577299d15ca11be64454d83ec9bd79c7f7b23c6ef97ed6d013a"},
+          {"path": "evaluation/trp/reference/detector-20260921/source.cif", "bytes": 428116, "sha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b"},
+          {"path": "evaluation/trp/reference/detector-20260921/query.cif", "bytes": 236212, "sha256": "69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548"},
+          {"path": "evaluation/trp/reference/detector-20260921/plan.json", "bytes": 1001, "sha256": "9b2bf0a9d584421e07b38250587782ff56254e54cd750bf2552015324c5d3f13"},
+          {"path": "evaluation/trp/reference/detector-20260921/environment-explicit.txt", "bytes": 20578, "sha256": "ec237e7845b479e06d82e0e64d4fbb809ec324f69967f7568881ba25ec2a83c0"}
+        ],
+        "outputs": [
+          {"path": "evaluation/trp/reference/detector-20260921/annotations.json", "bytes": 1088, "sha256": "c1b685585e1859de5e7557e8f507d302ea570330e29d798e7111c3f291da9247"},
+          {"path": "evaluation/trp/reference/detector-20260921/coordinates.json", "bytes": 2694, "sha256": "e0ee20af6faf383455e86d4cca861ddc866b8c831333a6e8dfae65240895003d"}
+        ]
+      }
     },
     {
       "id": "repeatsdb-lite.web",

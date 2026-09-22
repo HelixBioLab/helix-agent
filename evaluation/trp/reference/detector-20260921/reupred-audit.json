@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-21",
+  "archiveSha256": "3c6b98b8a9d0b147e38a27918a8e3bb3c47308278a30f889a741768b0473a200",
+  "licenseFiles": [],
+  "licenseNotice": "GNU GPL referenced, version unspecified; no complete license file found",
+  "runtime": "Python 2 print syntax still present",
+  "cliIssue": "README omits tempFolder/excludeFolder positionals required by parser",
+  "admitted": false,
+  "reason": "No independently frozen Python2/alignment environment and no validated scientific reference; porting would require separate algorithm equivalence validation"
+}

@@ -1,0 +1,9 @@
+{
+  "protocol_sha256": "evaluation/trp/protocol.json",
+  "catalog_sha256": "packages/bioinformatica/src/trp/catalog.json",
+  "annotation_guide_sha256": "evaluation/trp/ANNOTATION.md",
+  "hardware_inventory_sha256": "evaluation/trp/f6-readiness-20260921/technical-draft/hardware.json",
+  "image_manifest_sha256": "evaluation/trp/f6-readiness-20260921/technical-draft/images.json",
+  "dependency_lock_sha256": "evaluation/trp/f6-readiness-20260921/technical-draft/dependencies.json",
+  "source_and_license_manifest_sha256": "evaluation/trp/f6-readiness-20260921/technical-draft/catalog-sources.json"
+}

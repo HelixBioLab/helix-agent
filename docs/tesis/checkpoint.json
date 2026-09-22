@@ -30,18 +30,18 @@
     "F3": "complete_initial_scope",
     "F4": "complete_engineering_scope_with_reserved_evaluation_pending",
     "F5": "complete_initial_scope_with_domain_gate_open",
-    "F6": "planned",
+    "F6": "preparation_not_frozen",
     "F7": "planned"
   },
   "artifacts": {
     "plan": "docs/tesis/PLAN.md",
     "status": "docs/tesis/ESTADO.md",
     "traceability": "docs/tesis/trazabilidad.json",
-    "document_content": "script/tesis/update_resume_docx.py",
+    "document_content": "script/tesis/update_technical_closure_docx.py",
     "engineering_evidence": "docs/tesis/evidencia/r32.json",
-    "document_evidence": "docs/tesis/evidencia/reanudacion-20260921/document-checks.json",
+    "document_evidence": "docs/tesis/evidencia/cierre-tecnico-20260921/document-checks.json",
     "docx": "/home/webiwabou/Projects/Tesis.docx",
-    "pdf": "/home/webiwabou/Projects/Tesis-avance-20260921.pdf",
+    "pdf": "/home/webiwabou/Projects/Tesis-cierre-tecnico-20260921.pdf",
     "verifier": "script/tesis/verify_snapshot.py",
     "catalogue": "packages/bioinformatica/src/trp/catalog.json",
     "protocol": "evaluation/trp/PROTOCOL.md",
@@ -53,15 +53,18 @@
     "resource_executor": "script/tesis/trp_sandbox.py",
     "resource_audit": "script/tesis/audit_resource_runs.py",
     "remaining_decisions": "docs/tesis/DECISIONES-PENDIENTES.md",
-    "coordinate_reference": "evaluation/trp/reference/coordinate-20260921/execution.json",
-    "resumed_nextflow_reference": "evaluation/trp/reference/nextflow-20260921/engineering-reference.json"
+    "coordinate_reference": "evaluation/trp/reference/coordinate-integrated-20260921/summary.json",
+    "resumed_nextflow_reference": "evaluation/trp/reference/nextflow-20260921/engineering-reference.json",
+    "technical_plan": "docs/tesis/PLAN-CIERRE-TECNICO.md",
+    "technical_evidence": "docs/tesis/evidencia/cierre-tecnico-20260921.json",
+    "traceability_readable": "docs/tesis/trazabilidad.md",
+    "f6_draft": "evaluation/trp/f6-readiness-20260921/technical-draft/freeze.draft.json"
   },
   "external_dependencies": [
     "Authentic FCI approval document and official title",
     "Independent annotator for R1.3 and R4.3",
     "Confirmed cluster access if the cluster execution claim is retained",
     "Confirmed evaluation model, compute and API budget",
-    "Executable detection references and validated RepeatsDB coordinate frame before discovery workflows",
     "Original Pratt et al. model/PAE files and independently justified structural failure labels; downloaded supplements contain metadata only"
   ],
   "provider_connection": {
@@ -71,7 +74,7 @@
     "model_id": null,
     "evaluation_budget": null
   },
-  "current_phase": "F5",
+  "current_phase": "F6 preparation alongside remaining F5 domain work",
   "resource_availability": {
     "annotator": "unconfirmed_user_confirmed_pending",
     "cluster": "unconfirmed_user_confirmed_pending",
@@ -109,7 +112,9 @@
     "gate_scope": "engineering implementation; reserved empirical evaluation remains F6"
   },
   "implementation_dependencies": [
-    "Detector admission and validated RepeatsDB/SIFTS/label-author mappings before F6"
+    "Integrate verified predicted-geometry CLI into main agent approval and execution",
+    "Resolve ReUPred runtime and RepeatsDB locus coordinate/API contract for dependent routes",
+    "Extend strict resource governance to standalone detector and predicted routes where claimed"
   ],
   "phase5_scope": {
     "core_milestones": "H5.1-H5.4 implemented and verified for bounded mechanical screening; full-domain exit gate remains open",
@@ -120,14 +125,26 @@
     "R5.2": "Semantic mmCIF, AFDB confidence/PAE and explicit frames; admitted execution remains experimental PDB. Construct interpretation, genomic and physical validation incomplete or non-evaluable.",
     "R5.3": "Per-instance reports and offline integrity; experimental report bound to Nextflow approval and methods",
     "R5.4": "No original Pratt models executed; 78 metadata rows recovered, no coordinates/PAE in downloaded supplements; sensitivity/specificity null",
-    "next_work": "Detector/coordinate/predicted-execution contracts and original structural data/reference dependencies before dependent F6 measurements; R3.2 engineering closed; do not silently amend F2",
+    "next_work": "Predicted main-agent integration, remaining domain contracts and independent reserved corpus",
     "local_parser_environment": ".bioinformatica/trp-python (Gemmi 0.7.5; untracked; requirements in script/tesis/requirements-structural.txt)",
-    "coordinate_progress": "Explicit offline label_seq_id to author adapter; real 2xqh/A mapping of 12 units/206 residues, byte-identical geometry; 8 tests. SIFTS and predicted execution still pending."
+    "coordinate_progress": "Integrated label/author and SIFTS/UniProt mapping; real 206 residues and 12 units; portable verification of 139 files",
+    "R5_2_note": "Predicted AFDB geometry verified through separate CLI on artificial development segments; main-agent integration pending"
   },
   "author_closed_sections": {
     "problem_statement": true,
     "conceptual_framework": true,
     "state_of_art": true,
     "source": "user instruction 2026-09-21; do not reopen bibliography screening"
+  },
+  "technical_closure": {
+    "catalog_admitted": 3,
+    "catalog_audited": 6,
+    "regression_pass": 500,
+    "regression_skip": 1,
+    "python_pass": 78,
+    "typecheck": true,
+    "reserved_evaluation_started": false,
+    "document_installed": true,
+    "detector_tool_reference": "evaluation/trp/reference/detector-tool-20260921/summary.json"
   }
 }

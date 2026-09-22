@@ -38,6 +38,7 @@ import { NfcoreSamplesheetSchemaTool, NfcoreSamplesheetValidateTool } from "./nf
 import { Samplesheet } from "@/nfcore/samplesheet"
 import { NfcoreRunTool } from "./nfcore-run"
 import { TrpCatalogTool, TrpPrepareTool, TrpRunTool, TrpInspectTool } from "./trp"
+import { TrpDetectTool } from "./trp-detect"
 import { TrpWorkflow } from "../trp/workflow"
 import { NfcoreResourcesTool } from "./nfcore-resources"
 import { NfcoreParamsTool } from "./nfcore-params"
@@ -165,6 +166,7 @@ const layer = Layer.effect(
     const trpinspecttool = yield* TrpInspectTool
     const trppreparetool = yield* TrpPrepareTool
     const trpruntool = yield* TrpRunTool
+    const trpdetecttool = yield* TrpDetectTool
     const nfcoreresourcestool = yield* NfcoreResourcesTool
     const nfcoreparamstool = yield* NfcoreParamsTool
     const nfcorediagnosetool = yield* NfcoreDiagnoseTool
@@ -298,6 +300,7 @@ const layer = Layer.effect(
           trpInspect: Tool.init(trpinspecttool),
           trpPrepare: Tool.init(trppreparetool),
           trpRun: Tool.init(trpruntool),
+          trpDetect: Tool.init(trpdetecttool),
           nfcoreResources: Tool.init(nfcoreresourcestool),
           nfcoreParams: Tool.init(nfcoreparamstool),
           nfcoreDiagnose: Tool.init(nfcorediagnosetool),
@@ -364,7 +367,7 @@ const layer = Layer.effect(
             tool.trpCatalog,
             tool.trpInspect,
             tool.trpPrepare,
-            ...(questionEnabled ? [tool.trpRun] : []),
+            ...(questionEnabled ? [tool.trpRun, tool.trpDetect] : []),
             tool.nfcoreResources,
             tool.nfcoreParams,
             tool.nfcoreDiagnose,

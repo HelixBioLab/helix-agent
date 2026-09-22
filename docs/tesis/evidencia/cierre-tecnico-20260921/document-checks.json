@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "Generalidades": true,
+    "Marco Conceptual": true,
+    "Estado del Arte": true,
+    "annex_A22": true,
+    "new_regression": true,
+    "new_python": true
+  },
+  "original_sha256": "a667fb533764ecd499baefdf11d8730a0876b7e597c43923556d1f34294f6ef2",
+  "docx_sha256": "febe3e90769114bf2243179c78684ed887b77b0b02984a80f28318f543254333",
+  "pdf_sha256": "d3864aa905ece54a9e0889b4236a712484d2a00b7e5802d3e22a18c3ad126a94",
+  "docx": "/home/webiwabou/Projects/Tesis.docx",
+  "pdf": "/home/webiwabou/Projects/Tesis-cierre-tecnico-20260921.pdf",
+  "backup": "/tmp/tesis-cierre-tecnico-original.docx",
+  "visual_review_pdf_pages": [
+    93
+  ],
+  "scope": "Text of chapters 1–3 unchanged; document render and index refreshed; results, conclusions and A.22 updated"
+}

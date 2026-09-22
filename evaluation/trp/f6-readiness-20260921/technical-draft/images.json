@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-09-22T03:46:12.151406+00:00",
+  "images": [
+    {
+      "name": "tesis/geometre:nextflow-f3",
+      "id": "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
+      "architecture": "amd64",
+      "repo_digests": [
+        "tesis/geometre@sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a"
+      ],
+      "identity_kind": "observed local image digest"
+    },
+    {
+      "name": "tesis/strpsearch:candidate-f3",
+      "id": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+      "architecture": "amd64",
+      "repo_digests": [
+        "tesis/strpsearch@sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0"
+      ],
+      "identity_kind": "observed local image digest"
+    }
+  ]
+}

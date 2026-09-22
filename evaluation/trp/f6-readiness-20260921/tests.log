@@ -1,0 +1,16 @@
+test_annotator_does_not_block_graphs_or_resources (test_f6_readiness.FreezeReadiness.test_annotator_does_not_block_graphs_or_resources) ... ok
+test_cluster_dependency_is_conditional (test_f6_readiness.FreezeReadiness.test_cluster_dependency_is_conditional) ... ok
+test_complete_artifacts_pass_metadata_gate (test_f6_readiness.FreezeReadiness.test_complete_artifacts_pass_metadata_gate) ... ok
+test_invalid_scope_rejected (test_f6_readiness.FreezeReadiness.test_invalid_scope_rejected) ... ok
+test_missing_file_blocks (test_f6_readiness.FreezeReadiness.test_missing_file_blocks) ... ok
+test_model_and_budget_only_required_for_language (test_f6_readiness.FreezeReadiness.test_model_and_budget_only_required_for_language) ... ok
+test_no_freeze_from_dirty_checkout (test_f6_readiness.FreezeReadiness.test_no_freeze_from_dirty_checkout) ... ok
+test_nonfinite_budget_does_not_pass (test_f6_readiness.FreezeReadiness.test_nonfinite_budget_does_not_pass) ... ok
+test_protocol_seed_changes_block (test_f6_readiness.FreezeReadiness.test_protocol_seed_changes_block) ... ok
+test_tampered_file_blocks_all_scopes (test_f6_readiness.FreezeReadiness.test_tampered_file_blocks_all_scopes) ... ok
+test_template_never_passes (test_f6_readiness.FreezeReadiness.test_template_never_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.026s
+
+OK

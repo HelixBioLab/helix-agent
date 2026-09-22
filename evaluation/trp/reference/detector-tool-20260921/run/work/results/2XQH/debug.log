@@ -1,0 +1,2 @@
+2026-09-22 03:47:21,778 - root - INFO - Query: 2XQH, query_chain: A, Target: 2xqhA_305_416, Classification: Alpha helical coiled coil, E-value: 1.528e-09, Min Height: 0.4
+2026-09-22 03:47:22,926 - root - INFO - Query: 2XQH, query_chain: A, Target: 2xqhA_161_276, Classification: Beta-solenoid, E-value: 0.0006511, Min Height: 0.4

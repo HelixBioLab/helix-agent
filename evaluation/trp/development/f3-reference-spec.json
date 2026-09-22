@@ -1,6 +1,6 @@
 {
   "version": "trp-spec/1.0.0",
-  "catalogHash": "bc4d1dc0455913e4fdb758254ca79aa9e540d215e6ce156a461c4818746b30d5",
+  "catalogHash": "f7a75c871095b163f3366fc48a91979b103eb9e72cf5c98c6d66ec73a6fecdd1",
   "intent": {
     "value": "Calcular la geometría de las unidades suministradas para 2xqh, cadena A.",
     "origin": {

@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "bun.lock",
+      "sha256": "8086cd0c206f3db7bdc232a56ca29b9650b0533f633e969f968233cbfe3c8975"
+    },
+    {
+      "path": "script/tesis/requirements-structural.txt",
+      "sha256": "f9a717c64186a1f0e73adce43c1226672658a70be8f031691eededb69ee32bd4"
+    },
+    {
+      "path": "packages/bioinformatica/package.json",
+      "sha256": "3ec73831151d11e47083b1bd962b708ecafaf55b37558459f5aafde0f5dd5efa"
+    }
+  ],
+  "scope": "Lock files and inspected images; full evaluated environment remains subject to final freeze"
+}

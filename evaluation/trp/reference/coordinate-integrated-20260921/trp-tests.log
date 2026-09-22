@@ -1,0 +1,171 @@
+bun test v1.3.14 (0d9b296a)
+
+test/trp/catalog.test.ts:
+(pass) TRP catalog admission > admitted resources resolve from the recorded bytes, without network or Docker [18.00ms]
+(pass) TRP catalog admission > the reference remains verifiable after moving the evidence directory [8.96ms]
+(pass) TRP catalog admission > tampered scientific output cannot pass on a stored success flag [7.31ms]
+(pass) TRP catalog admission > missing input is a failure even when all outputs exist [6.38ms]
+(pass) TRP catalog admission > a reference symlink cannot escape the supplied evidence root [3.46ms]
+(pass) TRP catalog admission > candidates and web comparators cannot be selected for execution [3.85ms]
+(pass) TRP catalog admission > a candidate cannot be promoted by changing its status alone [1.84ms]
+(pass) TRP catalog admission > changing the pinned tool revision invalidates its reference [0.59ms]
+(pass) TRP catalog admission > a human-readable image tag cannot replace a digest [0.60ms]
+(pass) TRP catalog admission > unknown or mislabeled EDAM terms are rejected [0.45ms]
+(pass) TRP catalog admission > duplicate operation identifiers cannot shadow a reference [0.85ms]
+(pass) TRP catalog admission > invalid digest and traversal are rejected before reading files [1.20ms]
+(pass) TRP port contracts > opaque RepeatsDB coordinates cannot feed a known frame [0.32ms]
+(pass) TRP port contracts > format equality does not erase residue, chain or confidence differences [0.34ms]
+(pass) TRP port contracts > radians and degrees, or TM-score and pLDDT, are not interchangeable [0.66ms]
+(pass) TRP port contracts > raw retrieval does not imply the selected chain satisfies geometric preconditions [0.21ms]
+
+test/trp/graph.test.ts:
+(pass) TRP graph development corpus (not held-out evaluation) > accepts observed 2xqh author residues and reports omitted checks [13.71ms]
+(pass) TRP graph development corpus (not held-out evaluation) > cycle-1 [9.15ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing-step-1 [8.07ms]
+(pass) TRP graph development corpus (not held-out evaluation) > excluded-1 [8.32ms]
+(pass) TRP graph development corpus (not held-out evaluation) > format-1 [9.75ms]
+(pass) TRP graph development corpus (not held-out evaluation) > protein-1 [11.41ms]
+(pass) TRP graph development corpus (not held-out evaluation) > chain-1 [13.14ms]
+(pass) TRP graph development corpus (not held-out evaluation) > numbering-1 [13.47ms]
+(pass) TRP graph development corpus (not held-out evaluation) > insertions-1 [10.55ms]
+(pass) TRP graph development corpus (not held-out evaluation) > confidence-1 [13.03ms]
+(pass) TRP graph development corpus (not held-out evaluation) > scale-1 [8.86ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing-parameter-1 [2.54ms]
+(pass) TRP graph development corpus (not held-out evaluation) > cycle-2 [12.06ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing-step-2 [7.84ms]
+(pass) TRP graph development corpus (not held-out evaluation) > excluded-2 [9.69ms]
+(pass) TRP graph development corpus (not held-out evaluation) > format-2 [7.98ms]
+(pass) TRP graph development corpus (not held-out evaluation) > protein-2 [8.62ms]
+(pass) TRP graph development corpus (not held-out evaluation) > chain-2 [8.01ms]
+(pass) TRP graph development corpus (not held-out evaluation) > numbering-2 [8.92ms]
+(pass) TRP graph development corpus (not held-out evaluation) > insertions-2 [11.62ms]
+(pass) TRP graph development corpus (not held-out evaluation) > confidence-2 [7.51ms]
+(pass) TRP graph development corpus (not held-out evaluation) > scale-2 [6.35ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing-parameter-2 [0.71ms]
+(pass) TRP graph development corpus (not held-out evaluation) > cycle-3 [6.46ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing-step-3 [5.80ms]
+(pass) TRP graph development corpus (not held-out evaluation) > excluded-3 [6.30ms]
+(pass) TRP graph development corpus (not held-out evaluation) > format-3 [6.00ms]
+(pass) TRP graph development corpus (not held-out evaluation) > protein-3 [5.77ms]
+(pass) TRP graph development corpus (not held-out evaluation) > chain-3 [7.09ms]
+(pass) TRP graph development corpus (not held-out evaluation) > numbering-3 [6.23ms]
+(pass) TRP graph development corpus (not held-out evaluation) > insertions-3 [6.11ms]
+(pass) TRP graph development corpus (not held-out evaluation) > confidence-3 [5.98ms]
+(pass) TRP graph development corpus (not held-out evaluation) > scale-3 [5.74ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing-parameter-3 [0.50ms]
+(pass) TRP graph development corpus (not held-out evaluation) > chain not observed [2.66ms]
+(pass) TRP graph development corpus (not held-out evaluation) > model not observed [1.96ms]
+(pass) TRP graph development corpus (not held-out evaluation) > empty attribution [7.92ms]
+(pass) TRP graph development corpus (not held-out evaluation) > overlapping units [8.03ms]
+(pass) TRP graph development corpus (not held-out evaluation) > missing observed residue [6.21ms]
+(pass) TRP graph development corpus (not held-out evaluation) > insertion overlaps unit [6.23ms]
+(pass) TRP graph development corpus (not held-out evaluation) > too few units [5.75ms]
+(pass) TRP graph development corpus (not held-out evaluation) > two centers cannot fit GeomeTRe circle [8.87ms]
+(pass) TRP graph development corpus (not held-out evaluation) > fractional endpoint [8.17ms]
+(pass) TRP graph development corpus (not held-out evaluation) > wrong input hash [10.94ms]
+(pass) TRP graph development corpus (not held-out evaluation) > wrong annotation identity [11.17ms]
+(pass) TRP graph development corpus (not held-out evaluation) > wrong annotation frame [7.38ms]
+(pass) TRP graph development corpus (not held-out evaluation) > rejects protein identity in bytes even when the input hash is updated [10.57ms]
+(pass) TRP graph development corpus (not held-out evaluation) > rejects insertion code in bytes even when the input hash is updated [11.80ms]
+(pass) TRP graph development corpus (not held-out evaluation) > rejects alternate conformer in bytes even when the input hash is updated [9.00ms]
+(pass) TRP graph development corpus (not held-out evaluation) > rejects nonfinite coordinate even when the input hash is updated [6.75ms]
+(pass) immutable Nextflow composition > canonical digest ignores object key order but not parameters or provenance [0.84ms]
+(pass) immutable Nextflow composition > emits the validated graph using data files without executing free text [186.83ms]
+(pass) immutable Nextflow composition > rejects unsupported operation before materialization [9.70ms]
+(pass) immutable Nextflow composition > a modified or replaced materialized adapter fails verification [107.02ms]
+(pass) immutable Nextflow composition > structure symlinks cannot escape the current workspace [1.44ms]
+(pass) immutable Nextflow composition > CSV needs unit boundaries, identity, scale and real numeric output [1.22ms]
+
+test/trp/workflow.test.ts:
+(pass) TRP approval through the actual question service > auto-allowed permissions cannot replace a human answer [293.82ms]
+(pass) TRP approval through the actual question service > a changed parameter invalidates the outstanding approval [240.35ms]
+(pass) TRP approval through the actual question service > changed file bytes are rechecked after approval [150.56ms]
+(pass) TRP approval through the actual question service > a failed revision also invalidates an earlier proposal [130.75ms]
+(pass) TRP approval through the actual question service > session binding and exact digest reject forged requests [112.66ms]
+(pass) TRP approval through the actual question service > agent tool adapters use the same approval gate [632.75ms]
+
+test/trp/reference.live.test.ts:
+(skip) real Nextflow geometry through the agent tools (synthetic approval driver)
+
+test/trp/preflight.test.ts:
+(pass) a image preflight failure blocks the real analysis and records failure [5826.24ms]
+(pass) a config preflight failure blocks the real analysis and records failure [317.80ms]
+(pass) a dry-run preflight failure blocks the real analysis and records failure [291.88ms]
+(pass) a missing-marker preflight failure blocks the real analysis and records failure [583.63ms]
+
+test/trp/resources.test.ts:
+(pass) resource admission, development contrasts > counts UTF-8 bytes and channels separately from four tasks [0.07ms]
+(pass) resource admission, development contrasts > exact threshold accepted and inventory hash is deterministic [0.28ms]
+(pass) resource admission, development contrasts > budget cpus below demand is rejected before execution [0.15ms]
+(pass) resource admission, development contrasts > budget memoryBytes below demand is rejected before execution [0.07ms]
+(pass) resource admission, development contrasts > budget workBytes below demand is rejected before execution [0.08ms]
+(pass) resource admission, development contrasts > budget wallSeconds below demand is rejected before execution [0.05ms]
+(pass) resource admission, development contrasts > observed cpus below demand is rejected [0.09ms]
+(pass) resource admission, development contrasts > observed memoryBytes below demand is rejected [0.05ms]
+(pass) resource admission, development contrasts > observed freeBytes below demand is rejected [0.12ms]
+(pass) resource admission, development contrasts > missing inventory never grants admission [0.32ms]
+(pass) resource admission, development contrasts > empty inventory never grants admission [0.09ms]
+(pass) resource admission, development contrasts > partial inventory never grants admission [0.03ms]
+(pass) resource admission, development contrasts > extra fields inventory never grants admission [0.04ms]
+(pass) resource admission, development contrasts > invalid budget undefined is rejected [0.11ms]
+(pass) resource admission, development contrasts > invalid budget {} is rejected [0.06ms]
+(pass) resource admission, development contrasts > invalid budget {"cpus":3,"memoryBytes":4294967296,"workBytes":268435456,"wallSeconds":1080,"requireHardStorageLimit":false,"origin":""} is rejected [0.05ms]
+(pass) resource admission, development contrasts > invalid budget {"cpus":-1,"memoryBytes":4294967296,"workBytes":268435456,"wallSeconds":1080,"requireHardStorageLimit":false,"origin":"Explicit engineering reference fixture; synthetic approval driver; not the thesis evaluation or provider budget"} is rejected [0.03ms]
+(pass) resource admission, development contrasts > invalid budget {"cpus":3,"memoryBytes":1.5,"workBytes":268435456,"wallSeconds":1080,"requireHardStorageLimit":false,"origin":"Explicit engineering reference fixture; synthetic approval driver; not the thesis evaluation or provider budget"} is rejected [0.04ms]
+(pass) resource admission, development contrasts > inventory timestamp invalid rejected [0.11ms]
+(pass) resource admission, development contrasts > inventory timestamp 2026-09-15T11:54:59.999Z rejected [0.06ms]
+(pass) resource admission, development contrasts > inventory timestamp 2026-09-15T12:00:00.001Z rejected [0.04ms]
+(pass) resource admission, development contrasts > a requested hard quota never becomes an estimate approval [0.11ms]
+
+test/trp/interventions.test.ts:
+(pass) Spanish development cue: Eso es incorrecto: la cadena correcta es B [1.10ms]
+(pass) Spanish development cue: No apruebo esta ejecución [0.15ms]
+(pass) Spanish development cue: De acuerdo, pero mejor usa la cadena B [0.07ms]
+(pass) Spanish development cue: Para aclarar: me refiero a la primera opción [0.09ms]
+(pass) Spanish development cue: Aprobar y ejecutar [0.11ms]
+(pass) Spanish development cue: ¿Qué significa curvatura? [0.06ms]
+(pass) Spanish development cue: > no ejecutes
+Gracias [0.04ms]
+(pass) Spanish development cue: `rechazar` [0.02ms]
+(pass) Spanish development cue: <system-reminder>no ejecutes</system-reminder>Gracias [0.06ms]
+(pass) all provided turns retained; zero external agreement is never fabricated [0.21ms]
+
+test/trp/admission.test.ts:
+(pass) missing-budget records a typed refusal without approval or process launch [86.37ms]
+(pass) hard-quota records a typed refusal without approval or process launch [83.56ms]
+(pass) unreadable records a typed refusal without approval or process launch [81.06ms]
+(pass) insufficient records a typed refusal without approval or process launch [81.30ms]
+(pass) capacity lost during approval rejects before the first probe [172.71ms]
+(pass) binding protocol with unevaluated constraint blocks preparation [89.61ms]
+(pass) binding protocol with matching constraint blocks preparation [89.92ms]
+(pass) a protocol amendment after preparation invalidates approval [176.14ms]
+
+test/trp/structural.test.ts:
+(pass) preparation binds structural report, catalogue and exact parser to approval [57.56ms]
+(pass) unestablished experimental method cannot be admitted by legacy preparation [49.25ms]
+(pass) model ordinal selects second model without flattening it [50.82ms]
+(pass) aborted inspection cannot return a report [1.74ms]
+(pass) input symlinks cannot escape workspace [1.48ms]
+(pass) agent inspection writes portable evidence that detects every changed or missing artifact [1032.66ms]
+
+test/trp/enforcement.test.ts:
+(pass) operator resource allocation > hard budget accepts observed enforcement and rejects a larger effective quota [0.64ms]
+(pass) operator resource allocation > an invented yes/no enforcement flag never grants admission [0.30ms]
+(pass) operator resource allocation > untrusted state path cannot assert kernel limits [0.34ms]
+(pass) operator resource allocation > allocation cannot be reused by another preparation [1.74ms]
+
+test/trp/coordinates.test.ts:
+(pass) SIFTS refuses entity declarations, ambiguous residue joins and unobserved-only mapping [554.89ms]
+(pass) label conversion is automatically bound to approved bundle and remains stable on re-preparation [420.87ms]
+(pass) mapping hash and path changes are refused before preparation [8.22ms]
+(pass) archived SIFTS maps every Q9MCI8 residue without segment interpolation [715.35ms]
+(pass) residue mapping rejects identity, coordinate and interval mismatches [197.72ms]
+
+1 tests skipped:
+(skip) real Nextflow geometry through the agent tools (synthetic approval driver)
+
+ 137 pass
+ 1 skip
+ 0 fail
+ 376 expect() calls
+Ran 138 tests across 11 files. [15.74s]

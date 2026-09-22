@@ -1,0 +1,200 @@
+{
+  "accno" : "S-EPMC11795689",
+  "attributes" : [ {
+    "name" : "DataSource",
+    "value" : "Europe PMC"
+  }, {
+    "name" : "Title",
+    "value" : "AlphaFold 2, but not AlphaFold 3, predicts confident but unrealistic β-solenoid structures for repeat proteins."
+  }, {
+    "name" : "ReleaseDate",
+    "value" : "2025-01-01"
+  }, {
+    "name" : "AttachTo",
+    "value" : "EuropePMC"
+  } ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [ {
+      "name" : "Title",
+      "value" : "AlphaFold 2, but not AlphaFold 3, predicts confident but unrealistic β-solenoid structures for repeat proteins."
+    }, {
+      "name" : "Abstract",
+      "value" : "AlphaFold 2 (AF2) has revolutionised protein structure prediction but, like any new tool, its performance on specific classes of targets, especially those potentially under-represented in its training data, merits attention. Prompted by a highly confident prediction for a biologically meaningless, randomly permuted repeat sequence, we assessed AF2 performance on sequences composed of perfect repeats of random sequences of different lengths. AF2 frequently folds such sequences into β-solenoids which, while ascribed high confidence, contain unusual and implausible features such as internally stacked and uncompensated charged residues. A number of sequences confidently predicted as β-solenoids are predicted by other advanced methods as intrinsically disordered. The instability of some predictions is demonstrated by molecular dynamics. Importantly, other deep learning-based structure prediction tools predict different structures or β-solenoids with much lower confidence suggesting that AF2 alone has an unreasonable tendency to predict confident but unrealistic β-solenoids for perfect repeat sequences. The potential implications for structure prediction of natural (near-)perfect sequence repeat proteins are also explored."
+    } ],
+    "files" : [ {
+      "path" : "mmc1.docx",
+      "size" : 265486,
+      "type" : "file"
+    }, {
+      "path" : "mmc2.xlsx",
+      "size" : 4446287,
+      "type" : "file"
+    } ],
+    "links" : [ [ {
+      "url" : "PF13599",
+      "attributes" : [ {
+        "name" : "Type",
+        "value" : "pfam"
+      } ]
+    }, {
+      "url" : "E2RYF6",
+      "attributes" : [ {
+        "name" : "Type",
+        "value" : "uniprot"
+      } ]
+    }, {
+      "url" : "6ZT4",
+      "attributes" : [ {
+        "name" : "Type",
+        "value" : "pdb"
+      } ]
+    }, {
+      "url" : "3p4g",
+      "attributes" : [ {
+        "name" : "Type",
+        "value" : "pdb"
+      } ]
+    } ] ],
+    "subsections" : [ {
+      "type" : "Funding",
+      "attributes" : [ {
+        "name" : "Agency",
+        "value" : "Biotechnology and Biological Sciences Research Council"
+      }, {
+        "name" : "grant_id",
+        "value" : "BB/T008695/1"
+      } ]
+    }, {
+      "type" : "Funding",
+      "attributes" : [ {
+        "name" : "Agency",
+        "value" : "Biotechnology and Biological Sciences Research Council"
+      } ]
+    }, {
+      "type" : "Publication",
+      "attributes" : [ {
+        "name" : "Journal",
+        "value" : "Computational and structural biotechnology journal"
+      }, {
+        "name" : "Volume",
+        "value" : "27"
+      }, {
+        "name" : "Pages",
+        "value" : "467-477"
+      }, {
+        "name" : "Publication date",
+        "value" : "2025"
+      } ],
+      "links" : [ [ {
+        "url" : "10.1016/j.csbj.2025.01.016",
+        "attributes" : [ {
+          "name" : "Type",
+          "value" : "DOI"
+        } ]
+      }, {
+        "url" : "PMC11795689",
+        "attributes" : [ {
+          "name" : "Type",
+          "value" : "PMC"
+        } ]
+      }, {
+        "url" : "39911842",
+        "attributes" : [ {
+          "name" : "Type",
+          "value" : "PMID"
+        } ]
+      } ] ]
+    }, {
+      "accno" : "a1",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Pratt OS"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "a2",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Elliott LG"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "a3",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Haon M"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "a4",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Mesdaghi S"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "a5",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Price RM"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "a6",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Simpkin AJ"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "a7",
+      "type" : "Author",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Rigden DJ"
+      }, {
+        "name" : "ORCID",
+        "value" : "0000-0002-7565-8937"
+      }, {
+        "name" : "affiliation",
+        "value" : "o1",
+        "reference" : true
+      } ]
+    }, {
+      "accno" : "o1",
+      "type" : "Organization",
+      "attributes" : [ {
+        "name" : "Name",
+        "value" : "Department of Biochemistry, Cell and Systems, Biology, Institute of Structural, Molecular and Integrative Biology, University of Liverpool, Crown Street, Liverpool L69 7ZB, United Kingdom"
+      } ]
+    }, {
+      "type" : "ExtractedLinks"
+    } ]
+  },
+  "type" : "submission"
+}

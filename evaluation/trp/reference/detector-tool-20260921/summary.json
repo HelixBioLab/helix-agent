@@ -1,0 +1,145 @@
+{
+  "status": "completed",
+  "approval": "synthetic-test-driver; actual Question.Service denial tested separately",
+  "result": {
+    "directory": "/tmp/thesis-detector-tool-AhuSPf/.bioinformatica/trp/detect/run-F2m8xR",
+    "status": "completed",
+    "execution": {
+      "exitCode": 0,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--name",
+        "thesis-strp-9f15899f1fdd4f63b30c6ac3d8ee70d0",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--pids-limit",
+        "256",
+        "--cpus",
+        "2",
+        "--memory",
+        "8g",
+        "--tmpfs",
+        "/tmp:rw,nosuid,size=1g",
+        "--user",
+        "1000:1000",
+        "-e",
+        "MPLCONFIGDIR=/tmp/matplotlib",
+        "-e",
+        "XDG_CACHE_HOME=/tmp/cache",
+        "-e",
+        "OMP_NUM_THREADS=2",
+        "-e",
+        "OPENBLAS_NUM_THREADS=1",
+        "--mount",
+        "type=bind,src=/tmp/thesis-detector-tool-AhuSPf/.bioinformatica/trp/detect/run-F2m8xR/work,dst=/work",
+        "--mount",
+        "type=bind,src=/tmp/thesis-detector-tool-AhuSPf/.bioinformatica/trp/detect/run-F2m8xR/guard.py,dst=/guard.py,readonly",
+        "--mount",
+        "type=bind,src=/tmp/thesis-detector-tool-AhuSPf/.bioinformatica/trp/detect/run-F2m8xR/work/mime.types,dst=/etc/mime.types,readonly",
+        "--entrypoint",
+        "python",
+        "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+        "/app/bin/strpsearch.py",
+        "query-file",
+        "/work/query.cif",
+        "/work/results",
+        "--chain",
+        "A",
+        "--temp-dir",
+        "/work/tmp",
+        "--db",
+        "/app/data/databases",
+        "--min-height",
+        "0.4",
+        "--max-eval",
+        "0.01",
+        "--keep-temp",
+        "--no-pymol-pse",
+        "--no-chainsaw"
+      ],
+      "approvalSha256": "9b2bf0a9d584421e07b38250587782ff56254e54cd750bf2552015324c5d3f13",
+      "scientificSuccess": true,
+      "image": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+      "unitCount": 7,
+      "regionCount": 1,
+      "outputSha256": "c1b685585e1859de5e7557e8f507d302ea570330e29d798e7111c3f291da9247"
+    },
+    "annotations": {
+      "detector": "STRPsearch",
+      "numbering": "pdb-author",
+      "chain": "A",
+      "sourceSha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b",
+      "preparedSha256": "69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548",
+      "units": [
+        {
+          "start": 162,
+          "end": 175,
+          "region_id": "2XQH_A_162_269"
+        },
+        {
+          "start": 176,
+          "end": 189,
+          "region_id": "2XQH_A_162_269"
+        },
+        {
+          "start": 190,
+          "end": 203,
+          "region_id": "2XQH_A_162_269"
+        },
+        {
+          "start": 204,
+          "end": 219,
+          "region_id": "2XQH_A_162_269"
+        },
+        {
+          "start": 220,
+          "end": 235,
+          "region_id": "2XQH_A_162_269"
+        },
+        {
+          "start": 236,
+          "end": 254,
+          "region_id": "2XQH_A_162_269"
+        },
+        {
+          "start": 255,
+          "end": 269,
+          "region_id": "2XQH_A_162_269"
+        }
+      ],
+      "regions": [
+        {
+          "start": 162,
+          "end": 269,
+          "region_id": "2XQH_A_162_269"
+        }
+      ],
+      "reviewed": false,
+      "scope": "engineering validation only; bundled database can include query family"
+    },
+    "limitations": "Engineering detector route; no held-out biological accuracy claim. Persistent storage is not hard-quota limited. Separate from trp_prepare/trp_run resource governance."
+  },
+  "approvals": [
+    {
+      "stage": "prepare",
+      "sessionID": "ses_detector_engineering_reference",
+      "digest": "1456bc7a955f7d1219d207f796f51c7f285b1c7607083633ebd2c0caf16f8983",
+      "question": "Preparar entrada /tmp/thesis-detector-tool-AhuSPf/source.cif, cadena A, SHA-256 7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b. Esta etapa ya ejecuta preprocesamiento en contenedor. La detección requiere otra aprobación del plan resultante.\nDocker sin red, 2 CPU, 8 GiB RAM, 256 procesos y máximo 300 segundos por etapa; tmpfs 1 GiB. El directorio persistente NO tiene cuota dura; se exige al menos 2 GiB libres. No se ejecutan llamadas API pagadas.\nSHA-256: 1456bc7a955f7d1219d207f796f51c7f285b1c7607083633ebd2c0caf16f8983\nSesión: ses_detector_engineering_reference",
+      "kind": "synthetic-test-driver-not-human-annotation"
+    },
+    {
+      "stage": "run",
+      "sessionID": "ses_detector_engineering_reference",
+      "digest": "9b2bf0a9d584421e07b38250587782ff56254e54cd750bf2552015324c5d3f13",
+      "question": "Ejecutar STRPsearch con este plan:\n{\n  \"schemaVersion\": 1,\n  \"image\": \"sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0\",\n  \"sourceRevision\": \"ed325a7f6b77578ee96753f31dbdcfda4931cca8\",\n  \"databaseSha256\": \"8c7341b2c789e6e0769c751bce4e5bfaeb3d750bde90985c406b51f2f4d8854d\",\n  \"chain\": \"A\",\n  \"sourceFile\": \"source.cif\",\n  \"sourceSha256\": \"7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b\",\n  \"preparedSha256\": \"69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548\",\n  \"coordinatesSha256\": \"e0ee20af6faf383455e86d4cca861ddc866b8c831333a6e8dfae65240895003d\",\n  \"adapterSha256\": \"5d7b075e50998577299d15ca11be64454d83ec9bd79c7f7b23c6ef97ed6d013a\",\n  \"mimeSha256\": \"da019ca25b930e978bff809f7533333d5bd30fad2945605f079313c5dbfa7cce\",\n  \"parameters\": {\n    \"minHeight\": 0.4,\n    \"maxEval\": 0.01,\n    \"chainsaw\": false\n  },\n  \"resources\": {\n    \"cpus\": 2,\n    \"memoryGiB\": 8,\n    \"timeoutSeconds\": 300\n  },\n  \"scope\": \"engineering validation only; bundled database can include query family\"\n}\n\nLas unidades predichas no son etiquetas independientes; no se afirma sensibilidad ni ejecución de GeomeTRe.\nDocker sin red, 2 CPU, 8 GiB RAM, 256 procesos y máximo 300 segundos por etapa; tmpfs 1 GiB. El directorio persistente NO tiene cuota dura; se exige al menos 2 GiB libres. No se ejecutan llamadas API pagadas.\nSHA-256: 9b2bf0a9d584421e07b38250587782ff56254e54cd750bf2552015324c5d3f13\nSesión: ses_detector_engineering_reference",
+      "kind": "synthetic-test-driver-not-human-annotation"
+    }
+  ]
+}

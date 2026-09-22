@@ -1,0 +1,54 @@
+[
+  {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11795689/fullTextXML",
+    "retrieved_at": "2026-09-22T03:28:36.416214+00:00",
+    "status": 200,
+    "path": "europepmc.xml",
+    "sha256": "2d9b5e2efd489cdda5948bbd0ec7703ce8393681475cdc665ab8bb464233f126",
+    "bytes": 121938
+  },
+  {
+    "url": "https://www.ebi.ac.uk/biostudies/api/v1/studies/S-EPMC11795689",
+    "retrieved_at": "2026-09-22T03:28:39.140690+00:00",
+    "status": 200,
+    "path": "biostudies.json",
+    "sha256": "b0cfec6863a79de5e6b3681964dc353c70b3524bbde4171e4b5c1db6af32f7b7",
+    "bytes": 5994
+  },
+  {
+    "url": "https://livrepository.liverpool.ac.uk/3190290/",
+    "retrieved_at": "2026-09-22T03:28:40.263870+00:00",
+    "status": 200,
+    "path": "liverpool.html",
+    "sha256": "0015fd95511b1554217a04c99d2785fdb8b4db0c7b057ed6168c62948b338f87",
+    "bytes": 42286
+  },
+  {
+    "url": "https://www.ebi.ac.uk/biostudies/files/S-EPMC11795689/mmc1.docx",
+    "retrieved_at": "2026-09-22T03:29:13.971000+00:00",
+    "status": 200,
+    "path": "biostudies-mmc1.docx",
+    "bytes": 265486,
+    "sha256": "b1aee9f6b8b6712127567116e8019f561da7c77f96c797160974f64ca1dec276",
+    "embedded_objects": [],
+    "same_as_existing": false,
+    "identity_check": "rejected_unrelated_content",
+    "identifying_excerpt": "Online Data Supplement  Risk  factors associated with incidence of lung cancer in never-smokers: a systematic review and meta-analysis Authors Sindhu ",
+    "retained_bytes": false,
+    "reason": "Title/content do not correspond to Pratt et al. Do not use as structural reference."
+  },
+  {
+    "url": "https://www.ebi.ac.uk/biostudies/files/S-EPMC11795689/mmc2.xlsx",
+    "retrieved_at": "2026-09-22T03:29:17.384796+00:00",
+    "status": 200,
+    "path": "biostudies-mmc2.xlsx",
+    "bytes": 4446287,
+    "sha256": "eb78e0432d72d6db47361d918b55d16755ed02f1f17901a2778522d68688d369",
+    "embedded_objects": [],
+    "same_as_existing": false,
+    "identity_check": "rejected_unrelated_content",
+    "identifying_excerpt": "Supplementary Table 1| Integrated fine-mapped LEVs from seven WGS-based blood-derived eQTL datasets eGene_ID Fine-mapped LEV Probability Dataset rsID ",
+    "retained_bytes": false,
+    "reason": "Title/content do not correspond to Pratt et al. Do not use as structural reference."
+  }
+]

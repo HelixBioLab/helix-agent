@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "image": "sha256:640de175f40ca77bad6317bc53f3ee2f2e4a689e757a98c82715fe02b99496e0",
+  "sourceRevision": "ed325a7f6b77578ee96753f31dbdcfda4931cca8",
+  "databaseSha256": "8c7341b2c789e6e0769c751bce4e5bfaeb3d750bde90985c406b51f2f4d8854d",
+  "chain": "A",
+  "sourceFile": "source.cif",
+  "sourceSha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b",
+  "preparedSha256": "69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548",
+  "coordinatesSha256": "e0ee20af6faf383455e86d4cca861ddc866b8c831333a6e8dfae65240895003d",
+  "adapterSha256": "5d7b075e50998577299d15ca11be64454d83ec9bd79c7f7b23c6ef97ed6d013a",
+  "mimeSha256": "da019ca25b930e978bff809f7533333d5bd30fad2945605f079313c5dbfa7cce",
+  "parameters": {
+    "minHeight": 0.4,
+    "maxEval": 0.01,
+    "chainsaw": false
+  },
+  "resources": {
+    "cpus": 2,
+    "memoryGiB": 8,
+    "timeoutSeconds": 300
+  },
+  "scope": "engineering validation only; bundled database can include query family"
+}

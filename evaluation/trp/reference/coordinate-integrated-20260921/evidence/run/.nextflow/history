@@ -1,0 +1,1 @@
+2026-09-21 22:36:43	5.4s	curious_archimedes	OK	0f14c417687983164ca521ee32549653	e6a3ee27-1919-4e65-971c-8839bb56baa5	nextflow -C nextflow.config run main.nf -ansi-log false -with-trace trace.tsv

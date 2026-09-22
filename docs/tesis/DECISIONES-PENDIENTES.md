@@ -1,26 +1,17 @@
 # Qué falta para completar la tesis
 
-Actualización adicional del 21 de septiembre: el autor da por cerrados
-problemática, marco conceptual y estado del arte; su revisión bibliográfica ya
-no se considera trabajo pendiente del agente. Se avanzó R2.3 con un adaptador
-offline label/autor comprobado en 2xqh/A (12 unidades, 206 residuos y geometría
-idéntica), pendiente de integración automática, SIFTS/UniProt y ruta predicha.
-La regresión y la referencia real Nextflow volvieron a ejecutarse correctamente.
+Estado vigente: 21 de septiembre de 2026. Sustentación: julio de 2027; borrador objetivo: 4 de junio de 2027. Problemática, marco conceptual y estado del arte cerrados por el autor.
 
-Actualización: 15 de septiembre de 2026. Sustentación prevista: julio de 2027;
-borrador completo objetivo: 4 de junio de 2027. La segunda PC proporciona un
-entorno Linux adicional; no acredita ejecución en un clúster con planificador.
+## Trabajo técnico pendiente tras CT1–CT5
 
-## Trabajo de implementación que puede continuar
-
-| Pendiente | Qué constituye su cierre | Opciones del autor |
+| Pendiente | Qué se requiere | Opciones |
 | --- | --- | --- |
-| Detección (R1.1) | Admitir detectores con licencia, receta reproducible, contratos de entrada/salida, datos reales y propagación de fallos; validar las coordenadas de RepeatsDB. Hoy se admiten 2 de 6 entradas auditadas. | Mantener el alcance y completar las integraciones (opción de continuidad), o aprobar una enmienda prospectiva que limite el sistema a unidades suministradas. |
-| Identidad y coordenadas (R2.3) | Verificar SIFTS/UniProt y correspondencias de cadena/residuo; llevar modelos predichos inspeccionados a una ruta de ejecución admitida. | Completar la ruta experimental y predicha, o limitar explícitamente el alcance experimental. La segunda opción cambia las afirmaciones de la tesis. |
-| Constructos y fallos estructurales (F5) | Completar señales aplicables, fuentes externas y referencias; conservar como no evaluable aquello que no tenga método/evidencia. | Mantener el catálogo y su distinción de no evaluabilidad, o acordar con la asesora un alcance menor antes de evaluar. No usar pLDDT/PAE como prueba de validez física. |
+| Ruta predicha integrada | Conectar la CLI ya verificada a preparación, aprobación y evidencia del agente | Mantener alcance y completar integración; una reducción de alcance exige enmienda prospectiva |
+| ReUPred y RepeatsDB | Entorno ejecutable compatible del primero; contrato inequívoco de loci/API del segundo | Resolver contratos o excluir esas rutas del alcance evaluado con justificación previa |
+| Gobernanza de nuevas rutas | Integrar detector y ruta predicha al control estricto de almacenamiento cuando se afirme esa garantía | Reutilizar el entorno XFS/cgroup validado; mientras tanto documentar límites de las rutas independientes |
+| Corpus reservado de F6 | Casos, particiones, referencias independientes y revisión antes de congelar | Completar cada campaña por separado con el verificador; no reutilizar casos de desarrollo como reserva |
 
-Estos puntos requieren programación, referencias y ensayos; no están bloqueados
-por contratar nube o por una nueva autorización para editar el repositorio.
+SIFTS/UniProt ya está integrado y STRPsearch está admitido: dejaron de ser bloqueos generales. La CLI predicha funciona en desarrollo; su integración sigue pendiente. [Plan y evidencia](PLAN-CIERRE-TECNICO.md).
 
 ## Dependencias y decisiones externas
 
@@ -40,10 +31,9 @@ conservan en los denominadores conforme al protocolo F2.
 
 ## Documento y entrada a F6
 
-El documento ya contiene las secciones de F5 y el anexo A.19. Para el cierre
+El documento ya contiene resultados de esta entrega y el anexo A.22. Para el cierre
 faltan resultados reservados, sus intervalos y denominadores; discusión de los
-límites observados, conclusiones ajustadas a esos resultados, referencias y
-comprobación final del template/anexos. Las notas de autor deben retirarse o
+límites observados, conclusiones ajustadas a esos resultados, comprobación final del template/anexos. Las notas de autor deben retirarse o
 resolverse con evidencia, no convertir metas en resultados.
 
 Se puede preparar el corpus, la guía de anotación y los comprobadores de F6.
@@ -52,7 +42,5 @@ referencias, particiones, modelo y presupuesto. No es necesario que una
 dependencia detenga tareas independientes, pero tampoco se declara satisfecha
 la compuerta completa de F5 mientras falten los contratos del dominio.
 
-**Continuidad propuesta:** mantener el alcance actual, completar detectores y
-mapeos, preparar anotación y recuperación de datos en paralelo al trabajo del
-tesista, y decidir modelo/gasto mediante un piloto con límite explícito. La
+**Continuidad propuesta:** integrar la ruta predicha, resolver los contratos restantes y completar el corpus reservado con revisión independiente; decidir modelo/gasto antes de un piloto pagado. La
 nube queda como alternativa de infraestructura, no como requisito de R3.2.

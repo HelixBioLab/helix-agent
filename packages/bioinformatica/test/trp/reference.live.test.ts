@@ -32,8 +32,34 @@ run(
       yield* Effect.promise(() =>
         fs.copyFile(path.join(root, source.structure.value.path), path.join(directory, "input.pdb")),
       )
-      const raw = structuredClone(source)
+      const raw = { ...structuredClone(source), catalogHash: TrpSpecification.catalogHash }
       raw.structure.value.path = "input.pdb"
+      if (process.env.TRP_REFERENCE_MAPPING === "1") {
+        yield* Effect.promise(async () => {
+          const cif = "evaluation/trp/reference/structural-f5/experimental/2xqh.cif"
+          const xml = "evaluation/trp/reference/coordinate-integrated-20260921/2xqh-sifts.xml"
+          await fs.copyFile(path.join(root, cif), path.join(directory, "mapping.cif"))
+          await fs.copyFile(path.join(root, xml), path.join(directory, "sifts.xml"))
+          ;(raw as any).coordinateMapping = {
+            value: {
+              path: "mapping.cif",
+              sha256: TrpSpecification.sha256(await fs.readFile(path.join(root, cif))),
+              frame: "uniprot",
+              units: source.units.value.ranges,
+              sifts: {
+                path: "sifts.xml",
+                sha256: TrpSpecification.sha256(await fs.readFile(path.join(root, xml))),
+                accession: "Q9MCI8",
+              },
+            },
+            origin: {
+              kind: "reference",
+              reference: "https://ftp.ebi.ac.uk/pub/databases/msd/sifts/xml/2xqh.xml.gz",
+              detail: "Archived 2026-09-21 residue-level SIFTS mapping; development reference",
+            },
+          }
+        })
+      }
       const pad = Number(process.env.TRP_REFERENCE_REMARK_BYTES ?? 0)
       if (pad) {
         // Development size contrast: ignored PDB REMARK records; coordinates and
@@ -41,7 +67,7 @@ run(
         yield* Effect.promise(async () => {
           const file = path.join(directory, "input.pdb")
           const comment = "REMARK 999 RESOURCE DEVELOPMENT SIZE CONTRAST " + "x".repeat(30) + "\n"
-          const data = comment.repeat(Math.ceil(pad / Buffer.byteLength(comment))) + await fs.readFile(file, "utf8")
+          const data = comment.repeat(Math.ceil(pad / Buffer.byteLength(comment))) + (await fs.readFile(file, "utf8"))
           await fs.writeFile(file, data)
           raw.structure.value.sha256 = TrpSpecification.sha256(data)
         })
@@ -59,12 +85,18 @@ run(
       const prepare = yield* (yield* TrpPrepareTool).init()
       const runTool = yield* (yield* TrpRunTool).init()
       const prepared = yield* prepare.execute(
-        { specification: TrpSpecification.parse(raw), evidence_root: root, budget: process.env.BIOINFORMATICA_TRP_SANDBOX ? {
-          ...budget,
-          workBytes: Number(process.env.TRP_RESOURCE_WORK_MIB ?? 128) * 1024 ** 2,
-          requireHardStorageLimit: true,
-          origin: "operator-authorized isolated resource engineering reference; synthetic approval",
-        } : budget },
+        {
+          specification: TrpSpecification.parse(raw),
+          evidence_root: root,
+          budget: process.env.BIOINFORMATICA_TRP_SANDBOX
+            ? {
+                ...budget,
+                workBytes: Number(process.env.TRP_RESOURCE_WORK_MIB ?? 128) * 1024 ** 2,
+                requireHardStorageLimit: true,
+                origin: "operator-authorized isolated resource engineering reference; synthetic approval",
+              }
+            : budget,
+        },
         ctx,
       )
       const preview = prepared.metadata
@@ -115,19 +147,19 @@ run(
             // copy. A test-only second duplication would bias peak calibration.
             await fs.rename(result.directory, target)
           } else {
-          await fs.mkdir(target, { recursive: false })
-          for (const entry of await fs.readdir(result.directory, { withFileTypes: true })) {
-            if (entry.isFile())
-              await fs.copyFile(path.join(result.directory, entry.name), path.join(target, entry.name))
-          }
-          await fs.cp(path.join(result.directory, "evidence"), path.join(target, "evidence"), { recursive: true })
-          await fs.cp(path.join(result.directory, "results"), path.join(target, "results"), { recursive: true })
-          await fs.mkdir(path.join(target, "dry-run"))
-          for (const name of ["stdout.log", "stderr.log", "trace.tsv", "results/geometry.csv"]) {
-            const destination = path.join(target, "dry-run", name)
-            await fs.mkdir(path.dirname(destination), { recursive: true })
-            await fs.copyFile(path.join(result.directory, "dry-run", name), destination)
-          }
+            await fs.mkdir(target, { recursive: false })
+            for (const entry of await fs.readdir(result.directory, { withFileTypes: true })) {
+              if (entry.isFile())
+                await fs.copyFile(path.join(result.directory, entry.name), path.join(target, entry.name))
+            }
+            await fs.cp(path.join(result.directory, "evidence"), path.join(target, "evidence"), { recursive: true })
+            await fs.cp(path.join(result.directory, "results"), path.join(target, "results"), { recursive: true })
+            await fs.mkdir(path.join(target, "dry-run"))
+            for (const name of ["stdout.log", "stderr.log", "trace.tsv", "results/geometry.csv"]) {
+              const destination = path.join(target, "dry-run", name)
+              await fs.mkdir(path.dirname(destination), { recursive: true })
+              await fs.copyFile(path.join(result.directory, "dry-run", name), destination)
+            }
           }
           await fs.writeFile(
             path.join(target, "engineering-reference.json"),

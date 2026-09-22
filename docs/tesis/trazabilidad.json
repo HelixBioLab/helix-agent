@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-15",
+  "fecha": "2026-09-21",
   "commit_base": "f37ba272bcf0ae1b2700bf998c3a3495e4b0ba1f",
   "fuente": "Tesis.docx: secciones 1.2.3 y 1.2.4",
   "leyenda": {
@@ -20,23 +20,27 @@
         "packages/bioinformatica/src/trp/catalog.ts",
         "packages/bioinformatica/src/trp/catalog.json",
         "packages/bioinformatica/src/tool/trp.ts",
-        "packages/bioinformatica/src/trp/workflow.ts"
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "packages/bioinformatica/src/tool/trp-detect.ts",
+        "script/tesis/strpsearch_guard.py"
       ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/registry.test.ts",
         "packages/bioinformatica/test/bio/repeatsdb.test.ts",
         "packages/bioinformatica/test/bio/sifts.test.ts",
-        "packages/bioinformatica/test/trp/catalog.test.ts"
+        "packages/bioinformatica/test/trp/catalog.test.ts",
+        "script/tesis/test_strpsearch_guard.py",
+        "packages/bioinformatica/test/tool/trp-detect.test.ts",
+        "packages/bioinformatica/test/tool/trp-detect-question.test.ts"
       ],
-      "pendiente": "Catálogo 1.1.0 integrado, dos operaciones admitidas. STRPsearch ya tiene una referencia candidata tras retirar ligandos/agua, además de la ejecución original fallida; faltan receta congelada, contrato y propagación de fallos. ReUPred y marco/licencia de la API actual RepeatsDB pendientes. Ampliación necesaria antes de descubrimiento o reserva de F6.",
+      "pendiente": "Catálogo 1.2.0: tres operaciones admitidas de seis auditadas. STRPsearch ejecutable mediante trp_detect con aprobación, contrato y propagación de fallos; dos entradas reales producen 7 unidades. ReUPred sin entorno/referencia validada; RepeatsDB con licencia CC BY4.0 declarada en sitio actual, pero alcance específico de API y marco de loci pendientes. No se afirma exactitud reservada.",
       "fase_cierre": "F4-F5, antes de F6",
       "medicion": {
-        "tipo": "referencia_tecnica_no_evaluacion_empirica",
-        "admitidas": 2,
+        "tipo": "ingenieria_no_reserva",
+        "admitidas": 3,
         "universo_auditado": 6,
-        "referencias_verificadas": 2,
-        "pruebas_catalogo": 16,
-        "evidencia": "docs/tesis/evidencia/fase3.json"
+        "referencias_verificadas": 3,
+        "evidencia": "evaluation/trp/reference/detector-20260921/execution.json"
       }
     },
     {
@@ -74,8 +78,13 @@
       "objetivo": "OE1",
       "titulo": "Corpus de enunciados con patrón externo",
       "estado": "sin_evidencia",
-      "codigo": [],
-      "pruebas": [],
+      "codigo": [
+        "script/tesis/check_f6_readiness.py",
+        "script/tesis/prepare_f6_draft.py"
+      ],
+      "pruebas": [
+        "script/tesis/test_f6_readiness.py"
+      ],
       "pendiente": "Guía y plantilla externas preparadas en F2. Construir el corpus reservado de 50 intenciones factibles y dos paráfrasis por intención; conseguir anotador, congelar etiquetas y medir las tres repeticiones. No hay juicios externos obtenidos.",
       "fase_cierre": "F6",
       "medicion": null
@@ -89,10 +98,14 @@
         "evaluation/trp/PROTOCOL.md",
         "evaluation/trp/protocol.json",
         "evaluation/trp/ANNOTATION.md",
-        "evaluation/trp/freeze.template.json"
+        "evaluation/trp/freeze.template.json",
+        "script/tesis/check_f6_readiness.py",
+        "script/tesis/prepare_f6_draft.py"
       ],
-      "pruebas": [],
-      "pendiente": "Protocolo 1.0.0 fijado antes de la campaña con 21 definiciones, corpus, particiones, metas y enmiendas. Completar el registro de congelación, modelo, presupuesto, casos y anotador antes de F6; no es una evaluación ejecutada ni una prerregistración externa.",
+      "pruebas": [
+        "script/tesis/test_f6_readiness.py"
+      ],
+      "pendiente": "Protocolo 1.0.0 intacto; comprobador por campañas y siete artefactos técnicos recopilados en borrador. Falta corpus/particiones/revisión, configuración aplicable y congelación final; no se inició campaña reservada.",
       "fase_cierre": "F2",
       "medicion": {
         "tipo": "cobertura_del_diseno",
@@ -146,7 +159,10 @@
         "packages/bioinformatica/src/trp/workflow.ts",
         "packages/bioinformatica/src/tool/trp.ts",
         "packages/bioinformatica/src/trp/structural.ts",
-        "packages/bioinformatica/src/trp/inspect_structure.py.txt"
+        "packages/bioinformatica/src/trp/inspect_structure.py.txt",
+        "packages/bioinformatica/src/trp/coordinates.ts",
+        "packages/bioinformatica/src/trp/sifts_residues.py.txt",
+        "script/tesis/predicted_geometry.py"
       ],
       "pruebas": [
         "packages/bioinformatica/test/bio/sifts.test.ts",
@@ -157,13 +173,17 @@
         "packages/bioinformatica/test/trp/reference.live.test.ts",
         "packages/bioinformatica/test/tool/registry.test.ts",
         "script/tesis/test_structural_controls.py",
-        "packages/bioinformatica/test/trp/structural.test.ts"
+        "packages/bioinformatica/test/trp/structural.test.ts",
+        "packages/bioinformatica/test/trp/coordinates.test.ts",
+        "script/tesis/test_predicted_geometry.py"
       ],
-      "pendiente": "F5 comprueba pares label_seq_id/auth_seq_id por modelo/cadena en mmCIF y los ejes AFDB monómero sin offsets. La ejecución GeomeTRe sigue en PDB de autor; faltan SIFTS/UniProt, contratos de ejecución predicha y contraste independiente antes de F6.",
+      "pendiente": "Conversión label/autor y UniProt por XML SIFTS integradas en trp_prepare/run; 206 residuos y 12 unidades con CSV idéntico. Modelos predichos ejecutables por CLI separada con identidad/pLDDT preservados; integración de esa ruta al agente y evaluación independiente pendientes. Alcance positivo, una cadena/modelo, sin inserciones ni alternancias ambiguas.",
       "fase_cierre": "F5",
       "medicion": {
         "tipo": "desarrollo_no_reserva",
-        "evidencia": "docs/tesis/evidencia/fase3.json"
+        "residuos_mapeados": 206,
+        "unidades": 12,
+        "evidencia": "evaluation/trp/reference/coordinate-integrated-20260921/summary.json"
       }
     },
     {
@@ -185,9 +205,10 @@
         "packages/bioinformatica/test/trp/workflow.test.ts",
         "packages/bioinformatica/test/trp/preflight.test.ts",
         "packages/bioinformatica/test/trp/reference.live.test.ts",
-        "packages/bioinformatica/test/tool/registry.test.ts"
+        "packages/bioinformatica/test/tool/registry.test.ts",
+        "packages/bioinformatica/test/trp/coordinates.test.ts"
       ],
-      "pendiente": "Esquema, grafo, contratos, bytes, resolución de configuración y stub obligatorios en la ruta TRP. Ampliar los contratos con el catálogo y evaluar la reserva en F6; no se afirma una restricción universal sobre el shell del agente general.",
+      "pendiente": "Preparación verifica SIFTS y mapeos antes de aprobación y revalida cambios. GeomeTRe rechaza menos de 3 unidades antes de ejecutar. La evaluación reservada y la ruta predicha integrada al agente permanecen pendientes.",
       "fase_cierre": "F3",
       "medicion": {
         "tipo": "desarrollo_no_reserva",
@@ -217,7 +238,7 @@
         "packages/bioinformatica/test/trp/reference.live.test.ts",
         "packages/bioinformatica/test/tool/registry.test.ts"
       ],
-      "pendiente": "Informe estático, comprobaciones de configuración/stub y éxito/fallo guardados con digest. F4 completará la verificación portable de todo el paquete; controles omitidos no cuentan como aprobados.",
+      "pendiente": "Informes y evidencia portable completos para rutas ejecutadas, incluido mapeo/SIFTS con 139 archivos verificados. Falta campaña reservada; controles no evaluables se conservan.",
       "fase_cierre": "F3",
       "medicion": {
         "tipo": "desarrollo_no_reserva",
@@ -234,14 +255,17 @@
         "packages/bioinformatica/src/trp/graph.ts",
         "packages/bioinformatica/src/trp/nextflow.ts",
         "packages/bioinformatica/src/trp/workflow.ts",
-        "packages/bioinformatica/src/tool/trp.ts"
+        "packages/bioinformatica/src/tool/trp.ts",
+        "script/tesis/check_f6_readiness.py",
+        "script/tesis/prepare_f6_draft.py"
       ],
       "pruebas": [
         "packages/bioinformatica/test/trp/graph.test.ts",
         "packages/bioinformatica/test/trp/workflow.test.ts",
         "packages/bioinformatica/test/trp/preflight.test.ts",
         "packages/bioinformatica/test/trp/reference.live.test.ts",
-        "packages/bioinformatica/test/tool/registry.test.ts"
+        "packages/bioinformatica/test/tool/registry.test.ts",
+        "script/tesis/test_f6_readiness.py"
       ],
       "pendiente": "Corpus de desarrollo implementado: 33 casos inválidos, 0 aceptados y 33 motivos esperados detectados. La reserva T-GRAPH no está evaluada y permanece para F6.",
       "fase_cierre": "F6",
@@ -267,7 +291,7 @@
         "packages/bioinformatica/test/trp/resources.test.ts",
         "packages/bioinformatica/test/trp/admission.test.ts"
       ],
-      "pendiente": "Inventario observado y presupuesto explícito enlazados por hash en la ruta local. Cobertura del indicador sobre la campaña reservada pendiente; no se afirma reserva exclusiva, cgroup o clúster.",
+      "pendiente": "Inventario, presupuesto y cuota XFS/cgroup disponibles para ruta trp_run; trp_detect declara límites Docker y almacenamiento sin cuota dura. Campaña reservada pendiente; no se acredita clúster.",
       "fase_cierre": "F6",
       "medicion": {
         "tipo": "ingenieria_no_evaluacion_reservada",
@@ -335,8 +359,13 @@
       "objetivo": "OE3",
       "titulo": "Acierto y falso rechazo",
       "estado": "sin_evidencia",
-      "codigo": [],
-      "pruebas": [],
+      "codigo": [
+        "script/tesis/check_f6_readiness.py",
+        "script/tesis/prepare_f6_draft.py"
+      ],
+      "pruebas": [
+        "script/tesis/test_f6_readiness.py"
+      ],
       "pendiente": "F2 fija falso rechazo ≤5% y reporte conjunto de acierto con contraste observado. Falta construir escenarios y ejecutar evaluación; un rechazo sin contraste sigue no evaluado.",
       "fase_cierre": "F6",
       "medicion": null
@@ -365,11 +394,12 @@
         "packages/bioinformatica/test/trp/reference.live.test.ts",
         "script/tesis/audit_trp_bundle.py"
       ],
-      "pendiente": "Copia cerrada de la referencia con 121 archivos; 250/250 fallos inyectados detectados. Verificación offline independiente en Python. Identifica pero no empaqueta capas Docker/distribuciones compartidas; no promete reanudación portable ni autenticidad. Campaña completa en F6.",
+      "pendiente": "Referencia integrada SIFTS: 139 archivos verificados con ancla externa conservada. Identifica imágenes sin empaquetar capas; no acredita autenticidad o reanudación universal. Campaña reservada pendiente.",
       "fase_cierre": "F6",
       "medicion": {
-        "tipo": "ingenieria_no_evaluacion_reservada",
-        "evidencia": "docs/tesis/evidencia/fase4.json",
+        "tipo": "ingenieria_no_reserva",
+        "archivos_verificados": 139,
+        "evidencia": "evaluation/trp/reference/coordinate-integrated-20260921/verification.json",
         "reserva_evaluada": false
       }
     },
@@ -407,11 +437,14 @@
       "codigo": [
         "packages/bioinformatica/src/nfcore/handcount.ts",
         "packages/bioinformatica/src/trp/interventions.ts",
-        "packages/bioinformatica/src/trp/workflow.ts"
+        "packages/bioinformatica/src/trp/workflow.ts",
+        "script/tesis/check_f6_readiness.py",
+        "script/tesis/prepare_f6_draft.py"
       ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/handcount.test.ts",
-        "packages/bioinformatica/test/trp/interventions.test.ts"
+        "packages/bioinformatica/test/trp/interventions.test.ts",
+        "script/tesis/test_f6_readiness.py"
       ],
       "pendiente": "Clasificador determinista español/inglés y texto/señales versionados sobre instantánea de mensajes; respuestas de UI separadas. Anotador externo, cobertura de sesión, etiquetas no adjudicadas, kappa y corrección emparejada pendientes.",
       "fase_cierre": "F6",
@@ -481,22 +514,23 @@
         "packages/bioinformatica/src/trp/structural.ts",
         "packages/bioinformatica/src/trp/inspect_structure.py.txt",
         "packages/bioinformatica/src/trp/structural_catalog.json",
-        "packages/bioinformatica/src/tool/trp.ts"
+        "packages/bioinformatica/src/tool/trp.ts",
+        "script/tesis/predicted_geometry.py"
       ],
       "pruebas": [
         "packages/bioinformatica/test/nfcore/census.test.ts",
         "script/tesis/test_structural_controls.py",
         "packages/bioinformatica/test/trp/structural.test.ts",
-        "packages/bioinformatica/test/tool/registry.test.ts"
+        "packages/bioinformatica/test/tool/registry.test.ts",
+        "script/tesis/test_predicted_geometry.py"
       ],
-      "pendiente": "Controles mecánicos integrados, con referencias reales y perturbaciones; falta cubrir ejecución predicha y validar constructos/fallos físicos. Ensamblaje y plausibilidad quedan no evaluables, nunca aprobados por PAE/pLDDT.",
+      "pendiente": "Ruta CLI AFDB verificada con API/PAE/pLDDT y geometría de 3 segmentos artificiales. Primer fallo de 2 unidades conservado; rechazo mínimo 3 corregido. Falta integración predicha al agente, controles completos de constructos y referencias biológicas independientes; no evaluables de ensamblaje/plausibilidad intactos.",
       "fase_cierre": "F5",
       "medicion": {
-        "tipo": "referencia_tecnica_no_evaluacion_empirica",
-        "referencias_inspeccion": 2,
-        "controles_reportados_por_instancia": 9,
-        "pruebas_python": 35,
-        "evidencia": "docs/tesis/evidencia/fase5.json"
+        "tipo": "desarrollo_no_reserva",
+        "ejecucion_predicha": true,
+        "segmentos_artificiales": 3,
+        "evidencia": "evaluation/trp/reference/predicted-geometry-20260921-corrected/execution.json"
       }
     },
     {
@@ -511,7 +545,8 @@
         "packages/bioinformatica/src/tool/trp.ts",
         "packages/bioinformatica/src/trp/nextflow.ts",
         "packages/bioinformatica/src/trp/evidence.ts",
-        "packages/bioinformatica/src/trp/verify_inspection.py.txt"
+        "packages/bioinformatica/src/trp/verify_inspection.py.txt",
+        "script/tesis/predicted_geometry.py"
       ],
       "pruebas": [
         "script/tesis/test_structural_controls.py",
@@ -519,7 +554,7 @@
         "packages/bioinformatica/test/tool/registry.test.ts",
         "packages/bioinformatica/test/trp/reference.live.test.ts"
       ],
-      "pendiente": "Reporte y manifiesto implementados en el alcance inicial; cobertura completa y referencias independientes se evalúan en F6.",
+      "pendiente": "Inspección, mapeos y geometría conservan fuentes y hashes; salida AFDB explicita identificador de transporte y validez no establecida. Falta campaña reservada.",
       "fase_cierre": "F5",
       "medicion": {
         "tipo": "referencia_tecnica_no_evaluacion_empirica",
@@ -534,12 +569,17 @@
       "titulo": "Sensibilidad y especificidad",
       "estado": "parcial",
       "codigo": [
-        "script/tesis/audit_pratt_recoverability.py"
+        "script/tesis/audit_pratt_recoverability.py",
+        "script/tesis/check_f6_readiness.py",
+        "script/tesis/prepare_f6_draft.py"
       ],
-      "pruebas": [],
-      "pendiente": "F2 conserva sensibilidad ≥80%, especificidad ≥90% y cobertura ≥90%. Se recuperaron 78 filas de predicciones de Pratt, sin coordenadas/PAE en el paquete descargado: cero modelos originales ejecutados, tasas sin calcular. Recuperar modelos y etiquetas, controles pertinentes independientes y separar desarrollo antes de F6.",
+      "pruebas": [
+        "script/tesis/test_f6_readiness.py"
+      ],
+      "pendiente": "Metas F2 intactas. Reconsulta pública sin coordenadas/PAE originales; suplementos ajenos servidos por BioStudies rechazados y documentados. Cero modelos originales ejecutados; tasas nulas como dato ausente. Requiere referencia independiente y corpus reservado.",
       "fase_cierre": "F6",
       "medicion": null
     }
-  ]
+  ],
+  "actualizacion": "Cierre técnico: rutas integradas y evidencia de desarrollo; evaluación reservada pendiente."
 }

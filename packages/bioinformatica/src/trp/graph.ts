@@ -47,6 +47,12 @@ export function validate(raw: unknown, pdb: Uint8Array): Report {
       `${key}: declared source is present`,
     )
   }
+  if (spec.coordinateMapping)
+    check(
+      "parameter-origin",
+      !!spec.coordinateMapping.origin.reference.trim() && !!spec.coordinateMapping.origin.detail.trim(),
+      "coordinateMapping: declared source is present",
+    )
   check("intent", !!spec.intent.value.trim(), "An explicit scientific intent is required")
   check("protein-identifier", /^[0-9][a-z0-9]{3}$/.test(spec.structure.value.pdb), "Legacy PDB identifier, lowercase")
   check("chain", /^[A-Za-z0-9]$/.test(spec.chain.value), "One explicit, case-sensitive author chain")
@@ -191,8 +197,8 @@ export function validate(raw: unknown, pdb: Uint8Array): Report {
   )
   check(
     "unit-count",
-    spec.units.value.ranges.length >= 2 && spec.units.value.ranges.length <= 1000,
-    "At least two, at most 1000 supplied units",
+    spec.units.value.ranges.length >= 3 && spec.units.value.ranges.length <= 1000,
+    "At least three, at most 1000 supplied units; GeomeTRe circle fitting requires three centers",
   )
   check("unit-range", goodRanges, "Finite, positive, inclusive author intervals within legacy PDB bounds")
   for (const [label, values] of [

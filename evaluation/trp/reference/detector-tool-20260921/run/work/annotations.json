@@ -1,0 +1,53 @@
+{
+  "detector": "STRPsearch",
+  "numbering": "pdb-author",
+  "chain": "A",
+  "sourceSha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b",
+  "preparedSha256": "69aa6847a0258b6f68eed63e9f668959fb773e54581d450c647cfe79e3911548",
+  "units": [
+    {
+      "start": 162,
+      "end": 175,
+      "region_id": "2XQH_A_162_269"
+    },
+    {
+      "start": 176,
+      "end": 189,
+      "region_id": "2XQH_A_162_269"
+    },
+    {
+      "start": 190,
+      "end": 203,
+      "region_id": "2XQH_A_162_269"
+    },
+    {
+      "start": 204,
+      "end": 219,
+      "region_id": "2XQH_A_162_269"
+    },
+    {
+      "start": 220,
+      "end": 235,
+      "region_id": "2XQH_A_162_269"
+    },
+    {
+      "start": 236,
+      "end": 254,
+      "region_id": "2XQH_A_162_269"
+    },
+    {
+      "start": 255,
+      "end": 269,
+      "region_id": "2XQH_A_162_269"
+    }
+  ],
+  "regions": [
+    {
+      "start": 162,
+      "end": 269,
+      "region_id": "2XQH_A_162_269"
+    }
+  ],
+  "reviewed": false,
+  "scope": "engineering validation only; bundled database can include query family"
+}

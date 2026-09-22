@@ -1,0 +1,21 @@
+{
+  "kind": "engineering_development_not_reserved_evaluation",
+  "checksPassed": true,
+  "regressionPass": 500,
+  "regressionSkip": 1,
+  "pythonPass": 78,
+  "typecheck": true,
+  "coordinateResidues": 206,
+  "coordinateUnits": 12,
+  "detectorUnits": 7,
+  "predictedUnits": 3,
+  "catalogAdmitted": 3,
+  "catalogAudited": 6,
+  "evidence": {
+    "coordinate": "evaluation/trp/reference/coordinate-integrated-20260921/summary.json",
+    "detector": "evaluation/trp/reference/detector-20260921/execution.json",
+    "predicted": "evaluation/trp/reference/predicted-geometry-20260921-corrected/execution.json",
+    "readiness": "evaluation/trp/f6-readiness-20260921/technical-draft/readiness.json",
+    "detectorTool": "evaluation/trp/reference/detector-tool-20260921/summary.json"
+  }
+}

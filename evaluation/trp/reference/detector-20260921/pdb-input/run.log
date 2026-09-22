@@ -1,0 +1,34 @@
+Created temporary directory: /work/tmp
+Protein information saved to: /work/results/2XQH/protein_info.json
+Using temporary subdirectory: /work/tmp/tmpqt6kmz89
+Protein length: 258 residues
+
+[03:34:57] Running PredSTRP with the following parameters:
+Input directory: /work/results/2XQH/query_structures
+Output directory: /work/results/2XQH
+Temporary directory: /work/tmp/tmpqt6kmz89
+Maximum E-value: 0.01
+[03:34:57] Finding potential hits ...
+
+[03:35:01] Processing hit 1/2 ...
+Query: 2XQH_A
+Target: 2xqhA_305_416
+Classification: Alpha helical coiled coil
+Using minimum height for peak detection: 0.4
+
+[03:35:02] No potential repeat region was found with hit 1/2
+
+[03:35:02] Processing hit 2/2 ...
+Query: 2XQH_A
+Target: 2xqhA_161_276
+Classification: Beta-solenoid
+Using minimum height for peak detection: 0.4
+
+[03:35:03] 1 potential repeat region was found with hit 2/2:
+Region 1: 2XQH_A_162_269
+
+[03:35:03] All the hits were processed
+
+[03:35:03] Transferring the final results to the output directory ...
+
+[03:35:03] Task finished with 0 errors

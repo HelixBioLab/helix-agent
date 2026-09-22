@@ -1,0 +1,17 @@
+nextflow.trace/v2
+realtime=2422
+%cpu=967
+cpu_model=AMD Ryzen 7 5800H with Radeon Graphics
+rchar=34284039
+wchar=14753
+syscr=2946
+syscw=17
+read_bytes=446464
+write_bytes=0
+%mem=12
+vmem=427200
+rss=183980
+peak_vmem=427348
+peak_rss=183980
+vol_ctxt=66
+inv_ctxt=91

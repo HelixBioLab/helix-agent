@@ -1,0 +1,7 @@
+{
+  "source": "https://ftp.ebi.ac.uk/pub/databases/msd/sifts/xml/2xqh.xml.gz",
+  "retrieved": "2026-09-21",
+  "compressedSha256": "97b485e36bbbb1dbe8dfdaa1989b7a6db88d76623cb7c257a8a8a6fc38559465",
+  "xmlSha256": "941e66d081f476f1e801f53e7faf3ab070f590421c558d0970ea2367ed5fd391",
+  "scope": "Engineering reference; not held-out biological evaluation"
+}

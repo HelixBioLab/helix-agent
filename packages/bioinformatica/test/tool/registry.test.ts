@@ -116,14 +116,14 @@ describe("tool.registry", () => {
     Effect.gen(function* () {
       const registry = yield* ToolRegistry.Service
       const ids = yield* registry.ids()
-      for (const id of ["trp_catalog", "trp_inspect", "trp_prepare", "trp_run"]) expect(ids).toContain(id)
+      for (const id of ["trp_catalog", "trp_inspect", "trp_prepare", "trp_run", "trp_detect"]) expect(ids).toContain(id)
     }),
   )
   withoutSpecialization.instance("removes all TRP tools in the bare arm", () =>
     Effect.gen(function* () {
       const registry = yield* ToolRegistry.Service
       const ids = yield* registry.ids()
-      for (const id of ["trp_catalog", "trp_inspect", "trp_prepare", "trp_run"]) expect(ids).not.toContain(id)
+      for (const id of ["trp_catalog", "trp_inspect", "trp_prepare", "trp_run", "trp_detect"]) expect(ids).not.toContain(id)
     }),
   )
   it.instance("does not expose task_status", () =>

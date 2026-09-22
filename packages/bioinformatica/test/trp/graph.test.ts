@@ -37,6 +37,15 @@ describe("TRP graph development corpus (not held-out evaluation)", () => {
     ["missing observed residue", ["units", "value", "ranges", 0, "start"], 1, "residue-coverage"],
     ["insertion overlaps unit", ["insertions", "value", 0, "start"], 350, "range-overlap"],
     ["too few units", ["units", "value", "ranges"], [{ start: 161, end: 175 }], "unit-count"],
+    [
+      "two centers cannot fit GeomeTRe circle",
+      ["units", "value", "ranges"],
+      [
+        { start: 161, end: 175 },
+        { start: 176, end: 189 },
+      ],
+      "unit-count",
+    ],
     ["fractional endpoint", ["units", "value", "ranges", 0, "end"], 174.5, "unit-range"],
     ["wrong input hash", ["structure", "value", "sha256"], "0".repeat(64), "artifact-hash"],
     ["wrong annotation identity", ["units", "value", "contract", "protein"], "1a0c", "units-protein"],

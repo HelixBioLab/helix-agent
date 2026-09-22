@@ -1,0 +1,66 @@
+{
+  "catalog_version": "trp-catalog/1.2.0",
+  "entries": [
+    {
+      "id": "rcsb.structure",
+      "status": "admitted",
+      "source": {
+        "url": "https://files.rcsb.org/download/2XQH.pdb",
+        "revision": "response-sha256:f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b",
+        "license": "CC0-1.0",
+        "licenseUrl": "https://www.wwpdb.org/about/usage-policies"
+      }
+    },
+    {
+      "id": "geometre.geometry",
+      "status": "admitted",
+      "source": {
+        "url": "https://github.com/BioComputingUP/GeomeTRe",
+        "revision": "8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9",
+        "license": "GPL-3.0-only",
+        "licenseUrl": "https://github.com/BioComputingUP/GeomeTRe/blob/8bb0c50bb0bf73c16cc22e7bd4e3991a326841c9/LICENSE"
+      }
+    },
+    {
+      "id": "repeatsdb.annotations",
+      "status": "candidate",
+      "source": {
+        "url": "https://repeatsdb.org/api/production/annotations",
+        "revision": "response-sha256:8e974674ed7bb9a827b92a98e07f587a70402422ddb75457ba1effb54aa61502",
+        "license": "unresolved",
+        "licenseUrl": "https://old.repeatsdb.bio.unipd.it/about"
+      }
+    },
+    {
+      "id": "reupred.detect",
+      "status": "candidate",
+      "source": {
+        "url": "http://old.protein.bio.unipd.it/reupred/",
+        "revision": "archive-sha256:3c6b98b8a9d0b147e38a27918a8e3bb3c47308278a30f889a741768b0473a200",
+        "license": "GPL-notice-version-unspecified",
+        "licenseUrl": "http://old.protein.bio.unipd.it/reupred/reupred.tar.gz"
+      }
+    },
+    {
+      "id": "strpsearch.detect",
+      "status": "admitted",
+      "source": {
+        "url": "https://github.com/BioComputingUP/STRPsearch",
+        "revision": "ed325a7f6b77578ee96753f31dbdcfda4931cca8",
+        "license": "GPL-3.0-only",
+        "licenseUrl": "https://github.com/BioComputingUP/STRPsearch/blob/ed325a7f6b77578ee96753f31dbdcfda4931cca8/LICENSE"
+      }
+    },
+    {
+      "id": "repeatsdb-lite.web",
+      "status": "web-comparator",
+      "source": {
+        "url": "https://protein.bio.unipd.it/repeatsdb-lite/",
+        "revision": "not-pinned",
+        "license": "unresolved",
+        "licenseUrl": "https://protein.bio.unipd.it/repeatsdb-lite/"
+      }
+    }
+  ],
+  "scope": "Catalog artifacts only; held-out corpus sources must be added before freezing"
+}

@@ -139,6 +139,7 @@ export const SPECIALIZATION_TOOLS: readonly string[] = [
   "trp_inspect",
   "trp_prepare",
   "trp_run",
+  "trp_detect",
   // nf-core execution and authoring
   "nfcore_pipeline_search",
   "nfcore_samplesheet_schema",

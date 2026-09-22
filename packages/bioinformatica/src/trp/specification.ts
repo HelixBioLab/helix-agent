@@ -5,7 +5,7 @@ import { createHash } from "node:crypto"
 import { TrpCatalog } from "./catalog"
 
 export const VERSION = "trp-spec/1.0.0"
-export const ENGINE = "trp-nextflow/1.3.0"
+export const ENGINE = "trp-nextflow/1.4.0"
 
 export class WorkflowError extends Error {
   constructor(
@@ -68,6 +68,20 @@ export const Specification = Schema.Struct({
   model: sourced(Schema.Number.annotate({ description: "One-based ordinal of the model in the source PDB" })),
   units: sourced(Schema.Struct({ contract: Contract, ranges: Schema.Array(Range) })),
   insertions: sourced(Schema.Array(Range)),
+  coordinateMapping: Schema.optional(
+    sourced(
+      Schema.Struct({
+        path: Schema.String,
+        sha256: Schema.String,
+        frame: Schema.Literals(["label_seq_id", "uniprot"]),
+        units: Schema.Array(Range),
+        sifts: Schema.optional(Schema.Struct({ path: Schema.String, sha256: Schema.String, accession: Schema.String })),
+      }).annotate({
+        description:
+          "Optional automatic conversion: units here are authoritative source intervals; units.value.ranges is replaced by verified author intervals. Existing insertion intervals remain in author numbering. SIFTS XML is required for UniProt numbering.",
+      }),
+    ),
+  ),
   graph: Schema.Struct({
     nodes: Schema.Array(Schema.Struct({ id: Schema.String, operation: Schema.String })),
     edges: Schema.Array(

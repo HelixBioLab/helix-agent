@@ -1,0 +1,97 @@
+{
+  "schema_version": "trp-f6-readiness/1.0",
+  "scopes": {
+    "language": {
+      "metadata_ready": false,
+      "blockers": [
+        "status: freeze has not been finalized",
+        "frozen_at: missing",
+        "code_commit: working tree contains uncommitted changes",
+        "case_manifest_sha256: missing or invalid frozen SHA-256",
+        "assignments_sha256: missing or invalid frozen SHA-256",
+        "external_annotator_id: independent participant not recorded",
+        "external_annotation: participant agreement pending",
+        "annotation_agreement_sha256: missing or invalid frozen SHA-256",
+        "model_id: exact model configuration missing",
+        "provider_model_revision: exact model configuration missing",
+        "provider_seed_support: exact model configuration missing",
+        "temperature: record numeric value or unsupported",
+        "top_p: record numeric value or unsupported",
+        "max_output_tokens: positive integer required",
+        "api_call_budget: positive integer required",
+        "api_cost_limit: positive authorized limit required",
+        "system_instructions_sha256: missing or invalid frozen SHA-256",
+        "language_corpus_review_sha256: missing or invalid frozen SHA-256"
+      ]
+    },
+    "graphs": {
+      "metadata_ready": false,
+      "blockers": [
+        "status: freeze has not been finalized",
+        "frozen_at: missing",
+        "code_commit: working tree contains uncommitted changes",
+        "case_manifest_sha256: missing or invalid frozen SHA-256",
+        "assignments_sha256: missing or invalid frozen SHA-256",
+        "graphs_corpus_review_sha256: missing or invalid frozen SHA-256"
+      ]
+    },
+    "resources": {
+      "metadata_ready": false,
+      "blockers": [
+        "status: freeze has not been finalized",
+        "frozen_at: missing",
+        "code_commit: working tree contains uncommitted changes",
+        "case_manifest_sha256: missing or invalid frozen SHA-256",
+        "assignments_sha256: missing or invalid frozen SHA-256",
+        "resources_corpus_review_sha256: missing or invalid frozen SHA-256"
+      ]
+    },
+    "trace": {
+      "metadata_ready": false,
+      "blockers": [
+        "status: freeze has not been finalized",
+        "frozen_at: missing",
+        "code_commit: working tree contains uncommitted changes",
+        "case_manifest_sha256: missing or invalid frozen SHA-256",
+        "assignments_sha256: missing or invalid frozen SHA-256",
+        "external_annotator_id: independent participant not recorded",
+        "external_annotation: participant agreement pending",
+        "annotation_agreement_sha256: missing or invalid frozen SHA-256",
+        "trace_corpus_review_sha256: missing or invalid frozen SHA-256"
+      ]
+    },
+    "structural": {
+      "metadata_ready": false,
+      "blockers": [
+        "status: freeze has not been finalized",
+        "frozen_at: missing",
+        "code_commit: working tree contains uncommitted changes",
+        "case_manifest_sha256: missing or invalid frozen SHA-256",
+        "assignments_sha256: missing or invalid frozen SHA-256",
+        "external_annotator_id: independent participant not recorded",
+        "external_annotation: participant agreement pending",
+        "annotation_agreement_sha256: missing or invalid frozen SHA-256",
+        "original_structural_inputs_sha256: missing or invalid frozen SHA-256",
+        "independent_reference_review_sha256: missing or invalid frozen SHA-256",
+        "structural_corpus_review_sha256: missing or invalid frozen SHA-256"
+      ]
+    }
+  },
+  "metadata_ready": false,
+  "cluster_claim": false,
+  "paid_calls_executed": 0,
+  "scope_limit": "Metadata and artifact integrity only; scientific adequacy and independent labels require review. Development executions remain permitted when this gate is blocked.",
+  "protocol_sample_minima": {
+    "heldout_feasible_intents": 50,
+    "paraphrases_per_intent": 2,
+    "heldout_out_of_scope": 20,
+    "valid_graphs": 50,
+    "invalid_graphs": 30,
+    "feasible_resource_scenarios": 20,
+    "infeasible_resource_scenarios": 20,
+    "human_turns": 100,
+    "reviewed_structural_controls": 30
+  },
+  "observed_commit": "c1d0d80f2a5757fea95eb5c097036e28694db154",
+  "freeze_path": "evaluation/trp/f6-readiness-20260921/technical-draft/freeze.draft.json"
+}

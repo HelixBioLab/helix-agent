@@ -1,5 +1,20 @@
 # Estado del cierre
 
+## Cierre técnico — 21 de septiembre de 2026 (estado vigente)
+
+Se ejecutó [el plan CT1–CT5](PLAN-CIERRE-TECNICO.md) con tres agentes y revisión integrada.
+Los apartados siguientes conservan la historia de fases; sus pendientes se actualizan aquí.
+
+- Motor 1.4.0: correspondencias label/autor y SIFTS/UniProt integradas en preparación y aprobación. Referencia real: 206 residuos, 12 unidades, geometría idéntica y copia portable verificada de 139 archivos.
+- Catálogo 1.2.0: tres herramientas admitidas de seis auditadas. STRPsearch tiene ejecución protegida y herramienta `trp_detect`; referencias reales CIF, PDB y núcleo de la herramienta producen siete unidades candidatas. La aprobación del ensayo es sintética; no constituye anotación humana.
+- Modelos predichos: CLI verificable con identidad AFDB, pLDDT y PAE; tres segmentos artificiales ejecutados correctamente. Se conserva el fallo inicial con dos segmentos. Falta integrar esta ruta en `trp_prepare`/`trp_run`; no prueba exactitud biológica.
+- Regresión: 500 pruebas aprobadas, una omitida; 78 pruebas Python aprobadas y chequeo de tipos correcto. [Evidencia](evidencia/cierre-tecnico-20260921.json).
+- F6 en preparación: siete artefactos técnicos con hashes y verificador por campaña. El borrador no está congelado: faltan corpus reservado, particiones, revisión independiente y las dependencias aplicables de anotación/modelo/presupuesto.
+- ReUPred sigue sin entorno compatible validado. RepeatsDB declara CC BY 4.0 en su web actual, pero faltan correspondencias inequívocas de loci y confirmar aplicabilidad a la API. Los nuevos suplementos recuperados para Pratt resultaron ajenos al artículo y fueron rechazados; siguen faltando coordenadas/PAE originales.
+- Word actualizado solo en resultados, conclusiones y anexo A.22. Los 21 resultados tienen [mapa legible](trazabilidad.md) y [mapa JSON](trazabilidad.json); presencia de evidencia no equivale a cumplimiento empírico.
+
+F5 mantiene abierta su cobertura completa; F6 no ha iniciado mediciones reservadas. R3.2 conserva su verificación de ingeniería en la segunda PC. La detección y la CLI predicha todavía no tienen cuota dura de almacenamiento, por lo que no heredan esa garantía de recursos.
+
 ## Reanudación — 21 de septiembre de 2026
 
 El autor declara cerrados problemática, marco conceptual y estado del arte.

@@ -1,0 +1,8 @@
+{
+  "observed_at": "2026-09-22T03:46:12.151406+00:00",
+  "platform": "Linux-7.2.6-1-cachyos-x86_64-with-glibc2.44",
+  "logical_cpus": 16,
+  "memory_total_bytes": 16128679936,
+  "workspace_free_bytes": 70431789056,
+  "kind": "local workstation observation; not an exclusive reservation or cluster"
+}

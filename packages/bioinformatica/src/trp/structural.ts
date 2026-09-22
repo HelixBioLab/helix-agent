@@ -81,12 +81,12 @@ export type Report = typeof Report.Type
 
 /** Trusted, bundled offline parser, isolated from cwd imports. Input is data on
  * stdin, never command text. Python path is an operator setting, not an LLM arg. */
-export async function inspect(
-  request: { structure: string; options: Options; pae?: unknown; api?: unknown },
+export async function runParser(
+  request: unknown,
   signal?: AbortSignal,
   python = process.env.BIOINFORMATICA_TRP_PYTHON ?? "python3",
-): Promise<Report> {
-  Schema.decodeUnknownSync(Options, { onExcessProperty: "error" })(request.options)
+  script = SCRIPT,
+): Promise<unknown> {
   const stdin = S.canonical(request)
   if (Buffer.byteLength(stdin) > 40_000_000) throw new S.WorkflowError("inspection-size", "Inspection exceeds 40 MB")
   // Bun 1.3.14's node:child_process pipe loses stdin in this runtime; its native
@@ -95,7 +95,7 @@ export async function inspect(
     typeof Bun !== "undefined"
       ? await (async () => {
           signal?.throwIfAborted()
-          const child = Bun.spawn([python, "-I", "-c", SCRIPT], {
+          const child = Bun.spawn([python, "-I", "-c", script], {
             stdin: new Blob([stdin]),
             stdout: "pipe",
             stderr: "pipe",
@@ -130,7 +130,7 @@ export async function inspect(
           }
         })()
       : await new Promise<string>((resolve, reject) => {
-          const child = spawn(python, ["-I", "-c", SCRIPT], {
+          const child = spawn(python, ["-I", "-c", script], {
             stdio: ["pipe", "pipe", "pipe"],
             timeout: 30_000,
             signal,
@@ -165,7 +165,18 @@ export async function inspect(
           })
           child.stdin.end(stdin)
         })
-  const report = Schema.decodeUnknownSync(Report, { onExcessProperty: "error" })(JSON.parse(stdout))
+  return JSON.parse(stdout)
+}
+
+export async function inspect(
+  request: { structure: string; options: Options; pae?: unknown; api?: unknown },
+  signal?: AbortSignal,
+  python = process.env.BIOINFORMATICA_TRP_PYTHON ?? "python3",
+): Promise<Report> {
+  Schema.decodeUnknownSync(Options, { onExcessProperty: "error" })(request.options)
+  const report = Schema.decodeUnknownSync(Report, { onExcessProperty: "error" })(
+    await runParser(request, signal, python),
+  )
   if (
     report.version !== VERSION ||
     report.provenance.structureSha256 !== S.sha256(request.structure) ||
