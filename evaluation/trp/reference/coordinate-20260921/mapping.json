@@ -1,0 +1,1354 @@
+{
+  "version": "trp-coordinate-adapter/1.0.0",
+  "sourceSha256": "7bbb3fb56d9998402f91c1356643ae7a6cde8687bde7e455e4b65bd931e5f74b",
+  "targetSha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b",
+  "engineSha256": "dc5e0ffca18abab21784c3f948d784063b6338a9ea52e2185cc5310b3640586a",
+  "chain": "A",
+  "model": 1,
+  "sourceFrame": "label_seq_id",
+  "targetFrame": "pdb-author",
+  "inputUnits": [
+    {
+      "start": 24,
+      "end": 38
+    },
+    {
+      "start": 39,
+      "end": 52
+    },
+    {
+      "start": 53,
+      "end": 66
+    },
+    {
+      "start": 67,
+      "end": 80
+    },
+    {
+      "start": 81,
+      "end": 96
+    },
+    {
+      "start": 97,
+      "end": 112
+    },
+    {
+      "start": 113,
+      "end": 126
+    },
+    {
+      "start": 127,
+      "end": 139
+    },
+    {
+      "start": 168,
+      "end": 189
+    },
+    {
+      "start": 190,
+      "end": 213
+    },
+    {
+      "start": 236,
+      "end": 255
+    },
+    {
+      "start": 256,
+      "end": 279
+    }
+  ],
+  "units": [
+    {
+      "start": 161,
+      "end": 175
+    },
+    {
+      "start": 176,
+      "end": 189
+    },
+    {
+      "start": 190,
+      "end": 203
+    },
+    {
+      "start": 204,
+      "end": 217
+    },
+    {
+      "start": 218,
+      "end": 233
+    },
+    {
+      "start": 234,
+      "end": 249
+    },
+    {
+      "start": 250,
+      "end": 263
+    },
+    {
+      "start": 264,
+      "end": 276
+    },
+    {
+      "start": 305,
+      "end": 326
+    },
+    {
+      "start": 327,
+      "end": 350
+    },
+    {
+      "start": 373,
+      "end": 392
+    },
+    {
+      "start": 393,
+      "end": 416
+    }
+  ],
+  "mapping": [
+    {
+      "label": 24,
+      "author": 161,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 25,
+      "author": 162,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 26,
+      "author": 163,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 27,
+      "author": 164,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 28,
+      "author": 165,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 29,
+      "author": 166,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 30,
+      "author": 167,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 31,
+      "author": 168,
+      "chain": "A",
+      "residue": "PHE"
+    },
+    {
+      "label": 32,
+      "author": 169,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 33,
+      "author": 170,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 34,
+      "author": 171,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 35,
+      "author": 172,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 36,
+      "author": 173,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 37,
+      "author": 174,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 38,
+      "author": 175,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 39,
+      "author": 176,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 40,
+      "author": 177,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 41,
+      "author": 178,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 42,
+      "author": 179,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 43,
+      "author": 180,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 44,
+      "author": 181,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 45,
+      "author": 182,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 46,
+      "author": 183,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 47,
+      "author": 184,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 48,
+      "author": 185,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 49,
+      "author": 186,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 50,
+      "author": 187,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 51,
+      "author": 188,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 52,
+      "author": 189,
+      "chain": "A",
+      "residue": "TRP"
+    },
+    {
+      "label": 53,
+      "author": 190,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 54,
+      "author": 191,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 55,
+      "author": 192,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 56,
+      "author": 193,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 57,
+      "author": 194,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 58,
+      "author": 195,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 59,
+      "author": 196,
+      "chain": "A",
+      "residue": "GLN"
+    },
+    {
+      "label": 60,
+      "author": 197,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 61,
+      "author": 198,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 62,
+      "author": 199,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 63,
+      "author": 200,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 64,
+      "author": 201,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 65,
+      "author": 202,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 66,
+      "author": 203,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 67,
+      "author": 204,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 68,
+      "author": 205,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 69,
+      "author": 206,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 70,
+      "author": 207,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 71,
+      "author": 208,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 72,
+      "author": 209,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 73,
+      "author": 210,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 74,
+      "author": 211,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 75,
+      "author": 212,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 76,
+      "author": 213,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 77,
+      "author": 214,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 78,
+      "author": 215,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 79,
+      "author": 216,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 80,
+      "author": 217,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 81,
+      "author": 218,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 82,
+      "author": 219,
+      "chain": "A",
+      "residue": "PHE"
+    },
+    {
+      "label": 83,
+      "author": 220,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 84,
+      "author": 221,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 85,
+      "author": 222,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 86,
+      "author": 223,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 87,
+      "author": 224,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 88,
+      "author": 225,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 89,
+      "author": 226,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 90,
+      "author": 227,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 91,
+      "author": 228,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 92,
+      "author": 229,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 93,
+      "author": 230,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 94,
+      "author": 231,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 95,
+      "author": 232,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 96,
+      "author": 233,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 97,
+      "author": 234,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 98,
+      "author": 235,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 99,
+      "author": 236,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 100,
+      "author": 237,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 101,
+      "author": 238,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 102,
+      "author": 239,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 103,
+      "author": 240,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 104,
+      "author": 241,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 105,
+      "author": 242,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 106,
+      "author": 243,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 107,
+      "author": 244,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 108,
+      "author": 245,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 109,
+      "author": 246,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 110,
+      "author": 247,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 111,
+      "author": 248,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 112,
+      "author": 249,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 113,
+      "author": 250,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 114,
+      "author": 251,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 115,
+      "author": 252,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 116,
+      "author": 253,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 117,
+      "author": 254,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 118,
+      "author": 255,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 119,
+      "author": 256,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 120,
+      "author": 257,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 121,
+      "author": 258,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 122,
+      "author": 259,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 123,
+      "author": 260,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 124,
+      "author": 261,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 125,
+      "author": 262,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 126,
+      "author": 263,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 127,
+      "author": 264,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 128,
+      "author": 265,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 129,
+      "author": 266,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 130,
+      "author": 267,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 131,
+      "author": 268,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 132,
+      "author": 269,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 133,
+      "author": 270,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 134,
+      "author": 271,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 135,
+      "author": 272,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 136,
+      "author": 273,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 137,
+      "author": 274,
+      "chain": "A",
+      "residue": "ILE"
+    },
+    {
+      "label": 138,
+      "author": 275,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 139,
+      "author": 276,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 168,
+      "author": 305,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 169,
+      "author": 306,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 170,
+      "author": 307,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 171,
+      "author": 308,
+      "chain": "A",
+      "residue": "GLN"
+    },
+    {
+      "label": 172,
+      "author": 309,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 173,
+      "author": 310,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 174,
+      "author": 311,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 175,
+      "author": 312,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 176,
+      "author": 313,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 177,
+      "author": 314,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 178,
+      "author": 315,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 179,
+      "author": 316,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 180,
+      "author": 317,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 181,
+      "author": 318,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 182,
+      "author": 319,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 183,
+      "author": 320,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 184,
+      "author": 321,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 185,
+      "author": 322,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 186,
+      "author": 323,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 187,
+      "author": 324,
+      "chain": "A",
+      "residue": "ILE"
+    },
+    {
+      "label": 188,
+      "author": 325,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 189,
+      "author": 326,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 190,
+      "author": 327,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 191,
+      "author": 328,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 192,
+      "author": 329,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 193,
+      "author": 330,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 194,
+      "author": 331,
+      "chain": "A",
+      "residue": "GLN"
+    },
+    {
+      "label": 195,
+      "author": 332,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 196,
+      "author": 333,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 197,
+      "author": 334,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 198,
+      "author": 335,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 199,
+      "author": 336,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 200,
+      "author": 337,
+      "chain": "A",
+      "residue": "GLN"
+    },
+    {
+      "label": 201,
+      "author": 338,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 202,
+      "author": 339,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 203,
+      "author": 340,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 204,
+      "author": 341,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 205,
+      "author": 342,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 206,
+      "author": 343,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 207,
+      "author": 344,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 208,
+      "author": 345,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 209,
+      "author": 346,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 210,
+      "author": 347,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 211,
+      "author": 348,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 212,
+      "author": 349,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 213,
+      "author": 350,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 236,
+      "author": 373,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 237,
+      "author": 374,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 238,
+      "author": 375,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 239,
+      "author": 376,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 240,
+      "author": 377,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 241,
+      "author": 378,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 242,
+      "author": 379,
+      "chain": "A",
+      "residue": "LEU"
+    },
+    {
+      "label": 243,
+      "author": 380,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 244,
+      "author": 381,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 245,
+      "author": 382,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 246,
+      "author": 383,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 247,
+      "author": 384,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 248,
+      "author": 385,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 249,
+      "author": 386,
+      "chain": "A",
+      "residue": "ILE"
+    },
+    {
+      "label": 250,
+      "author": 387,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 251,
+      "author": 388,
+      "chain": "A",
+      "residue": "TYR"
+    },
+    {
+      "label": 252,
+      "author": 389,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 253,
+      "author": 390,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 254,
+      "author": 391,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 255,
+      "author": 392,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 256,
+      "author": 393,
+      "chain": "A",
+      "residue": "ILE"
+    },
+    {
+      "label": 257,
+      "author": 394,
+      "chain": "A",
+      "residue": "ASP"
+    },
+    {
+      "label": 258,
+      "author": 395,
+      "chain": "A",
+      "residue": "GLY"
+    },
+    {
+      "label": 259,
+      "author": 396,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 260,
+      "author": 397,
+      "chain": "A",
+      "residue": "VAL"
+    },
+    {
+      "label": 261,
+      "author": 398,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 262,
+      "author": 399,
+      "chain": "A",
+      "residue": "ARG"
+    },
+    {
+      "label": 263,
+      "author": 400,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 264,
+      "author": 401,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 265,
+      "author": 402,
+      "chain": "A",
+      "residue": "GLN"
+    },
+    {
+      "label": 266,
+      "author": 403,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 267,
+      "author": 404,
+      "chain": "A",
+      "residue": "ILE"
+    },
+    {
+      "label": 268,
+      "author": 405,
+      "chain": "A",
+      "residue": "GLU"
+    },
+    {
+      "label": 269,
+      "author": 406,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 270,
+      "author": 407,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 271,
+      "author": 408,
+      "chain": "A",
+      "residue": "SER"
+    },
+    {
+      "label": 272,
+      "author": 409,
+      "chain": "A",
+      "residue": "LYS"
+    },
+    {
+      "label": 273,
+      "author": 410,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 274,
+      "author": 411,
+      "chain": "A",
+      "residue": "ILE"
+    },
+    {
+      "label": 275,
+      "author": 412,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 276,
+      "author": 413,
+      "chain": "A",
+      "residue": "ALA"
+    },
+    {
+      "label": 277,
+      "author": 414,
+      "chain": "A",
+      "residue": "ASN"
+    },
+    {
+      "label": 278,
+      "author": 415,
+      "chain": "A",
+      "residue": "THR"
+    },
+    {
+      "label": 279,
+      "author": 416,
+      "chain": "A",
+      "residue": "ARG"
+    }
+  ],
+  "biologicalValidity": "not_established",
+  "limitations": [
+    "Experimental PDB route only",
+    "No SIFTS/UniProt inference",
+    "All requested residues must have unique matching CA coordinates"
+  ]
+}

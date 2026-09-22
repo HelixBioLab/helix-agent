@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "Generalidades": true,
+    "Marco Conceptual": true,
+    "Formulario de extracci\u00f3n de datos": true,
+    "search_introduction_preserved": true,
+    "three_headings_removed": true,
+    "new_appendix": true
+  },
+  "source_sha256": "f6e3294e96d41b339fb504846a6f1a2757f4713d0e95fd66e408ea60e4655f3f",
+  "installed_docx_sha256": "a667fb533764ecd499baefdf11d8730a0876b7e597c43923556d1f34294f6ef2",
+  "pdf_sha256": "affe39a43cb8baa29f0fbe9132b170606c7da1dc0ed578baf62cf9a16c2cbe98"
+}

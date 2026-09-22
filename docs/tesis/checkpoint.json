@@ -1,6 +1,6 @@
 {
   "project": "Bioinformática.org — tesis TRP",
-  "updated": "2026-09-15",
+  "updated": "2026-09-21",
   "phases_completed": [
     "F1",
     "F2",
@@ -37,11 +37,11 @@
     "plan": "docs/tesis/PLAN.md",
     "status": "docs/tesis/ESTADO.md",
     "traceability": "docs/tesis/trazabilidad.json",
-    "document_content": "docs/tesis/r32-documento.json",
+    "document_content": "script/tesis/update_resume_docx.py",
     "engineering_evidence": "docs/tesis/evidencia/r32.json",
-    "document_evidence": "docs/tesis/evidencia/documento-r32.json",
+    "document_evidence": "docs/tesis/evidencia/reanudacion-20260921/document-checks.json",
     "docx": "/home/webiwabou/Projects/Tesis.docx",
-    "pdf": "/home/webiwabou/Projects/Tesis-R3.2.pdf",
+    "pdf": "/home/webiwabou/Projects/Tesis-avance-20260921.pdf",
     "verifier": "script/tesis/verify_snapshot.py",
     "catalogue": "packages/bioinformatica/src/trp/catalog.json",
     "protocol": "evaluation/trp/PROTOCOL.md",
@@ -52,7 +52,9 @@
     "structural_reference": "evaluation/trp/reference/structural-f5/engineering-reference.json",
     "resource_executor": "script/tesis/trp_sandbox.py",
     "resource_audit": "script/tesis/audit_resource_runs.py",
-    "remaining_decisions": "docs/tesis/DECISIONES-PENDIENTES.md"
+    "remaining_decisions": "docs/tesis/DECISIONES-PENDIENTES.md",
+    "coordinate_reference": "evaluation/trp/reference/coordinate-20260921/execution.json",
+    "resumed_nextflow_reference": "evaluation/trp/reference/nextflow-20260921/engineering-reference.json"
   },
   "external_dependencies": [
     "Authentic FCI approval document and official title",
@@ -119,6 +121,13 @@
     "R5.3": "Per-instance reports and offline integrity; experimental report bound to Nextflow approval and methods",
     "R5.4": "No original Pratt models executed; 78 metadata rows recovered, no coordinates/PAE in downloaded supplements; sensitivity/specificity null",
     "next_work": "Detector/coordinate/predicted-execution contracts and original structural data/reference dependencies before dependent F6 measurements; R3.2 engineering closed; do not silently amend F2",
-    "local_parser_environment": ".bioinformatica/trp-python (Gemmi 0.7.5; untracked; requirements in script/tesis/requirements-structural.txt)"
+    "local_parser_environment": ".bioinformatica/trp-python (Gemmi 0.7.5; untracked; requirements in script/tesis/requirements-structural.txt)",
+    "coordinate_progress": "Explicit offline label_seq_id to author adapter; real 2xqh/A mapping of 12 units/206 residues, byte-identical geometry; 8 tests. SIFTS and predicted execution still pending."
+  },
+  "author_closed_sections": {
+    "problem_statement": true,
+    "conceptual_framework": true,
+    "state_of_art": true,
+    "source": "user instruction 2026-09-21; do not reopen bibliography screening"
   }
 }

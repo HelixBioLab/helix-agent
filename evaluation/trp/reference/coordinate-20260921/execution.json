@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-22T02:54:00.171575+00:00",
+  "kind": "development; same 2xqh family; not held-out evaluation",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "thesis-mapped-ce938a7b56c64ae883f3df026f483447",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "128",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "--tmpfs",
+    "/tmp",
+    "--user",
+    "1000:1000",
+    "--mount",
+    "type=bind,src=/home/webiwabou/Projects/bioinformatica-org/evaluation/trp/reference/coordinate-20260921,dst=/work",
+    "sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a",
+    "single",
+    "/work/2xqh.pdb",
+    "A",
+    "/work/geometry.csv",
+    "161_175,176_189,190_203,204_217,218_233,234_249,250_263,264_276,305_326,327_350,373_392,393_416",
+    "-ins_def",
+    "351_372"
+  ],
+  "exit_code": 0,
+  "identical_reference_csv": true,
+  "unit_count": 12,
+  "mapped_residues": 206,
+  "files": [
+    {
+      "path": "2xqh.pdb",
+      "sha256": "f674267d0ef4752a3d4da00497947bfc09f441a5c36d39593b72bc2ba390df0b",
+      "bytes": 359397
+    },
+    {
+      "path": "geometry.csv",
+      "sha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f",
+      "bytes": 992
+    },
+    {
+      "path": "geometry.npy",
+      "sha256": "a81eff2c96ae2eb645d4246759b31612f0b682c31d6d42fc51c789e9401205bb",
+      "bytes": 13452
+    },
+    {
+      "path": "label-units.json",
+      "sha256": "6ad99ec6ebb654a64a9fcd0235a2a9a231a8765d48772bb5ef5ceda281a593a8",
+      "bytes": 496
+    },
+    {
+      "path": "mapping.json",
+      "sha256": "cf405ac8a6455154d7307dfa6c2b8c0f5a0967f05592d1e9056faca124820571",
+      "bytes": 21759
+    },
+    {
+      "path": "stderr.log",
+      "sha256": "5c905e0a5ec94f606d9d7116e4b16ffd642717cec46f840cf88cfd05f24d1970",
+      "bytes": 75
+    },
+    {
+      "path": "stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

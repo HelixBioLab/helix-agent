@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "files": 127,
+  "bytes": 3964553,
+  "manifestSha256": "61ab913408b6fced4bf84d6772d85861e8400a10d3d17ead3763fec0d9d3873e",
+  "status": "succeeded",
+  "externallyAnchored": false,
+  "scope": "integrity, declared links and cold counts; not biological accuracy or authorship"
+}

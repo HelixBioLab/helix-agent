@@ -1,5 +1,28 @@
 # Estado del cierre
 
+## Reanudación — 21 de septiembre de 2026
+
+El autor declara cerrados problemática, marco conceptual y estado del arte.
+Confirmó sustituir las tres secciones «Cadenas de búsqueda», «Documentos
+encontrados» y «Criterios de inclusión/exclusión» por una nota roja. La copia
+revisada actualiza resultados de R2.3 y añade A.21; no reabre la revisión de fuentes.
+
+- Adaptador explícito offline `script/tesis/map_residue_units.py`: verifica cada
+  residuo label/autor contra ambos archivos, identidad, coordenadas CA y B-factor.
+  Ocho pruebas satisfactorias, incluidas ausencias, duplicados, marco equivocado,
+  cambio de identidad/coordenadas y numeración no contigua.
+- Ejecución real con los intervalos convertidos: **12 unidades, 206 residuos**,
+  CSV idéntico a la referencia de GeomeTRe. [Evidencia](../../evaluation/trp/reference/coordinate-20260921/execution.json).
+- Regresión: **482 aprobadas, una omitida por defecto, cero fallos**. Referencia
+  real Nextflow ejecutada aparte: aprobada; **35 controles Python aprobados**.
+  La copia portable verifica **127 archivos**. [Registros](evidencia/reanudacion-20260921).
+
+Es evidencia de desarrollo sobre 2xqh, no evaluación reservada. R2.3 continúa
+parcial: el preprocesamiento todavía no se integra automáticamente al flujo;
+SIFTS/UniProt, detección y ejecución predicha siguen pendientes. F6 puede
+prepararse, pero sus mediciones dependientes requieren resolver esas rutas,
+referencias independientes, anotador y modelo/presupuesto.
+
 ## Cierre de R3.2 — 15 de septiembre de 2026
 
 Motor actual `trp-nextflow/1.3.0`; contador `trp-resources/1.2.0`. Implementación, ensayos y Word actualizados. [Informe](R3.2-RECURSOS.md), [auditoría](evidencia/r32.json) y [decisiones pendientes](DECISIONES-PENDIENTES.md). No se usó API de modelos ni nube. Regresión: 482 pruebas correctas y una referencia externa omitida por defecto; referencia real ejecutada por separado. Auditoría portable: 266/266 alteraciones detectadas. Word: 135 páginas, anexo A.20 y 33 notas rojas en cursiva.

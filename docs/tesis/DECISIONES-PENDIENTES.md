@@ -1,5 +1,12 @@
 # Qué falta para completar la tesis
 
+Actualización adicional del 21 de septiembre: el autor da por cerrados
+problemática, marco conceptual y estado del arte; su revisión bibliográfica ya
+no se considera trabajo pendiente del agente. Se avanzó R2.3 con un adaptador
+offline label/autor comprobado en 2xqh/A (12 unidades, 206 residuos y geometría
+idéntica), pendiente de integración automática, SIFTS/UniProt y ruta predicha.
+La regresión y la referencia real Nextflow volvieron a ejecutarse correctamente.
+
 Actualización: 15 de septiembre de 2026. Sustentación prevista: julio de 2027;
 borrador completo objetivo: 4 de junio de 2027. La segunda PC proporciona un
 entorno Linux adicional; no acredita ejecución en un clúster con planificador.

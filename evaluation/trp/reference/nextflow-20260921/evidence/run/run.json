@@ -1,0 +1,20 @@
+{
+  "digest": "bea9690246debc554bfcdb5d021f21f301458fafbc2c341d4ad44c8834f94c16",
+  "status": "succeeded",
+  "geometry": {
+    "units": 12,
+    "firstUnit": "zero placeholder; not an observed alignment",
+    "summaries": [
+      "mean",
+      "std"
+    ],
+    "sha256": "7e8393ba3d8cd1035b2e7b8a790fd896f3e8748038c52233e3ae4fc7aff41e0f"
+  },
+  "measuredTasks": {
+    "scientificTasks": 2,
+    "stubTasks": 2
+  },
+  "outputs": [
+    "results/geometry.csv"
+  ]
+}
