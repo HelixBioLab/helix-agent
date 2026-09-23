@@ -90,9 +90,6 @@ export function Sidebar(props: { sessionID: string; overlay?: boolean }) {
           <pluginRuntime.Slot name="sidebar_footer" mode="single_winner" session_id={props.sessionID}>
             <text fg={theme.textMuted}>
               <span style={{ fg: theme.success }}>•</span> <b>Helix Agent</b>
-              <span style={{ fg: theme.text }}>
-                <b>.org</b>
-              </span>
             </text>
           </pluginRuntime.Slot>
         </box>

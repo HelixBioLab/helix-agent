@@ -68,27 +68,22 @@
               ><span data-lang="en" lang="en" class="quiet">Open source · In your terminal</span>
             </div>
           </div>
-          <div class="hero-art" aria-hidden="true">
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-            <div class="art-label">HELIX / AGENT</div>
-            <div class="helix-art">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                aria-hidden="true"
+          <div class="hero-video">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1750"
+              height="1080"
+              poster="./media/helix-agent-demo.jpg"
+              aria-label="Helix Agent demo"
+            >
+              <source src="./media/helix-agent-demo.mp4" type="video/mp4" />
+              <a href="./media/helix-agent-demo.mp4"
+                ><span data-lang="es" lang="es">Ver el video de Helix Agent</span
+                ><span data-lang="en" lang="en">Watch the Helix Agent video</span></a
               >
-                <path d="M6 3c0 9 12 9 12 18M18 3c0 9-12 9-12 18M7 6h10M8 18h8M10 10h4M10 14h4" />
-              </svg>
-            </div>
-            <span class="molecule m1"></span><span class="molecule m2"></span><span class="molecule m3"></span>
-            <div class="art-caption">
-              <span data-lang="es" lang="es">De la pregunta a la evidencia</span
-              ><span data-lang="en" lang="en">From question to evidence</span>
-            </div>
+            </video>
           </div>
         </section>
         <section class="features" aria-label="Helix Agent">
@@ -131,6 +126,7 @@
             <p data-lang="es" lang="es" class="quiet">Elige tu sistema y sigue los pasos.</p>
             <p data-lang="en" lang="en" class="quiet">Choose your system and follow the steps.</p>
           </div>
+          <p class="recommendation quiet" id="os-recommendation" hidden></p>
           <div class="systems" role="group" aria-label="Operating system">
             <label for="os-linux">Linux</label><label for="os-mac">macOS</label><label for="os-win">Windows</label>
           </div>
@@ -429,18 +425,6 @@ chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
               </div>
             </aside>
           </div>
-        </section>
-        <section class="first-question">
-          <p data-lang="es" lang="es" class="eyebrow">UNA IDEA PARA EMPEZAR</p>
-          <p data-lang="en" lang="en" class="eyebrow">A PLACE TO START</p>
-          <blockquote data-lang="es" lang="es">
-            “Tengo datos de RNA-seq de seis muestras de control y seis tratadas. Quiero comparar su expresión génica.
-            ¿Qué necesitamos revisar primero?”
-          </blockquote>
-          <blockquote data-lang="en" lang="en">
-            “I have RNA-seq data from six control samples and six treated samples. I want to compare gene expression.
-            What should we check first?”
-          </blockquote>
         </section>
         <section class="faq">
           <h2 data-lang="es" lang="es">Antes de empezar</h2>

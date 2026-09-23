@@ -22,3 +22,13 @@ Las instrucciones por distribución instalan los requisitos con su gestor de
 paquetes; el agente se instala sin sudo. El instalador usa un descargador nativo
 para los metadatos y los archivos, evitando los ejecutables de Snap por sus
 [restricciones de acceso a archivos](https://snapcraft.io/docs/explanation/security/security-policies/).
+
+La portada reproduce `media/helix-agent-demo.mp4`, una copia del video de demostración
+remultiplexada desde MOV sin recomprimir, con controles y sin reproducción automática.
+`media/helix-agent-demo.jpg` es su imagen de portada.
+
+En una primera visita, la descarga prioriza el sistema de escritorio informado por
+el navegador (Windows, macOS o Linux); las elecciones manuales se conservan.
+En móviles o plataformas desconocidas no se muestra una recomendación automática.
+La distribución de Linux se elige manualmente porque los navegadores no la
+[identifican de manera fiable](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/User-agent_reduction).

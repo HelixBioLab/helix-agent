@@ -26,10 +26,31 @@ const labels = {
     title: "Helix Agent | Bioinformatics in your terminal",
   },
 }
+// This is a convenience default, never a requirement: all systems stay selectable.
+// Linux distributions are not reliably exposed by browsers.
+function detectOs() {
+  const ua = navigator.userAgent || ""
+  const platform = navigator.userAgentData?.platform || navigator.platform || ""
+  if (/Android|iPhone|iPad|iPod|CrOS/i.test(ua) || /Android|iOS|Chrome OS/i.test(platform)) return null
+  if (/Mac/i.test(platform) && navigator.maxTouchPoints > 1) return null
+  if (/Windows|Win32|Win64/i.test(platform + " " + ua)) return "win"
+  if (/Mac/i.test(platform + " " + ua)) return "mac"
+  if (/Linux/i.test(platform + " " + ua)) return "linux"
+  return null
+}
+const detectedOs = detectOs()
+const osNames = { linux: "Linux", mac: "macOS", win: "Windows" }
 function applyLang(lang) {
   document.getElementById("lang-" + lang).checked = true
   document.documentElement.lang = lang
   document.title = labels[lang].title
+  const recommendation = document.getElementById("os-recommendation")
+  recommendation.hidden = !detectedOs
+  if (detectedOs)
+    recommendation.textContent =
+      lang === "es"
+        ? `Recomendado para tu equipo: ${osNames[detectedOs]}. Puedes elegir otro sistema.`
+        : `Recommended for your device: ${osNames[detectedOs]}. You can choose another system.`
   for (const node of document.querySelectorAll("[data-lang]")) node.lang = node.dataset.lang
   for (const button of document.querySelectorAll(".copy")) {
     button.textContent = labels[lang].copy
@@ -41,13 +62,11 @@ applyLang(
   ["es", "en"].includes(savedLang) ? savedLang : navigator.language.toLowerCase().startsWith("es") ? "es" : "en",
 )
 const savedOs = store.get("os")
-const os = ["linux", "mac", "win"].includes(savedOs)
-  ? savedOs
-  : /Windows/i.test(navigator.userAgent)
-    ? "win"
-    : /Mac|iPhone|iPad/i.test(navigator.userAgent)
-      ? "mac"
-      : "linux"
+const os = ["linux", "mac", "win"].includes(savedOs) ? savedOs : detectedOs || "linux"
+if (detectedOs) {
+  const systems = document.querySelector(".systems")
+  systems.prepend(systems.querySelector(`label[for="os-${detectedOs}"]`))
+}
 document.getElementById("os-" + os).checked = true
 for (const lang of ["es", "en"])
   document.getElementById("lang-" + lang).addEventListener("change", () => {

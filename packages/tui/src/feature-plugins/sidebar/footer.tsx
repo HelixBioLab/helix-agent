@@ -68,9 +68,6 @@ function View(props: { api: TuiPluginApi; sessionID: string }) {
       </text>
       <text fg={theme().textMuted}>
         <span style={{ fg: theme().success }}>•</span> <b>Helix Agent</b>
-        <span style={{ fg: theme().text }}>
-          <b>.org</b>
-        </span>
       </text>
     </box>
   )
