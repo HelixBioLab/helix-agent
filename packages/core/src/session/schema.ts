@@ -1,6 +1,6 @@
 export * as SessionSchema from "./schema"
 
-import { Session } from "@bioinformatica/schema/session"
+import { Session } from "@helix/schema/session"
 
 export const ID = Session.ID
 export type ID = typeof ID.Type

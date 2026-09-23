@@ -1,5 +1,5 @@
-import { Integration } from "@bioinformatica/schema/integration"
-import { Location } from "@bioinformatica/schema/location"
+import { Integration } from "@helix/schema/integration"
+import { Location } from "@helix/schema/location"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema, OpenApi } from "effect/unstable/httpapi"
 import { InvalidRequestError } from "../errors"

@@ -1,4 +1,4 @@
-import type { TuiPlugin, TuiPluginApi } from "@bioinformatica/plugin/tui"
+import type { TuiPlugin, TuiPluginApi } from "@helix/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 import { createMemo, For, Show, createSignal } from "solid-js"
 

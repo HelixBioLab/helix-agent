@@ -14,7 +14,7 @@ Merece la pena entenderlo una vez, porque explica por qué la mayoría de provee
 necesitan ningún código específico:
 
 1. El catálogo se descarga de `https://models.dev/api.json` y se cachea en
-   `~/.cache/bioinformatica/models.json`. Cada proveedor declara ahí su `api` (la URL base),
+   `~/.cache/helix/models.json`. Cada proveedor declara ahí su `api` (la URL base),
    su `env` (los nombres de variable de entorno que sirven de credencial) y su `npm` (el SDK
    con el que se habla con él).
 2. Un proveedor se **activa** cuando aparece una credencial suya: una variable de entorno de
@@ -31,21 +31,21 @@ tocar el código: basta la credencial.
 
 | Qué | Dónde |
 | --- | --- |
-| Credenciales guardadas por `providers login` | `~/.local/share/bioinformatica/auth.json` (permisos `0600`) |
-| Configuración global | `~/.config/bioinformatica/bioinformatica.json` |
-| Configuración por proyecto | `bioinformatica.json` en la raíz del proyecto |
-| Caché del catálogo | `~/.cache/bioinformatica/models.json` |
+| Credenciales guardadas por `providers login` | `~/.local/share/helix/auth.json` (permisos `0600`) |
+| Configuración global | `~/.config/helix/helix.json` |
+| Configuración por proyecto | `helix.json` en la raíz del proyecto |
+| Caché del catálogo | `~/.cache/helix/models.json` |
 
 ### Precedencia de la clave
 
 Si defines la misma credencial por varias vías, el orden efectivo es, de menor a mayor:
 
 1. variable de entorno (`DEEPSEEK_API_KEY`, `DASHSCOPE_API_KEY`, …)
-2. `auth.json`, es decir lo que guardó `bioinformatica providers login`
+2. `auth.json`, es decir lo que guardó `helix providers login`
 3. `provider.<id>.options.apiKey` en la configuración
 
 La última gana. Si algo no se comporta como esperas, mira primero si hay una clave vieja en
-`auth.json`: `bioinformatica providers list` enseña las credenciales guardadas **y** las
+`auth.json`: `helix providers list` enseña las credenciales guardadas **y** las
 variables de entorno activas.
 
 ## Dar de alta una credencial
@@ -55,11 +55,11 @@ Tres formas, equivalentes. Elige una.
 **Interactiva** (la guarda en `auth.json`, no queda en el historial del shell):
 
 ```bash
-bioinformatica providers login --provider deepseek
-bioinformatica providers login --provider alibaba
+helix providers login --provider deepseek
+helix providers login --provider alibaba
 
-bioinformatica providers list          # qué hay dado de alta y qué variables están activas
-bioinformatica providers logout deepseek
+helix providers list          # qué hay dado de alta y qué variables están activas
+helix providers logout deepseek
 ```
 
 **Por variable de entorno** (cómoda en CI y en contenedores):
@@ -85,7 +85,7 @@ sustitución `{env:VAR}` (y `{file:ruta}`):
 Comprueba siempre con:
 
 ```bash
-bioinformatica models deepseek    # lista los modelos de ese proveedor, o falla si no está activo
+helix models deepseek    # lista los modelos de ese proveedor, o falla si no está activo
 ```
 
 ## Receta: DeepSeek
@@ -94,8 +94,8 @@ DeepSeek es un proveedor nativo del catálogo. Endpoint `https://api.deepseek.co
 `DEEPSEEK_API_KEY`.
 
 ```bash
-export DEEPSEEK_API_KEY=sk-...          # o: bioinformatica providers login --provider deepseek
-bioinformatica models deepseek
+export DEEPSEEK_API_KEY=sk-...          # o: helix providers login --provider deepseek
+helix models deepseek
 ```
 
 Modelos tal y como aparecen hoy en models.dev:
@@ -107,7 +107,7 @@ Modelos tal y como aparecen hoy en models.dev:
 | `deepseek/deepseek-v4-flash-vision-exp` | 1 000 000 | sí | sí |
 
 ```bash
-bioinformatica run --model deepseek/deepseek-v4-pro "..."
+helix run --model deepseek/deepseek-v4-pro "..."
 ```
 
 El razonamiento de DeepSeek viaja en el campo `reasoning_content` de la API, no en el formato
@@ -134,9 +134,9 @@ Son catálogos distintos: `alibaba-cn` incluye además los DeepSeek, GLM y Kimi 
 DashScope en China. Usa el prefijo que corresponda a la región donde creaste la clave.
 
 ```bash
-export DASHSCOPE_API_KEY=sk-...         # o: bioinformatica providers login --provider alibaba
-bioinformatica models alibaba
-bioinformatica models alibaba-cn
+export DASHSCOPE_API_KEY=sk-...         # o: helix providers login --provider alibaba
+helix models alibaba
+helix models alibaba-cn
 ```
 
 Algunos ids útiles del proveedor `alibaba`, tal y como aparecen en models.dev:
@@ -150,7 +150,7 @@ Algunos ids útiles del proveedor `alibaba`, tal y como aparecen en models.dev:
 | `alibaba/qwen-flash` | 1 000 000 | barato, para tareas cortas |
 
 ```bash
-bioinformatica run --model alibaba/qwen3-coder-plus "..."
+helix run --model alibaba/qwen3-coder-plus "..."
 ```
 
 Alibaba publica además planes de suscripción con endpoints propios, también en el catálogo:
@@ -165,10 +165,10 @@ id del modelo lleva el fabricante dentro, y eso es normal: todo lo que va despu�
 
 ```bash
 export OPENROUTER_API_KEY=sk-or-...
-bioinformatica models openrouter | grep -E '^openrouter/(qwen|deepseek)/'
+helix models openrouter | grep -E '^openrouter/(qwen|deepseek)/'
 
-bioinformatica run --model openrouter/qwen/qwen3-coder-plus "..."
-bioinformatica run --model openrouter/deepseek/deepseek-v4-pro "..."
+helix run --model openrouter/qwen/qwen3-coder-plus "..."
+helix run --model openrouter/deepseek/deepseek-v4-pro "..."
 ```
 
 Otras pasarelas del catálogo que sirven ambas familias, con su variable de entorno:
@@ -188,7 +188,7 @@ Otras pasarelas del catálogo que sirven ambas familias, con su variable de ento
 
 Esa tabla dice qué proveedor sirve qué familia; deliberadamente no lleva ids. Los ids de
 las pasarelas cambian y se retiran a menudo, así que sácalos siempre de
-`bioinformatica models <proveedor>` en lugar de copiarlos de aquí.
+`helix models <proveedor>` en lugar de copiarlos de aquí.
 
 ## Receta: un modelo local
 
@@ -204,7 +204,7 @@ variable —cualquier valor sirve, es lo que lo activa— y tener LM Studio escu
 
 ```bash
 export LMSTUDIO_API_KEY=lm-studio
-bioinformatica models lmstudio
+helix models lmstudio
 ```
 
 ### Ollama, vLLM y cualquier otro endpoint
@@ -239,8 +239,8 @@ Las claves de `models` son los ids que escribirás y que se mandan al servidor: 
 que devuelve `ollama list`; en vLLM, el que pasaste a `--model` al arrancarlo.
 
 ```bash
-bioinformatica models ollama
-bioinformatica run --model ollama/qwen3-coder:30b "..."
+helix models ollama
+helix run --model ollama/qwen3-coder:30b "..."
 ```
 
 La `baseURL` admite `${VARIABLE}`, que se sustituye con el entorno en el momento de la
@@ -282,7 +282,7 @@ para **plan**:
 Y se puede cambiar puntualmente:
 
 ```bash
-bioinformatica run --model alibaba/qwen3-max "..."     # sólo esa ejecución
+helix run --model alibaba/qwen3-max "..."     # sólo esa ejecución
 ```
 
 En la TUI, `ctrl+x` seguido de `m` abre la lista de modelos (`ctrl+x` es la tecla *leader*
@@ -316,7 +316,7 @@ es lo que usa el agente para decidir cuándo compactar la conversación.
 ## Catálogo: refresco, réplica y trabajo sin red
 
 ```bash
-bioinformatica models --refresh        # fuerza la recarga desde models.dev
+helix models --refresh        # fuerza la recarga desde models.dev
 ```
 
 La caché se refresca sola cada cinco minutos como mucho. Para entornos sin salida a internet
@@ -324,13 +324,13 @@ o con una réplica interna:
 
 | Variable | Efecto |
 | --- | --- |
-| `BIOINFORMATICA_MODELS_URL` | Origen alternativo del catálogo; se le pide `/api.json` |
-| `BIOINFORMATICA_MODELS_PATH` | Ruta a un `api.json` local; se lee ese fichero y no se sale a la red |
-| `BIOINFORMATICA_DISABLE_MODELS_FETCH` | Prohíbe la descarga: si no hay caché, el catálogo queda vacío |
+| `HELIX_MODELS_URL` | Origen alternativo del catálogo; se le pide `/api.json` |
+| `HELIX_MODELS_PATH` | Ruta a un `api.json` local; se lee ese fichero y no se sale a la red |
+| `HELIX_DISABLE_MODELS_FETCH` | Prohíbe la descarga: si no hay caché, el catálogo queda vacío |
 
 ```bash
 curl -o /opt/catalogo/api.json https://models.dev/api.json
-export BIOINFORMATICA_MODELS_PATH=/opt/catalogo/api.json
+export HELIX_MODELS_PATH=/opt/catalogo/api.json
 ```
 
 ## Qué le pide este agente a un modelo
@@ -352,6 +352,6 @@ Los ids de modelo de este documento se comprobaron el **2026-09-01** contra
 modelos. La lista viva es siempre:
 
 ```bash
-bioinformatica models              # todo lo disponible con tus credenciales
-bioinformatica models deepseek     # sólo un proveedor
+helix models              # todo lo disponible con tus credenciales
+helix models deepseek     # sólo un proveedor
 ```

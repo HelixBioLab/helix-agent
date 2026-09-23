@@ -1,6 +1,6 @@
 export * as Database from "./database"
 
-import { EffectDrizzleSqlite } from "@bioinformatica/effect-drizzle-sqlite"
+import { EffectDrizzleSqlite } from "@helix/effect-drizzle-sqlite"
 import { layer as sqliteLayer } from "#sqlite"
 import { Context, Effect, Layer } from "effect"
 import { Global } from "../global"
@@ -17,7 +17,7 @@ export interface Interface {
   db: DatabaseShape
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/storage/Database") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/storage/Database") {}
 
 const layer = Layer.effect(
   Service,
@@ -41,17 +41,17 @@ export function layerFromPath(filename: string) {
 }
 
 export function path() {
-  if (Flag.BIOINFORMATICA_DB) {
-    if (Flag.BIOINFORMATICA_DB === ":memory:" || isAbsolute(Flag.BIOINFORMATICA_DB)) return Flag.BIOINFORMATICA_DB
-    return join(Global.Path.data, Flag.BIOINFORMATICA_DB)
+  if (Flag.HELIX_DB) {
+    if (Flag.HELIX_DB === ":memory:" || isAbsolute(Flag.HELIX_DB)) return Flag.HELIX_DB
+    return join(Global.Path.data, Flag.HELIX_DB)
   }
   if (
     ["latest", "beta", "prod"].includes(InstallationChannel) ||
-    process.env.BIOINFORMATICA_DISABLE_CHANNEL_DB === "1" ||
-    process.env.BIOINFORMATICA_DISABLE_CHANNEL_DB === "true"
+    process.env.HELIX_DISABLE_CHANNEL_DB === "1" ||
+    process.env.HELIX_DISABLE_CHANNEL_DB === "true"
   )
-    return join(Global.Path.data, "bioinformatica.db")
-  return join(Global.Path.data, `bioinformatica-${InstallationChannel.replace(/[^a-zA-Z0-9._-]/g, "-")}.db`)
+    return join(Global.Path.data, "helix.db")
+  return join(Global.Path.data, `helix-${InstallationChannel.replace(/[^a-zA-Z0-9._-]/g, "-")}.db`)
 }
 
 export const node = makeGlobalNode({ service: Service, layer: layerFromPath(path()), deps: [] })

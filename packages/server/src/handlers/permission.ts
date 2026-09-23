@@ -1,10 +1,10 @@
-import { Location } from "@bioinformatica/core/location"
-import { PermissionV2 } from "@bioinformatica/core/permission"
-import { PermissionSaved } from "@bioinformatica/core/permission/saved"
+import { Location } from "@helix/core/location"
+import { PermissionV2 } from "@helix/core/permission"
+import { PermissionSaved } from "@helix/core/permission/saved"
 import { Effect } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/unstable/httpapi"
 import { Api } from "../api"
-import { PermissionNotFoundError, SessionNotFoundError } from "@bioinformatica/protocol/errors"
+import { PermissionNotFoundError, SessionNotFoundError } from "@helix/protocol/errors"
 import { response } from "../location"
 
 function missingRequest(id: PermissionV2.ID) {

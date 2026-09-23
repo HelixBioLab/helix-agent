@@ -1,5 +1,5 @@
-import type { AssistantMessage } from "@bioinformatica/sdk/v2"
-import type { TuiPlugin, TuiPluginApi } from "@bioinformatica/plugin/tui"
+import type { AssistantMessage } from "@helix/sdk/v2"
+import type { TuiPlugin, TuiPluginApi } from "@helix/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 import { createMemo } from "solid-js"
 

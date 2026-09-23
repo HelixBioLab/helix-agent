@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@bioinformatica/schema",
+  "name": "@helix/schema",
   "private": true,
   "type": "module",
   "license": "MIT",

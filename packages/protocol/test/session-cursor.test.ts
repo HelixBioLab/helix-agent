@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import { Effect, Schema } from "effect"
 import { SessionHistoryQuery, SessionsCursor } from "../src/groups/session"
-import { Session } from "@bioinformatica/schema/session"
+import { Session } from "@helix/schema/session"
 
 describe("SessionsCursor", () => {
   test("round trips without Node globals", async () => {

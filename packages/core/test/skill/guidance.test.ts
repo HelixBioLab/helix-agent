@@ -1,12 +1,12 @@
 import path from "path"
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { SkillV2 } from "@bioinformatica/core/skill"
-import { SystemContext } from "@bioinformatica/core/system-context"
-import { SkillGuidance } from "@bioinformatica/core/skill/guidance"
+import { AgentV2 } from "@helix/core/agent"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { AbsolutePath } from "@helix/core/schema"
+import { SkillV2 } from "@helix/core/skill"
+import { SystemContext } from "@helix/core/system-context"
+import { SkillGuidance } from "@helix/core/skill/guidance"
 import { it } from "../lib/effect"
 
 const build = AgentV2.ID.make("build")

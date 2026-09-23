@@ -2,14 +2,14 @@ import { describe, expect, test } from "bun:test"
 import { Duration, Effect, Fiber, Layer, Schema } from "effect"
 import * as TestClock from "effect/testing/TestClock"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { LayerNodePlatform } from "@bioinformatica/core/effect/app-node-platform"
-import { PermissionV2 } from "@bioinformatica/core/permission"
-import { SessionV2 } from "@bioinformatica/core/session"
-import { ToolRegistry } from "@bioinformatica/core/tool/registry"
-import { WebFetchTool } from "@bioinformatica/core/tool/webfetch"
-import { ToolOutputStore } from "@bioinformatica/core/tool-output-store"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { LayerNodePlatform } from "@helix/core/effect/app-node-platform"
+import { PermissionV2 } from "@helix/core/permission"
+import { SessionV2 } from "@helix/core/session"
+import { ToolRegistry } from "@helix/core/tool/registry"
+import { WebFetchTool } from "@helix/core/tool/webfetch"
+import { ToolOutputStore } from "@helix/core/tool-output-store"
 import { testEffect } from "./lib/effect"
 import { toolIdentity, executeTool, settleTool, toolDefinitions } from "./lib/tool"
 
@@ -260,7 +260,7 @@ describe("WebFetchTool registration", () => {
       })
       expect(requests).toHaveLength(2)
       expect(requests[0]?.headers["user-agent"]).toContain("Mozilla/5.0")
-      expect(requests[1]?.headers["user-agent"]).toBe("bioinformatica")
+      expect(requests[1]?.headers["user-agent"]).toBe("helix")
     }),
   )
 

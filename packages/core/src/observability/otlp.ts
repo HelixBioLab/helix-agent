@@ -35,13 +35,13 @@ function resourceAttributes() {
 
 export function resource(): { serviceName: string; serviceVersion: string; attributes: Record<string, string> } {
   return {
-    serviceName: "bioinformatica",
+    serviceName: "helix",
     serviceVersion: InstallationVersion,
     attributes: {
       ...resourceAttributes(),
       "deployment.environment.name": InstallationChannel,
-      "bioinformatica.client": Flag.BIOINFORMATICA_CLIENT,
-      "bioinformatica.run": runID,
+      "helix.client": Flag.HELIX_CLIENT,
+      "helix.run": runID,
       "service.instance.id": runID,
     },
   }

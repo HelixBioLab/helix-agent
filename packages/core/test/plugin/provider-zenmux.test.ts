@@ -1,11 +1,11 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { ProviderPlugins } from "@bioinformatica/core/plugin/provider"
-import { ZenmuxPlugin } from "@bioinformatica/core/plugin/provider/zenmux"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { ProviderPlugins } from "@helix/core/plugin/provider"
+import { ZenmuxPlugin } from "@helix/core/plugin/provider/zenmux"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -41,7 +41,7 @@ describe("ZenmuxPlugin", () => {
       })
       yield* addPlugin()
       const result = required(yield* catalog.provider.get(ProviderV2.ID.make("zenmux")))
-      expect(result.request.headers).toEqual({ "HTTP-Referer": "https://bioinformatica.org/", "X-Title": "bioinformatica" })
+      expect(result.request.headers).toEqual({ "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/", "X-Title": "helix" })
       expect(Object.keys(result.request.headers).sort()).toEqual(["HTTP-Referer", "X-Title"])
     }),
   )
@@ -63,8 +63,8 @@ describe("ZenmuxPlugin", () => {
 
       expect(required(yield* catalog.provider.get(ProviderV2.ID.make("zenmux"))).request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://bioinformatica.org/",
-        "X-Title": "bioinformatica",
+        "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/",
+        "X-Title": "helix",
       })
     }),
   )

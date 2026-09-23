@@ -20,9 +20,9 @@ import { useTerminalDimensions } from "@opentui/solid"
 import { Locale } from "../../util/locale"
 import type { PromptInfo } from "../../prompt/history"
 import { useFrecency } from "../../prompt/frecency"
-import { useBindings, useCommandSlashes, useBioinformaticaModeStack } from "../../keymap"
+import { useBindings, useCommandSlashes, useHelixModeStack } from "../../keymap"
 import { displayCharAt, mentionTriggerIndex } from "../../prompt/display"
-import type { FileSystemEntry } from "@bioinformatica/sdk/v2"
+import type { FileSystemEntry } from "@helix/sdk/v2"
 
 function removeLineRange(input: string) {
   const hashIndex = input.lastIndexOf("#")
@@ -90,7 +90,7 @@ export function Autocomplete(props: {
   const data = useData()
   const project = useProject()
   const slashes = useCommandSlashes()
-  const modeStack = useBioinformaticaModeStack()
+  const modeStack = useHelixModeStack()
   const { theme } = useTheme()
   const dimensions = useTerminalDimensions()
   const frecency = useFrecency()

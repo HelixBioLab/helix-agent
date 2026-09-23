@@ -15,9 +15,9 @@ export const LLMGatewayPlugin = define({
           if (item.provider.api.url !== "https://api.llmgateway.io/v1") continue
           if (!(yield* integrations.get(Integration.ID.make(item.provider.id)))) continue
           evt.provider.update(item.provider.id, (provider) => {
-            provider.request.headers["HTTP-Referer"] = "https://bioinformatica.org/"
-            provider.request.headers["X-Title"] = "bioinformatica"
-            provider.request.headers["X-Source"] = "bioinformatica"
+            provider.request.headers["HTTP-Referer"] = "https://helixbiolab.github.io/helix-agent/"
+            provider.request.headers["X-Title"] = "helix"
+            provider.request.headers["X-Source"] = "helix"
           })
         }
       }),

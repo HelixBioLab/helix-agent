@@ -1,8 +1,8 @@
 import { describe, expect } from "bun:test"
 import { Effect, Exit, Fiber } from "effect"
-import { define } from "@bioinformatica/plugin/v2/effect"
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { PluginV2 } from "@bioinformatica/core/plugin"
+import { define } from "@helix/plugin/v2/effect"
+import { AgentV2 } from "@helix/core/agent"
+import { PluginV2 } from "@helix/core/plugin"
 import { testEffect } from "./lib/effect"
 import { PluginTestLayer } from "./plugin/fixture"
 

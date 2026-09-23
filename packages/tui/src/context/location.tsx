@@ -1,4 +1,4 @@
-import type { LocationRef } from "@bioinformatica/sdk/v2"
+import type { LocationRef } from "@helix/sdk/v2"
 import { createContext, useContext, type Accessor, type ParentProps } from "solid-js"
 
 const context = createContext<Accessor<LocationRef | undefined>>()

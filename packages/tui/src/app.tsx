@@ -1,11 +1,11 @@
 import { render, TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@opentui/solid"
-import { registerBioinformaticaSpinner } from "./component/register-spinner"
+import { registerHelixSpinner } from "./component/register-spinner"
 import { PulseProvider } from "./context/pulse"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { Deferred, Effect } from "effect"
-import { Global } from "@bioinformatica/core/global"
-import { Flag } from "@bioinformatica/core/flag/flag"
-import { InstallationVersion } from "@bioinformatica/core/installation/version"
+import { Global } from "@helix/core/global"
+import { Flag } from "@helix/core/flag/flag"
+import { InstallationVersion } from "@helix/core/installation/version"
 import { ClipboardProvider, notifyCopy, useClipboard } from "./context/clipboard"
 import { ExitProvider, useExit } from "./context/exit"
 import { EpilogueProvider } from "./context/epilogue"
@@ -73,11 +73,11 @@ import { createPluginRuntime, PluginRuntimeProvider, usePluginRuntime, type TuiP
 import { CommandPaletteDialog } from "./component/command-palette"
 import {
   COMMAND_PALETTE_COMMAND,
-  BIOINFORMATICA_BASE_MODE,
-  BioinformaticaKeymapProvider,
-  registerBioinformaticaKeymap,
+  HELIX_BASE_MODE,
+  HelixKeymapProvider,
+  registerHelixKeymap,
   useBindings,
-  useBioinformaticaKeymap,
+  useHelixKeymap,
 } from "./keymap"
 
 import type { EventSource } from "./context/sdk"
@@ -88,7 +88,7 @@ import { win32DisableProcessedInput, win32FlushInputBuffer } from "./terminal-wi
 import { destroyRenderer } from "./util/renderer"
 import { cliErrorMessage, errorFormat } from "./util/error"
 
-registerBioinformaticaSpinner()
+registerHelixSpinner()
 
 const appGlobalBindingCommands = [
   "session.list",
@@ -119,8 +119,8 @@ const appBindingCommands = [
   "variant.list",
   "provider.connect",
   "console.org.switch",
-  "bioinformatica.status",
-  "bioinformatica.debug",
+  "helix.status",
+  "helix.debug",
   "theme.switch",
   "theme.switch_mode",
   "theme.mode.lock",
@@ -200,7 +200,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
               useKittyKeyboard: {},
               autoFocus: false,
               openConsoleOnError: false,
-              useMouse: !Flag.BIOINFORMATICA_DISABLE_MOUSE && input.config.mouse,
+              useMouse: !Flag.HELIX_DISABLE_MOUSE && input.config.mouse,
               consoleOptions: {
                 keyBindings: [{ name: "y", ctrl: true, action: "copy-selection" }],
               },
@@ -215,7 +215,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
       win32DisableProcessedInput()
       const keymap = createDefaultOpenTuiKeymap(renderer)
       yield* Effect.acquireRelease(
-        Effect.sync(() => registerBioinformaticaKeymap(keymap, renderer, input.config)),
+        Effect.sync(() => registerHelixKeymap(keymap, renderer, input.config)),
         (unregister) => Effect.sync(unregister),
       )
       yield* Effect.addFinalizer(() =>
@@ -275,14 +275,14 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                     >
                       <TuiStartupProvider
                         value={{
-                          initialRoute: process.env.BIOINFORMATICA_ROUTE
-                            ? JSON.parse(process.env.BIOINFORMATICA_ROUTE)
+                          initialRoute: process.env.HELIX_ROUTE
+                            ? JSON.parse(process.env.HELIX_ROUTE)
                             : undefined,
-                          skipInitialLoading: Boolean(process.env.BIOINFORMATICA_FAST_BOOT),
+                          skipInitialLoading: Boolean(process.env.HELIX_FAST_BOOT),
                         }}
                       >
                         <ClipboardProvider>
-                          <BioinformaticaKeymapProvider keymap={keymap}>
+                          <HelixKeymapProvider keymap={keymap}>
                             <ArgsProvider {...input.args}>
                               <KVProvider>
                                 <PulseProvider>
@@ -344,7 +344,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                 </PulseProvider>
                               </KVProvider>
                             </ArgsProvider>
-                          </BioinformaticaKeymapProvider>
+                          </HelixKeymapProvider>
                         </ClipboardProvider>
                       </TuiStartupProvider>
                     </TuiTerminalEnvironmentProvider>
@@ -376,7 +376,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const dialog = useDialog()
   const local = useLocal()
   const kv = useKV()
-  const keymap = useBioinformaticaKeymap()
+  const keymap = useHelixKeymap()
   const event = useEvent()
   const sdk = useSDK()
   const toast = useToast()
@@ -428,7 +428,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const offSelectionKeys = keymap.intercept(
     "key",
     ({ event }) => {
-      if (!Flag.BIOINFORMATICA_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
+      if (!Flag.HELIX_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
       Selection.handleSelectionKey(renderer, toast, event, clipboard)
     },
     { priority: 1 },
@@ -456,7 +456,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
 
   // Update terminal window title based on current route and session
   createEffect(() => {
-    if (!terminalTitleEnabled() || Flag.BIOINFORMATICA_DISABLE_TERMINAL_TITLE) return
+    if (!terminalTitleEnabled() || Flag.HELIX_DISABLE_TERMINAL_TITLE) return
 
     if (route.data.type === "home") {
       renderer.setTerminalTitle("Helix Agent")
@@ -616,7 +616,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         name: "workspace.list",
         title: "Manage workspaces",
         category: "Workspace",
-        hidden: !Flag.BIOINFORMATICA_EXPERIMENTAL_WORKSPACES,
+        hidden: !Flag.HELIX_EXPERIMENTAL_WORKSPACES,
         slashName: "workspaces",
         run: () => {
           dialog.replace(() => <DialogWorkspaceList />)
@@ -766,7 +766,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
           ]
         : []),
       {
-        name: "bioinformatica.status",
+        name: "helix.status",
         title: "View status",
         slashName: "status",
         run: () => {
@@ -775,7 +775,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         category: "System",
       },
       {
-        name: "bioinformatica.debug",
+        name: "helix.debug",
         title: "View debug info",
         slashName: "debug",
         run: () => {
@@ -824,7 +824,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         name: "docs.open",
         title: "Open docs",
         run: () => {
-          open("https://bioinformatica.org/docs").catch(() => {})
+          open("https://helixbiolab.github.io/helix-agent/docs").catch(() => {})
           dialog.clear()
         },
         category: "System",
@@ -969,7 +969,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   }))
 
   useBindings(() => ({
-    mode: BIOINFORMATICA_BASE_MODE,
+    mode: HELIX_BASE_MODE,
     bindings: tuiConfig.keybinds.gather("app", appBindingCommands),
   }))
 
@@ -978,7 +978,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   }))
 
   useBindings(() => ({
-    mode: BIOINFORMATICA_BASE_MODE,
+    mode: HELIX_BASE_MODE,
     enabled: () => {
       const current = promptRef.current
       if (!current?.focused) return true
@@ -1096,7 +1096,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       flexDirection="column"
       backgroundColor={theme.background}
       onMouseDown={(evt) => {
-        if (!Flag.BIOINFORMATICA_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
+        if (!Flag.HELIX_EXPERIMENTAL_DISABLE_COPY_ON_SELECT) return
         if (evt.button !== MouseButton.RIGHT) return
 
         if (!Selection.copy(renderer, toast, clipboard)) return
@@ -1104,12 +1104,12 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         evt.stopPropagation()
       }}
       onMouseUp={
-        !Flag.BIOINFORMATICA_EXPERIMENTAL_DISABLE_COPY_ON_SELECT
+        !Flag.HELIX_EXPERIMENTAL_DISABLE_COPY_ON_SELECT
           ? () => Selection.copy(renderer, toast, clipboard)
           : undefined
       }
     >
-      <Show when={Flag.BIOINFORMATICA_SHOW_TTFD}>
+      <Show when={Flag.HELIX_SHOW_TTFD}>
         <TimeToFirstDraw />
       </Show>
       <Show when={ready()}>

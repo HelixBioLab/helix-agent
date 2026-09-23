@@ -1,5 +1,5 @@
-import { FileSystem } from "@bioinformatica/core/filesystem"
-import { RelativePath } from "@bioinformatica/core/schema"
+import { FileSystem } from "@helix/core/filesystem"
+import { RelativePath } from "@helix/core/schema"
 import { Effect } from "effect"
 import { HttpServerResponse } from "effect/unstable/http"
 import { HttpApiBuilder } from "effect/unstable/httpapi"

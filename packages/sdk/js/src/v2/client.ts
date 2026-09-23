@@ -3,9 +3,9 @@ export type { FileSystemEntry as LocationFileSystemEntry } from "./gen/types.gen
 
 import { createClient } from "./gen/client/client.gen.js"
 import { type Config } from "./gen/client/types.gen.js"
-import { BioinformaticaClient } from "./gen/sdk.gen.js"
+import { HelixClient } from "./gen/sdk.gen.js"
 import { wrapClientError } from "../error-interceptor.js"
-export { type Config as BioinformaticaClientConfig, BioinformaticaClient }
+export { type Config as HelixClientConfig, HelixClient }
 
 function pick(value: string | null, fallback?: string, encode?: (value: string) => string) {
   if (!value) return
@@ -22,8 +22,8 @@ function rewrite(request: Request, values: { directory?: string; workspace?: str
   let changed = false
 
   for (const [name, key] of [
-    ["x-bioinformatica-directory", "directory"],
-    ["x-bioinformatica-workspace", "workspace"],
+    ["x-helix-directory", "directory"],
+    ["x-helix-workspace", "workspace"],
   ] as const) {
     const value = pick(
       request.headers.get(name),
@@ -42,12 +42,12 @@ function rewrite(request: Request, values: { directory?: string; workspace?: str
   if (!changed) return request
 
   const next = new Request(url, request)
-  next.headers.delete("x-bioinformatica-directory")
-  next.headers.delete("x-bioinformatica-workspace")
+  next.headers.delete("x-helix-directory")
+  next.headers.delete("x-helix-workspace")
   return next
 }
 
-export function createBioinformaticaClient(config?: Config & { directory?: string; experimental_workspaceID?: string }) {
+export function createHelixClient(config?: Config & { directory?: string; experimental_workspaceID?: string }) {
   if (!config?.fetch) {
     const customFetch: any = (req: any) => {
       // @ts-ignore
@@ -63,14 +63,14 @@ export function createBioinformaticaClient(config?: Config & { directory?: strin
   if (config?.directory) {
     config.headers = {
       ...config.headers,
-      "x-bioinformatica-directory": encodeURIComponent(config.directory),
+      "x-helix-directory": encodeURIComponent(config.directory),
     }
   }
 
   if (config?.experimental_workspaceID) {
     config.headers = {
       ...config.headers,
-      "x-bioinformatica-workspace": config.experimental_workspaceID,
+      "x-helix-workspace": config.experimental_workspaceID,
     }
   }
 
@@ -84,10 +84,10 @@ export function createBioinformaticaClient(config?: Config & { directory?: strin
   client.interceptors.response.use((response) => {
     const contentType = response.headers.get("content-type")
     if (contentType === "text/html")
-      throw new Error("Request is not supported by this version of Bioinformatica Server (Server responded with text/html)")
+      throw new Error("Request is not supported by this version of Helix Server (Server responded with text/html)")
 
     return response
   })
   client.interceptors.error.use(wrapClientError)
-  return new BioinformaticaClient({ client })
+  return new HelixClient({ client })
 }

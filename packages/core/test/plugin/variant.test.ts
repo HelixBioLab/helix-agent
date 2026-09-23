@@ -1,12 +1,12 @@
 import { describe, expect } from "bun:test"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { Location } from "@bioinformatica/core/location"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { VariantPlugin } from "@bioinformatica/core/plugin/variant"
-import { ProviderV2 } from "@bioinformatica/core/provider"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { Catalog } from "@helix/core/catalog"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { Location } from "@helix/core/location"
+import { ModelV2 } from "@helix/core/model"
+import { VariantPlugin } from "@helix/core/plugin/variant"
+import { ProviderV2 } from "@helix/core/provider"
+import { AbsolutePath } from "@helix/core/schema"
 import { Effect, Layer } from "effect"
 import { location } from "../fixture/location"
 import { testEffect } from "../lib/effect"
@@ -23,10 +23,10 @@ describe("VariantPlugin", () => {
     Effect.gen(function* () {
       const service = yield* Catalog.Service
       yield* service.transform((catalog) => {
-        catalog.provider.update(ProviderV2.ID.bioinformatica, (provider) => {
+        catalog.provider.update(ProviderV2.ID.helix, (provider) => {
           provider.api = { type: "aisdk", package: "@ai-sdk/openai-compatible" }
         })
-        catalog.model.update(ProviderV2.ID.bioinformatica, ModelV2.ID.make("glm-5.2"), (model) => {
+        catalog.model.update(ProviderV2.ID.helix, ModelV2.ID.make("glm-5.2"), (model) => {
           model.api = {
             id: ModelV2.ID.make("glm-5.2"),
             type: "aisdk",
@@ -36,7 +36,7 @@ describe("VariantPlugin", () => {
       })
       yield* VariantPlugin.Plugin.effect(host({ catalog: catalogHost(service) }))
 
-      expect((yield* service.model.get(ProviderV2.ID.bioinformatica, ModelV2.ID.make("glm-5.2")))?.variants).toEqual([
+      expect((yield* service.model.get(ProviderV2.ID.helix, ModelV2.ID.make("glm-5.2")))?.variants).toEqual([
         expect.objectContaining({ id: "high", body: { reasoning_effort: "high" } }),
         expect.objectContaining({ id: "max", body: { reasoning_effort: "max" } }),
       ])
@@ -47,7 +47,7 @@ describe("VariantPlugin", () => {
     Effect.gen(function* () {
       const service = yield* Catalog.Service
       yield* service.transform((catalog) => {
-        catalog.model.update(ProviderV2.ID.bioinformatica, ModelV2.ID.make("glm-5.2"), (model) => {
+        catalog.model.update(ProviderV2.ID.helix, ModelV2.ID.make("glm-5.2"), (model) => {
           model.api = {
             id: ModelV2.ID.make("glm-5.2"),
             type: "aisdk",
@@ -58,7 +58,7 @@ describe("VariantPlugin", () => {
       })
       yield* VariantPlugin.Plugin.effect(host({ catalog: catalogHost(service) }))
 
-      expect((yield* service.model.get(ProviderV2.ID.bioinformatica, ModelV2.ID.make("glm-5.2")))?.variants).toEqual([
+      expect((yield* service.model.get(ProviderV2.ID.helix, ModelV2.ID.make("glm-5.2")))?.variants).toEqual([
         expect.objectContaining({ id: "high", headers: { custom: "true" } }),
         expect.objectContaining({ id: "max", body: { reasoning_effort: "max" } }),
       ])

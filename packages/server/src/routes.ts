@@ -1,16 +1,16 @@
-import { Database } from "@bioinformatica/core/database/database"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { httpClient } from "@bioinformatica/core/effect/app-node-platform"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { EventV2 } from "@bioinformatica/core/event"
-import { Credential } from "@bioinformatica/core/credential"
-import { PermissionSaved } from "@bioinformatica/core/permission/saved"
-import { PtyTicket } from "@bioinformatica/core/pty/ticket"
-import { SessionV2 } from "@bioinformatica/core/session"
-import { SessionExecution } from "@bioinformatica/core/session/execution"
-import { LocationServiceMap } from "@bioinformatica/core/location-service-map"
-import { SessionExecutionLocal } from "@bioinformatica/core/session/execution/local"
-import { ToolOutputStore } from "@bioinformatica/core/tool-output-store"
+import { Database } from "@helix/core/database/database"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { httpClient } from "@helix/core/effect/app-node-platform"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { EventV2 } from "@helix/core/event"
+import { Credential } from "@helix/core/credential"
+import { PermissionSaved } from "@helix/core/permission/saved"
+import { PtyTicket } from "@helix/core/pty/ticket"
+import { SessionV2 } from "@helix/core/session"
+import { SessionExecution } from "@helix/core/session/execution"
+import { LocationServiceMap } from "@helix/core/location-service-map"
+import { SessionExecutionLocal } from "@helix/core/session/execution/local"
+import { ToolOutputStore } from "@helix/core/tool-output-store"
 import { HttpRouter, HttpServer } from "effect/unstable/http"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { Layer, Option } from "effect"
@@ -39,13 +39,13 @@ const applicationServices = LayerNode.group([
 export function createRoutes(password?: string) {
   return makeRoutes(
     password
-      ? ServerAuth.Config.configLayer({ username: "bioinformatica", password: Option.some(password) })
+      ? ServerAuth.Config.configLayer({ username: "helix", password: Option.some(password) })
       : ServerAuth.Config.layer,
   )
 }
 
 export function createEmbeddedRoutes() {
-  return makeRoutes(ServerAuth.Config.configLayer({ username: "bioinformatica", password: Option.none() }))
+  return makeRoutes(ServerAuth.Config.configLayer({ username: "helix", password: Option.none() }))
 }
 
 function makeRoutes<AuthError, AuthServices>(auth: Layer.Layer<ServerAuth.Config, AuthError, AuthServices>) {

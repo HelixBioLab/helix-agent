@@ -1,4 +1,4 @@
-import type { SkillV2Source } from "@bioinformatica/sdk/v2/types"
+import type { SkillV2Source } from "@helix/sdk/v2/types"
 import type { Hooks } from "./registration.js"
 
 export interface SkillDraft {

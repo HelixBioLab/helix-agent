@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { ProviderMetadata } from "@bioinformatica/schema/llm"
+import { ProviderMetadata } from "@helix/schema/llm"
 
 export { ProviderMetadata }
 

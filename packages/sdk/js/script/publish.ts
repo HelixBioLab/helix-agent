@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { Script } from "@bioinformatica/script"
+import { Script } from "@helix/script"
 import { $ } from "bun"
 import { fileURLToPath } from "url"
 

@@ -100,7 +100,7 @@ export interface Interface {
   readonly list: (path: AbsolutePath, page?: PageInput) => Effect.Effect<ListPage, FSUtil.Error>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/ReadToolFileSystem") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/ReadToolFileSystem") {}
 
 const extensions = new Set([
   ".zip",

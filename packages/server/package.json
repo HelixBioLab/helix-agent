@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@bioinformatica/server",
+  "name": "@helix/server",
   "version": "1.17.18",
   "private": true,
   "type": "module",
@@ -12,8 +12,8 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@bioinformatica/core": "workspace:*",
-    "@bioinformatica/protocol": "workspace:*",
+    "@helix/core": "workspace:*",
+    "@helix/protocol": "workspace:*",
     "drizzle-orm": "catalog:",
     "effect": "catalog:"
   },

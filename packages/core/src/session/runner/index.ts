@@ -1,6 +1,6 @@
 export * as SessionRunner from "./index"
 
-import type { LLMError } from "@bioinformatica/llm"
+import type { LLMError } from "@helix/llm"
 import { Context, Effect } from "effect"
 import { SessionSchema } from "../schema"
 import type { ContextSnapshotDecodeError, MessageDecodeError } from "../error"
@@ -25,4 +25,4 @@ export interface Interface {
   }) => Effect.Effect<void, RunError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/SessionRunner") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/SessionRunner") {}

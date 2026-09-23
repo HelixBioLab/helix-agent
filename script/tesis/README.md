@@ -8,14 +8,14 @@
 python3 script/tesis/verify_snapshot.py /ruta/corpus/repeatsdb.manifest.json
 ```
 
-Lee el contrato de `packages/bioinformatica/src/bio/snapshot.ts`: `data` es relativo al manifiesto; `rows`, `bytes` y `sha256` deben coincidir con el NDJSON. Calcula el hash de los bytes originales, cuenta y analiza cada registro JSON. Rechaza archivos ausentes, rutas fuera del paquete, claves JSON duplicadas, JSON inválido, filas vacías y metadatos incompatibles. Un corpus vacío explícito (`rows=0`, `bytes=0`, hash del archivo vacío) es válido. Omitir todos los manifiestos es un error.
+Lee el contrato de `packages/helix/src/bio/snapshot.ts`: `data` es relativo al manifiesto; `rows`, `bytes` y `sha256` deben coincidir con el NDJSON. Calcula el hash de los bytes originales, cuenta y analiza cada registro JSON. Rechaza archivos ausentes, rutas fuera del paquete, claves JSON duplicadas, JSON inválido, filas vacías y metadatos incompatibles. Un corpus vacío explícito (`rows=0`, `bytes=0`, hash del archivo vacío) es válido. Omitir todos los manifiestos es un error.
 
 La salida es JSON; código 0 significa que todas las instantáneas indicadas coinciden, 1 que alguna falla y 2 que la invocación es inválida. No descubre manifiestos automáticamente ni verifica manifiestos de **ejecución**: ese contrato se completa en F4. Tampoco acredita autenticidad, corrección biológica ni integridad frente a quien altera a la vez los datos y el manifiesto. Para autenticidad hace falta un hash de referencia conservado por un tercero.
 
 Las pruebas diferenciales usan la serialización y el hash reales del productor TypeScript y ejecutan Python como proceso independiente:
 
 ```bash
-cd packages/bioinformatica
+cd packages/helix
 bun test test/bio/independent-verify.test.ts
 ```
 
@@ -36,7 +36,7 @@ Estos scripts registran la transformación de F1. Para fases posteriores se edit
 
 ## Fase 2: catálogo, protocolo y Word
 
-- `bun script/tesis/check_trp_catalog.ts`: comprueba sin red los archivos de referencia de las operaciones admitidas. Los contratos están en `packages/bioinformatica/src/trp/`; el alcance y la reproducción se documentan en `evaluation/trp/README.md`.
+- `bun script/tesis/check_trp_catalog.ts`: comprueba sin red los archivos de referencia de las operaciones admitidas. Los contratos están en `packages/helix/src/trp/`; el alcance y la reproducción se documentan en `evaluation/trp/README.md`.
 - `run_geometre_reference.py` y `geometre.Dockerfile`: ejecutan el ejemplo real de GeomeTRe con versión, imagen y dependencias registradas. El catálogo enlaza la ejecución con todas las dependencias fijadas; el ejemplo requiere unidades suministradas.
 - `update_phase2_docx.py`: aplica `docs/tesis/fase2-documento.json` sobre el Word final de F1, identificado por hash. Corrige R2.1, añade A.16 con los 21 criterios, actualiza avance y conserva secciones, imágenes y referencias. Es una migración entre revisiones conocidas, no un generador que se deba aplicar otra vez al Word actual.
 
@@ -57,6 +57,6 @@ El renderizador usa una sola fuente de encabezados para evitar duplicados en el 
 - `render_docx.py` exporta, reabre el Word y actualiza de nuevo índices/campos antes de la entrega final. F4 conserva páginas automáticas de separación y comprueba que NUMPAGES coincide con el PDF físico.
 - `audit_phase4_docx.py` audita la revisión renderizada contra el F3 todavía instalado. Tras instalar F4, este guardia histórico deja de ser aplicable a `Tesis.docx`; la evidencia final conserva ambos hashes. Es intencional: no se debe volver a aplicar la fase ni alterar su hash esperado para forzar una nueva revisión.
 - `audit_trp_bundle.py BUNDLE OUTPUT.json` verifica una copia con el verificador independiente del repositorio y prueba la ausencia/alteración de cada archivo, rutas inseguras y otras discrepancias. El contenido binario científico se comprueba por bytes; no se deserializa.
-- `packages/bioinformatica/src/trp/verify_bundle.py.txt` es la fuente del verificador que se publica como `verify.py` en cada paquete. Se puede ejecutar directamente con Python 3.
+- `packages/helix/src/trp/verify_bundle.py.txt` es la fuente del verificador que se publica como `verify.py` en cada paquete. Se puede ejecutar directamente con Python 3.
 
 La referencia de F4, sus limitaciones y el pseudocódigo se documentan en `docs/tesis/F4-ADMISION.md`. R3.2 conserva pendientes la cuota agregada y las reservas efectivas; la fórmula de almacenamiento es una estimación declarada.

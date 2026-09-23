@@ -20,14 +20,14 @@ ts-dist
 /result
 refs
 Session.vim
-/bioinformatica.json
+/helix.json
 a.out
 target
 .scripts
 .direnv/
 
 # Local dev files
-bioinformatica-dev
+helix-dev
 UPCOMING_CHANGELOG.md
 logs/
 *.bun-build
@@ -37,7 +37,7 @@ tsconfig.tsbuildinfo
 
 # Estado del agente en el proyecto: manifiestos, protocolo, aprobaciones,
 # conteo de intervenciones, registro de ejecuciones.
-.bioinformatica/
+.helix/
 
 # Datos e informes que produce el agente en el directorio del proyecto.
 # La barra final es intencionada — sólo ignora directorios, para que `census.ts`,

@@ -32,7 +32,7 @@ function writeOsc52(text: string): boolean {
 
 export async function read() {
   if (platform() === "darwin") {
-    const file = path.join(tmpdir(), "bioinformatica-clipboard.png")
+    const file = path.join(tmpdir(), "helix-clipboard.png")
     try {
       await exec("osascript", [
         "-e",
@@ -103,7 +103,7 @@ let copyMethod: Promise<{ hasNative: boolean; run: (text: string) => Promise<voi
 
 function getCopyMethod() {
   return (copyMethod ??= (async () => {
-    const { which } = await import("@bioinformatica/core/util/which")
+    const { which } = await import("@helix/core/util/which")
     const native = copyCommand(platform(), Boolean(process.env.WAYLAND_DISPLAY), (name) => Boolean(which(name)))
     if (native?.[0] === "osascript") {
       return {

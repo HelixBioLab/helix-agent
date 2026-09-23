@@ -1,4 +1,4 @@
-import type { HttpRecorder } from "@bioinformatica/http-recorder"
+import type { HttpRecorder } from "@helix/http-recorder"
 import { describe } from "bun:test"
 import { Effect } from "effect"
 import type { Model } from "../src"

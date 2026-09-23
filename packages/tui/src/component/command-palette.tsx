@@ -6,7 +6,7 @@ import {
   formatKeyBindings,
   type OpenTuiKeymap,
   useKeymapSelector,
-  useBioinformaticaKeymap,
+  useHelixKeymap,
 } from "../keymap"
 import { useTuiConfig } from "../config"
 
@@ -25,7 +25,7 @@ function isSuggestedPaletteCommand(entry: PaletteCommandEntry) {
 
 export function CommandPaletteDialog() {
   const config = useTuiConfig()
-  const keymap = useBioinformaticaKeymap()
+  const keymap = useHelixKeymap()
   const entries = useKeymapSelector((keymap: OpenTuiKeymap) => {
     const query = {
       namespace: "palette",

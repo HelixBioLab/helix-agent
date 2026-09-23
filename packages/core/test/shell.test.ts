@@ -1,8 +1,8 @@
 import { describe, expect, test } from "bun:test"
 import path from "path"
-import { Shell } from "@bioinformatica/core/shell"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { which } from "@bioinformatica/core/util/which"
+import { Shell } from "@helix/core/shell"
+import { FSUtil } from "@helix/core/fs-util"
+import { which } from "@helix/core/util/which"
 
 const withShell = async (shell: string | undefined, fn: () => void | Promise<void>) => {
   const prev = process.env.SHELL
@@ -44,8 +44,8 @@ describe("shell", () => {
     await withShell(undefined, async () => {
       const preferred = Shell.preferred()
       const acceptable = Shell.acceptable()
-      expect(Shell.preferred("bioinformatica-missing-shell")).toBe(preferred)
-      expect(Shell.acceptable("bioinformatica-missing-shell")).toBe(acceptable)
+      expect(Shell.preferred("helix-missing-shell")).toBe(preferred)
+      expect(Shell.acceptable("helix-missing-shell")).toBe(acceptable)
     })
   })
 

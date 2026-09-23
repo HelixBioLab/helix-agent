@@ -1,8 +1,8 @@
 import { ServerAuth } from "../auth"
-import { UnauthorizedError } from "@bioinformatica/protocol/errors"
-import { Authorization } from "@bioinformatica/protocol/middleware/authorization"
-export { Authorization } from "@bioinformatica/protocol/middleware/authorization"
-import { hasPtyConnectTicketURL } from "@bioinformatica/protocol/groups/pty"
+import { UnauthorizedError } from "@helix/protocol/errors"
+import { Authorization } from "@helix/protocol/middleware/authorization"
+export { Authorization } from "@helix/protocol/middleware/authorization"
+import { hasPtyConnectTicketURL } from "@helix/protocol/groups/pty"
 import { Effect, Encoding, Layer, Redacted } from "effect"
 import { HttpEffect, HttpServerRequest, HttpServerResponse } from "effect/unstable/http"
 

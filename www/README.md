@@ -1,12 +1,12 @@
 # Helix Agent: sitio de descarga
 
 Sitio estático publicado por [pages.yml](../.github/workflows/pages.yml) en
-https://webiwabou.github.io/bioinformatica.org/.
+https://helixbiolab.github.io/helix-agent/.
 
 La identidad visual sigue a Helix Learn: hélice de ADN, tipografía Georgia,
 verde bosque `#244d3e`, salvia `#dcebb5` y papel `#fafbf8`.
 El nombre público es Helix Agent; el ejecutable, las rutas de configuración y
-los archivos publicados conservan `bioinformatica` por compatibilidad.
+los archivos publicados usan `helix`.
 
 `index.html`, `styles.css`, `site.js` y `favicon.svg` no necesitan compilación.
 Los selectores de idioma y sistema funcionan con CSS incluso sin JavaScript.

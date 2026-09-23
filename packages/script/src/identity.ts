@@ -11,31 +11,13 @@
 // practice.
 
 /** The GitHub repository, as `owner/name`. CI supplies its own. */
-const REPOSITORY = process.env["GITHUB_REPOSITORY"] ?? "webiwabou/bioinformatica.org"
+const REPOSITORY = process.env["GITHUB_REPOSITORY"] ?? "HelixBioLab/helix-agent"
 
-/**
- * The distribution name: the binary, the npm package, the container image, the
- * AUR package and the Homebrew formula all derive from it.
- *
- * The public brand is Helix Agent. Keep the distribution identifier stable so
- * existing binaries, package references and installed configurations still work.
- */
-const DISTRIBUTION_NAME: string | undefined = "bioinformatica"
+/** Shared name for the executable and distribution artifacts. */
+const DISTRIBUTION_NAME: string | undefined = "helix"
 
-/**
- * Where this project publishes its own pages: the install script that the
- * landing page tells people to pipe into a shell, and any docs link that is not
- * the repository itself.
- *
- * It is deliberately not `https://bioinformatica.org`. That domain resolves —
- * to somebody else's server — and this project does not own it, so every URL
- * built from it was either dead or, worse, live and outside our hands: the curl
- * upgrade path fetched `/install` from it and piped the response into a shell.
- * Until a domain is actually owned, the GitHub Pages site published by
- * `.github/workflows/pages.yml` is the real one. The product keeps its name;
- * a name is not an address.
- */
-const HOMEPAGE: string | undefined = "https://webiwabou.github.io/bioinformatica.org"
+/** GitHub Pages hosts the website and the installers copied from this repository. */
+const HOMEPAGE: string | undefined = "https://helixbiolab.github.io/helix-agent"
 
 /** The name as written for a human: in the TUI, the docs, and any citation. */
 export const BRAND = "Helix Agent"
@@ -81,7 +63,7 @@ export const Identity = {
     return HOMEPAGE ? `${HOMEPAGE}/install` : undefined
   },
   get containerImage() {
-    return DISTRIBUTION_NAME ? `ghcr.io/${owner}/${DISTRIBUTION_NAME}` : undefined
+    return DISTRIBUTION_NAME ? `ghcr.io/${owner.toLowerCase()}/${DISTRIBUTION_NAME}` : undefined
   },
   get homebrewTap() {
     return DISTRIBUTION_NAME ? `https://github.com/${owner}/homebrew-tap.git` : undefined

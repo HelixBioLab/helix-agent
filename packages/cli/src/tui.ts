@@ -1,8 +1,8 @@
-import { run } from "@bioinformatica/tui"
-import { TuiConfig } from "@bioinformatica/tui/config"
+import { run } from "@helix/tui"
+import { TuiConfig } from "@helix/tui/config"
 import { Effect } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { Global } from "@bioinformatica/core/global"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { Global } from "@helix/core/global"
 
 export function runTui(transport: { url: string; headers: RequestInit["headers"] }) {
   const config = TuiConfig.resolve({}, { terminalSuspend: false })

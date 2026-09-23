@@ -1,9 +1,9 @@
 import fs from "fs/promises"
 import os from "os"
 import { Effect } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { EffectFlock } from "@bioinformatica/core/util/effect-flock"
-import { Global } from "@bioinformatica/core/global"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { EffectFlock } from "@helix/core/util/effect-flock"
+import { Global } from "@helix/core/global"
 
 type Msg = {
   key: string

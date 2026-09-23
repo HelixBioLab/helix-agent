@@ -1,5 +1,5 @@
 import { Types } from "effect"
-import { Model } from "@bioinformatica/schema/model"
+import { Model } from "@helix/schema/model"
 import { ProviderV2 } from "./provider"
 
 export const ID = Model.ID

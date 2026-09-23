@@ -1,11 +1,11 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { ProviderPlugins } from "@bioinformatica/core/plugin/provider"
-import { NvidiaPlugin } from "@bioinformatica/core/plugin/provider/nvidia"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { ProviderPlugins } from "@helix/core/plugin/provider"
+import { NvidiaPlugin } from "@helix/core/plugin/provider/nvidia"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -39,9 +39,9 @@ describe("NvidiaPlugin", () => {
       yield* addPlugin()
       expect((yield* catalog.provider.get(ProviderV2.ID.make("nvidia")))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://bioinformatica.org/",
-        "X-Title": "bioinformatica",
-        "X-BILLING-INVOKE-ORIGIN": "Bioinformatica",
+        "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/",
+        "X-Title": "helix",
+        "X-BILLING-INVOKE-ORIGIN": "Helix",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.openrouter))?.request.headers).toEqual({})
     }),
@@ -62,9 +62,9 @@ describe("NvidiaPlugin", () => {
       yield* addPlugin()
 
       expect((yield* catalog.provider.get(ProviderV2.ID.make("nvidia")))?.request.headers).toEqual({
-        "HTTP-Referer": "https://bioinformatica.org/",
-        "X-Title": "bioinformatica",
-        "X-BILLING-INVOKE-ORIGIN": "Bioinformatica",
+        "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/",
+        "X-Title": "helix",
+        "X-BILLING-INVOKE-ORIGIN": "Helix",
       })
     }),
   )
@@ -88,8 +88,8 @@ describe("NvidiaPlugin", () => {
       yield* addPlugin()
 
       expect((yield* catalog.provider.get(ProviderV2.ID.make("nvidia")))?.request.headers).toEqual({
-        "HTTP-Referer": "https://bioinformatica.org/",
-        "X-Title": "bioinformatica",
+        "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/",
+        "X-Title": "helix",
         "X-BILLING-INVOKE-ORIGIN": "CustomOrigin",
       })
     }),

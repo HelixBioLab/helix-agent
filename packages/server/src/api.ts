@@ -1,4 +1,4 @@
-import { makeDefaultApi } from "@bioinformatica/protocol/api"
+import { makeDefaultApi } from "@helix/protocol/api"
 import { LocationMiddleware } from "./location"
 import { SessionLocationMiddleware } from "./middleware/session-location"
 

@@ -1644,7 +1644,7 @@ export type GlobalEvent = {
 export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR"
 
 /**
- * Server configuration for bioinformatica serve and web commands
+ * Server configuration for helix serve and web commands
  */
 export type ServerConfig = {
   port?: number

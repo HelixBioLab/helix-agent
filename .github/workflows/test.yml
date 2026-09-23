@@ -46,8 +46,8 @@ jobs:
 
       - name: Configure git identity
         run: |
-          git config --global user.email "bot@bioinformatica.local"
-          git config --global user.name "bioinformatica"
+          git config --global user.email "bot@helix.local"
+          git config --global user.name "helix"
 
       - name: Cache Turbo
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
@@ -62,4 +62,4 @@ jobs:
         timeout-minutes: 20
         run: GITHUB_ACTIONS=false bun turbo test
         env:
-          BIOINFORMATICA_EXPERIMENTAL_DISABLE_FILEWATCHER: ${{ runner.os == 'Windows' && 'true' || 'false' }}
+          HELIX_EXPERIMENTAL_DISABLE_FILEWATCHER: ${{ runner.os == 'Windows' && 'true' || 'false' }}

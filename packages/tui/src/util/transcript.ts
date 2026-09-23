@@ -1,4 +1,4 @@
-import type { AssistantMessage, Part, Provider, UserMessage } from "@bioinformatica/sdk/v2"
+import type { AssistantMessage, Part, Provider, UserMessage } from "@helix/sdk/v2"
 import { Locale } from "./locale"
 import * as Model from "./model"
 

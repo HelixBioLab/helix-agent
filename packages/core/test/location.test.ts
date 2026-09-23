@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { Location } from "@bioinformatica/core/location"
-import { Project } from "@bioinformatica/core/project"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { WorkspaceV2 } from "@bioinformatica/core/workspace"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { Location } from "@helix/core/location"
+import { Project } from "@helix/core/project"
+import { AbsolutePath } from "@helix/core/schema"
+import { WorkspaceV2 } from "@helix/core/workspace"
 import { testEffect } from "./lib/effect"
 
 const workspaceID = WorkspaceV2.ID.make("wrk_test")

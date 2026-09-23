@@ -9,17 +9,17 @@ import type {
   TuiAttentionSoundName,
   TuiAttentionSoundPack,
   TuiAttentionSoundPackInfo,
-} from "@bioinformatica/plugin/tui"
+} from "@helix/plugin/tui"
 import { AttentionSoundName, type TuiConfig } from "./config"
 import { Schema } from "effect"
 import stripAnsi from "strip-ansi"
 import * as TuiAudio from "./audio"
-import defaultSoundPath from "@bioinformatica/ui/audio/bip-bop-01.mp3" with { type: "file" }
-import questionSoundPath from "@bioinformatica/ui/audio/bip-bop-03.mp3" with { type: "file" }
-import permissionSoundPath from "@bioinformatica/ui/audio/staplebops-06.mp3" with { type: "file" }
-import errorSoundPath from "@bioinformatica/ui/audio/nope-03.mp3" with { type: "file" }
-import doneSoundPath from "@bioinformatica/ui/audio/bip-bop-01.mp3" with { type: "file" }
-import subagentDoneSoundPath from "@bioinformatica/ui/audio/yup-01.mp3" with { type: "file" }
+import defaultSoundPath from "@helix/ui/audio/bip-bop-01.mp3" with { type: "file" }
+import questionSoundPath from "@helix/ui/audio/bip-bop-03.mp3" with { type: "file" }
+import permissionSoundPath from "@helix/ui/audio/staplebops-06.mp3" with { type: "file" }
+import errorSoundPath from "@helix/ui/audio/nope-03.mp3" with { type: "file" }
+import doneSoundPath from "@helix/ui/audio/bip-bop-01.mp3" with { type: "file" }
+import subagentDoneSoundPath from "@helix/ui/audio/yup-01.mp3" with { type: "file" }
 
 type FocusState = "unknown" | "focused" | "blurred"
 
@@ -39,7 +39,7 @@ type TuiAttentionHost = TuiAttention & {
 }
 
 const DEFAULT_TITLE = "Helix Agent"
-const DEFAULT_PACK_ID = "bioinformatica.default"
+const DEFAULT_PACK_ID = "helix.default"
 const KV_SOUND_PACK = "attention_sound_pack"
 const TITLE_LIMIT = 80
 const MESSAGE_LIMIT = 240

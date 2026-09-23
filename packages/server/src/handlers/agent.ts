@@ -1,4 +1,4 @@
-import { AgentV2 } from "@bioinformatica/core/agent"
+import { AgentV2 } from "@helix/core/agent"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { Api } from "../api"

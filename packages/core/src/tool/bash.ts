@@ -1,7 +1,7 @@
 export * as BashTool from "./bash"
 
 import path from "path"
-import { ToolFailure } from "@bioinformatica/llm"
+import { ToolFailure } from "@helix/llm"
 import { Duration, Effect, Layer, Schema } from "effect"
 import { ChildProcess } from "effect/unstable/process"
 import { Config } from "../config"

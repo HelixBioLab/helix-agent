@@ -1,8 +1,8 @@
-import { createBioinformaticaClient, createBioinformaticaServer } from "@bioinformatica/sdk"
+import { createHelixClient, createHelixServer } from "@helix/sdk"
 import { pathToFileURL } from "bun"
 
-const server = await createBioinformaticaServer()
-const client = createBioinformaticaClient({ baseUrl: server.url })
+const server = await createHelixServer()
+const client = createHelixClient({ baseUrl: server.url })
 
 const input = await Array.fromAsync(new Bun.Glob("packages/core/*.ts").scan())
 

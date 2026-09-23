@@ -1,6 +1,6 @@
 export * as SessionCompaction from "./compaction"
 
-import { LLM, LLMError, LLMEvent, Message, type LLMRequest, type Model } from "@bioinformatica/llm"
+import { LLM, LLMError, LLMEvent, Message, type LLMRequest, type Model } from "@helix/llm"
 import { DateTime, Effect, Stream } from "effect"
 import type { Config } from "../config"
 import type { EventV2 } from "../event"

@@ -1154,7 +1154,7 @@ class Event extends _HeyApiClient {
   }
 }
 
-export class BioinformaticaClient extends _HeyApiClient {
+export class HelixClient extends _HeyApiClient {
   /**
    * Respond to a permission request
    */

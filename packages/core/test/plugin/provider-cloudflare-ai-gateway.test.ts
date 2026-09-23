@@ -1,11 +1,11 @@
-import { AISDK } from "@bioinformatica/core/aisdk"
+import { AISDK } from "@helix/core/aisdk"
 import { describe, expect, mock } from "bun:test"
 import { Effect } from "effect"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { CloudflareAIGatewayPlugin } from "@bioinformatica/core/plugin/provider/cloudflare-ai-gateway"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { ModelV2 } from "@helix/core/model"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { CloudflareAIGatewayPlugin } from "@helix/core/plugin/provider/cloudflare-ai-gateway"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -144,7 +144,7 @@ describe("CloudflareAIGatewayPlugin", () => {
           package: "ai-gateway-provider",
           options: {
             name: "cloudflare-ai-gateway",
-            metadata: { invoked_by: "test", project: "bioinformatica" },
+            metadata: { invoked_by: "test", project: "helix" },
             cacheTtl: 300,
             cacheKey: "cache-key",
             skipCache: true,
@@ -158,13 +158,13 @@ describe("CloudflareAIGatewayPlugin", () => {
           gateway: "env-gateway",
           apiKey: "env-token",
           options: {
-            metadata: { invoked_by: "test", project: "bioinformatica" },
+            metadata: { invoked_by: "test", project: "helix" },
             cacheTtl: 300,
             cacheKey: "cache-key",
             skipCache: true,
             collectLog: false,
             headers: {
-              "User-Agent": expect.stringContaining("bioinformatica/"),
+              "User-Agent": expect.stringContaining("helix/"),
             },
           },
         })
@@ -189,13 +189,13 @@ describe("CloudflareAIGatewayPlugin", () => {
           options: {
             name: "cloudflare-ai-gateway",
             headers: {
-              "cf-aig-metadata": JSON.stringify({ invoked_by: "header", project: "bioinformatica" }),
+              "cf-aig-metadata": JSON.stringify({ invoked_by: "header", project: "helix" }),
             },
           },
         })
 
         expect(aiGatewayCalls[0]?.options).toMatchObject({
-          metadata: { invoked_by: "header", project: "bioinformatica" },
+          metadata: { invoked_by: "header", project: "helix" },
         })
       }),
     ),

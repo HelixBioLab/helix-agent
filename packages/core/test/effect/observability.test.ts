@@ -8,23 +8,23 @@ import { fileLogger } from "../../src/observability/logging"
 import { resource } from "../../src/observability/otlp"
 
 const otelResourceAttributes = process.env.OTEL_RESOURCE_ATTRIBUTES
-const bioinformaticaClient = process.env.BIOINFORMATICA_CLIENT
+const helixClient = process.env.HELIX_CLIENT
 
 afterEach(() => {
   if (otelResourceAttributes === undefined) delete process.env.OTEL_RESOURCE_ATTRIBUTES
   else process.env.OTEL_RESOURCE_ATTRIBUTES = otelResourceAttributes
 
-  if (bioinformaticaClient === undefined) delete process.env.BIOINFORMATICA_CLIENT
-  else process.env.BIOINFORMATICA_CLIENT = bioinformaticaClient
+  if (helixClient === undefined) delete process.env.HELIX_CLIENT
+  else process.env.HELIX_CLIENT = helixClient
 })
 
 describe("resource", () => {
   test("parses and decodes OTEL resource attributes", () => {
     process.env.OTEL_RESOURCE_ATTRIBUTES =
-      "service.namespace=Bioinformatica,team=platform%2Cobservability,label=hello%3Dworld,key%2Fname=value%20here"
+      "service.namespace=Helix,team=platform%2Cobservability,label=hello%3Dworld,key%2Fname=value%20here"
 
     expect(resource().attributes).toMatchObject({
-      "service.namespace": "Bioinformatica",
+      "service.namespace": "Helix",
       team: "platform,observability",
       label: "hello=world",
       "key/name": "value here",
@@ -32,34 +32,34 @@ describe("resource", () => {
   })
 
   test("drops OTEL resource attributes when any entry is invalid", () => {
-    process.env.OTEL_RESOURCE_ATTRIBUTES = "service.namespace=Bioinformatica,broken"
+    process.env.OTEL_RESOURCE_ATTRIBUTES = "service.namespace=Helix,broken"
 
     expect(resource().attributes["service.namespace"]).toBeUndefined()
-    expect(resource().attributes["bioinformatica.client"]).toBeDefined()
+    expect(resource().attributes["helix.client"]).toBeDefined()
   })
 
   test("keeps built-in attributes when env values conflict", () => {
-    process.env.BIOINFORMATICA_CLIENT = "cli"
+    process.env.HELIX_CLIENT = "cli"
     process.env.OTEL_RESOURCE_ATTRIBUTES =
-      "bioinformatica.client=web,service.instance.id=override,service.namespace=Bioinformatica"
+      "helix.client=web,service.instance.id=override,service.namespace=Helix"
 
     expect(resource().attributes).toMatchObject({
-      "bioinformatica.client": "cli",
-      "service.namespace": "Bioinformatica",
+      "helix.client": "cli",
+      "service.namespace": "Helix",
     })
     expect(resource().attributes["service.instance.id"]).not.toBe("override")
-    expect(resource().attributes["bioinformatica.run"]).toMatch(/^[0-9a-f]{8}$/)
+    expect(resource().attributes["helix.run"]).toMatch(/^[0-9a-f]{8}$/)
   })
 })
 
 test("file logger appends concurrent runs with a run on every line", async () => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "bioinformatica-log-test-"))
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "helix-log-test-"))
   await using _ = {
     async [Symbol.asyncDispose]() {
       await fs.rm(dir, { recursive: true, force: true })
     },
   }
-  const file = path.join(dir, "bioinformatica.log")
+  const file = path.join(dir, "helix.log")
   const write = (runID: string) =>
     Effect.forEach(
       Array.from({ length: 50 }, (_, index) => index),
@@ -81,13 +81,13 @@ test("file logger appends concurrent runs with a run on every line", async () =>
 })
 
 test("file logger flattens nested objects", async () => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "bioinformatica-log-test-"))
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "helix-log-test-"))
   await using _ = {
     async [Symbol.asyncDispose]() {
       await fs.rm(dir, { recursive: true, force: true })
     },
   }
-  const file = path.join(dir, "bioinformatica.log")
+  const file = path.join(dir, "helix.log")
 
   await Effect.logInfo("request complete", {
     request: { method: "GET", timing: { duration: 42 } },

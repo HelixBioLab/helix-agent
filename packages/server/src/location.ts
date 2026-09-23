@@ -1,7 +1,7 @@
-import { Location } from "@bioinformatica/core/location"
-import { LocationServiceMap } from "@bioinformatica/core/location-services"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { WorkspaceV2 } from "@bioinformatica/core/workspace"
+import { Location } from "@helix/core/location"
+import { LocationServiceMap } from "@helix/core/location-services"
+import { AbsolutePath } from "@helix/core/schema"
+import { WorkspaceV2 } from "@helix/core/workspace"
 import { Effect, Layer } from "effect"
 import { HttpServerRequest } from "effect/unstable/http"
 import { HttpApiMiddleware } from "effect/unstable/httpapi"
@@ -9,7 +9,7 @@ import { HttpApiMiddleware } from "effect/unstable/httpapi"
 export type LocationServices = Layer.Success<ReturnType<(typeof LocationServiceMap.Service)["get"]>>
 
 export class LocationMiddleware extends HttpApiMiddleware.Service<LocationMiddleware, { provides: LocationServices }>()(
-  "@bioinformatica/HttpApiLocation",
+  "@helix/HttpApiLocation",
 ) {}
 
 export function response<A, E, R>(data: Effect.Effect<A, E, R>) {
@@ -28,10 +28,10 @@ export function response<A, E, R>(data: Effect.Effect<A, E, R>) {
 
 function ref(request: HttpServerRequest.HttpServerRequest): Location.Ref {
   const query = new URL(request.url, "http://localhost").searchParams
-  const workspaceID = query.get("location[workspace]") || request.headers["x-bioinformatica-workspace"]
+  const workspaceID = query.get("location[workspace]") || request.headers["x-helix-workspace"]
   const directory =
     query.get("location[directory]") ||
-    (request.headers["x-bioinformatica-directory"] ? decode(request.headers["x-bioinformatica-directory"]) : process.cwd())
+    (request.headers["x-helix-directory"] ? decode(request.headers["x-helix-directory"]) : process.cwd())
   return Location.Ref.make({
     directory: AbsolutePath.make(directory),
     workspaceID: workspaceID ? WorkspaceV2.ID.make(workspaceID) : undefined,

@@ -143,8 +143,8 @@ const icons = {
   },
 }
 
-const spriteID = "bioinformatica-v2-icon-sprite"
-const symbol = (name: keyof typeof icons) => `bioinformatica-v2-icon-${name}`
+const spriteID = "helix-v2-icon-sprite"
+const symbol = (name: keyof typeof icons) => `helix-v2-icon-${name}`
 let spriteInserted = false
 
 function ensureSprite() {

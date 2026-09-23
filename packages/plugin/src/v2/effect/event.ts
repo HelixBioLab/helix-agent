@@ -1,4 +1,4 @@
-import type { Event as SDKEvent } from "@bioinformatica/sdk/v2/types"
+import type { Event as SDKEvent } from "@helix/sdk/v2/types"
 import type { Stream } from "effect"
 
 export type EventMap = {

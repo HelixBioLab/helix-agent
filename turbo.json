@@ -1,23 +1,23 @@
 {
   "$schema": "https://v2-8-13.turborepo.dev/schema.json",
-  "globalEnv": ["CI", "BIOINFORMATICA_DISABLE_SHARE"],
-  "globalPassThroughEnv": ["CI", "BIOINFORMATICA_DISABLE_SHARE"],
+  "globalEnv": ["CI", "HELIX_DISABLE_SHARE"],
+  "globalPassThroughEnv": ["CI", "HELIX_DISABLE_SHARE"],
   "tasks": {
     "typecheck": {},
     "build": {
       "dependsOn": [],
       "outputs": ["dist/**"]
     },
-    "bioinformatica#test": {
+    "helix#test": {
       "dependsOn": ["^build"],
       "outputs": [],
       "passThroughEnv": ["*"]
     },
-    "@bioinformatica/core#test": {
+    "@helix/core#test": {
       "dependsOn": ["^build"],
       "outputs": []
     },
-    "@bioinformatica/ui#test": {
+    "@helix/ui#test": {
       "dependsOn": ["^build"],
       "outputs": []
     }

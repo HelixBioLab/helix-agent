@@ -2,16 +2,16 @@ import { describe, expect } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { Effect, Schema } from "effect"
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { Config } from "@bioinformatica/core/config"
-import { ConfigAgentPlugin } from "@bioinformatica/core/config/plugin/agent"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { Global } from "@bioinformatica/core/global"
-import { PermissionV2 } from "@bioinformatica/core/permission"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { ConfigMigrateV1 } from "@bioinformatica/core/v1/config/migrate"
+import { AgentV2 } from "@helix/core/agent"
+import { Config } from "@helix/core/config"
+import { ConfigAgentPlugin } from "@helix/core/config/plugin/agent"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { FSUtil } from "@helix/core/fs-util"
+import { Global } from "@helix/core/global"
+import { PermissionV2 } from "@helix/core/permission"
+import { AbsolutePath } from "@helix/core/schema"
+import { ConfigMigrateV1 } from "@helix/core/v1/config/migrate"
 import { tmpdir } from "../fixture/tmpdir"
 import { testEffect } from "../lib/effect"
 import { agentHost, host } from "../plugin/host"
@@ -23,7 +23,7 @@ describe("ConfigAgentPlugin.Plugin", () => {
   it.effect("matches POSIX paths against home-relative permissions", () =>
     Effect.gen(function* () {
       const permissions = yield* loadHomePermissions("/home/test")
-      expect(PermissionV2.evaluate("external_directory", "/home/test/p/bioinformatica/src/*", permissions).effect).toBe(
+      expect(PermissionV2.evaluate("external_directory", "/home/test/p/helix/src/*", permissions).effect).toBe(
         "allow",
       )
       expect(PermissionV2.evaluate("external_directory", "/home/test/cache/files/*", permissions).effect).toBe("deny")
@@ -37,7 +37,7 @@ describe("ConfigAgentPlugin.Plugin", () => {
     Effect.gen(function* () {
       const permissions = yield* loadHomePermissions("C:\\Users\\test")
       expect(
-        PermissionV2.evaluate("external_directory", "C:\\Users\\test\\p\\bioinformatica\\src\\*", permissions).effect,
+        PermissionV2.evaluate("external_directory", "C:\\Users\\test\\p\\helix\\src\\*", permissions).effect,
       ).toBe("allow")
       expect(PermissionV2.evaluate("external_directory", "C:\\Users\\test\\cache\\files\\*", permissions).effect).toBe(
         "deny",

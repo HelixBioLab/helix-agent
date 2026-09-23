@@ -1,6 +1,6 @@
 import { describe, expect } from "bun:test"
-import { BackgroundJob } from "@bioinformatica/core/background-job"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
+import { BackgroundJob } from "@helix/core/background-job"
+import { LayerNode } from "@helix/core/effect/layer-node"
 import { Deferred, Effect, Exit, Scope } from "effect"
 import { it } from "./lib/effect"
 

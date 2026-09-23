@@ -1,13 +1,13 @@
 # AI Library Design
 
 > Discussion draft. This document describes the intended replacement for the
-> current private `@bioinformatica/llm` API. Names and exact TypeScript signatures
+> current private `@helix/llm` API. Names and exact TypeScript signatures
 > are illustrative until implementation, but the domain boundaries and defaults
 > are deliberate.
 
 ## Status
 
-- Proposed package: `@bioinformatica/ai`
+- Proposed package: `@helix/ai`
 - Initial stable domain: `LLM`
 - Release posture: pre-1.0, with a stable-core intent
 - Migration posture: clean break; do not preserve compatibility aliases
@@ -138,8 +138,8 @@ the entire protocol-authoring API is experimental.
 
 ```ts
 import { Effect } from "effect"
-import { LLM } from "@bioinformatica/ai"
-import { OpenAI } from "@bioinformatica/ai/providers/openai"
+import { LLM } from "@helix/ai"
+import { OpenAI } from "@helix/ai/providers/openai"
 
 // Environment-based credentials are a provider default. No LLMClient layer is
 // required: the Effect exposes standard runtime dependencies directly.
@@ -189,7 +189,7 @@ runtime provisioning, and makes `generate` mean a complete run.
 ### Environment defaults
 
 ```ts
-import { OpenAI } from "@bioinformatica/ai/providers/openai"
+import { OpenAI } from "@helix/ai/providers/openai"
 
 // Open strings receive autocomplete for IDs from the generated models.dev
 // snapshot but continue to accept newly released and fine-tuned model IDs.
@@ -320,7 +320,7 @@ There is no `LLM.updateRequest(...)` helper and no request Schema class.
 ### Conversation history
 
 ```ts
-import { Message } from "@bioinformatica/ai"
+import { Message } from "@helix/ai"
 
 const request = LLM.request({
   system: "You are concise.",
@@ -345,7 +345,7 @@ change at a specific point in history.
 
 ```ts
 import { Effect, Schema } from "effect"
-import { LLM, Tool } from "@bioinformatica/ai"
+import { LLM, Tool } from "@helix/ai"
 
 const tools = {
   getWeather: Tool.make({
@@ -878,8 +878,8 @@ Promise wrappers live at a separate subpath so the root remains unambiguously
 Effect-first:
 
 ```ts
-import { LLM } from "@bioinformatica/ai/promise"
-import { OpenAI } from "@bioinformatica/ai/providers/openai"
+import { LLM } from "@helix/ai/promise"
+import { OpenAI } from "@helix/ai/providers/openai"
 
 const result = await LLM.generate({
   model: OpenAI.model("gpt-4.1-mini"),
@@ -917,7 +917,7 @@ error, stopping, or cancellation behavior.
 Schemas live in a dedicated namespace/subpath instead of flooding root exports:
 
 ```ts
-import { LLMSchema } from "@bioinformatica/ai/schema"
+import { LLMSchema } from "@helix/ai/schema"
 
 const request = yield * Schema.decodeUnknown(LLMSchema.Request)(input)
 ```
@@ -942,7 +942,7 @@ Provider authoring is public but experimental.
 ### Declarative provider definition
 
 ```ts
-import { Provider, Protocol } from "@bioinformatica/ai/provider"
+import { Provider, Protocol } from "@helix/ai/provider"
 
 export const ExampleAI = Provider.define({
   id: "example",
@@ -974,7 +974,7 @@ patching. It must not register globally.
 Built-ins export their immutable definition for advanced forking:
 
 ```ts
-import { OpenAI } from "@bioinformatica/ai/providers/openai"
+import { OpenAI } from "@helix/ai/providers/openai"
 
 const PatchedOpenAI = OpenAI.definition.with({
   protocols: {
@@ -1024,25 +1024,25 @@ experimental and do not receive the high-level API's compatibility promise.
 Illustrative export layout:
 
 ```text
-@bioinformatica/ai
+@helix/ai
   LLM
   Message
   Tool
   StopWhen
   stable domain types
 
-@bioinformatica/ai/promise
+@helix/ai/promise
   Promise/AsyncIterable LLM facade
 
-@bioinformatica/ai/schema
+@helix/ai/schema
   serializable domain schemas
 
-@bioinformatica/ai/provider
+@helix/ai/provider
   experimental Provider and Protocol authoring APIs
 
-@bioinformatica/ai/providers/openai
-@bioinformatica/ai/providers/anthropic
-@bioinformatica/ai/providers/google
+@helix/ai/providers/openai
+@helix/ai/providers/anthropic
+@helix/ai/providers/google
 ...
 ```
 
@@ -1074,7 +1074,7 @@ The redesign intentionally removes or changes these current concepts:
 
 | Current                                 | Proposed                                                    |
 | --------------------------------------- | ----------------------------------------------------------- |
-| `@bioinformatica/llm`                      | `@bioinformatica/ai`                                           |
+| `@helix/llm`                      | `@helix/ai`                                           |
 | Mandatory `LLM.request({ model, ... })` | Inline calls or model-free portable requests                |
 | `LLM.generate` means one turn           | `LLM.generate` means complete run                           |
 | `LLMClient.generate/stream`             | `LLM.generateTurn/streamTurn` for one turn                  |

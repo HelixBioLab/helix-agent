@@ -10,7 +10,7 @@ The public server client will be exposed separately. It is intentionally not par
 ## Defining A Plugin
 
 ```ts
-import { define } from "@bioinformatica/plugin/v2/effect"
+import { define } from "@helix/plugin/v2/effect"
 import { Effect } from "effect"
 
 export const Plugin = define({

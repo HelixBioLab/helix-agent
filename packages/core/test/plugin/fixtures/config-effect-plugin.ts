@@ -1,4 +1,4 @@
-import { define } from "@bioinformatica/plugin/v2/effect"
+import { define } from "@helix/plugin/v2/effect"
 import { Effect } from "effect"
 
 export default define({

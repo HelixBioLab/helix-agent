@@ -1,8 +1,8 @@
 import { describe, expect } from "bun:test"
 import { Cause, Effect, Exit, Schema, Scope } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { SystemContext } from "@bioinformatica/core/system-context"
-import { SystemContextRegistry } from "@bioinformatica/core/system-context/registry"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { SystemContext } from "@helix/core/system-context"
+import { SystemContextRegistry } from "@helix/core/system-context/registry"
 import { testEffect } from "../lib/effect"
 
 const entry = (key: string, text: string, sourceKey = key) => ({

@@ -1,4 +1,4 @@
-import type { TuiPlugin, TuiPluginApi, TuiPluginStatus } from "@bioinformatica/plugin/tui"
+import type { TuiPlugin, TuiPluginApi, TuiPluginStatus } from "@helix/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 import { useTerminalDimensions } from "@opentui/solid"
 import { fileURLToPath } from "url"

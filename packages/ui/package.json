@@ -1,11 +1,11 @@
 {
-  "name": "@bioinformatica/ui",
+  "name": "@helix/ui",
   "version": "1.17.18",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webiwabou/bioinformatica.org.git",
+    "url": "git+https://github.com/HelixBioLab/helix-agent.git",
     "directory": "packages/ui"
   },
   "publishConfig": {

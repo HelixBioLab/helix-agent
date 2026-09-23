@@ -1,5 +1,5 @@
-import { Agent } from "@bioinformatica/schema/agent"
-import { Location } from "@bioinformatica/schema/location"
+import { Agent } from "@helix/schema/agent"
+import { Location } from "@helix/schema/location"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, OpenApi } from "effect/unstable/httpapi"
 import { LocationQuery, locationQueryOpenApi } from "./location"

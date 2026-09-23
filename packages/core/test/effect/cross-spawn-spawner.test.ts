@@ -5,8 +5,8 @@ import path from "node:path"
 import { Effect, Exit, Stream } from "effect"
 import type * as PlatformError from "effect/PlatformError"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
-import { CrossSpawnSpawner } from "@bioinformatica/core/cross-spawn-spawner"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
+import { CrossSpawnSpawner } from "@helix/core/cross-spawn-spawner"
+import { LayerNode } from "@helix/core/effect/layer-node"
 import { testEffect } from "../lib/effect"
 
 const live = LayerNode.compile(CrossSpawnSpawner.node)
@@ -41,7 +41,7 @@ function alive(pid: number) {
 }
 
 async function tmpdir() {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "bioinformatica-core-test-"))
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "helix-core-test-"))
   return {
     path: dir,
     async [Symbol.asyncDispose]() {
@@ -384,14 +384,14 @@ describe("cross-spawn spawner", () => {
 
         const out = yield* ChildProcessSpawner.ChildProcessSpawner.use((svc) =>
           svc.string(
-            ChildProcess.make("set", ["BIOINFORMATICA_TEST_SHELL"], {
+            ChildProcess.make("set", ["HELIX_TEST_SHELL"], {
               shell: true,
               extendEnv: true,
-              env: { BIOINFORMATICA_TEST_SHELL: "ok" },
+              env: { HELIX_TEST_SHELL: "ok" },
             }),
           ),
         )
-        expect(out).toContain("BIOINFORMATICA_TEST_SHELL=ok")
+        expect(out).toContain("HELIX_TEST_SHELL=ok")
       }),
     )
 

@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
   - name: Preguntas y discusión
-    url: https://github.com/webiwabou/bioinformatica.org/discussions
+    url: https://github.com/HelixBioLab/helix-agent/discussions
     about: Dudas de uso, cómo hacer algo, o ideas que todavía no son una propuesta concreta.
   - name: Documentación
-    url: https://bioinformatica.org
+    url: https://helixbiolab.github.io/helix-agent
     about: Instalación, configuración y guía de uso.
   - name: Reportar un problema de seguridad
-    url: https://github.com/webiwabou/bioinformatica.org/security/advisories/new
+    url: https://github.com/HelixBioLab/helix-agent/security/advisories/new
     about: Los fallos de seguridad se reportan en privado, nunca como una issue pública.

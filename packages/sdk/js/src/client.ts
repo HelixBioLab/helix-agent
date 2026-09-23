@@ -2,9 +2,9 @@ export * from "./gen/types.gen.js"
 
 import { createClient } from "./gen/client/client.gen.js"
 import { type Config } from "./gen/client/types.gen.js"
-import { BioinformaticaClient } from "./gen/sdk.gen.js"
+import { HelixClient } from "./gen/sdk.gen.js"
 import { wrapClientError } from "./error-interceptor.js"
-export { type Config as BioinformaticaClientConfig, BioinformaticaClient }
+export { type Config as HelixClientConfig, HelixClient }
 
 function pick(value: string | null, fallback?: string) {
   if (!value) return
@@ -17,7 +17,7 @@ function pick(value: string | null, fallback?: string) {
 function rewrite(request: Request, directory?: string) {
   if (request.method !== "GET" && request.method !== "HEAD") return request
 
-  const value = pick(request.headers.get("x-bioinformatica-directory"), directory)
+  const value = pick(request.headers.get("x-helix-directory"), directory)
   if (!value) return request
 
   const url = new URL(request.url)
@@ -26,11 +26,11 @@ function rewrite(request: Request, directory?: string) {
   }
 
   const next = new Request(url, request)
-  next.headers.delete("x-bioinformatica-directory")
+  next.headers.delete("x-helix-directory")
   return next
 }
 
-export function createBioinformaticaClient(config?: Config & { directory?: string }) {
+export function createHelixClient(config?: Config & { directory?: string }) {
   if (!config?.fetch) {
     const customFetch: any = (req: any) => {
       // @ts-ignore
@@ -46,12 +46,12 @@ export function createBioinformaticaClient(config?: Config & { directory?: strin
   if (config?.directory) {
     config.headers = {
       ...config.headers,
-      "x-bioinformatica-directory": encodeURIComponent(config.directory),
+      "x-helix-directory": encodeURIComponent(config.directory),
     }
   }
 
   const client = createClient(config)
   client.interceptors.request.use((request) => rewrite(request, config?.directory))
   client.interceptors.error.use(wrapClientError)
-  return new BioinformaticaClient({ client })
+  return new HelixClient({ client })
 }

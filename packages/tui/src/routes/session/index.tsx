@@ -34,7 +34,7 @@ import type {
   UserMessage,
   TextPart,
   ReasoningPart,
-} from "@bioinformatica/sdk/v2"
+} from "@helix/sdk/v2"
 import { useLocal } from "../../context/local"
 import { Locale } from "../../util/locale"
 import { webSearchProviderLabel } from "../../util/tool-display"
@@ -76,7 +76,7 @@ import { getScrollAcceleration } from "../../util/scroll"
 import { collapseToolOutput } from "../../util/collapse-tool-output"
 import { usePluginRuntime } from "../../plugin/runtime"
 import { getRevertDiffFiles } from "../../util/revert-diff"
-import { BIOINFORMATICA_BASE_MODE, useBindings, useCommandShortcut, useBioinformaticaKeymap } from "../../keymap"
+import { HELIX_BASE_MODE, useBindings, useCommandShortcut, useHelixKeymap } from "../../keymap"
 import { usePathFormatter } from "../../context/path-format"
 import { LocationProvider } from "../../context/location"
 
@@ -314,7 +314,7 @@ export function Session() {
     seeded = true
     r.set(route.prompt)
   }
-  const keymap = useBioinformaticaKeymap()
+  const keymap = useHelixKeymap()
   const dialog = useDialog()
   const renderer = useRenderer()
 
@@ -1056,12 +1056,12 @@ export function Session() {
   }))
 
   useBindings(() => ({
-    mode: BIOINFORMATICA_BASE_MODE,
+    mode: HELIX_BASE_MODE,
     bindings: tuiConfig.keybinds.gather("session", sessionBindingCommands),
   }))
 
   useBindings(() => ({
-    mode: BIOINFORMATICA_BASE_MODE,
+    mode: HELIX_BASE_MODE,
     enabled: foregroundTasks().length > 0,
     priority: 1,
     bindings: tuiConfig.keybinds.get("session.background"),

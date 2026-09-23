@@ -1,4 +1,4 @@
-import { create as createIdentifier } from "@bioinformatica/schema/identifier"
+import { create as createIdentifier } from "@helix/schema/identifier"
 
 const prefixes = {
   job: "job",

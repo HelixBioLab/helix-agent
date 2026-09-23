@@ -1,12 +1,12 @@
 import path from "path"
 import { describe, expect } from "bun:test"
 import { Effect, Layer, Schema } from "effect"
-import { Config } from "@bioinformatica/core/config"
-import { ConfigSkillPlugin } from "@bioinformatica/core/config/plugin/skill"
-import { Global } from "@bioinformatica/core/global"
-import { Location } from "@bioinformatica/core/location"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { SkillV2 } from "@bioinformatica/core/skill"
+import { Config } from "@helix/core/config"
+import { ConfigSkillPlugin } from "@helix/core/config/plugin/skill"
+import { Global } from "@helix/core/global"
+import { Location } from "@helix/core/location"
+import { AbsolutePath } from "@helix/core/schema"
+import { SkillV2 } from "@helix/core/skill"
 import { location } from "../fixture/location"
 import { testEffect } from "../lib/effect"
 import { host } from "../plugin/host"
@@ -46,7 +46,7 @@ describe("ConfigSkillPlugin.Plugin", () => {
           Config.Service.of({
             entries: () =>
               Effect.succeed([
-                new Config.Directory({ type: "directory", path: AbsolutePath.make("/repo/.bioinformatica") }),
+                new Config.Directory({ type: "directory", path: AbsolutePath.make("/repo/.helix") }),
                 new Config.Document({
                   type: "document",
                   info: decode({
@@ -61,11 +61,11 @@ describe("ConfigSkillPlugin.Plugin", () => {
       expect(sources).toEqual([
         SkillV2.DirectorySource.make({
           type: "directory",
-          path: AbsolutePath.make(path.join("/repo/.bioinformatica", "skill")),
+          path: AbsolutePath.make(path.join("/repo/.helix", "skill")),
         }),
         SkillV2.DirectorySource.make({
           type: "directory",
-          path: AbsolutePath.make(path.join("/repo/.bioinformatica", "skills")),
+          path: AbsolutePath.make(path.join("/repo/.helix", "skills")),
         }),
         SkillV2.DirectorySource.make({ type: "directory", path: AbsolutePath.make(path.join(directory, "skills")) }),
         SkillV2.DirectorySource.make({

@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { Reference } from "@bioinformatica/core/reference"
-import { ReferenceGuidance } from "@bioinformatica/core/reference/guidance"
-import { SystemContext } from "@bioinformatica/core/system-context/index"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { AbsolutePath } from "@helix/core/schema"
+import { Reference } from "@helix/core/reference"
+import { ReferenceGuidance } from "@helix/core/reference/guidance"
+import { SystemContext } from "@helix/core/system-context/index"
 import { it } from "./lib/effect"
 
 const guidanceLayer = (referenceLayer: Layer.Layer<Reference.Service>) =>

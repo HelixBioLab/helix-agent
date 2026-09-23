@@ -3,7 +3,7 @@ export * as Pty from "./pty"
 import { makeLocationNode } from "./effect/app-node"
 import type { Disp, Proc } from "#pty"
 import { Context, Effect, Layer, Schema, Types } from "effect"
-import { Pty } from "@bioinformatica/schema/pty"
+import { Pty } from "@helix/schema/pty"
 import { Config } from "./config"
 import { EventV2 } from "./event"
 import { Location } from "./location"
@@ -87,7 +87,7 @@ export interface Interface {
   readonly attach: (id: PtyID, input: AttachInput) => Effect.Effect<Attachment, NotFoundError | ExitedError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/Pty") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/Pty") {}
 
 const layer = Layer.effect(
   Service,
@@ -171,7 +171,7 @@ const layer = Layer.effect(
         ...process.env,
         ...input.env,
         TERM: "xterm-256color",
-        BIOINFORMATICA_TERMINAL: "1",
+        HELIX_TERMINAL: "1",
       } as Record<string, string>
       if (process.platform === "win32") {
         env.LC_ALL = "C.UTF-8"

@@ -1,8 +1,8 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Credential } from "@bioinformatica/core/credential"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { Integration } from "@bioinformatica/core/integration"
+import { Credential } from "@helix/core/credential"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { Integration } from "@helix/core/integration"
 import { testEffect } from "./lib/effect"
 
 const it = testEffect(LayerNode.compile(Credential.node))

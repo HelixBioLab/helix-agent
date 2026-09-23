@@ -43,7 +43,7 @@ export {
   ToolStateRunning,
   User,
   WithParts,
-} from "@bioinformatica/schema/session-v1"
+} from "@helix/schema/session-v1"
 
 export const OutputLengthError = NamedError.create("MessageOutputLengthError", {})
 export const AuthError = NamedError.create("ProviderAuthError", { providerID: Schema.String, message: Schema.String })

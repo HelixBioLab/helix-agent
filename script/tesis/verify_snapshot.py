@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check a Bioinformatica NDJSON snapshot using only Python's standard library.
+"""Check a Helix NDJSON snapshot using only Python's standard library.
 
 Usage: python3 verify_snapshot.py /path/to/corpus/name.manifest.json [...]
 Exit 0 means every supplied snapshot matches; 1 means a check failed; 2 is usage.

@@ -1,1 +1,1 @@
-export { ID as PtyID } from "@bioinformatica/schema/pty"
+export { ID as PtyID } from "@helix/schema/pty"

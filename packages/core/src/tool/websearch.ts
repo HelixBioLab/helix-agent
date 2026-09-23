@@ -1,6 +1,6 @@
 export * as WebSearchTool from "./websearch"
 
-import { ToolFailure } from "@bioinformatica/llm"
+import { ToolFailure } from "@helix/llm"
 import { Context, Duration, Effect, Layer, Schema } from "effect"
 import { HttpClient, HttpClientRequest } from "effect/unstable/http"
 import { makeLocationNode } from "../effect/app-node"
@@ -67,17 +67,17 @@ export interface Config {
   readonly parallelApiKey?: string
 }
 
-export class ConfigService extends Context.Service<ConfigService, Config>()("@bioinformatica/v2/WebSearchConfig") {}
+export class ConfigService extends Context.Service<ConfigService, Config>()("@helix/v2/WebSearchConfig") {}
 
 /** Isolates the retained product environment contract from the generic tool implementation. */
 export const defaultConfigLayer = Layer.sync(ConfigService, () =>
   ConfigService.of({
     provider:
-      process.env.BIOINFORMATICA_WEBSEARCH_PROVIDER === "exa" || process.env.BIOINFORMATICA_WEBSEARCH_PROVIDER === "parallel"
-        ? process.env.BIOINFORMATICA_WEBSEARCH_PROVIDER
+      process.env.HELIX_WEBSEARCH_PROVIDER === "exa" || process.env.HELIX_WEBSEARCH_PROVIDER === "parallel"
+        ? process.env.HELIX_WEBSEARCH_PROVIDER
         : undefined,
-    enableExa: truthy("BIOINFORMATICA_EXPERIMENTAL") || truthy("BIOINFORMATICA_ENABLE_EXA") || truthy("BIOINFORMATICA_EXPERIMENTAL_EXA"),
-    enableParallel: truthy("BIOINFORMATICA_ENABLE_PARALLEL") || truthy("BIOINFORMATICA_EXPERIMENTAL_PARALLEL"),
+    enableExa: truthy("HELIX_EXPERIMENTAL") || truthy("HELIX_ENABLE_EXA") || truthy("HELIX_EXPERIMENTAL_EXA"),
+    enableParallel: truthy("HELIX_ENABLE_PARALLEL") || truthy("HELIX_EXPERIMENTAL_PARALLEL"),
     exaApiKey: process.env.EXA_API_KEY,
     parallelApiKey: process.env.PARALLEL_API_KEY,
   }),
@@ -237,7 +237,7 @@ const layer = Layer.effectDiscard(
                         // V2 invocation context does not safely expose the model yet.
                       },
                       {
-                        "User-Agent": `bioinformatica/${InstallationVersion}`,
+                        "User-Agent": `helix/${InstallationVersion}`,
                         ...(config.parallelApiKey ? { Authorization: `Bearer ${config.parallelApiKey}` } : {}),
                       },
                     )

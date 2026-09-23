@@ -5,8 +5,8 @@ import { bundledLanguages, type BundledLanguage } from "shiki"
 import { createSimpleContext } from "./helper"
 import { getSharedHighlighter, registerCustomTheme, ThemeRegistrationResolved } from "@pierre/diffs"
 
-export const BioinformaticaTheme = {
-  name: "Bioinformatica",
+export const HelixTheme = {
+  name: "Helix",
   bg: "var(--color-background-stronger)",
   fg: "var(--text-base)",
   colors: {
@@ -376,7 +376,7 @@ export const BioinformaticaTheme = {
   },
 } as unknown as ThemeRegistrationResolved
 
-registerCustomTheme("Bioinformatica", () => Promise.resolve(BioinformaticaTheme))
+registerCustomTheme("Helix", () => Promise.resolve(HelixTheme))
 
 function renderMathInText(text: string): string {
   let result = text
@@ -481,7 +481,7 @@ async function highlightCodeBlocks(html: string): Promise<string> {
   if (matches.length === 0) return html
 
   const highlighter = await getSharedHighlighter({
-    themes: ["Bioinformatica"],
+    themes: ["Helix"],
     langs: [],
     preferredHighlighter: "shiki-wasm",
   })
@@ -506,7 +506,7 @@ async function highlightCodeBlocks(html: string): Promise<string> {
 
     const highlighted = highlighter.codeToHtml(code, {
       lang: language,
-      theme: "Bioinformatica",
+      theme: "Helix",
       tabindex: false,
     })
     result = result.replace(fullMatch, () => highlighted)
@@ -533,7 +533,7 @@ export const { use: useMarked, provider: MarkedProvider } = createSimpleContext(
       markedShiki({
         async highlight(code, lang) {
           const highlighter = await getSharedHighlighter({
-            themes: ["Bioinformatica"],
+            themes: ["Helix"],
             langs: [],
             preferredHighlighter: "shiki-wasm",
           })
@@ -545,7 +545,7 @@ export const { use: useMarked, provider: MarkedProvider } = createSimpleContext(
           }
           return highlighter.codeToHtml(code, {
             lang: lang || "text",
-            theme: "Bioinformatica",
+            theme: "Helix",
             tabindex: false,
           })
         },

@@ -3,11 +3,11 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "bioinformatica",
+      "name": "helix",
       "dependencies": {
-        "@bioinformatica/plugin": "workspace:*",
-        "@bioinformatica/script": "workspace:*",
-        "@bioinformatica/sdk": "workspace:*",
+        "@helix/plugin": "workspace:*",
+        "@helix/script": "workspace:*",
+        "@helix/sdk": "workspace:*",
         "heap-snapshot-toolkit": "1.1.3",
         "typescript": "catalog:",
       },
@@ -24,11 +24,170 @@
         "turbo": "2.10.2",
       },
     },
-    "packages/bioinformatica": {
-      "name": "bioinformatica",
-      "version": "0.1.0",
+    "packages/cli": {
+      "name": "@helix/cli",
+      "version": "1.17.18",
       "bin": {
-        "bioinformatica": "./bin/bioinformatica",
+        "helix-cli": "./bin/helix-cli.cjs",
+      },
+      "dependencies": {
+        "@effect/platform-node": "catalog:",
+        "@helix/core": "workspace:*",
+        "@helix/sdk": "workspace:*",
+        "@helix/server": "workspace:*",
+        "@helix/tui": "workspace:*",
+        "@opentui/core": "catalog:",
+        "@opentui/solid": "catalog:",
+        "@parcel/watcher": "2.5.1",
+        "effect": "catalog:",
+        "solid-js": "catalog:",
+      },
+      "devDependencies": {
+        "@helix/script": "workspace:*",
+        "@tsconfig/bun": "catalog:",
+        "@types/bun": "catalog:",
+        "@typescript/native-preview": "catalog:",
+      },
+    },
+    "packages/codemode": {
+      "name": "@helix/codemode",
+      "version": "1.17.18",
+      "dependencies": {
+        "acorn": "8.15.0",
+        "effect": "catalog:",
+        "typescript": "catalog:",
+      },
+      "devDependencies": {
+        "@tsconfig/bun": "catalog:",
+        "@types/bun": "catalog:",
+        "@typescript/native-preview": "catalog:",
+      },
+    },
+    "packages/core": {
+      "name": "@helix/core",
+      "version": "1.17.18",
+      "bin": {
+        "helix": "./bin/helix",
+      },
+      "dependencies": {
+        "@ai-sdk/alibaba": "1.0.17",
+        "@ai-sdk/amazon-bedrock": "4.0.112",
+        "@ai-sdk/anthropic": "3.0.82",
+        "@ai-sdk/azure": "3.0.49",
+        "@ai-sdk/cerebras": "2.0.41",
+        "@ai-sdk/cohere": "3.0.27",
+        "@ai-sdk/deepinfra": "2.0.41",
+        "@ai-sdk/gateway": "3.0.104",
+        "@ai-sdk/google": "3.0.73",
+        "@ai-sdk/google-vertex": "4.0.128",
+        "@ai-sdk/groq": "3.0.31",
+        "@ai-sdk/mistral": "3.0.27",
+        "@ai-sdk/openai": "3.0.53",
+        "@ai-sdk/openai-compatible": "2.0.41",
+        "@ai-sdk/perplexity": "3.0.26",
+        "@ai-sdk/provider": "3.0.8",
+        "@ai-sdk/provider-utils": "4.0.23",
+        "@ai-sdk/togetherai": "2.0.41",
+        "@ai-sdk/vercel": "2.0.39",
+        "@ai-sdk/xai": "3.0.102",
+        "@aws-sdk/credential-providers": "3.1057.0",
+        "@effect/opentelemetry": "catalog:",
+        "@effect/platform-node": "catalog:",
+        "@effect/sql-sqlite-bun": "catalog:",
+        "@ff-labs/fff-bun": "0.9.4",
+        "@helix/effect-drizzle-sqlite": "workspace:*",
+        "@helix/effect-sqlite-node": "workspace:*",
+        "@helix/llm": "workspace:*",
+        "@helix/plugin": "workspace:*",
+        "@helix/schema": "workspace:*",
+        "@lydell/node-pty": "catalog:",
+        "@npmcli/arborist": "9.4.0",
+        "@npmcli/config": "10.8.1",
+        "@openrouter/ai-sdk-provider": "2.9.0",
+        "@opentelemetry/api": "1.9.0",
+        "@opentelemetry/context-async-hooks": "2.6.1",
+        "@opentelemetry/exporter-trace-otlp-http": "0.214.0",
+        "@opentelemetry/sdk-trace-base": "2.6.1",
+        "@parcel/watcher": "2.5.1",
+        "@silvia-odwyer/photon-node": "0.3.4",
+        "ai-gateway-provider": "3.1.2",
+        "bun-pty": "0.4.8",
+        "cross-spawn": "catalog:",
+        "diff": "catalog:",
+        "drizzle-orm": "catalog:",
+        "effect": "catalog:",
+        "fuzzysort": "3.1.0",
+        "gitlab-ai-provider": "6.10.0",
+        "glob": "13.0.5",
+        "google-auth-library": "10.5.0",
+        "gray-matter": "4.0.3",
+        "htmlparser2": "8.0.2",
+        "ignore": "7.0.5",
+        "immer": "11.1.4",
+        "jsonc-parser": "3.3.1",
+        "mime-types": "3.0.2",
+        "minimatch": "10.2.5",
+        "npm-package-arg": "13.0.2",
+        "semver": "^7.6.3",
+        "turndown": "7.2.0",
+        "venice-ai-sdk-provider": "2.1.1",
+        "which": "6.0.1",
+        "xdg-basedir": "5.1.0",
+        "zod": "catalog:",
+      },
+      "devDependencies": {
+        "@helix/http-recorder": "workspace:*",
+        "@parcel/watcher-darwin-arm64": "2.5.1",
+        "@parcel/watcher-darwin-x64": "2.5.1",
+        "@parcel/watcher-linux-arm64-glibc": "2.5.1",
+        "@parcel/watcher-linux-arm64-musl": "2.5.1",
+        "@parcel/watcher-linux-x64-glibc": "2.5.1",
+        "@parcel/watcher-linux-x64-musl": "2.5.1",
+        "@parcel/watcher-win32-arm64": "2.5.1",
+        "@parcel/watcher-win32-x64": "2.5.1",
+        "@tsconfig/bun": "catalog:",
+        "@types/bun": "catalog:",
+        "@types/cross-spawn": "catalog:",
+        "@types/node": "catalog:",
+        "@types/npm-package-arg": "6.1.4",
+        "@types/npmcli__arborist": "6.3.3",
+        "@types/semver": "catalog:",
+        "@types/turndown": "5.0.5",
+        "@types/which": "3.0.4",
+        "drizzle-kit": "catalog:",
+      },
+    },
+    "packages/effect-drizzle-sqlite": {
+      "name": "@helix/effect-drizzle-sqlite",
+      "version": "1.17.18",
+      "dependencies": {
+        "drizzle-orm": "catalog:",
+        "effect": "catalog:",
+      },
+      "devDependencies": {
+        "@effect/sql-sqlite-bun": "catalog:",
+        "@tsconfig/bun": "catalog:",
+        "@types/bun": "catalog:",
+        "@typescript/native-preview": "catalog:",
+      },
+    },
+    "packages/effect-sqlite-node": {
+      "name": "@helix/effect-sqlite-node",
+      "version": "1.17.18",
+      "dependencies": {
+        "effect": "catalog:",
+      },
+      "devDependencies": {
+        "@tsconfig/bun": "catalog:",
+        "@types/node": "catalog:",
+        "@typescript/native-preview": "catalog:",
+      },
+    },
+    "packages/helix": {
+      "name": "helix",
+      "version": "0.2.0",
+      "bin": {
+        "helix": "./bin/helix",
       },
       "dependencies": {
         "@actions/core": "1.11.1",
@@ -54,20 +213,20 @@
         "@ai-sdk/vercel": "2.0.39",
         "@ai-sdk/xai": "3.0.102",
         "@aws-sdk/credential-providers": "3.1057.0",
-        "@bioinformatica/codemode": "workspace:*",
-        "@bioinformatica/llm": "workspace:*",
-        "@bioinformatica/plugin": "workspace:*",
-        "@bioinformatica/protocol": "workspace:*",
-        "@bioinformatica/schema": "workspace:*",
-        "@bioinformatica/script": "workspace:*",
-        "@bioinformatica/sdk": "workspace:*",
-        "@bioinformatica/server": "workspace:*",
-        "@bioinformatica/tui": "workspace:*",
         "@clack/prompts": "1.0.0-alpha.1",
         "@effect/opentelemetry": "catalog:",
         "@effect/platform-node": "catalog:",
         "@ff-labs/fff-bun": "0.9.4",
         "@gitlab/opencode-gitlab-auth": "1.3.3",
+        "@helix/codemode": "workspace:*",
+        "@helix/llm": "workspace:*",
+        "@helix/plugin": "workspace:*",
+        "@helix/protocol": "workspace:*",
+        "@helix/schema": "workspace:*",
+        "@helix/script": "workspace:*",
+        "@helix/sdk": "workspace:*",
+        "@helix/server": "workspace:*",
+        "@helix/tui": "workspace:*",
         "@modelcontextprotocol/sdk": "1.29.0",
         "@octokit/graphql": "9.0.2",
         "@octokit/rest": "catalog:",
@@ -133,9 +292,9 @@
       },
       "devDependencies": {
         "@babel/core": "7.28.4",
-        "@bioinformatica/core": "workspace:*",
-        "@bioinformatica/http-recorder": "workspace:*",
-        "@bioinformatica/script": "workspace:*",
+        "@helix/core": "workspace:*",
+        "@helix/http-recorder": "workspace:*",
+        "@helix/script": "workspace:*",
         "@octokit/webhooks-types": "7.6.1",
         "@standard-schema/spec": "1.0.0",
         "@tsconfig/bun": "catalog:",
@@ -155,167 +314,8 @@
         "why-is-node-running": "3.2.2",
       },
     },
-    "packages/cli": {
-      "name": "@bioinformatica/cli",
-      "version": "1.17.18",
-      "bin": {
-        "bioinformatica-cli": "./bin/bioinformatica-cli.cjs",
-      },
-      "dependencies": {
-        "@bioinformatica/core": "workspace:*",
-        "@bioinformatica/sdk": "workspace:*",
-        "@bioinformatica/server": "workspace:*",
-        "@bioinformatica/tui": "workspace:*",
-        "@effect/platform-node": "catalog:",
-        "@opentui/core": "catalog:",
-        "@opentui/solid": "catalog:",
-        "@parcel/watcher": "2.5.1",
-        "effect": "catalog:",
-        "solid-js": "catalog:",
-      },
-      "devDependencies": {
-        "@bioinformatica/script": "workspace:*",
-        "@tsconfig/bun": "catalog:",
-        "@types/bun": "catalog:",
-        "@typescript/native-preview": "catalog:",
-      },
-    },
-    "packages/codemode": {
-      "name": "@bioinformatica/codemode",
-      "version": "1.17.18",
-      "dependencies": {
-        "acorn": "8.15.0",
-        "effect": "catalog:",
-        "typescript": "catalog:",
-      },
-      "devDependencies": {
-        "@tsconfig/bun": "catalog:",
-        "@types/bun": "catalog:",
-        "@typescript/native-preview": "catalog:",
-      },
-    },
-    "packages/core": {
-      "name": "@bioinformatica/core",
-      "version": "1.17.18",
-      "bin": {
-        "bioinformatica": "./bin/bioinformatica",
-      },
-      "dependencies": {
-        "@ai-sdk/alibaba": "1.0.17",
-        "@ai-sdk/amazon-bedrock": "4.0.112",
-        "@ai-sdk/anthropic": "3.0.82",
-        "@ai-sdk/azure": "3.0.49",
-        "@ai-sdk/cerebras": "2.0.41",
-        "@ai-sdk/cohere": "3.0.27",
-        "@ai-sdk/deepinfra": "2.0.41",
-        "@ai-sdk/gateway": "3.0.104",
-        "@ai-sdk/google": "3.0.73",
-        "@ai-sdk/google-vertex": "4.0.128",
-        "@ai-sdk/groq": "3.0.31",
-        "@ai-sdk/mistral": "3.0.27",
-        "@ai-sdk/openai": "3.0.53",
-        "@ai-sdk/openai-compatible": "2.0.41",
-        "@ai-sdk/perplexity": "3.0.26",
-        "@ai-sdk/provider": "3.0.8",
-        "@ai-sdk/provider-utils": "4.0.23",
-        "@ai-sdk/togetherai": "2.0.41",
-        "@ai-sdk/vercel": "2.0.39",
-        "@ai-sdk/xai": "3.0.102",
-        "@aws-sdk/credential-providers": "3.1057.0",
-        "@bioinformatica/effect-drizzle-sqlite": "workspace:*",
-        "@bioinformatica/effect-sqlite-node": "workspace:*",
-        "@bioinformatica/llm": "workspace:*",
-        "@bioinformatica/plugin": "workspace:*",
-        "@bioinformatica/schema": "workspace:*",
-        "@effect/opentelemetry": "catalog:",
-        "@effect/platform-node": "catalog:",
-        "@effect/sql-sqlite-bun": "catalog:",
-        "@ff-labs/fff-bun": "0.9.4",
-        "@lydell/node-pty": "catalog:",
-        "@npmcli/arborist": "9.4.0",
-        "@npmcli/config": "10.8.1",
-        "@openrouter/ai-sdk-provider": "2.9.0",
-        "@opentelemetry/api": "1.9.0",
-        "@opentelemetry/context-async-hooks": "2.6.1",
-        "@opentelemetry/exporter-trace-otlp-http": "0.214.0",
-        "@opentelemetry/sdk-trace-base": "2.6.1",
-        "@parcel/watcher": "2.5.1",
-        "@silvia-odwyer/photon-node": "0.3.4",
-        "ai-gateway-provider": "3.1.2",
-        "bun-pty": "0.4.8",
-        "cross-spawn": "catalog:",
-        "diff": "catalog:",
-        "drizzle-orm": "catalog:",
-        "effect": "catalog:",
-        "fuzzysort": "3.1.0",
-        "gitlab-ai-provider": "6.10.0",
-        "glob": "13.0.5",
-        "google-auth-library": "10.5.0",
-        "gray-matter": "4.0.3",
-        "htmlparser2": "8.0.2",
-        "ignore": "7.0.5",
-        "immer": "11.1.4",
-        "jsonc-parser": "3.3.1",
-        "mime-types": "3.0.2",
-        "minimatch": "10.2.5",
-        "npm-package-arg": "13.0.2",
-        "semver": "^7.6.3",
-        "turndown": "7.2.0",
-        "venice-ai-sdk-provider": "2.1.1",
-        "which": "6.0.1",
-        "xdg-basedir": "5.1.0",
-        "zod": "catalog:",
-      },
-      "devDependencies": {
-        "@bioinformatica/http-recorder": "workspace:*",
-        "@parcel/watcher-darwin-arm64": "2.5.1",
-        "@parcel/watcher-darwin-x64": "2.5.1",
-        "@parcel/watcher-linux-arm64-glibc": "2.5.1",
-        "@parcel/watcher-linux-arm64-musl": "2.5.1",
-        "@parcel/watcher-linux-x64-glibc": "2.5.1",
-        "@parcel/watcher-linux-x64-musl": "2.5.1",
-        "@parcel/watcher-win32-arm64": "2.5.1",
-        "@parcel/watcher-win32-x64": "2.5.1",
-        "@tsconfig/bun": "catalog:",
-        "@types/bun": "catalog:",
-        "@types/cross-spawn": "catalog:",
-        "@types/node": "catalog:",
-        "@types/npm-package-arg": "6.1.4",
-        "@types/npmcli__arborist": "6.3.3",
-        "@types/semver": "catalog:",
-        "@types/turndown": "5.0.5",
-        "@types/which": "3.0.4",
-        "drizzle-kit": "catalog:",
-      },
-    },
-    "packages/effect-drizzle-sqlite": {
-      "name": "@bioinformatica/effect-drizzle-sqlite",
-      "version": "1.17.18",
-      "dependencies": {
-        "drizzle-orm": "catalog:",
-        "effect": "catalog:",
-      },
-      "devDependencies": {
-        "@effect/sql-sqlite-bun": "catalog:",
-        "@tsconfig/bun": "catalog:",
-        "@types/bun": "catalog:",
-        "@typescript/native-preview": "catalog:",
-      },
-    },
-    "packages/effect-sqlite-node": {
-      "name": "@bioinformatica/effect-sqlite-node",
-      "version": "1.17.18",
-      "dependencies": {
-        "effect": "catalog:",
-      },
-      "devDependencies": {
-        "@tsconfig/bun": "catalog:",
-        "@types/node": "catalog:",
-        "@typescript/native-preview": "catalog:",
-      },
-    },
     "packages/http-recorder": {
-      "name": "@bioinformatica/http-recorder",
+      "name": "@helix/http-recorder",
       "version": "1.17.18",
       "dependencies": {
         "@effect/platform-node": "4.0.0-beta.83",
@@ -334,30 +334,30 @@
       },
     },
     "packages/llm": {
-      "name": "@bioinformatica/llm",
+      "name": "@helix/llm",
       "version": "1.17.18",
       "dependencies": {
-        "@bioinformatica/schema": "workspace:*",
+        "@helix/schema": "workspace:*",
         "@smithy/eventstream-codec": "4.2.14",
         "@smithy/util-utf8": "4.2.2",
         "aws4fetch": "1.0.20",
         "effect": "catalog:",
       },
       "devDependencies": {
-        "@bioinformatica/http-recorder": "workspace:*",
         "@clack/prompts": "1.0.0-alpha.1",
         "@effect/platform-node": "catalog:",
+        "@helix/http-recorder": "workspace:*",
         "@tsconfig/bun": "catalog:",
         "@types/bun": "catalog:",
         "@typescript/native-preview": "catalog:",
       },
     },
     "packages/plugin": {
-      "name": "@bioinformatica/plugin",
+      "name": "@helix/plugin",
       "version": "1.17.18",
       "dependencies": {
         "@ai-sdk/provider": "3.0.8",
-        "@bioinformatica/sdk": "workspace:*",
+        "@helix/sdk": "workspace:*",
         "effect": "catalog:",
         "zod": "catalog:",
       },
@@ -382,9 +382,9 @@
       ],
     },
     "packages/protocol": {
-      "name": "@bioinformatica/protocol",
+      "name": "@helix/protocol",
       "dependencies": {
-        "@bioinformatica/schema": "workspace:*",
+        "@helix/schema": "workspace:*",
         "effect": "catalog:",
       },
       "devDependencies": {
@@ -394,7 +394,7 @@
       },
     },
     "packages/schema": {
-      "name": "@bioinformatica/schema",
+      "name": "@helix/schema",
       "dependencies": {
         "effect": "catalog:",
       },
@@ -405,7 +405,7 @@
       },
     },
     "packages/script": {
-      "name": "@bioinformatica/script",
+      "name": "@helix/script",
       "dependencies": {
         "semver": "^7.6.3",
       },
@@ -415,7 +415,7 @@
       },
     },
     "packages/sdk/js": {
-      "name": "@bioinformatica/sdk",
+      "name": "@helix/sdk",
       "version": "1.17.18",
       "dependencies": {
         "cross-spawn": "catalog:",
@@ -430,11 +430,11 @@
       },
     },
     "packages/server": {
-      "name": "@bioinformatica/server",
+      "name": "@helix/server",
       "version": "1.17.18",
       "dependencies": {
-        "@bioinformatica/core": "workspace:*",
-        "@bioinformatica/protocol": "workspace:*",
+        "@helix/core": "workspace:*",
+        "@helix/protocol": "workspace:*",
         "drizzle-orm": "catalog:",
         "effect": "catalog:",
       },
@@ -445,13 +445,13 @@
       },
     },
     "packages/tui": {
-      "name": "@bioinformatica/tui",
+      "name": "@helix/tui",
       "version": "1.17.18",
       "dependencies": {
-        "@bioinformatica/core": "workspace:*",
-        "@bioinformatica/plugin": "workspace:*",
-        "@bioinformatica/sdk": "workspace:*",
-        "@bioinformatica/ui": "workspace:*",
+        "@helix/core": "workspace:*",
+        "@helix/plugin": "workspace:*",
+        "@helix/sdk": "workspace:*",
+        "@helix/ui": "workspace:*",
         "@opentui/core": "catalog:",
         "@opentui/keymap": "catalog:",
         "@opentui/solid": "catalog:",
@@ -472,7 +472,7 @@
       },
     },
     "packages/ui": {
-      "name": "@bioinformatica/ui",
+      "name": "@helix/ui",
       "version": "1.17.18",
       "dependencies": {
         "@kobalte/core": "catalog:",
@@ -782,36 +782,6 @@
 
     "@babel/types": ["@babel/types@7.29.8", "", { "dependencies": { "@babel/helper-string-parser": "^7.29.7", "@babel/helper-validator-identifier": "^7.29.7" } }, "sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg=="],
 
-    "@bioinformatica/cli": ["@bioinformatica/cli@workspace:packages/cli"],
-
-    "@bioinformatica/codemode": ["@bioinformatica/codemode@workspace:packages/codemode"],
-
-    "@bioinformatica/core": ["@bioinformatica/core@workspace:packages/core"],
-
-    "@bioinformatica/effect-drizzle-sqlite": ["@bioinformatica/effect-drizzle-sqlite@workspace:packages/effect-drizzle-sqlite"],
-
-    "@bioinformatica/effect-sqlite-node": ["@bioinformatica/effect-sqlite-node@workspace:packages/effect-sqlite-node"],
-
-    "@bioinformatica/http-recorder": ["@bioinformatica/http-recorder@workspace:packages/http-recorder"],
-
-    "@bioinformatica/llm": ["@bioinformatica/llm@workspace:packages/llm"],
-
-    "@bioinformatica/plugin": ["@bioinformatica/plugin@workspace:packages/plugin"],
-
-    "@bioinformatica/protocol": ["@bioinformatica/protocol@workspace:packages/protocol"],
-
-    "@bioinformatica/schema": ["@bioinformatica/schema@workspace:packages/schema"],
-
-    "@bioinformatica/script": ["@bioinformatica/script@workspace:packages/script"],
-
-    "@bioinformatica/sdk": ["@bioinformatica/sdk@workspace:packages/sdk/js"],
-
-    "@bioinformatica/server": ["@bioinformatica/server@workspace:packages/server"],
-
-    "@bioinformatica/tui": ["@bioinformatica/tui@workspace:packages/tui"],
-
-    "@bioinformatica/ui": ["@bioinformatica/ui@workspace:packages/ui"],
-
     "@clack/core": ["@clack/core@1.0.0-alpha.1", "", { "dependencies": { "picocolors": "^1.0.0", "sisteransi": "^1.0.5" } }, "sha512-rFbCU83JnN7l3W1nfgCqqme4ZZvTTgsiKQ6FM0l+r0P+o2eJpExcocBUWUIwnDzL76Aca9VhUdWmB2MbUv+Qyg=="],
 
     "@clack/prompts": ["@clack/prompts@1.0.0-alpha.1", "", { "dependencies": { "@clack/core": "1.0.0-alpha.1", "picocolors": "^1.0.0", "sisteransi": "^1.0.5" } }, "sha512-07MNT0OsxjKOcyVfX8KhXBhJiyUbDP1vuIAcHc+nx5v93MJO23pX3X/k3bWz6T3rpM9dgWPq90i4Jq7gZAyMbw=="],
@@ -925,6 +895,36 @@
     "@gitlab/opencode-gitlab-auth": ["@gitlab/opencode-gitlab-auth@1.3.3", "", { "dependencies": { "@fastify/rate-limit": "^10.2.0", "@opencode-ai/plugin": "*", "fastify": "^5.2.0", "open": "^10.0.0" } }, "sha512-FT+KsCmAJjtqWr1YAq0MywGgL9kaLQ4apmsoowAXrPqHtoYf2i/nY10/A+L06kNj22EATeEDRpbB1NWXMto/SA=="],
 
     "@graphql-typed-document-node/core": ["@graphql-typed-document-node/core@3.2.0", "", { "peerDependencies": { "graphql": "^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0" } }, "sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ=="],
+
+    "@helix/cli": ["@helix/cli@workspace:packages/cli"],
+
+    "@helix/codemode": ["@helix/codemode@workspace:packages/codemode"],
+
+    "@helix/core": ["@helix/core@workspace:packages/core"],
+
+    "@helix/effect-drizzle-sqlite": ["@helix/effect-drizzle-sqlite@workspace:packages/effect-drizzle-sqlite"],
+
+    "@helix/effect-sqlite-node": ["@helix/effect-sqlite-node@workspace:packages/effect-sqlite-node"],
+
+    "@helix/http-recorder": ["@helix/http-recorder@workspace:packages/http-recorder"],
+
+    "@helix/llm": ["@helix/llm@workspace:packages/llm"],
+
+    "@helix/plugin": ["@helix/plugin@workspace:packages/plugin"],
+
+    "@helix/protocol": ["@helix/protocol@workspace:packages/protocol"],
+
+    "@helix/schema": ["@helix/schema@workspace:packages/schema"],
+
+    "@helix/script": ["@helix/script@workspace:packages/script"],
+
+    "@helix/sdk": ["@helix/sdk@workspace:packages/sdk/js"],
+
+    "@helix/server": ["@helix/server@workspace:packages/server"],
+
+    "@helix/tui": ["@helix/tui@workspace:packages/tui"],
+
+    "@helix/ui": ["@helix/ui@workspace:packages/ui"],
 
     "@hey-api/codegen-core": ["@hey-api/codegen-core@0.5.5", "", { "dependencies": { "@hey-api/types": "0.1.2", "ansi-colors": "4.1.3", "c12": "3.3.3", "color-support": "1.1.3" }, "peerDependencies": { "typescript": ">=5.5.3" } }, "sha512-f2ZHucnA2wBGAY8ipB4wn/mrEYW+WUxU2huJmUvfDO6AE2vfILSHeF3wCO39Pz4wUYPoAWZByaauftLrOfC12Q=="],
 
@@ -1566,8 +1566,6 @@
 
     "bin-links": ["bin-links@6.0.2", "", { "dependencies": { "cmd-shim": "^8.0.0", "npm-normalize-package-bin": "^5.0.0", "proc-log": "^6.0.0", "read-cmd-shim": "^6.0.0", "write-file-atomic": "^7.0.0" } }, "sha512-frE1t78WOwJ45PKV2cF2tNPjTcs9L1J9s6VkrV59wanRP4GlaomuxYPVma7BwthMg8WnfSory4w5PTE6FZZ81w=="],
 
-    "bioinformatica": ["bioinformatica@workspace:packages/bioinformatica"],
-
     "body-parser": ["body-parser@2.3.0", "", { "dependencies": { "bytes": "^3.1.2", "content-type": "^2.0.0", "debug": "^4.4.3", "http-errors": "^2.0.1", "iconv-lite": "^0.7.2", "on-finished": "^2.4.1", "qs": "^6.15.2", "raw-body": "^3.0.2", "type-is": "^2.1.0" } }, "sha512-2cGmJupaNgg+QUwVLAucDuWuoMZ6EX9iHDRswZ5lsNYEmwPaRknMPCLZz07yTzVq/83p4o/wzbDZbBrTvGGTIw=="],
 
     "bonjour-service": ["bonjour-service@1.3.0", "", { "dependencies": { "fast-deep-equal": "^3.1.3", "multicast-dns": "^7.2.5" } }, "sha512-3YuAUiSkWykd+2Azjgyxei8OWf8thdn8AITIog2M4UICzoqfjlqr64WIjEXZllf/W6vK1goqleSR6brGomxQqA=="],
@@ -1893,6 +1891,8 @@
     "he": ["he@1.2.0", "", { "bin": { "he": "bin/he" } }, "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw=="],
 
     "heap-snapshot-toolkit": ["heap-snapshot-toolkit@1.1.3", "", {}, "sha512-joThu2rEsDu8/l4arupRDI1qP4CZXNG+J6Wr348vnbLGSiBkwRdqZ6aOHl5BzEiC+Dc8OTbMlmWjD0lbXD5K2Q=="],
+
+    "helix": ["helix@workspace:packages/helix"],
 
     "hono": ["hono@4.13.5", "", {}, "sha512-O6+/eCYRkzzzy0rPWwKLiGBR1nFuUPZynnwjxN1MBA62NNqbT0wQEzQyK2gSO5yDIDB336sXQleAhOHrzlYyKw=="],
 
@@ -2782,10 +2782,6 @@
 
     "babel-plugin-module-resolver/glob": ["glob@9.3.5", "", { "dependencies": { "fs.realpath": "^1.0.0", "minimatch": "^8.0.2", "minipass": "^4.2.4", "path-scurry": "^1.6.1" } }, "sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q=="],
 
-    "bioinformatica/@ai-sdk/cerebras": ["@ai-sdk/cerebras@2.0.60", "", { "dependencies": { "@ai-sdk/openai-compatible": "2.0.54", "@ai-sdk/provider": "3.0.12", "@ai-sdk/provider-utils": "4.0.33" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-Rnok3cThg6awBwaDSyiZpgRpbV7pqxGYrA89LODCo5cuEHeP2h0AM0lLHP7zIkclAdXfOm4wldKi/S2T/DGCOw=="],
-
-    "bioinformatica/minimatch": ["minimatch@10.0.3", "", { "dependencies": { "@isaacs/brace-expansion": "^5.0.0" } }, "sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw=="],
-
     "body-parser/content-type": ["content-type@2.1.0", "", {}, "sha512-mj7UPXE0jaqaOsukNZRUEfEi2AcL7C/vwmwcHV0O97eO1E1pxBZuyjlZrx5seTaNBg1U6+o35wpa35Qfcc+7ag=="],
 
     "c12/chokidar": ["chokidar@5.0.0", "", { "dependencies": { "readdirp": "^5.0.0" } }, "sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw=="],
@@ -2811,6 +2807,10 @@
     "gcp-metadata/google-logging-utils": ["google-logging-utils@1.1.3", "", {}, "sha512-eAmLkjDjAFCVXg7A1unxHsLf961m6y17QFqXqAXGj/gVkKFrEICfStRfwUlGNfeCEjNRa32JEWOUTlYXPyyKvA=="],
 
     "gitlab-ai-provider/zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
+
+    "helix/@ai-sdk/cerebras": ["@ai-sdk/cerebras@2.0.60", "", { "dependencies": { "@ai-sdk/openai-compatible": "2.0.54", "@ai-sdk/provider": "3.0.12", "@ai-sdk/provider-utils": "4.0.33" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-Rnok3cThg6awBwaDSyiZpgRpbV7pqxGYrA89LODCo5cuEHeP2h0AM0lLHP7zIkclAdXfOm4wldKi/S2T/DGCOw=="],
+
+    "helix/minimatch": ["minimatch@10.0.3", "", { "dependencies": { "@isaacs/brace-expansion": "^5.0.0" } }, "sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw=="],
 
     "htmlparser2/entities": ["entities@4.5.0", "", {}, "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw=="],
 
@@ -2990,17 +2990,17 @@
 
     "babel-plugin-module-resolver/glob/path-scurry": ["path-scurry@1.11.1", "", { "dependencies": { "lru-cache": "^10.2.0", "minipass": "^5.0.0 || ^6.0.2 || ^7.0.0" } }, "sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA=="],
 
-    "bioinformatica/@ai-sdk/cerebras/@ai-sdk/openai-compatible": ["@ai-sdk/openai-compatible@2.0.54", "", { "dependencies": { "@ai-sdk/provider": "3.0.12", "@ai-sdk/provider-utils": "4.0.33" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-OyXt0zK8y2/ZIyWlbxTv2r1M7AK227S+Gl4BYOEF42q0wz1n5m4fwR8L4Fy/MQ4Ho6xje47MPsFcRdIqIyP6Rw=="],
-
-    "bioinformatica/@ai-sdk/cerebras/@ai-sdk/provider": ["@ai-sdk/provider@3.0.12", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-sj9DWTJ2Ze0WR9qsiOPqoqzNx3OxL6iMxHImbhvoe9qOspekbzxNDMiJ4TIGfYHYh9w4OmBjz3prvqhzTi96+Q=="],
-
-    "bioinformatica/@ai-sdk/cerebras/@ai-sdk/provider-utils": ["@ai-sdk/provider-utils@4.0.33", "", { "dependencies": { "@ai-sdk/provider": "3.0.12", "@standard-schema/spec": "^1.1.0", "eventsource-parser": "^3.0.8" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-nJ0bAfegMAIJtrzMJtbzer1cS3nb7c7DsyU1S4nrPm7ZU0Mn6SBBZv5IGZZGTbpWTJwqKTSPeZJTXalbAxt1BA=="],
-
     "c12/chokidar/readdirp": ["readdirp@5.1.1", "", {}, "sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA=="],
 
     "cross-spawn/which/isexe": ["isexe@2.0.0", "", {}, "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="],
 
     "form-data/mime-types/mime-db": ["mime-db@1.52.0", "", {}, "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="],
+
+    "helix/@ai-sdk/cerebras/@ai-sdk/openai-compatible": ["@ai-sdk/openai-compatible@2.0.54", "", { "dependencies": { "@ai-sdk/provider": "3.0.12", "@ai-sdk/provider-utils": "4.0.33" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-OyXt0zK8y2/ZIyWlbxTv2r1M7AK227S+Gl4BYOEF42q0wz1n5m4fwR8L4Fy/MQ4Ho6xje47MPsFcRdIqIyP6Rw=="],
+
+    "helix/@ai-sdk/cerebras/@ai-sdk/provider": ["@ai-sdk/provider@3.0.12", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-sj9DWTJ2Ze0WR9qsiOPqoqzNx3OxL6iMxHImbhvoe9qOspekbzxNDMiJ4TIGfYHYh9w4OmBjz3prvqhzTi96+Q=="],
+
+    "helix/@ai-sdk/cerebras/@ai-sdk/provider-utils": ["@ai-sdk/provider-utils@4.0.33", "", { "dependencies": { "@ai-sdk/provider": "3.0.12", "@standard-schema/spec": "^1.1.0", "eventsource-parser": "^3.0.8" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-nJ0bAfegMAIJtrzMJtbzer1cS3nb7c7DsyU1S4nrPm7ZU0Mn6SBBZv5IGZZGTbpWTJwqKTSPeZJTXalbAxt1BA=="],
 
     "minipass-flush/minipass/yallist": ["yallist@4.0.0", "", {}, "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A=="],
 
@@ -3046,7 +3046,7 @@
 
     "babel-plugin-module-resolver/glob/path-scurry/minipass": ["minipass@7.1.3", "", {}, "sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A=="],
 
-    "bioinformatica/@ai-sdk/cerebras/@ai-sdk/provider-utils/@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
+    "helix/@ai-sdk/cerebras/@ai-sdk/provider-utils/@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
     "rimraf/glob/jackspeak/@isaacs/cliui": ["@isaacs/cliui@8.0.2", "", { "dependencies": { "string-width": "^5.1.2", "string-width-cjs": "npm:string-width@^4.2.0", "strip-ansi": "^7.0.1", "strip-ansi-cjs": "npm:strip-ansi@^6.0.1", "wrap-ansi": "^8.1.0", "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0" } }, "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA=="],
 

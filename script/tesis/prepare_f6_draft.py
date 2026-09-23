@@ -17,7 +17,7 @@ def dump(name,value):
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
-    catalog=json.loads((ROOT/'packages/bioinformatica/src/trp/catalog.json').read_text())
+    catalog=json.loads((ROOT/'packages/helix/src/trp/catalog.json').read_text())
     draft=json.loads((ROOT/'evaluation/trp/freeze.template.json').read_text())
     draft.update(status='draft_not_frozen',catalog_version=catalog['version'],
                  code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip())
@@ -37,10 +37,10 @@ def main():
         'entries':[{'id':e['id'],'status':e['status'],'source':e['source']} for e in catalog['entries']],
         'scope':'Catalog artifacts only; held-out corpus sources must be added before freezing'})
     dependency=dump('dependencies.json',{'files':[{'path':p,'sha256':hashlib.sha256((ROOT/p).read_bytes()).hexdigest()}
-        for p in ('bun.lock','script/tesis/requirements-structural.txt','packages/bioinformatica/package.json')],
+        for p in ('bun.lock','script/tesis/requirements-structural.txt','packages/helix/package.json')],
         'scope':'Lock files and inspected images; full evaluated environment remains subject to final freeze'})
     artifacts={'protocol_sha256':ROOT/'evaluation/trp/protocol.json',
-               'catalog_sha256':ROOT/'packages/bioinformatica/src/trp/catalog.json',
+               'catalog_sha256':ROOT/'packages/helix/src/trp/catalog.json',
                'annotation_guide_sha256':ROOT/'evaluation/trp/ANNOTATION.md',
                'hardware_inventory_sha256':hardware,'image_manifest_sha256':image_file,
                'dependency_lock_sha256':dependency,'source_and_license_manifest_sha256':licenses}

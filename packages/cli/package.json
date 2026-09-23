@@ -1,12 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@bioinformatica/cli",
+  "name": "@helix/cli",
   "version": "1.17.18",
   "private": true,
   "type": "module",
   "license": "MIT",
   "bin": {
-    "bioinformatica-cli": "./bin/bioinformatica-cli.cjs"
+    "helix-cli": "./bin/helix-cli.cjs"
   },
   "files": [
     "bin"
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@effect/platform-node": "catalog:",
-    "@bioinformatica/core": "workspace:*",
-    "@bioinformatica/sdk": "workspace:*",
-    "@bioinformatica/server": "workspace:*",
-    "@bioinformatica/tui": "workspace:*",
+    "@helix/core": "workspace:*",
+    "@helix/sdk": "workspace:*",
+    "@helix/server": "workspace:*",
+    "@helix/tui": "workspace:*",
     "@opentui/core": "catalog:",
     "@opentui/solid": "catalog:",
     "@parcel/watcher": "2.5.1",
@@ -29,7 +29,7 @@
     "solid-js": "catalog:"
   },
   "devDependencies": {
-    "@bioinformatica/script": "workspace:*",
+    "@helix/script": "workspace:*",
     "@tsconfig/bun": "catalog:",
     "@types/bun": "catalog:",
     "@typescript/native-preview": "catalog:"

@@ -1,5 +1,5 @@
 import { describe, expect } from "bun:test"
-import { State } from "@bioinformatica/core/state"
+import { State } from "@helix/core/state"
 import { Deferred, Effect, Exit, Fiber, Layer, Scope } from "effect"
 import { testEffect } from "./lib/effect"
 

@@ -24,8 +24,8 @@ import { createStore, produce } from "solid-js/store"
 import { createSimpleContext } from "./helper"
 import { useKV } from "./kv"
 import { useTuiConfig } from "../config"
-import { Global } from "@bioinformatica/core/global"
-import { Glob } from "@bioinformatica/core/util/glob"
+import { Global } from "@helix/core/global"
+import { Glob } from "@helix/core/util/glob"
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 
@@ -38,7 +38,7 @@ const themeSource: ThemeSource = {
   async discover() {
     const directories = [Global.Path.config]
     for (let current = process.cwd(); ; current = path.dirname(current)) {
-      directories.push(path.join(current, ".bioinformatica"))
+      directories.push(path.join(current, ".helix"))
       if (path.dirname(current) === current) break
     }
     return discoverThemes(directories)
@@ -93,7 +93,7 @@ const [store, setStore] = createStore<State>({
   themes: allThemes(),
   mode: "dark",
   lock: undefined,
-  active: "bioinformatica",
+  active: "helix",
   ready: false,
 })
 
@@ -118,8 +118,8 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
         if (!lock && pick(kv.get("theme_mode")) !== undefined) kv.set("theme_mode", undefined)
         draft.mode = mode
         draft.lock = lock
-        const active = config.theme ?? kv.get("theme", "bioinformatica")
-        draft.active = typeof active === "string" ? active : "bioinformatica"
+        const active = config.theme ?? kv.get("theme", "helix")
+        draft.active = typeof active === "string" ? active : "helix"
         draft.ready = false
       }),
     )
@@ -140,7 +140,7 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
             }, {}),
           )
         })
-        .catch(() => setStore("active", "bioinformatica"))
+        .catch(() => setStore("active", "helix"))
     }
 
     onMount(() => {
@@ -159,7 +159,7 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
           if (!colors.palette[0]) {
             if (hasResolvedSystemTheme) return
             setSystemTheme(undefined)
-            if (store.active === "system") setStore("active", "bioinformatica")
+            if (store.active === "system") setStore("active", "helix")
             return
           }
           const next = store.lock ?? terminalMode(colors) ?? mode
@@ -174,7 +174,7 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
         .catch(() => {
           if (hasResolvedSystemTheme) return
           setSystemTheme(undefined)
-          if (store.active === "system") setStore("active", "bioinformatica")
+          if (store.active === "system") setStore("active", "helix")
         })
     }
 
@@ -263,7 +263,7 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
         if (theme) return resolveTheme(theme, store.mode)
       }
 
-      return resolveTheme(store.themes.bioinformatica, store.mode)
+      return resolveTheme(store.themes.helix, store.mode)
     })
 
     createEffect(() => renderer.setBackgroundColor(values().background))

@@ -3,18 +3,18 @@ import fs from "fs/promises"
 import { describe, expect } from "bun:test"
 import { Effect, Layer, Schema } from "effect"
 import { FastCheck } from "effect/testing"
-import { Config } from "@bioinformatica/core/config"
-import { ConfigProvider } from "@bioinformatica/core/config/provider"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { ConfigMigrateV1 } from "@bioinformatica/core/v1/config/migrate"
-import { ConfigV1 } from "@bioinformatica/core/v1/config/config"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { Global } from "@bioinformatica/core/global"
-import { Location } from "@bioinformatica/core/location"
-import { Policy } from "@bioinformatica/core/policy"
-import { Project } from "@bioinformatica/core/project"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { Config } from "@helix/core/config"
+import { ConfigProvider } from "@helix/core/config/provider"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { ConfigMigrateV1 } from "@helix/core/v1/config/migrate"
+import { ConfigV1 } from "@helix/core/v1/config/config"
+import { FSUtil } from "@helix/core/fs-util"
+import { Global } from "@helix/core/global"
+import { Location } from "@helix/core/location"
+import { Policy } from "@helix/core/policy"
+import { Project } from "@helix/core/project"
+import { AbsolutePath } from "@helix/core/schema"
 import { location } from "../fixture/location"
 import { tmpdir } from "../fixture/tmpdir"
 import { testEffect } from "../lib/effect"
@@ -161,7 +161,7 @@ describe("Config", () => {
     ),
   )
 
-  it.live("loads bioinformatica JSON and JSONC files from lowest to highest priority", () =>
+  it.live("loads helix JSON and JSONC files from lowest to highest priority", () =>
     Effect.acquireRelease(
       Effect.promise(() => tmpdir()),
       (tmp) => Effect.promise(() => tmp[Symbol.asyncDispose]()),
@@ -171,11 +171,11 @@ describe("Config", () => {
           yield* Effect.promise(() =>
             Promise.all([
               fs.writeFile(
-                path.join(tmp.path, "bioinformatica.json"),
+                path.join(tmp.path, "helix.json"),
                 JSON.stringify({ $schema: "base", providers: { base: provider } }),
               ),
               fs.writeFile(
-                path.join(tmp.path, "bioinformatica.jsonc"),
+                path.join(tmp.path, "helix.jsonc"),
                 `{
                   // Later global files override scalar fields while retaining providers.
                   "$schema": "last",
@@ -192,11 +192,11 @@ describe("Config", () => {
             expect(documents.map((document) => document.type)).toEqual(["document", "document"])
             expect(documents.map((document) => document.info.$schema)).toEqual(["base", "last"])
             expect(documents[0]).toBeInstanceOf(Config.Document)
-            expect(documents[0]?.path).toBe(path.join(tmp.path, "bioinformatica.json"))
+            expect(documents[0]?.path).toBe(path.join(tmp.path, "helix.json"))
             expect(documents[1]?.info.providers?.last).toBeInstanceOf(ConfigProvider.Info)
 
             yield* Effect.promise(() =>
-              fs.writeFile(path.join(tmp.path, "bioinformatica.jsonc"), JSON.stringify({ $schema: "changed" })),
+              fs.writeFile(path.join(tmp.path, "helix.jsonc"), JSON.stringify({ $schema: "changed" })),
             )
             expect(
               (yield* config.entries())
@@ -238,7 +238,7 @@ describe("Config", () => {
     ).pipe(
       Effect.flatMap((tmp) =>
         Effect.gen(function* () {
-          const file = path.join(tmp.path, "bioinformatica.json")
+          const file = path.join(tmp.path, "helix.json")
           const contents = JSON.stringify({
             shell: "/bin/zsh",
             experimental: { policies: [{ effect: "deny", action: "provider.use", resource: "openai" }] },
@@ -273,7 +273,7 @@ describe("Config", () => {
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             fs.writeFile(
-              path.join(tmp.path, "bioinformatica.json"),
+              path.join(tmp.path, "helix.json"),
               JSON.stringify({
                 shell: "/bin/bash",
                 model: "anthropic/claude",
@@ -349,7 +349,7 @@ describe("Config", () => {
                   shorthand: "github.com/example/docs",
                 },
                 plugins: [
-                  "bioinformatica-helicone-session",
+                  "helix-helicone-session",
                   { package: "@my-org/audit-plugin", options: { endpoint: "https://audit.example.com" } },
                 ],
               }),
@@ -443,7 +443,7 @@ describe("Config", () => {
               shorthand: "github.com/example/docs",
             })
             expect(documents[0]?.info.plugins).toEqual([
-              "bioinformatica-helicone-session",
+              "helix-helicone-session",
               { package: "@my-org/audit-plugin", options: { endpoint: "https://audit.example.com" } },
             ])
           }).pipe(Effect.provide(testLayer(tmp.path)))
@@ -461,7 +461,7 @@ describe("Config", () => {
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             fs.writeFile(
-              path.join(tmp.path, "bioinformatica.json"),
+              path.join(tmp.path, "helix.json"),
               JSON.stringify({
                 reference: {
                   local: { path: "../library" },
@@ -497,7 +497,7 @@ describe("Config", () => {
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             fs.writeFile(
-              path.join(tmp.path, "bioinformatica.json"),
+              path.join(tmp.path, "helix.json"),
               JSON.stringify({
                 shell: "/bin/zsh",
                 default_agent: "reviewer",
@@ -517,7 +517,7 @@ describe("Config", () => {
                   },
                 },
                 plugin: [
-                  "bioinformatica-helicone-session",
+                  "helix-helicone-session",
                   ["@my-org/audit-plugin", { endpoint: "https://audit.example.com" }],
                 ],
                 skills: { paths: ["./skills"], urls: ["https://example.com/.well-known/skills/"] },
@@ -596,7 +596,7 @@ describe("Config", () => {
               permissions: [{ action: "read", resource: "*", effect: "allow" }],
             })
             expect(documents[0]?.info.plugins).toEqual([
-              "bioinformatica-helicone-session",
+              "helix-helicone-session",
               { package: "@my-org/audit-plugin", options: { endpoint: "https://audit.example.com" } },
             ])
             expect(documents[0]?.info.skills).toEqual(["./skills", "https://example.com/.well-known/skills/"])
@@ -675,8 +675,8 @@ describe("Config", () => {
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             Promise.all([
-              fs.writeFile(path.join(tmp.path, "bioinformatica.json"), JSON.stringify({ $schema: "base" })),
-              fs.writeFile(path.join(tmp.path, "bioinformatica.jsonc"), "{ invalid"),
+              fs.writeFile(path.join(tmp.path, "helix.json"), JSON.stringify({ $schema: "base" })),
+              fs.writeFile(path.join(tmp.path, "helix.jsonc"), "{ invalid"),
             ]),
           )
           return yield* Effect.gen(function* () {
@@ -701,13 +701,13 @@ describe("Config", () => {
           yield* Effect.promise(async () => {
             await fs.mkdir(global, { recursive: true })
             await fs.writeFile(
-              path.join(global, "bioinformatica.json"),
+              path.join(global, "helix.json"),
               JSON.stringify({
                 experimental: { policies: [{ effect: "deny", action: "provider.use", resource: "openai" }] },
               }),
             )
             await fs.writeFile(
-              path.join(tmp.path, "bioinformatica.json"),
+              path.join(tmp.path, "helix.json"),
               JSON.stringify({
                 experimental: { policies: [{ effect: "allow", action: "provider.use", resource: "openai" }] },
               }),
@@ -724,7 +724,7 @@ describe("Config", () => {
     ),
   )
 
-  it.live("loads global, ancestor, and .bioinformatica configuration up to the project boundary", () =>
+  it.live("loads global, ancestor, and .helix configuration up to the project boundary", () =>
     Effect.acquireRelease(
       Effect.promise(() => tmpdir()),
       (tmp) => Effect.promise(() => tmp[Symbol.asyncDispose]()),
@@ -738,17 +738,17 @@ describe("Config", () => {
           yield* Effect.promise(async () => {
             await fs.mkdir(global, { recursive: true })
             await fs.mkdir(directory, { recursive: true })
-            await fs.mkdir(path.join(root, ".bioinformatica"), { recursive: true })
-            await fs.mkdir(path.join(directory, ".bioinformatica"), { recursive: true })
+            await fs.mkdir(path.join(root, ".helix"), { recursive: true })
+            await fs.mkdir(path.join(directory, ".helix"), { recursive: true })
             await Promise.all([
-              fs.writeFile(path.join(tmp.path, "bioinformatica.json"), JSON.stringify({ $schema: "outside" })),
-              fs.writeFile(path.join(global, "bioinformatica.json"), JSON.stringify({ $schema: "global" })),
-              fs.writeFile(path.join(root, "bioinformatica.json"), JSON.stringify({ $schema: "root" })),
-              fs.writeFile(path.join(parent, "bioinformatica.jsonc"), JSON.stringify({ $schema: "parent" })),
-              fs.writeFile(path.join(directory, "bioinformatica.json"), JSON.stringify({ $schema: "directory" })),
-              fs.writeFile(path.join(root, ".bioinformatica", "bioinformatica.json"), JSON.stringify({ $schema: "root-dot" })),
+              fs.writeFile(path.join(tmp.path, "helix.json"), JSON.stringify({ $schema: "outside" })),
+              fs.writeFile(path.join(global, "helix.json"), JSON.stringify({ $schema: "global" })),
+              fs.writeFile(path.join(root, "helix.json"), JSON.stringify({ $schema: "root" })),
+              fs.writeFile(path.join(parent, "helix.jsonc"), JSON.stringify({ $schema: "parent" })),
+              fs.writeFile(path.join(directory, "helix.json"), JSON.stringify({ $schema: "directory" })),
+              fs.writeFile(path.join(root, ".helix", "helix.json"), JSON.stringify({ $schema: "root-dot" })),
               fs.writeFile(
-                path.join(directory, ".bioinformatica", "bioinformatica.jsonc"),
+                path.join(directory, ".helix", "helix.jsonc"),
                 JSON.stringify({ $schema: "directory-dot" }),
               ),
             ])
@@ -761,8 +761,8 @@ describe("Config", () => {
 
             expect(entries.filter((entry) => entry.type === "directory").map((entry) => entry.path)).toEqual([
               AbsolutePath.make(global),
-              AbsolutePath.make(path.join(root, ".bioinformatica")),
-              AbsolutePath.make(path.join(directory, ".bioinformatica")),
+              AbsolutePath.make(path.join(root, ".helix")),
+              AbsolutePath.make(path.join(directory, ".helix")),
             ])
             expect(documents.map((document) => document.info.$schema)).toEqual([
               "global",
@@ -779,9 +779,9 @@ describe("Config", () => {
               "parent",
               "directory",
               "root-dot",
-              AbsolutePath.make(path.join(root, ".bioinformatica")),
+              AbsolutePath.make(path.join(root, ".helix")),
               "directory-dot",
-              AbsolutePath.make(path.join(directory, ".bioinformatica")),
+              AbsolutePath.make(path.join(directory, ".helix")),
             ])
           }).pipe(
             Effect.provide(

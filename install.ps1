@@ -2,7 +2,7 @@
 #
 # Instalador de Helix Agent para Windows.
 #
-#   irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex
+#   irm https://helixbiolab.github.io/helix-agent/install.ps1 | iex
 #
 # Nextflow no corre nativamente en Windows: necesita un entorno POSIX. En vez de
 # un agente nativo que hable con Linux a traves de un puente -con la traduccion
@@ -19,7 +19,7 @@
 #      aprobacion, igual que el agente ensena cada comando antes de ejecutarlo.
 #   3. Instala el binario de Linux dentro de la distribucion, con el mismo
 #      script `install` que usan macOS y Linux.
-#   4. Deja `bioinformatica.cmd` en el PATH de Windows, apuntando al binario de
+#   4. Deja `helix.cmd` en el PATH de Windows, apuntando al binario de
 #      dentro de WSL y llevandose el directorio actual.
 #
 # Opciones (desde un fichero, o con
@@ -34,7 +34,7 @@
 # incluidos los comentarios. Se descarga con `irm` desde un servidor que no
 # declara charset, y Windows PowerShell 5.1 decide entonces por su cuenta como
 # decodificarlo; en ASCII todas esas decisiones dan el mismo resultado.
-# El identificador distribuible sigue siendo `bioinformatica` por compatibilidad.
+# El ejecutable y los archivos distribuibles usan el nombre `helix`.
 # La marca publica es Helix Agent (ver packages/script/src/identity.ts).
 
 [CmdletBinding()]
@@ -50,9 +50,9 @@ $ErrorActionPreference = "Stop"
 # El script de instalacion de Linux, servido por la misma pagina que este
 # fichero. Se descarga dentro de WSL, no aqui: lo que se instala es un binario
 # de Linux.
-$InstallUrl = "https://webiwabou.github.io/bioinformatica.org/install"
-$ShimDir = Join-Path $env:LOCALAPPDATA "bioinformatica\bin"
-$ShimPath = Join-Path $ShimDir "bioinformatica.cmd"
+$InstallUrl = "https://helixbiolab.github.io/helix-agent/install"
+$ShimDir = Join-Path $env:LOCALAPPDATA "helix\bin"
+$ShimPath = Join-Path $ShimDir "helix.cmd"
 
 # Docker Desktop y Rancher Desktop registran sus propias distribuciones de WSL.
 # Son maquinas de servicio, no sitios donde instalar nada: sin este filtro, la
@@ -142,7 +142,7 @@ function Get-DefaultDistro() {
 # PowerShell del usuario. Un `exit` ahi no termina el script, cierra la ventana
 # -y con ella las instrucciones que se acaban de imprimir. Dentro de una funcion,
 # `return` devuelve y ya.
-function Invoke-BioinformaticaInstall {
+function Invoke-HelixInstall {
 
     Write-Host ""
     Write-Host "Helix Agent" -ForegroundColor Green
@@ -275,11 +275,11 @@ function Invoke-BioinformaticaInstall {
 
     # La ruta absoluta del binario, preguntada a la propia distribucion.
     #
-    # El lanzador no puede invocar `bioinformatica` a secas: `wsl -- <comando>` no
+    # El lanzador no puede invocar `helix` a secas: `wsl -- <comando>` no
     # pasa por un shell de login, asi que el PATH que el instalador acaba de anadir
     # a .bashrc no existe ahi. Con la ruta absoluta el problema desaparece, y de
     # paso el lanzador deja de depender del PATH de Linux.
-    $binary = @(Get-WslOutput @("-d", $Distro, "--", "bash", "-lc", "command -v bioinformatica"))[0]
+    $binary = @(Get-WslOutput @("-d", $Distro, "--", "bash", "-lc", "command -v helix"))[0]
     if (-not $binary) {
         Write-Fail "`nEl binario se instalo pero no aparece en el PATH de $Distro."
         return 1
@@ -331,11 +331,11 @@ wsl.exe -d $Distro --cd "%CD%" -- $binary %*
     Write-Host ""
     Write-Muted "Configura un proveedor de modelos y abre un proyecto:"
     Write-Host ""
-    Write-Host "bioinformatica providers login" -NoNewline
+    Write-Host "helix providers login" -NoNewline
     Write-Muted "  # conectar un proveedor"
     Write-Host "cd <carpeta-del-analisis>     " -NoNewline
     Write-Muted "  # tu directorio de trabajo"
-    Write-Host "bioinformatica                " -NoNewline
+    Write-Host "helix                " -NoNewline
     Write-Muted "  # abrir la interfaz"
     Write-Host ""
     Write-Muted "Si el comando no se reconoce, cierra esta ventana y abre otra."
@@ -344,7 +344,7 @@ wsl.exe -d $Distro --cd "%CD%" -- $binary %*
     return 0
 }
 
-$code = Invoke-BioinformaticaInstall
+$code = Invoke-HelixInstall
 
 # Desde un fichero si conviene propagar el codigo de salida; por `irm | iex`,
 # $PSCommandPath esta vacio y no hay nada de lo que salir.

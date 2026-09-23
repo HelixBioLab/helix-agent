@@ -4,7 +4,7 @@ import path from "node:path"
 import os from "node:os"
 import { execFile } from "node:child_process"
 import { promisify } from "node:util"
-import { executeDetector } from "../../packages/bioinformatica/src/tool/trp-detect"
+import { executeDetector } from "../../packages/helix/src/tool/trp-detect"
 
 const root = path.resolve(import.meta.dir, "../..")
 const destination = path.join(root, "evaluation/trp/reference/detector-tool-20260921")

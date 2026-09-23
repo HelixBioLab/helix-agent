@@ -1,9 +1,9 @@
-import { SessionMessage } from "@bioinformatica/core/session/message"
-import { SessionV2 } from "@bioinformatica/core/session"
+import { SessionMessage } from "@helix/core/session/message"
+import { SessionV2 } from "@helix/core/session"
 import { Effect, Schema } from "effect"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { Api } from "../api"
-import { InvalidCursorError, SessionNotFoundError, UnknownError } from "@bioinformatica/protocol/errors"
+import { InvalidCursorError, SessionNotFoundError, UnknownError } from "@helix/protocol/errors"
 
 const DefaultMessagesLimit = 50
 

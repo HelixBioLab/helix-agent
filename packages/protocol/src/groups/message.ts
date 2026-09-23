@@ -1,5 +1,5 @@
-import { Session } from "@bioinformatica/schema/session"
-import { SessionMessage } from "@bioinformatica/schema/session-message"
+import { Session } from "@helix/schema/session"
+import { SessionMessage } from "@helix/schema/session-message"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, OpenApi } from "effect/unstable/httpapi"
 import { InvalidCursorError, SessionNotFoundError, UnknownError } from "../errors"

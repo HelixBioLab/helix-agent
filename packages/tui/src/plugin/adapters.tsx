@@ -1,4 +1,4 @@
-import type { TuiDialogSelectOption, TuiPluginApi, TuiSlotProps } from "@bioinformatica/plugin/tui"
+import type { TuiDialogSelectOption, TuiPluginApi, TuiSlotProps } from "@helix/plugin/tui"
 import type { TuiConfig } from "../config"
 import type { useEvent } from "../context/event"
 import type { useRoute } from "../context/route"
@@ -6,7 +6,7 @@ import type { useSDK } from "../context/sdk"
 import type { useSync } from "../context/sync"
 import type { useTheme } from "../context/theme"
 import { Dialog as DialogUI, type useDialog } from "../ui/dialog"
-import type { useBioinformaticaKeymap } from "../keymap"
+import type { useHelixKeymap } from "../keymap"
 import type { useKV } from "../context/kv"
 import { DialogAlert } from "../ui/dialog-alert"
 import { DialogConfirm } from "../ui/dialog-confirm"
@@ -24,7 +24,7 @@ type Input = {
   version: string
   tuiConfig: TuiConfig.Resolved
   dialog: ReturnType<typeof useDialog>
-  keymap: ReturnType<typeof useBioinformaticaKeymap>
+  keymap: ReturnType<typeof useHelixKeymap>
   kv: ReturnType<typeof useKV>
   route: ReturnType<typeof useRoute>
   routes: PluginRoutes
@@ -187,10 +187,10 @@ export function createTuiApiAdapters(input: Input): Omit<TuiPluginApi, "lifecycl
     keymap: input.keymap,
     mode: {
       current() {
-        return Keymap.getBioinformaticaModeStack(input.keymap).current()
+        return Keymap.getHelixModeStack(input.keymap).current()
       },
       push(mode) {
-        return Keymap.getBioinformaticaModeStack(input.keymap).push(mode)
+        return Keymap.getHelixModeStack(input.keymap).push(mode)
       },
     },
     route: {

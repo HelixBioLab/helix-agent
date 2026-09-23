@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { Patch } from "@bioinformatica/core/patch"
+import { Patch } from "@helix/core/patch"
 
 describe("Patch", () => {
   test("parses add, update, and delete hunks", () => {

@@ -170,7 +170,7 @@ export interface Interface {
   }
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/GitV2") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/GitV2") {}
 
 const layer = Layer.effect(
   Service,

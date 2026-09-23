@@ -1,9 +1,9 @@
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { Location } from "@bioinformatica/core/location"
-import { Policy } from "@bioinformatica/core/policy"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { Location } from "@helix/core/location"
+import { Policy } from "@helix/core/policy"
+import { AbsolutePath } from "@helix/core/schema"
 import { location } from "./fixture/location"
 import { testEffect } from "./lib/effect"
 

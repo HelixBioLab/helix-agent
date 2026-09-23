@@ -7,7 +7,7 @@ import {
   PositiveInt,
   RelativePath,
   statics,
-} from "@bioinformatica/schema/schema"
+} from "@helix/schema/schema"
 
 export { AbsolutePath, DateTimeUtcFromMillis, NonNegativeInt, optional, PositiveInt, RelativePath, statics }
 

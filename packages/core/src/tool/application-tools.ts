@@ -25,7 +25,7 @@ export interface Interface {
   readonly entries: () => ReadonlyMap<string, Entry>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/ApplicationTools") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/ApplicationTools") {}
 
 const layer = Layer.effect(
   Service,

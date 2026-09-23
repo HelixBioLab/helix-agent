@@ -1,8 +1,8 @@
 /** Development corpus only. Never substitute these cases for the held-out T-GRAPH. */
 import path from "node:path"
 import fs from "node:fs/promises"
-import { TrpGraph } from "../../packages/bioinformatica/src/trp/graph"
-import { TrpSpecification as S } from "../../packages/bioinformatica/src/trp/specification"
+import { TrpGraph } from "../../packages/helix/src/trp/graph"
+import { TrpSpecification as S } from "../../packages/helix/src/trp/specification"
 import source from "../../evaluation/trp/development/f3-reference-spec.json"
 import { applyChanges } from "../../evaluation/trp/development/graph-case"
 import cases from "../../evaluation/trp/development/f3-invalid-graphs.json"

@@ -2,13 +2,13 @@
 //
 // Inherited from the fork, and currently unreachable: this package is marked
 // `private`, no workflow invokes this script, and npm refuses to publish a
-// private package. The shipped CLI is `bioinformatica`, built and released by
-// packages/bioinformatica. Drop `private` from package.json before using this.
+// private package. The shipped CLI is `helix`, built and released by
+// packages/helix. Drop `private` from package.json before using this.
 //
 import { $ } from "bun"
 import pkg from "../package.json"
-import { Script } from "@bioinformatica/script"
-import { Identity } from "@bioinformatica/script/identity"
+import { Script } from "@helix/script"
+import { Identity } from "@helix/script/identity"
 import { fileURLToPath } from "url"
 
 const dir = fileURLToPath(new URL("..", import.meta.url))
@@ -34,12 +34,12 @@ console.log("binaries", binaries)
 const version = Object.values(binaries)[0]
 
 await $`mkdir -p ./dist/${pkg.name}/bin`
-await $`cp ./bin/bioinformatica-cli.cjs ./dist/${pkg.name}/bin/bioinformatica-cli`
+await $`cp ./bin/helix-cli.cjs ./dist/${pkg.name}/bin/helix-cli`
 await Bun.file(`./dist/${pkg.name}/package.json`).write(
   JSON.stringify(
     {
       name: pkg.name,
-      bin: { "bioinformatica-cli": "./bin/bioinformatica-cli" },
+      bin: { "helix-cli": "./bin/helix-cli" },
       version,
       license: pkg.license,
       repository: { type: "git", url: `git+${Identity.repositoryUrl}.git` },
@@ -54,7 +54,7 @@ await Bun.file(`./dist/${pkg.name}/package.json`).write(
 
 await Promise.all(
   Object.entries(binaries).map(([name, version]) =>
-    publish(`./dist/${name.replace("@bioinformatica/", "")}`, name, version),
+    publish(`./dist/${name.replace("@helix/", "")}`, name, version),
   ),
 )
 await publish(`./dist/${pkg.name}`, pkg.name, version)

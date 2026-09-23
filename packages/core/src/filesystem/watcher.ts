@@ -5,7 +5,7 @@ import { createWrapper } from "@parcel/watcher/wrapper"
 import type ParcelWatcher from "@parcel/watcher"
 import { makeLocationNode } from "../effect/app-node"
 import { Cause, Context, Effect, Layer } from "effect"
-import { FileSystemWatcher } from "@bioinformatica/schema/filesystem-watcher"
+import { FileSystemWatcher } from "@helix/schema/filesystem-watcher"
 import path from "path"
 import { Config } from "../config"
 import { EventV2 } from "../event"
@@ -17,7 +17,7 @@ import { lazy } from "../util/lazy"
 import { Ignore } from "./ignore"
 import { Protected } from "./protected"
 
-declare const BIOINFORMATICA_LIBC: string | undefined
+declare const HELIX_LIBC: string | undefined
 
 const SUBSCRIBE_TIMEOUT_MS = 10_000
 
@@ -25,7 +25,7 @@ export const Event = FileSystemWatcher.Event
 
 const watcher = lazy((): typeof import("@parcel/watcher") | undefined => {
   try {
-    const libc = typeof BIOINFORMATICA_LIBC === "undefined" ? undefined : BIOINFORMATICA_LIBC
+    const libc = typeof HELIX_LIBC === "undefined" ? undefined : HELIX_LIBC
     const binding = require(
       `@parcel/watcher-${process.platform}-${process.arch}${process.platform === "linux" ? `-${libc || "glibc"}` : ""}`,
     )
@@ -52,12 +52,12 @@ export const hasNativeBinding = () => !!watcher()
 
 export interface Interface {}
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/FileWatcher") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/FileWatcher") {}
 
 const layer = Layer.effect(
   Service,
   Effect.gen(function* () {
-    if (yield* Flag.BIOINFORMATICA_EXPERIMENTAL_DISABLE_FILEWATCHER) return Service.of({})
+    if (yield* Flag.HELIX_EXPERIMENTAL_DISABLE_FILEWATCHER) return Service.of({})
 
     const backend = getBackend()
     const location = yield* Location.Service
@@ -106,7 +106,7 @@ const layer = Layer.effect(
     const config = (yield* (yield* Config.Service).entries())
       .filter((entry): entry is Config.Document => entry.type === "document")
       .flatMap((item) => item.info.watcher?.ignore ?? [])
-    if (location.vcs && (yield* Flag.BIOINFORMATICA_EXPERIMENTAL_FILEWATCHER)) {
+    if (location.vcs && (yield* Flag.HELIX_EXPERIMENTAL_FILEWATCHER)) {
       yield* Effect.forkScoped(
         subscribe(location.directory, [...Ignore.PATTERNS, ...config, ...protecteds(location.directory)]),
       )

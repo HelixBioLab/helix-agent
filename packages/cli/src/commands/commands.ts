@@ -1,9 +1,9 @@
 import { Argument, Flag } from "effect/unstable/cli"
 import { Spec } from "../framework/spec"
 
-declare const BIOINFORMATICA_CLI_NAME: string | undefined
+declare const HELIX_CLI_NAME: string | undefined
 
-export const Commands = Spec.make(typeof BIOINFORMATICA_CLI_NAME === "string" ? BIOINFORMATICA_CLI_NAME : "bioinformatica", {
+export const Commands = Spec.make(typeof HELIX_CLI_NAME === "string" ? HELIX_CLI_NAME : "helix", {
   description: "Helix Agent command line interface",
   commands: [
     Spec.make("api", {

@@ -30,25 +30,25 @@ const tools: readonly ToolFixture[] = [
   {
     icon: "✱",
     label:
-      'Grep "BIOINFORMATICA.*DB|database|sqlite|drizzle|dev.*db|data.*dir|xdg|APPDATA" in packages/bioinformatica/src (151 matches)',
+      'Grep "HELIX.*DB|database|sqlite|drizzle|dev.*db|data.*dir|xdg|APPDATA" in packages/helix/src (151 matches)',
   },
   {
     icon: "✱",
-    label: 'Glob "**/*db*" in packages/bioinformatica (6 matches)',
+    label: 'Glob "**/*db*" in packages/helix (6 matches)',
   },
   {
     icon: "→",
-    label: "Read packages/bioinformatica/src/storage/db.ts [offset=1, limit=130]",
+    label: "Read packages/helix/src/storage/db.ts [offset=1, limit=130]",
   },
   {
     icon: "→",
-    label: "Read packages/bioinformatica/src/index.ts [offset=1, limit=100]",
+    label: "Read packages/helix/src/index.ts [offset=1, limit=100]",
     error: "No LSP server available for this file type.",
   },
   {
     icon: "✱",
     label:
-      'Grep "export const BIOINFORMATICA_DB|BIOINFORMATICA_DB|BIOINFORMATICA_DEV|Global\\.Path\\.data|data =" in packages/bioinformatica/src (115 matches)',
+      'Grep "export const HELIX_DB|HELIX_DB|HELIX_DEV|Global\\.Path\\.data|data =" in packages/helix/src (115 matches)',
   },
 ] as const
 

@@ -11,7 +11,7 @@ from pathlib import Path
 import runpy
 
 ROOT = Path(__file__).resolve().parents[2]
-ENGINE = ROOT / 'packages/bioinformatica/src/trp/inspect_structure.py.txt'
+ENGINE = ROOT / 'packages/helix/src/trp/inspect_structure.py.txt'
 
 
 def convert(cif, pdb, chain, model, units):

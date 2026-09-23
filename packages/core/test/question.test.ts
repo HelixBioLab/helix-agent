@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import { Context, Deferred, Effect, Exit, Fiber, Layer, Scope } from "effect"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { EventV2 } from "@bioinformatica/core/event"
-import { QuestionV2 } from "@bioinformatica/core/question"
-import { SessionV2 } from "@bioinformatica/core/session"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { EventV2 } from "@helix/core/event"
+import { QuestionV2 } from "@helix/core/question"
+import { SessionV2 } from "@helix/core/session"
 import { testEffect } from "./lib/effect"
 
 const questions = AppNodeBuilder.build(LayerNode.group([EventV2.node, QuestionV2.node]))

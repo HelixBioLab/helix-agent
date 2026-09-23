@@ -121,7 +121,7 @@ Consecuencia obligada: **`MARK_INNER` en `logo.ts` pasa de `◦` (Narrow) a `○
 **La escalera de degradación**, en `packages/tui/src/ui/glifos.ts`, un módulo nuevo que es el único sitio del código que sabe de anchos. Lee `renderer.capabilities.unicode` y `explicit_width` **una vez al arranque** y congela una de dos tablas:
 
 - **EXPRESIVO** (por defecto): la tabla de arriba, `RING.cell = 2` bajo wcwidth, `1` en otro caso.
-- **LLANO** (sin capacidad unicode, o `BIOINFORMATICA_ASCII=1`): `*` asentado, `o` pendiente, `x` falla, `|` renglón, `-` filete, `@` enmienda, `.` separador, `_` cursor, `.:-=+*#@` la huella. Todo Narrow, `RING.cell = 1`.
+- **LLANO** (sin capacidad unicode, o `HELIX_ASCII=1`): `*` asentado, `o` pendiente, `x` falla, `|` renglón, `-` filete, `@` enmienda, `.` separador, `_` cursor, `.:-=+*#@` la huella. Todo Narrow, `RING.cell = 1`.
 
 Dos invariantes que se aplican como reglas de código, no como buenas intenciones:
 
@@ -158,9 +158,9 @@ Acentos, tres, cada uno con una frase:
 
 Contrastes, calculados, no estimados. Oscuro sobre `#0a0f0e`: tinta 16,02:1, lápiz 6,12:1, asentado 10,37:1, vivo 13,05:1, ausencia 7,98:1, falla 5,25:1, renglón 2,52:1. Claro sobre `#ffffff`: tinta 16,83:1, lápiz 5,29:1, asentado `#0f766e` **5,47:1** (frente a los 3,74:1 de `#0d9488`, que queda relegado a rellenos y glifos), ausencia 5,06:1, falla 6,57:1, renglón 2,00:1.
 
-**Dos reparaciones concretas.** `darkStep12` pasa de `#eaeaea` (tono 0°, saturación 0%, el único valor de la rampa oscura sin relación con la paleta, y el que cubre más píxeles) a `#e6ebe9`. Y se declara `selectedListItemText` explícitamente (`#0a0f0e` oscuro, `#ffffff` claro), porque hoy `bioinformatica.json` no lo define, `resolveTheme` cae a `background` y produce blanco sobre `#d97706` a 3,19:1 en la etiqueta del control que autoriza una orden.
+**Dos reparaciones concretas.** `darkStep12` pasa de `#eaeaea` (tono 0°, saturación 0%, el único valor de la rampa oscura sin relación con la paleta, y el que cubre más píxeles) a `#e6ebe9`. Y se declara `selectedListItemText` explícitamente (`#0a0f0e` oscuro, `#ffffff` claro), porque hoy `helix.json` no lo define, `resolveTheme` cae a `background` y produce blanco sobre `#d97706` a 3,19:1 en la etiqueta del control que autoriza una orden.
 
-**Lo que se borra de `theme/assets/bioinformatica.json`, con el motivo.**
+**Lo que se borra de `theme/assets/helix.json`, con el motivo.**
 
 - `darkSecondary #38bdf8` (sky-400). Es hoy el elemento coloreado más grande del producto (el raíl del prompt y el del mensaje del usuario), y sólo es alcanzable porque `colors()` en `context/local.tsx:83-91` está ordenado por índice de agente. El array se reduce a `[theme.primary]` y **la identidad del agente deja de ser un color**.
 - `darkAccent #a78bfa` (violet-400). `markdownHeading` pasa a tinta más `BOLD`. El prompt de preguntas pasa a `asentado`.
@@ -207,7 +207,7 @@ Se borran además: el desvanecido de 160 ms de `createFadeIn` en la fila meta de
 
 ### 3.6 Las palabras
 
-**Cromo en español, sustantivos de dominio en inglés, y las palabras del propio registro reproducidas literalmente.** Ésta es la regla, y tiene un motivo que no es de gusto: la interfaz nunca parafrasea un registro. `dossier.ts` nombra los cuatro artefactos como `"manifest" | "protocol" | "handcount" | "methods"`, `bioinformatica verify` los imprime así, y un revisor abre esos ficheros. Traducirlos a `manifiesto / protocolo / recuento / métodos` haría que la pantalla y el fichero discreparan, que es la incoherencia que este producto menos se puede permitir. Igual con `samplesheet`, `nf-core`, `FASTQ`, `pipeline`, `profile`, `outdir`, `resume`, `work/`, `census`, y con las citas verbatim de `refusals.jsonl` y de los `Limit.statement` de `dossier.ts`.
+**Cromo en español, sustantivos de dominio en inglés, y las palabras del propio registro reproducidas literalmente.** Ésta es la regla, y tiene un motivo que no es de gusto: la interfaz nunca parafrasea un registro. `dossier.ts` nombra los cuatro artefactos como `"manifest" | "protocol" | "handcount" | "methods"`, `helix verify` los imprime así, y un revisor abre esos ficheros. Traducirlos a `manifiesto / protocolo / recuento / métodos` haría que la pantalla y el fichero discreparan, que es la incoherencia que este producto menos se puede permitir. Igual con `samplesheet`, `nf-core`, `FASTQ`, `pipeline`, `profile`, `outdir`, `resume`, `work/`, `census`, y con las citas verbatim de `refusals.jsonl` y de los `Limit.statement` de `dossier.ts`.
 
 **El vocabulario, y por qué cada palabra le ganó a la obvia.**
 
@@ -321,7 +321,7 @@ Cinco maquetas a 80 columnas exactas, con la misma rejilla, los mismos glifos y 
 
 **Estados.** `measurable: false`: el asiento pasa a `○ census  16 declaradas: atribución no medible desde esta traza` más `porque  ningún proceso nombra sus tareas por muestra`. Ejecutándose: la rúbrica lleva el anillo en la posición del glifo. Fallo del propio tool: `×` en `{falla}` más el mensaje a peso completo de `{tinta}`.
 
-**Ficheros.** `routes/session/index.tsx` (`toolDisplays` en `:2582`, el `<Switch>` de `ToolPart` en `:1663`, `GenericTool` borrado), `routes/session/tools/census.tsx` (nuevo), `util/tool-display.ts` (`toolDisplayMetadata()`, hoy con cero puntos de uso), `packages/bioinformatica/src/nfcore/census.ts`.
+**Ficheros.** `routes/session/index.tsx` (`toolDisplays` en `:2582`, el `<Switch>` de `ToolPart` en `:1663`, `GenericTool` borrado), `routes/session/tools/census.tsx` (nuevo), `util/tool-display.ts` (`toolDisplayMetadata()`, hoy con cero puntos de uso), `packages/helix/src/nfcore/census.ts`.
 
 ### 4.3 La firma
 
@@ -361,7 +361,7 @@ Cinco maquetas a 80 columnas exactas, con la misma rejilla, los mismos glifos y 
 
 **Estados.** Cola: el pie dice `3 borradores sin firmar` y el siguiente monta en el 019 debajo de éste; la cola se ve porque **es** el registro, no una insignia. Auto-aprobación encendida: este asiento no aparece nunca y el pie se convierte en una banda INVERSE de ancho completo en `{ausencia}`: `SIN FIRMA · las órdenes se ejecutan sin asentarse · /firma para restablecerlo`. `report_save` obtiene su propia forma de borrador y renderiza `metadata.preview` como markdown con las etiquetas `[computed]` / `[cited]` / `[model-inferred]` en `{asentado}` / `{tinta}` / `{lápiz}`; hoy renderiza literalmente «No diff provided», porque `EditBody` lee `metadata.diff` y `report.ts` pasa `preview`.
 
-**Ficheros.** `routes/session/permission.tsx` (`info()` en `:195-381` gana la rama nf-core; se borran `borderColor` en `:635`, `maxHeight:15` en `:642`, `selected: keys[0]` en `:538`, `onMouseOver` en `:683`, la puerta `parentID` en `:414` y la etapa `always` en `:138-176`), `routes/session/question.tsx`, `routes/session/index.tsx:207` (el prompt deja de desmontarse), `component/prompt/index.tsx:1447` (la banda `auto`), `packages/bioinformatica/src/nfcore/command.ts` (que `NfcoreCommand` llegue estructurado a `metadata` en vez de aplanarse a cadena), `packages/bioinformatica/src/tool/report.ts`.
+**Ficheros.** `routes/session/permission.tsx` (`info()` en `:195-381` gana la rama nf-core; se borran `borderColor` en `:635`, `maxHeight:15` en `:642`, `selected: keys[0]` en `:538`, `onMouseOver` en `:683`, la puerta `parentID` en `:414` y la etapa `always` en `:138-176`), `routes/session/question.tsx`, `routes/session/index.tsx:207` (el prompt deja de desmontarse), `component/prompt/index.tsx:1447` (la banda `auto`), `packages/helix/src/nfcore/command.ts` (que `NfcoreCommand` llegue estructurado a `metadata` en vez de aplanarse a cadena), `packages/helix/src/tool/report.ts`.
 
 ### 4.4 El asiento abierto
 
@@ -405,14 +405,14 @@ Cinco maquetas a 80 columnas exactas, con la misma rejilla, los mismos glifos y 
 
 **Otras cosas.** El pie pasa a `018 cerrada 3h54m · salida 0`. La notificación del sistema operativo lee `rnaseq · asiento 018 cerrado · 12 de 16 atribuidas`, no `Session done`. La interrupción son dos escapes, el segundo diciendo `detener la ejecución, los resultados parciales quedan en work/`, con la ventana de intención subida de 5000 ms (una guarda pensada para un turno de chat) a la vida del asiento.
 
-**Ficheros.** `routes/session/index.tsx` (`Shell` en `:1990-2046`), `routes/session/tools/run.tsx` (nuevo), `feature-plugins/run/traza.ts` (nuevo, sondea cada 10 s con `Census.pickLatestTrace` y `Census.parseTrace`), `context/pulso.tsx`, `routes/session/footer.tsx` (borrado y sustituido por el pie de página), `util/collapse-tool-output.ts`, `component/prompt/index.tsx:407-416`, `feature-plugins/system/notifications.ts:38,52,77`, `packages/bioinformatica/src/nfcore/census.ts` y `failure.ts`, `packages/bioinformatica/src/tool/shell.ts` (que ya emite `metadata.exit`, `metadata.truncated` y `metadata.outputPath`, y la TUI hoy no lee ninguno de los tres).
+**Ficheros.** `routes/session/index.tsx` (`Shell` en `:1990-2046`), `routes/session/tools/run.tsx` (nuevo), `feature-plugins/run/traza.ts` (nuevo, sondea cada 10 s con `Census.pickLatestTrace` y `Census.parseTrace`), `context/pulso.tsx`, `routes/session/footer.tsx` (borrado y sustituido por el pie de página), `util/collapse-tool-output.ts`, `component/prompt/index.tsx:407-416`, `feature-plugins/system/notifications.ts:38,52,77`, `packages/helix/src/nfcore/census.ts` y `failure.ts`, `packages/helix/src/tool/shell.ts` (que ya emite `metadata.exit`, `metadata.truncated` y `metadata.outputPath`, y la TUI hoy no lee ninguno de los tres).
 
 ### 4.5 El expediente
 
 ```
 ── el expediente ──────────────────────────────────── esc  volver al registro ──
 
-  rnaseq-hipoxia · ensamblado 2026-09-01 14:22 · bioinformatica-dossier v1
+  rnaseq-hipoxia · ensamblado 2026-09-01 14:22 · helix-dossier v1
 
   ● manifest      4 corpus · 118 402 filas · 2,1 GB · huellas ok
     huella        ▄▇▁▅▂█ 3f9a…c1 · ENA · portal API · «PRJEB44444»
@@ -426,7 +426,7 @@ Cinco maquetas a 80 columnas exactas, con la misma rejilla, los mismos glifos y 
 
   ○ handcount     ausente
     haría falta   una traza de sesión guardada; esta no la tiene
-    produce       bioinformatica handcount --since <primer-asiento>
+    produce       helix handcount --since <primer-asiento>
     ojo           ausente no es cero, y «other» es «sin indicio»
 
   ○ methods       ausente
@@ -434,7 +434,7 @@ Cinco maquetas a 80 columnas exactas, con la misma rejilla, los mismos glifos y 
 
 ────────────────────────────────────────────────────────────────────────────────
   verificado en frío · sin modelo, sin red      1 402 comprobaciones · 0 ×
-    compruébalo   bioinformatica verify ./        c copia la orden
+    compruébalo   helix verify ./        c copia la orden
 
   v dar por visto     c copiar la orden     esc volver     ● ● ○ ○  2 de 4
 ```
@@ -443,11 +443,11 @@ Cinco maquetas a 80 columnas exactas, con la misma rejilla, los mismos glifos y 
 
 **La huella y su propio límite.** Seis celdas de bloque, tres bits cada una de los seis primeros bytes del digest, junto a ocho dígitos hexadecimales. Dos expedientes uno al lado del otro se comparan como seis alturas de barra en una sacada. Y la pantalla imprime, permanentemente, que son dieciocho bits y que detectan un accidente, no un ataque. **La huella no se renderiza nunca en una vista que no renderice también su límite**, y eso se impone en el componente: `huella()` exige un `contexto` que sólo el expediente y la entrada de manifiesto proporcionan. Es la disciplina del `no prueba` aplicada al propio mobiliario de la interfaz.
 
-**Lo que el dibujo no puede mostrar.** Esto sustituye al visor de diffs a `zIndex 2500`, hoy la pantalla a medida más grande del producto: un IDE de dos paneles con un árbol de ficheros de 32 columnas, letras de estado `M`/`A`/`D`/`?`, fuentes llamadas «working tree» / «main branch» / «last turn», `client.vcs.diff` y una categoría de paleta literalmente llamada «VCS». Un directorio de campaña no es un repositorio git y sus artefactos no tienen conteos de `+`/`-`. Lo que sobrevive es el chasis (`PanelGroup` / `Panel` / `Separator` de `diff-viewer-ui.tsx`) y el gesto: `mark reviewed` pasa a `v dar por visto`, y un artefacto visto conserva su contenido y baja a `{lápiz}` entero, tal como el visor ya re-renderiza los ficheros revisados. `c` copia la orden literal `bioinformatica verify ./` para que el lector haga él mismo la comprobación en frío, que es la única acción para la que existe esta pantalla. `produce` (la orden que cerraría el hueco) es el injerto de *El Anillo*, y es lo que convierte un hallazgo en una acción. Los `no prueba` salen de `Index.limits[]`, que ya es un array estructurado con `statement`, `evidence` (una ruta `path:line` que un test obliga a que exista) y `retiredBy`, así que **no se puede mostrar un límite sin código detrás**.
+**Lo que el dibujo no puede mostrar.** Esto sustituye al visor de diffs a `zIndex 2500`, hoy la pantalla a medida más grande del producto: un IDE de dos paneles con un árbol de ficheros de 32 columnas, letras de estado `M`/`A`/`D`/`?`, fuentes llamadas «working tree» / «main branch» / «last turn», `client.vcs.diff` y una categoría de paleta literalmente llamada «VCS». Un directorio de campaña no es un repositorio git y sus artefactos no tienen conteos de `+`/`-`. Lo que sobrevive es el chasis (`PanelGroup` / `Panel` / `Separator` de `diff-viewer-ui.tsx`) y el gesto: `mark reviewed` pasa a `v dar por visto`, y un artefacto visto conserva su contenido y baja a `{lápiz}` entero, tal como el visor ya re-renderiza los ficheros revisados. `c` copia la orden literal `helix verify ./` para que el lector haga él mismo la comprobación en frío, que es la única acción para la que existe esta pantalla. `produce` (la orden que cerraría el hueco) es el injerto de *El Anillo*, y es lo que convierte un hallazgo en una acción. Los `no prueba` salen de `Index.limits[]`, que ya es un array estructurado con `statement`, `evidence` (una ruta `path:line` que un test obliga a que exista) y `retiredBy`, así que **no se puede mostrar un límite sin código detrás**.
 
 **Movimiento.** Ninguno, salvo `v`: al re-verificar, cada artefacto pasa de `○` a `●` o a `×` según le llegan los digests, y tarda lo que tarde el hashing de verdad.
 
-**Ficheros.** `feature-plugins/system/expediente.tsx` (nuevo) sustituyendo a `diff-viewer.tsx` y `diff-viewer-file-tree.tsx`, reutilizando `diff-viewer-ui.tsx`; `config/keybind.ts` (`diff.open`, hoy atado a `none`, pasa a `expediente.open` en `ctrl+e`); `packages/bioinformatica/src/nfcore/dossier.ts` y `verify.ts`.
+**Ficheros.** `feature-plugins/system/expediente.tsx` (nuevo) sustituyendo a `diff-viewer.tsx` y `diff-viewer-file-tree.tsx`, reutilizando `diff-viewer-ui.tsx`; `config/keybind.ts` (`diff.open`, hoy atado a `none`, pasa a `expediente.open` en `ctrl+e`); `packages/helix/src/nfcore/dossier.ts` y `verify.ts`.
 
 ---
 
@@ -463,7 +463,7 @@ Cada borrado, con por qué es seguro.
 
 **`routes/session/footer.tsx`.** No lo importa nadie (grep: cero referencias) y sigue dibujando `△ N Permissions`, `• N LSP`, `⊙ N MCP`, `/status` y un anuncio parpadeante de `/connect`.
 
-**`go` y `marks` de `logo.ts` y su uso en `packages/bioinformatica/src/cli/cmd/run/splash.ts:184,212`.** Es el logotipo de bloques del donante, estampado hoy en el scrollback inmutable de cada run. Se redibuja el splash desde la marca.
+**`go` y `marks` de `logo.ts` y su uso en `packages/helix/src/cli/cmd/run/splash.ts:184,212`.** Es el logotipo de bloques del donante, estampado hoy en el scrollback inmutable de cada run. Se redibuja el splash desde la marca.
 
 **Las ~99 propinas de opencode y el plugin entero** (`feature-plugins/home/tips.tsx`, `tips-view.tsx`). Hablan de LSP, formateadores, pull requests de GitHub, ficheros `.ts` de herramientas y `AGENTS.md`; `NO_MODELS_TIP` termina en «start coding»; y `● Tip` roba el glifo de la marca en un tercer color no relacionado, cinco filas debajo de la propia marca. Seguro porque el hueco lo ocupa la promesa, que es copia fija, no un sorteo.
 
@@ -471,7 +471,7 @@ Cada borrado, con por qué es seguro.
 
 **Los 33 temas empaquetados**, podados a la casa más un conjunto pequeño y curado. Hoy incluyen `orng` y `lucent-orng` (los temas propios del donante) y `vercel`, `cursor` y `github` (marcas de otras tres empresas). Seguro con un aviso al arrancar si el usuario tenía uno puesto, que cae al tema de la casa.
 
-**`Build` y `Plan`** (`packages/bioinformatica/src/agent/agent.ts:141,157`). «Build» es la palabra de agente de programación más ruidosa del producto y hoy aparece bajo el input en la portada y tras cada turno del asistente. Pasan a la postura del protocolo, `vinculante` / `consultivo`.
+**`Build` y `Plan`** (`packages/helix/src/agent/agent.ts:141,157`). «Build» es la palabra de agente de programación más ruidosa del producto y hoy aparece bajo el input en la portada y tras cada turno del asistente. Pasan a la postura del protocolo, `vinculante` / `consultivo`.
 
 **`OC | ` en `app.tsx:469,474`**, `#fab283` en `component/error-component.tsx:18-41`, `#5f87ff` y `#ffd75f` en el `skin()` de `which-key.tsx`. Marcas ajenas literales, incluida la pantalla de error, que es la única que está garantizado que renderice.
 
@@ -489,7 +489,7 @@ Seis, ordenados. El primero es pequeño, **no toca `routes/session/index.tsx`**,
 
 **Riesgo: bajo, salvo por el tema.**
 
-**Qué cambia.** `ui/glifos.ts` (nuevo): el alfabeto de una sola clase de ancho, el resolutor de nivel que lee `renderer.capabilities.unicode` una vez al arranque, `RING.cell`, la tabla LLANO, y `huella()`. `ui/texto.ts` (nuevo): las tablas `es` y `en` con el test de paridad de claves. `context/pulso.tsx` (nuevo): el único tic de la aplicación. `component/spinner.tsx`: el anillo movido por `pulso`, `<spinner>` deja de usarse. Se borran `ui/spinner.ts` y `component/register-spinner.ts` y se quita `opentui-spinner` de `packages/tui/package.json`. Se reescribe `theme/assets/bioinformatica.json` a los seis papeles más tres acentos, con `selectedListItemText` declarado, `darkStep12` retintado, `borderActive` apuntando a la marca y los doce hexes de diff re-derivados. `theme/index.ts`: tokens nuevos opcionales con derivación documentada (y el grep previo de los ~40 puntos de uso de `secondary|accent|warning|success|info`). `context/local.tsx:83-91`: `colors()` se reduce a `[theme.primary]`. `component/error-component.tsx:18-41`. `app.tsx:469,474`. `logo.ts`: `MARK_INNER` de `◦` a `○`, borrado de `go` y `marks`; `component/logo.tsx` dibuja la marca por celdas. `packages/bioinformatica/src/cli/cmd/run/splash.ts`.
+**Qué cambia.** `ui/glifos.ts` (nuevo): el alfabeto de una sola clase de ancho, el resolutor de nivel que lee `renderer.capabilities.unicode` una vez al arranque, `RING.cell`, la tabla LLANO, y `huella()`. `ui/texto.ts` (nuevo): las tablas `es` y `en` con el test de paridad de claves. `context/pulso.tsx` (nuevo): el único tic de la aplicación. `component/spinner.tsx`: el anillo movido por `pulso`, `<spinner>` deja de usarse. Se borran `ui/spinner.ts` y `component/register-spinner.ts` y se quita `opentui-spinner` de `packages/tui/package.json`. Se reescribe `theme/assets/helix.json` a los seis papeles más tres acentos, con `selectedListItemText` declarado, `darkStep12` retintado, `borderActive` apuntando a la marca y los doce hexes de diff re-derivados. `theme/index.ts`: tokens nuevos opcionales con derivación documentada (y el grep previo de los ~40 puntos de uso de `secondary|accent|warning|success|info`). `context/local.tsx:83-91`: `colors()` se reduce a `[theme.primary]`. `component/error-component.tsx:18-41`. `app.tsx:469,474`. `logo.ts`: `MARK_INNER` de `◦` a `○`, borrado de `go` y `marks`; `component/logo.tsx` dibuja la marca por celdas. `packages/helix/src/cli/cmd/run/splash.ts`.
 
 **Qué ve el usuario después de este hito solo.** Desaparecen del producto el azul cielo, el violeta, el cian y el verde en un solo commit: el raíl del prompt, el raíl del mensaje del usuario, la firma del turno y el indicador de ocupado pasan al teal de la marca. El ciclo braille se sustituye por el anillo del propio producto, girando una vez cada seis segundos y frenando conforme envejece el trabajo. El foco deja de ser gris. La marca deja de cizallarse. La pantalla de error y el título de la ventana dejan de anunciar al donante. Nada se ha reestructurado todavía; la app simplemente deja de parecer un fork de tokyonight.
 
@@ -523,7 +523,7 @@ Seis, ordenados. El primero es pequeño, **no toca `routes/session/index.tsx`**,
 
 **Riesgo: alto en fontanería, bajo en interfaz.**
 
-**Primer paso, explícito y antes que nada:** añadir `"bioinformatica": "workspace:*"` a `packages/tui/package.json`, que hoy sólo depende de `@bioinformatica/{core,plugin,sdk,ui}`, y comprobar que los exports puros de `census.ts` (`parseTrace`, `pickLatestTrace`, `census`, `succeeded`, `inFlight`) se importan sin arrastrar la capa de servicios de Effect (`serviceUse`, `LayerNode`) a la TUI. Ninguna de las cuatro direcciones lo vio, y **todas las superficies de censo y expediente de todas ellas están bloqueadas por esta línea**.
+**Primer paso, explícito y antes que nada:** añadir `"helix": "workspace:*"` a `packages/tui/package.json`, que hoy sólo depende de `@helix/{core,plugin,sdk,ui}`, y comprobar que los exports puros de `census.ts` (`parseTrace`, `pickLatestTrace`, `census`, `succeeded`, `inFlight`) se importan sin arrastrar la capa de servicios de Effect (`serviceUse`, `LayerNode`) a la TUI. Ninguna de las cuatro direcciones lo vio, y **todas las superficies de censo y expediente de todas ellas están bloqueadas por esta línea**.
 
 **Qué cambia.** `feature-plugins/run/traza.ts` (nuevo): sondeo cada 10 s con la escalera de degradación completa. `routes/session/tools/run.tsx`: placa, tabla de etapas con transcurrido por etapa, cola, `contado desde`, y el estado enganchado de fallo. El reloj del margen. El pie de página de dos filas en la pila `flexShrink={0}` existente. `notifications.ts:38,52,77`. La ventana de interrupción.
 

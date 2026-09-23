@@ -10,8 +10,8 @@ export const VercelPlugin = define({
           if (item.provider.api.type !== "aisdk") continue
           if (item.provider.api.package !== "@ai-sdk/vercel") continue
           evt.provider.update(item.provider.id, (provider) => {
-            provider.request.headers["http-referer"] = "https://bioinformatica.org/"
-            provider.request.headers["x-title"] = "bioinformatica"
+            provider.request.headers["http-referer"] = "https://helixbiolab.github.io/helix-agent/"
+            provider.request.headers["x-title"] = "helix"
           })
         }
       }),

@@ -66,7 +66,7 @@ export interface Interface {
   readonly pull: (url: string) => Effect.Effect<AbsolutePath[]>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/SkillDiscovery") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/SkillDiscovery") {}
 
 const layer = Layer.effect(
   Service,
@@ -126,7 +126,7 @@ const layer = Layer.effect(
             }
 
             const skillUrl = new URL(`${encodeURIComponent(skill.name)}/`, source)
-            const versionFile = path.join(root, ".bioinformatica-version")
+            const versionFile = path.join(root, ".helix-version")
             const files = skill.files.map((file) => {
               if (!isSafeRelativePath(file)) return undefined
               let resource: URL
@@ -177,7 +177,7 @@ const layer = Layer.effect(
                     (yield* fs.exists(path.join(staging, "SKILL.md")).pipe(Effect.orDie)) ||
                     (yield* fs.exists(path.join(staging, `${skill.name}.md`)).pipe(Effect.orDie))
                   if (!exists) return
-                  yield* fs.writeFileString(path.join(staging, ".bioinformatica-version"), version)
+                  yield* fs.writeFileString(path.join(staging, ".helix-version"), version)
                   yield* Effect.uninterruptible(
                     Effect.gen(function* () {
                       const cached = yield* fs.exists(root).pipe(Effect.orDie)

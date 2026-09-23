@@ -1,9 +1,9 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { CommandV2 } from "@bioinformatica/core/command"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { CommandV2 } from "@helix/core/command"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { ModelV2 } from "@helix/core/model"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "./lib/effect"
 
 const it = testEffect(AppNodeBuilder.build(CommandV2.node))

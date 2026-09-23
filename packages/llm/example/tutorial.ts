@@ -1,7 +1,7 @@
 import { Config, Effect, Formatter, Layer, Schema, Stream } from "effect"
-import { LLM, LLMClient, Message, ProviderID, Tool, ToolRuntime } from "@bioinformatica/llm"
-import { Route, Auth, Endpoint, Framing, Protocol, RequestExecutor, WebSocketExecutor } from "@bioinformatica/llm/route"
-import { OpenAI } from "@bioinformatica/llm/providers"
+import { LLM, LLMClient, Message, ProviderID, Tool, ToolRuntime } from "@helix/llm"
+import { Route, Auth, Endpoint, Framing, Protocol, RequestExecutor, WebSocketExecutor } from "@helix/llm/route"
+import { OpenAI } from "@helix/llm/providers"
 
 /**
  * A runnable walkthrough of the LLM package use-site API.
@@ -57,7 +57,7 @@ const rawOverlayExample = LLM.request({
   prompt: "Show the final HTTP overlay shape.",
   http: {
     body: { metadata: { example: "tutorial" } },
-    headers: { "x-bioinformatica-tutorial": "1" },
+    headers: { "x-helix-tutorial": "1" },
     query: { debug: "1" },
   },
 })

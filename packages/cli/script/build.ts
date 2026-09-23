@@ -4,14 +4,14 @@ import { $ } from "bun"
 import fs from "fs"
 import { rm } from "fs/promises"
 import path from "path"
-import { Script } from "@bioinformatica/script"
-import { Identity } from "@bioinformatica/script/identity"
+import { Script } from "@helix/script"
+import { Identity } from "@helix/script/identity"
 import { createSolidTransformPlugin } from "@opentui/solid/bun-plugin"
 import pkg from "../package.json"
 import { modelsData } from "./generate"
 
 const dir = path.resolve(import.meta.dirname, "..")
-const binary = "bioinformatica-cli"
+const binary = "helix-cli"
 process.chdir(dir)
 
 await rm("dist", { recursive: true, force: true })
@@ -88,11 +88,11 @@ for (const item of targets) {
       windows: {},
     },
     define: {
-      BIOINFORMATICA_VERSION: `'${Script.version}'`,
-      BIOINFORMATICA_CLI_NAME: `'${binary}'`,
-      BIOINFORMATICA_MODELS_DEV: modelsData,
-      BIOINFORMATICA_CHANNEL: `'${Script.channel}'`,
-      BIOINFORMATICA_LIBC: item.os === "linux" ? `'${item.abi ?? "glibc"}'` : "undefined",
+      HELIX_VERSION: `'${Script.version}'`,
+      HELIX_CLI_NAME: `'${binary}'`,
+      HELIX_MODELS_DEV: modelsData,
+      HELIX_CHANNEL: `'${Script.channel}'`,
+      HELIX_LIBC: item.os === "linux" ? `'${item.abi ?? "glibc"}'` : "undefined",
       // FFF_LIBC selects the fff native lib variant: "musl" or "gnu".
       FFF_LIBC: item.os === "linux" ? `'${item.abi ?? "gnu"}'` : "undefined",
       OTUI_TREE_SITTER_WORKER_PATH:
@@ -112,7 +112,7 @@ for (const item of targets) {
     `./dist/${name}/package.json`,
     JSON.stringify(
       {
-        name: `@bioinformatica/${name}`,
+        name: `@helix/${name}`,
         version: Script.version,
         license: "MIT",
         repository: { type: "git", url: `git+${Identity.repositoryUrl}.git` },

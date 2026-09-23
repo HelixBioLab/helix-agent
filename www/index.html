@@ -43,7 +43,7 @@
           ><span class="brand-tag">AGENT</span></a
         >
         <nav aria-label="Language"><label for="lang-es">ES</label><label for="lang-en">EN</label></nav>
-        <a class="repo-link" href="https://github.com/webiwabou/bioinformatica.org">GitHub ↗</a>
+        <a class="repo-link" href="https://github.com/HelixBioLab/helix-agent">GitHub ↗</a>
       </header>
       <main>
         <section class="hero">
@@ -248,9 +248,9 @@
                     </p>
                     <div
                       class="cmd"
-                      data-copy="wget -O helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh"
+                      data-copy="wget -O helix-install.sh https://helixbiolab.github.io/helix-agent/install &amp;&amp; bash helix-install.sh"
                     >
-                      <pre><code>wget -O helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh</code></pre>
+                      <pre><code>wget -O helix-install.sh https://helixbiolab.github.io/helix-agent/install &amp;&amp; bash helix-install.sh</code></pre>
                     </div>
                     <details>
                       <summary>
@@ -270,9 +270,9 @@
                         </p>
                         <div
                           class="cmd"
-                          data-copy="/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh"
+                          data-copy="/usr/bin/curl -fL -o helix-install.sh https://helixbiolab.github.io/helix-agent/install &amp;&amp; bash helix-install.sh"
                         >
-                          <pre><code>/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh</code></pre>
+                          <pre><code>/usr/bin/curl -fL -o helix-install.sh https://helixbiolab.github.io/helix-agent/install &amp;&amp; bash helix-install.sh</code></pre>
                         </div>
                       </div>
                     </details>
@@ -280,14 +280,14 @@
                   <div data-os="mac">
                     <div
                       class="cmd"
-                      data-copy="/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh"
+                      data-copy="/usr/bin/curl -fL -o helix-install.sh https://helixbiolab.github.io/helix-agent/install &amp;&amp; bash helix-install.sh"
                     >
-                      <pre><code>/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh</code></pre>
+                      <pre><code>/usr/bin/curl -fL -o helix-install.sh https://helixbiolab.github.io/helix-agent/install &amp;&amp; bash helix-install.sh</code></pre>
                     </div>
                   </div>
                   <div data-os="win">
-                    <div class="cmd" data-copy="irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex">
-                      <pre><code>irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex</code></pre>
+                    <div class="cmd" data-copy="irm https://helixbiolab.github.io/helix-agent/install.ps1 | iex">
+                      <pre><code>irm https://helixbiolab.github.io/helix-agent/install.ps1 | iex</code></pre>
                     </div>
                     <p data-lang="es" lang="es" class="note">
                       Si falta WSL, el instalador te guía para habilitarlo. Ese paso requiere permisos de administrador
@@ -323,20 +323,20 @@
                     Open a new terminal and connect your model provider. Then open your project folder and launch the
                     agent.
                   </p>
-                  <div class="cmd" data-copy="bioinformatica providers login">
-                    <pre><code>bioinformatica providers login</code></pre>
+                  <div class="cmd" data-copy="helix providers login">
+                    <pre><code>helix providers login</code></pre>
                   </div>
                   <p data-lang="es" lang="es">Desde la carpeta de tu proyecto:</p>
                   <p data-lang="en" lang="en">From your project folder:</p>
-                  <div class="cmd" data-copy="bioinformatica">
-                    <pre><code>bioinformatica</code></pre>
+                  <div class="cmd" data-copy="helix">
+                    <pre><code>helix</code></pre>
                   </div>
                   <p data-lang="es" lang="es" class="note">
                     Por compatibilidad con las instalaciones existentes, el comando sigue siendo
-                    <code>bioinformatica</code>.
+                    <code>helix</code>.
                   </p>
                   <p data-lang="en" lang="en" class="note">
-                    For compatibility with existing installations, the command remains <code>bioinformatica</code>.
+                    For compatibility with existing installations, the command remains <code>helix</code>.
                   </p>
                 </div>
               </section>
@@ -381,7 +381,7 @@
                   Download the archive for your system from GitHub. Linux uses <code>.tar.gz</code> and macOS uses
                   <code>.zip</code>. On Windows, use this page’s WSL installer.
                 </p>
-                <a class="secondary" href="https://github.com/webiwabou/bioinformatica.org/releases/latest"
+                <a class="secondary" href="https://github.com/HelixBioLab/helix-agent/releases/latest"
                   ><span data-lang="es" lang="es">Ver descargas ↗</span
                   ><span data-lang="en" lang="en">Browse downloads ↗</span></a
                 >
@@ -407,18 +407,18 @@
                     </p>
                     <div
                       class="cmd"
-                      data-copy='mkdir -p "$HOME/.bioinformatica/bin"
-cp bioinformatica "$HOME/.bioinformatica/bin/"
-chmod +x "$HOME/.bioinformatica/bin/bioinformatica"'
+                      data-copy='mkdir -p "$HOME/.helix/bin"
+cp helix "$HOME/.helix/bin/"
+chmod +x "$HOME/.helix/bin/helix"'
                     >
-                      <pre><code>mkdir -p &quot;$HOME/.bioinformatica/bin&quot;
-cp bioinformatica &quot;$HOME/.bioinformatica/bin/&quot;
-chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
+                      <pre><code>mkdir -p &quot;$HOME/.helix/bin&quot;
+cp helix &quot;$HOME/.helix/bin/&quot;
+chmod +x &quot;$HOME/.helix/bin/helix&quot;</code></pre>
                     </div>
                     <p data-lang="es" lang="es">Puedes iniciarlo por su ruta completa, sin configurar el PATH:</p>
                     <p data-lang="en" lang="en">Launch it by its full path without configuring PATH:</p>
-                    <div class="cmd" data-copy="~/.bioinformatica/bin/bioinformatica">
-                      <pre><code>~/.bioinformatica/bin/bioinformatica</code></pre>
+                    <div class="cmd" data-copy="~/.helix/bin/helix">
+                      <pre><code>~/.helix/bin/helix</code></pre>
                     </div>
                   </div>
                 </details>
@@ -459,8 +459,8 @@ chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
                 It depends on your analysis. Nextflow workflows require Java and may use Docker, Apptainer or Conda.
                 This command checks your machine and suggests how to install missing tools without making changes:
               </p>
-              <div class="cmd" data-copy="bioinformatica debug env">
-                <pre><code>bioinformatica debug env</code></pre>
+              <div class="cmd" data-copy="helix debug env">
+                <pre><code>helix debug env</code></pre>
               </div>
             </div>
           </details>
@@ -502,12 +502,12 @@ chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
                 Sí. Después de descargar el instalador, ejecútalo con
                 <code>bash helix-install.sh --version X.Y.Z</code>, reemplazando <code>X.Y.Z</code> por una versión
                 publicada. Para compilarlo, sigue la
-                <a href="https://github.com/webiwabou/bioinformatica.org#instalación">guía del repositorio</a>.
+                <a href="https://github.com/HelixBioLab/helix-agent#instalación">guía del repositorio</a>.
               </p>
               <p data-lang="en" lang="en">
                 Yes. After downloading the installer, run <code>bash helix-install.sh --version X.Y.Z</code>, replacing
                 <code>X.Y.Z</code> with a published version. To build from source, follow the
-                <a href="https://github.com/webiwabou/bioinformatica.org#instalación">repository guide</a>.
+                <a href="https://github.com/HelixBioLab/helix-agent#instalación">repository guide</a>.
               </p>
             </div>
           </details>
@@ -520,14 +520,14 @@ chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
               <p data-lang="es" lang="es">
                 El agente puede generar un dossier, un registro del protocolo, un recuento del trabajo y manifiestos de
                 archivos. Sirven para revisar lo realizado y sus límites. Encontrarás los detalles en
-                <a href="https://github.com/webiwabou/bioinformatica.org#los-cuatro-artefactos"
+                <a href="https://github.com/HelixBioLab/helix-agent#los-cuatro-artefactos"
                   >la documentación de los cuatro artefactos</a
                 >.
               </p>
               <p data-lang="en" lang="en">
                 The agent can produce a dossier, a protocol ledger, a work tally and file manifests to help review the
                 work and its limits. Read about
-                <a href="https://github.com/webiwabou/bioinformatica.org#los-cuatro-artefactos">the four artifacts</a>.
+                <a href="https://github.com/HelixBioLab/helix-agent#los-cuatro-artefactos">the four artifacts</a>.
               </p>
             </div>
           </details>
@@ -550,11 +550,11 @@ chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
         <p data-lang="es" lang="es">Preguntas que avanzan. Ciencia que puedes revisar.</p>
         <p data-lang="en" lang="en">Move your questions forward. Keep your science reviewable.</p>
         <div>
-          <a href="https://github.com/webiwabou/bioinformatica.org">GitHub</a
-          ><a href="https://github.com/webiwabou/bioinformatica.org/issues"
+          <a href="https://github.com/HelixBioLab/helix-agent">GitHub</a
+          ><a href="https://github.com/HelixBioLab/helix-agent/issues"
             ><span data-lang="es" lang="es">Reportar un problema</span
             ><span data-lang="en" lang="en">Report an issue</span></a
-          ><a href="https://github.com/webiwabou/bioinformatica.org/blob/main/LICENSE">MIT</a>
+          ><a href="https://github.com/HelixBioLab/helix-agent/blob/main/LICENSE">MIT</a>
         </div>
       </footer>
     </div>

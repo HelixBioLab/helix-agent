@@ -5,8 +5,8 @@ antes de proponerlo y qué esperamos de un pull request.
 
 Bioinformática.org es un fork de [opencode](https://github.com/anomalyco/opencode) (MIT). Buena
 parte del árbol viene de ahí. Lo propio de este proyecto vive sobre todo en
-`packages/bioinformatica/src/nfcore/` (nf-core/Nextflow, manifiestos, protocolo, dosier) y en
-`packages/bioinformatica/src/bio/` (clientes de bases de datos biológicas).
+`packages/helix/src/nfcore/` (nf-core/Nextflow, manifiestos, protocolo, dosier) y en
+`packages/helix/src/bio/` (clientes de bases de datos biológicas).
 
 ## Requisitos
 
@@ -31,13 +31,13 @@ Para ejecutar el agente desde el código fuente, sin construir el binario:
 
 ```bash
 bun dev -- --help                # la lista completa de comandos
-bun dev                          # TUI sobre packages/bioinformatica
+bun dev                          # TUI sobre packages/helix
 bun dev -- /ruta/a/tu/proyecto   # TUI sobre otro directorio
 bun dev -- serve                 # servidor HTTP sin interfaz
 bun dev -- verify                # re-comprobar manifiestos, sin modelo y sin red
 ```
 
-`bun dev` es el equivalente local del binario `bioinformatica` instalado: los mismos comandos y los
+`bun dev` es el equivalente local del binario `helix` instalado: los mismos comandos y los
 mismos flags. El `--` hace falta para que los argumentos lleguen al programa y no a `bun run`.
 
 ## Ejecutar los tests
@@ -50,11 +50,11 @@ bun test      # Failed to scan non-existent root directory for tests: ".../do-no
 bun run test  # do not run tests from root
 ```
 
-El grueso de la suite (unos 273 ficheros `*.test.ts`) vive en `packages/bioinformatica` y se ejecuta
+El grueso de la suite (unos 273 ficheros `*.test.ts`) vive en `packages/helix` y se ejecuta
 desde ese directorio:
 
 ```bash
-cd packages/bioinformatica
+cd packages/helix
 
 bun run test                     # la suite completa del paquete
 bun test test/nfcore             # solo un directorio
@@ -71,7 +71,7 @@ Para reproducir lo que ejecuta CI, desde la raíz:
 bun turbo test
 ```
 
-Eso cubre `bioinformatica`, `@bioinformatica/core` y `@bioinformatica/ui`, que son las tres tareas de
+Eso cubre `helix`, `@helix/core` y `@helix/ui`, que son las tres tareas de
 test declaradas en `turbo.json`.
 
 Hay paquetes con tests que **no** están declarados en `turbo.json`, así que ni CI ni `bun turbo test`
@@ -84,11 +84,11 @@ cd packages/tui && bun test
 
 ### Los tests son herméticos
 
-`packages/bioinformatica/test/preload.ts` aísla la suite antes de importar nada de `src/`: redirige
+`packages/helix/test/preload.ts` aísla la suite antes de importar nada de `src/`: redirige
 los directorios XDG a un temporal por PID, usa SQLite en memoria, sirve el catálogo de modelos desde
 un fixture y borra del entorno las claves de proveedor (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`,
 `GOOGLE_API_KEY`, …). Un test que necesite red o una credencial real está mal escrito: escríbelo
-contra un fixture o graba el tráfico con `@bioinformatica/http-recorder`.
+contra un fixture o graba el tráfico con `@helix/http-recorder`.
 
 ## Comprobaciones antes de proponer un cambio
 
@@ -112,7 +112,7 @@ UTF-8, indentación de dos espacios, saltos `LF` y salto de línea final (en `.e
 ## Si tocas la API HTTP o el SDK
 
 `packages/sdk/openapi.json` y el cliente de `packages/sdk/js` son código generado. Después de cambiar
-el servidor (`packages/bioinformatica/src/server/` o `packages/server/`), regenéralos e incluye el
+el servidor (`packages/helix/src/server/` o `packages/server/`), regenéralos e incluye el
 resultado en el mismo PR:
 
 ```bash
@@ -122,11 +122,11 @@ resultado en el mismo PR:
 ## Construir el binario
 
 ```bash
-cd packages/bioinformatica
+cd packages/helix
 bun run build --single
 ```
 
-Deja un ejecutable en `packages/bioinformatica/dist/bioinformatica-<plataforma>/bin/bioinformatica`,
+Deja un ejecutable en `packages/helix/dist/helix-<plataforma>/bin/helix`,
 donde `<plataforma>` es `linux-x64`, `darwin-arm64` y demás. Sin `--single` construye para todas las
 plataformas objetivo, que es lo que hace el proceso de release y casi nunca lo que quieres en local.
 
@@ -134,14 +134,14 @@ plataformas objetivo, que es lo que hace el proceso de release y casi nunca lo q
 
 | Paquete                       | Qué contiene                                                           |
 | ----------------------------- | ---------------------------------------------------------------------- |
-| `packages/bioinformatica`     | CLI, agente, comandos nf-core y artefactos de proveniencia             |
+| `packages/helix`     | CLI, agente, comandos nf-core y artefactos de proveniencia             |
 | `packages/core`               | Servicios base: herramientas, proveedores, sesiones, almacenamiento    |
 | `packages/tui`                | Interfaz de terminal (opentui + SolidJS)                               |
 | `packages/server`             | Servidor HTTP                                                          |
 | `packages/protocol`           | Definición de la API que sirve el servidor                             |
 | `packages/llm`                | Capa de proveedores de modelos                                         |
 | `packages/codemode`           | Ejecución confinada de código sobre herramientas descritas por esquema |
-| `packages/plugin`             | API pública de plugins (`@bioinformatica/plugin`)                      |
+| `packages/plugin`             | API pública de plugins (`@helix/plugin`)                      |
 | `packages/sdk`                | Esquema OpenAPI y cliente TypeScript generados                         |
 | `packages/schema`             | Esquemas compartidos                                                   |
 | `packages/script`             | Utilidades de build y publicación, incluida la identidad del proyecto  |
@@ -162,10 +162,10 @@ dispararse ahí. Cuando lo que quieres depurar es el servidor, levanta las dos m
 
 ```bash
 # 1. el servidor, con inspector
-bun run --inspect=ws://localhost:6499/ --cwd packages/bioinformatica ./src/index.ts serve --port 4096
+bun run --inspect=ws://localhost:6499/ --cwd packages/helix ./src/index.ts serve --port 4096
 
 # 2. la interfaz, conectada a ese servidor
-bun run --cwd packages/bioinformatica --conditions=browser ./src/index.ts attach http://localhost:4096
+bun run --cwd packages/helix --conditions=browser ./src/index.ts attach http://localhost:4096
 ```
 
 Para depurar la interfaz, el inspector va en el segundo comando en vez de en el primero.

@@ -1,5 +1,5 @@
-import { EventV2 } from "@bioinformatica/core/event"
-import { BioinformaticaEvent } from "@bioinformatica/protocol/groups/event"
+import { EventV2 } from "@helix/core/event"
+import { HelixEvent } from "@helix/protocol/groups/event"
 import { Effect, Schema, Stream } from "effect"
 import { HttpServerResponse } from "effect/unstable/http"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
@@ -13,7 +13,7 @@ function eventData(data: unknown): Sse.Event {
     _tag: "Event",
     event: "message",
     id: undefined,
-    data: JSON.stringify(Schema.encodeUnknownSync(BioinformaticaEvent)(data)),
+    data: JSON.stringify(Schema.encodeUnknownSync(HelixEvent)(data)),
   }
 }
 

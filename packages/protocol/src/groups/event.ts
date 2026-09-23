@@ -1,7 +1,7 @@
-import { Event } from "@bioinformatica/schema/event"
-import { EventManifest } from "@bioinformatica/schema/event-manifest"
-import { Location } from "@bioinformatica/schema/location"
-import type { Definition } from "@bioinformatica/schema/event"
+import { Event } from "@helix/schema/event"
+import { EventManifest } from "@helix/schema/event-manifest"
+import { Location } from "@helix/schema/location"
+import type { Definition } from "@helix/schema/event"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema, OpenApi } from "effect/unstable/httpapi"
 
@@ -51,6 +51,6 @@ export const makeEventGroup = <const Definitions extends ReadonlyArray<Definitio
 
 const event = make(EventManifest.ServerDefinitions)
 export const EventGroup = event.group
-export const BioinformaticaEvent = event.schema
-export type BioinformaticaEvent = typeof BioinformaticaEvent.Type
-export type BioinformaticaEventEncoded = typeof BioinformaticaEvent.Encoded
+export const HelixEvent = event.schema
+export type HelixEvent = typeof HelixEvent.Type
+export type HelixEventEncoded = typeof HelixEvent.Encoded

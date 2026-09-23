@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@bioinformatica/tui",
+  "name": "@helix/tui",
   "version": "1.17.18",
   "private": true,
   "type": "module",
@@ -48,10 +48,10 @@
     "./component/register-spinner": "./src/component/register-spinner.ts"
   },
   "dependencies": {
-    "@bioinformatica/core": "workspace:*",
-    "@bioinformatica/plugin": "workspace:*",
-    "@bioinformatica/sdk": "workspace:*",
-    "@bioinformatica/ui": "workspace:*",
+    "@helix/core": "workspace:*",
+    "@helix/plugin": "workspace:*",
+    "@helix/sdk": "workspace:*",
+    "@helix/ui": "workspace:*",
     "@opentui/core": "catalog:",
     "@opentui/keymap": "catalog:",
     "@opentui/solid": "catalog:",

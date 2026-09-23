@@ -1,6 +1,6 @@
 export * as IntegrationConnection from "./connection"
 
-import { Connection } from "@bioinformatica/schema/connection"
+import { Connection } from "@helix/schema/connection"
 
 export const CredentialInfo = Connection.CredentialInfo
 export type CredentialInfo = Connection.CredentialInfo

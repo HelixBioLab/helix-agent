@@ -1,7 +1,7 @@
 # Helix Agent
 
 La identidad visual comparte la hélice, el verde bosque y los tonos salvia de Helix Learn.
-El comando sigue siendo `bioinformatica` para mantener la compatibilidad con las instalaciones existentes.
+El comando de terminal es `helix`. La configuración y los datos se guardan bajo el nombre `helix`.
 
 Un agente de terminal para bioinformática: ejecuta pipelines de
 [nf-core](https://nf-co.re)/[Nextflow](https://www.nextflow.io) a partir de una pregunta
@@ -42,7 +42,7 @@ comprueba pero no las sustituye:
 - opcionalmente **nf-core tools**, para lint y contribución
 - credenciales de algún proveedor de modelos (ver [Modelos](#modelos))
 
-`bioinformatica debug env` inspecciona la máquina y devuelve, para cada dependencia que
+`helix debug env` inspecciona la máquina y devuelve, para cada dependencia que
 falte, si se puede instalar sin root y el comando exacto. Es de sólo lectura: recomienda,
 nunca instala.
 
@@ -51,7 +51,7 @@ Para compilar desde el código fuente hace falta además **[Bun](https://bun.sh)
 ## Instalación
 
 ```bash
-wget -O helix-install.sh https://webiwabou.github.io/bioinformatica.org/install && bash helix-install.sh
+wget -O helix-install.sh https://helixbiolab.github.io/helix-agent/install && bash helix-install.sh
 ```
 
 El instalador funciona con wget o curl nativos y evita las versiones de Snap.
@@ -59,34 +59,34 @@ En Ubuntu/Debian puedes instalar wget con `sudo apt update && sudo apt install -
 En macOS, usa el curl del sistema:
 
 ```bash
-/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install && bash helix-install.sh
+/usr/bin/curl -fL -o helix-install.sh https://helixbiolab.github.io/helix-agent/install && bash helix-install.sh
 ```
 
-La [página de descarga](https://webiwabou.github.io/bioinformatica.org/) incluye instrucciones
+La [página de descarga](https://helixbiolab.github.io/helix-agent/) incluye instrucciones
 para Fedora, Arch, openSUSE y Alpine, además de descarga manual desde el navegador.
 
 
 Descarga el binario que corresponde a la plataforma desde
-[GitHub Releases](https://github.com/webiwabou/bioinformatica.org/releases), lo deja en
-`~/.bioinformatica/bin` y añade esa carpeta al `PATH`. No pide root ni toca nada fuera del
+[GitHub Releases](https://github.com/HelixBioLab/helix-agent/releases), lo deja en
+`~/.helix/bin` y añade esa carpeta al `PATH`. No pide root ni toca nada fuera del
 directorio personal. Los mismos pasos, explicados para quien no vive en la terminal, están
-en <https://webiwabou.github.io/bioinformatica.org/> — la página vive en [`www/`](./www) y
+en <https://helixbiolab.github.io/helix-agent/> — la página vive en [`www/`](./www) y
 sirve el propio `install` de este repositorio, no una copia.
 
 El instalador acepta `--version <v>` para fijar una versión, `--binary <ruta>` para
 instalar un binario ya compilado y `--no-modify-path` para no tocar la configuración del
-shell; `BIOINFORMATICA_INSTALL_REPO` cambia el repositorio de origen.
+shell; `HELIX_INSTALL_REPO` cambia el repositorio de origen.
 
 En Windows, desde PowerShell:
 
 ```powershell
-irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex
+irm https://helixbiolab.github.io/helix-agent/install.ps1 | iex
 ```
 
 Nextflow necesita un entorno POSIX, así que ese script instala el agente **dentro de WSL**:
 si no hay ninguna distribución de usuario, enseña `wsl --install` y pide permiso antes de
 elevar nada; si la hay, ejecuta ahí el mismo `install` de arriba y deja en el `PATH` de
-Windows un `bioinformatica.cmd` que lo invoca situándolo en el directorio actual. El
+Windows un `helix.cmd` que lo invoca situándolo en el directorio actual. El
 agente vive en Linux y se llama desde PowerShell como cualquier otro programa. La
 alternativa —un agente nativo de Windows puenteando a WSL— se descartó: obligaría a
 traducir cada ruta que el agente escribe en una samplesheet, y dejaría los datos en el
@@ -95,16 +95,16 @@ sistema de ficheros lento de WSL sin decir por qué.
 Compilar desde el código:
 
 ```bash
-git clone https://github.com/webiwabou/bioinformatica.org.git
-cd bioinformatica.org
+git clone https://github.com/HelixBioLab/helix-agent.git
+cd helix-agent
 bun install
 
-cd packages/bioinformatica
-bun run build --single    # deja un binario `bioinformatica` en dist/
+cd packages/helix
+bun run build --single    # deja un binario `helix` en dist/
 ```
 
-El lanzador `packages/bioinformatica/bin/bioinformatica` puede enlazarse en el `PATH` para
-invocar el binario recién compilado como `bioinformatica`.
+El lanzador `packages/helix/bin/helix` puede enlazarse en el `PATH` para
+invocar el binario recién compilado como `helix`.
 
 Para trabajar sobre el código sin compilar:
 
@@ -119,7 +119,7 @@ Sitúate en el directorio del análisis y arranca la interfaz interactiva:
 
 ```bash
 cd ~/analisis-rnaseq
-bioinformatica
+helix
 ```
 
 Y describe lo que quieres en tus propias palabras:
@@ -134,20 +134,20 @@ aprobación antes de cada ejecución.
 También se puede lanzar sin interfaz, con la pregunta en la línea de comandos:
 
 ```bash
-bioinformatica run "tengo 12 FASTQ pareados de RNA-seq de ratón en ./datos; quiero cuantificar expresión génica"
+helix run "tengo 12 FASTQ pareados de RNA-seq de ratón en ./datos; quiero cuantificar expresión génica"
 ```
 
 Los mismos pasos están disponibles como comandos sueltos, todos de sólo lectura, por si
 quieres ver el razonamiento pieza a pieza antes de dejar que el agente lo encadene:
 
 ```bash
-bioinformatica debug env                      # ¿está lista esta máquina?
-bioinformatica debug pipelines rnaseq         # buscar en el registro de nf-core
-bioinformatica debug samplesheet rnaseq       # columnas exigidas por el esquema del pipeline
-bioinformatica debug params rnaseq aligner    # qué significa un parámetro y cuál es su defecto
-bioinformatica debug resources                # techo de recursos recomendado para esta máquina
-bioinformatica debug run-command rnaseq --mode test --outdir resultados
-bioinformatica debug diagnose ./ruta/del/run  # clasificar el fallo de una ejecución
+helix debug env                      # ¿está lista esta máquina?
+helix debug pipelines rnaseq         # buscar en el registro de nf-core
+helix debug samplesheet rnaseq       # columnas exigidas por el esquema del pipeline
+helix debug params rnaseq aligner    # qué significa un parámetro y cuál es su defecto
+helix debug resources                # techo de recursos recomendado para esta máquina
+helix debug run-command rnaseq --mode test --outdir resultados
+helix debug diagnose ./ruta/del/run  # clasificar el fallo de una ejecución
 ```
 
 `run-command` construye el comando y lo imprime; **no ejecuta nada**. La ejecución pasa
@@ -158,7 +158,7 @@ siempre por la herramienta de shell, que muestra el comando y pide aprobación.
 Se recogen en un solo directorio con:
 
 ```bash
-bioinformatica dossier              # escribe ./dossier
+helix dossier              # escribe ./dossier
 ```
 
 El dossier lleva un `index.json` con el digest SHA-256 de cada fichero, y un `verify.sh`
@@ -182,7 +182,7 @@ proyecto, junto a un manifiesto que registra la fuente, el endpoint exacto, la c
 número de filas, los bytes y el SHA-256.
 
 ```bash
-bioinformatica verify        # re-hashea cada fichero contra su manifiesto
+helix verify        # re-hashea cada fichero contra su manifiesto
 ```
 
 Este comando no usa modelo ni red: lee ficheros, recalcula digests y compara números. Esa
@@ -201,16 +201,16 @@ restricción se rechaza, el intento se escribe con marca de tiempo y texto liter
 registro que sólo crece, y seguir adelante exige una **enmienda firmada**.
 
 ```bash
-bioinformatica protocol commit "caracterizar repeticiones estructurales en el proteoma X" \
+helix protocol commit "caracterizar repeticiones estructurales en el proteoma X" \
   --constraint "sin-sustitucion=ninguna sustitución de herramienta sin calibrar contra ground truth" \
   --constraint "figuras=las figuras salen sólo de datos con manifiesto" \
   --by "A. Investigadora"
 
-bioinformatica protocol list            # el protocolo en vigor, con las enmiendas plegadas
-bioinformatica protocol check "..."     # probar una petición sin registrar nada
-bioinformatica protocol refuse "..."    # comprobar y anotar el intento en el registro
-bioinformatica protocol amend sin-sustitucion --action waive --reason "..." --sign "..."
-bioinformatica protocol ledger          # todo el historial: enmiendas y rechazos
+helix protocol list            # el protocolo en vigor, con las enmiendas plegadas
+helix protocol check "..."     # probar una petición sin registrar nada
+helix protocol refuse "..."    # comprobar y anotar el intento en el registro
+helix protocol amend sin-sustitucion --action waive --reason "..." --sign "..."
+helix protocol ledger          # todo el historial: enmiendas y rechazos
 ```
 
 La asimetría es deliberada. Comprometerse es fácil y se hace una vez, en frío.
@@ -223,7 +223,7 @@ de protocolo y no se rechaza nada. Existe también `--advisory` para quien quier
 sin el bloqueo: sigue anotando cada violación, simplemente no detiene el trabajo. En ninguno
 de los dos casos el cambio es silencioso.
 
-Los ficheros viven en `.bioinformatica/protocol/`: el compromiso como JSON, los dos
+Los ficheros viven en `.helix/protocol/`: el compromiso como JSON, los dos
 registros como JSON por líneas. Los tres se leen sin este programa.
 
 ### 3. Conteo de intervenciones humanas
@@ -232,7 +232,7 @@ Un ledger de dónde intervino la persona en una campaña llevada por el agente, 
 de Métodos que lo dice en voz alta.
 
 ```bash
-bioinformatica handcount --session <id> --write
+helix handcount --session <id> --write
 ```
 
 La clasificación es una función **pura y determinista** sobre el texto del turno —mismo
@@ -250,10 +250,10 @@ El párrafo de Métodos lo dice con esas palabras.
 ### 4. Métodos con versiones fijadas
 
 Al terminar una ejecución se construye un manifiesto de reproducibilidad en
-`.bioinformatica/manifests/`:
+`.helix/manifests/`:
 
 ```bash
-bioinformatica debug manifest ./resultados
+helix debug manifest ./resultados
 ```
 
 No reinventa formatos de proveniencia: **referencia los del propio ecosistema** —el
@@ -267,7 +267,7 @@ aprobaciones humanas de la sesión y su resumen.
 No es uno de los cuatro, pero cubre un fallo que ninguno de ellos ve:
 
 ```bash
-bioinformatica census samplesheet.csv --outdir ./resultados
+helix census samplesheet.csv --outdir ./resultados
 ```
 
 El operador `join` de Nextflow descarta claves sin pareja en silencio salvo que el pipeline
@@ -295,20 +295,20 @@ cualquier afirmación apoyada en ellos lleve su fuente:
 | SIFTS | el mapeo PDB↔UniProt a nivel de residuo, con el sello de release de EBI |
 
 ```bash
-bioinformatica debug gene BRCA1
-bioinformatica debug protein "gene:BRCA1 AND organism_id:9606 AND reviewed:true"
-bioinformatica debug structure 1VJE
-bioinformatica debug pathway glycolysis
-bioinformatica debug pubmed "structural repeats prediction"
+helix debug gene BRCA1
+helix debug protein "gene:BRCA1 AND organism_id:9606 AND reviewed:true"
+helix debug structure 1VJE
+helix debug pathway glycolysis
+helix debug pubmed "structural repeats prediction"
 ```
 
-Los corpus se descargan **una vez** a `corpus/` con su manifiesto —`bioinformatica debug
+Los corpus se descargan **una vez** a `corpus/` con su manifiesto —`helix debug
 corpus <nombre> --uniprot "..."`, `--repeatsdb`, `--pdb-holdings`— y a partir de ahí se
 trabaja sobre lo escrito. Volver a consultar en vivo a mitad de campaña deja que dos etapas
 discrepen sobre qué era el corpus, y nada te dirá cuál de los dos resultados es el bueno.
 
-`bioinformatica debug glue` lista tres scripts de Python (requieren Biopython), y
-`bioinformatica debug glue ./scripts` los escribe en disco. Cubren la contabilidad de
+`helix debug glue` lista tres scripts de Python (requieren Biopython), y
+`helix debug glue ./scripts` los escribe en disco. Cubren la contabilidad de
 coordenadas entre una llamada a nivel de secuencia y un fragmento 3D:
 mapeo SEQRES↔ATOM, corte de fragmentos y propagación de representantes a los miembros de
 su clúster. Son *glue*, no ciencia: llaman a implementaciones de Biopython y hacen la
@@ -322,10 +322,10 @@ Helix Agent no trae modelo propio. El catálogo se obtiene de
 [models.dev](https://models.dev) y las credenciales se configuran localmente:
 
 ```bash
-bioinformatica providers login  # dar de alta un proveedor y sus credenciales
-bioinformatica providers list   # qué credenciales y variables de entorno hay activas
-bioinformatica models           # listar todo lo disponible
-bioinformatica run --model <proveedor>/<modelo> "..."
+helix providers login  # dar de alta un proveedor y sus credenciales
+helix providers list   # qué credenciales y variables de entorno hay activas
+helix models           # listar todo lo disponible
+helix run --model <proveedor>/<modelo> "..."
 ```
 
 Funciona con cualquier proveedor del catálogo de models.dev: Anthropic, OpenAI, Google
@@ -344,16 +344,16 @@ usarlo, pero conviene saberlo.
 
 ## Configuración
 
-- Configuración global: `~/.config/bioinformatica/bioinformatica.json`
-- Configuración por proyecto: `bioinformatica.json` o `.bioinformatica/` en la raíz
-- Variables de entorno con prefijo `BIOINFORMATICA_` (p. ej. `BIOINFORMATICA_CONFIG`,
-  `BIOINFORMATICA_DISABLE_PROJECT_CONFIG`, `BIOINFORMATICA_SERVER_PASSWORD`)
+- Configuración global: `~/.config/helix/helix.json`
+- Configuración por proyecto: `helix.json` o `.helix/` en la raíz
+- Variables de entorno con prefijo `HELIX_` (p. ej. `HELIX_CONFIG`,
+  `HELIX_DISABLE_PROJECT_CONFIG`, `HELIX_SERVER_PASSWORD`)
 
 Estado por proyecto, todo en texto plano y legible sin este programa:
 
 ```
 corpus/                             los datos descargados y sus manifiestos (carpeta visible: es contenido del científico)
-.bioinformatica/
+.helix/
   objective.json                    el objetivo permanente de la campaña
   protocol/protocol.json            el compromiso, escrito una vez
   protocol/amendments.jsonl         cada cambio firmado del compromiso
@@ -424,7 +424,7 @@ aislamiento real, ejecuta esto dentro de un contenedor o una VM. Ver [SECURITY.m
 
 ## Estructura del repositorio
 
-El núcleo de dominio —lo que este fork añade— vive todo en `packages/bioinformatica/src/`:
+El núcleo de dominio —lo que este fork añade— vive todo en `packages/helix/src/`:
 
 | Ruta | Qué hay |
 | --- | --- |

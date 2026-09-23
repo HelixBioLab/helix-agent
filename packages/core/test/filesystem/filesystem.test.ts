@@ -1,8 +1,8 @@
 import { describe, test, expect } from "bun:test"
 import { Effect, FileSystem } from "effect"
-import { LayerNodePlatform } from "@bioinformatica/core/effect/app-node-platform"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { FSUtil } from "@bioinformatica/core/fs-util"
+import { LayerNodePlatform } from "@helix/core/effect/app-node-platform"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { FSUtil } from "@helix/core/fs-util"
 import { testEffect } from "../lib/effect"
 import path from "path"
 

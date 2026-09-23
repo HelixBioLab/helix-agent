@@ -5,11 +5,11 @@ import path from "path"
 import os from "os"
 import { Cause, Effect, Exit } from "effect"
 import { testEffect } from "../lib/effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { EffectFlock } from "@bioinformatica/core/util/effect-flock"
-import { Global } from "@bioinformatica/core/global"
-import { Hash } from "@bioinformatica/core/util/hash"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { EffectFlock } from "@helix/core/util/effect-flock"
+import { Global } from "@helix/core/global"
+import { Hash } from "@helix/core/util/hash"
 
 function lock(dir: string, key: string) {
   return path.join(dir, Hash.fast(key) + ".lock")

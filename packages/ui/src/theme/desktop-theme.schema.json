@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://bioinformatica.org/desktop-theme.json",
-  "title": "Bioinformatica Desktop Theme",
-  "description": "A theme definition for the Bioinformatica desktop application",
+  "$id": "https://helixbiolab.github.io/helix-agent/desktop-theme.json",
+  "title": "Helix Desktop Theme",
+  "description": "A theme definition for the Helix desktop application",
   "type": "object",
   "required": ["name", "id", "light", "dark"],
   "properties": {

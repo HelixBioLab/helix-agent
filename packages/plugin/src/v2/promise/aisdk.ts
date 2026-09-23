@@ -1,5 +1,5 @@
 import type { LanguageModelV3 } from "@ai-sdk/provider"
-import type { ModelV2Info } from "@bioinformatica/sdk/v2/types"
+import type { ModelV2Info } from "@helix/sdk/v2/types"
 import type { Hooks } from "./registration.js"
 
 export type AISDKHooks = Hooks<{

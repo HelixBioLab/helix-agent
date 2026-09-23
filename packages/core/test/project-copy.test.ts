@@ -4,16 +4,16 @@ import fs from "fs/promises"
 import path from "path"
 import { eq } from "drizzle-orm"
 import { Effect, Fiber, Stream } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { Git } from "@bioinformatica/core/git"
-import { Database } from "@bioinformatica/core/database/database"
-import { EventV2 } from "@bioinformatica/core/event"
-import { Project } from "@bioinformatica/core/project"
-import { ProjectDirectoryTable, ProjectTable } from "@bioinformatica/core/project/sql"
-import { ProjectCopy } from "@bioinformatica/core/project/copy"
-import { ProjectDirectories } from "@bioinformatica/core/project/directories"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { AbsolutePath } from "@helix/core/schema"
+import { Git } from "@helix/core/git"
+import { Database } from "@helix/core/database/database"
+import { EventV2 } from "@helix/core/event"
+import { Project } from "@helix/core/project"
+import { ProjectDirectoryTable, ProjectTable } from "@helix/core/project/sql"
+import { ProjectCopy } from "@helix/core/project/copy"
+import { ProjectDirectories } from "@helix/core/project/directories"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
 
@@ -31,7 +31,7 @@ async function initRepo(directory: string) {
   await $`git init`.cwd(directory).quiet()
   await $`git config core.fsmonitor false`.cwd(directory).quiet()
   await $`git config commit.gpgsign false`.cwd(directory).quiet()
-  await $`git config user.email test@bioinformatica.test`.cwd(directory).quiet()
+  await $`git config user.email test@helix.test`.cwd(directory).quiet()
   await $`git config user.name Test`.cwd(directory).quiet()
   await $`git commit --allow-empty -m root`.cwd(directory).quiet()
 }

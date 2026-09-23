@@ -1,6 +1,6 @@
 export * as ReadTool from "./read"
 
-import { ToolFailure } from "@bioinformatica/llm"
+import { ToolFailure } from "@helix/llm"
 import { Effect, Layer, Schema } from "effect"
 import { makeLocationNode } from "../effect/app-node"
 import { FileSystem } from "../filesystem"

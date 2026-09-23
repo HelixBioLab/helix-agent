@@ -24,7 +24,7 @@ type WebSocketConstructorWithHeaders = new (
   options?: { readonly headers?: Headers.Headers },
 ) => globalThis.WebSocket
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/LLM/WebSocketExecutor") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/LLM/WebSocketExecutor") {}
 
 const transportError = (
   method: string,

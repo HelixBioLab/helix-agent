@@ -7,7 +7,7 @@ import { Flock } from "./util/flock"
 import { Flag } from "./flag/flag"
 import { makeGlobalNode } from "./effect/app-node"
 
-const app = "bioinformatica"
+const app = "helix"
 const data = path.join(xdgData!, app)
 const cache = path.join(xdgCache!, app)
 const config = path.join(xdgConfig!, app)
@@ -16,7 +16,7 @@ const tmp = path.join(os.tmpdir(), app)
 
 const paths = {
   get home() {
-    return process.env.BIOINFORMATICA_TEST_HOME ?? os.homedir()
+    return process.env.HELIX_TEST_HOME ?? os.homedir()
   },
   data,
   bin: path.join(cache, "bin"),
@@ -42,7 +42,7 @@ await Promise.all([
   fs.mkdir(Path.repos, { recursive: true }),
 ])
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/Global") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/Global") {}
 
 export interface Interface {
   readonly home: string
@@ -61,7 +61,7 @@ export function make(input: Partial<Interface> = {}): Interface {
     home: Path.home,
     data: Path.data,
     cache: Path.cache,
-    config: Flag.BIOINFORMATICA_CONFIG_DIR ?? Path.config,
+    config: Flag.HELIX_CONFIG_DIR ?? Path.config,
     state: Path.state,
     tmp: Path.tmp,
     bin: Path.bin,

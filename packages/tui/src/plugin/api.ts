@@ -1,4 +1,4 @@
-import type { TuiPluginApi, TuiRouteDefinition } from "@bioinformatica/plugin/tui"
+import type { TuiPluginApi, TuiRouteDefinition } from "@helix/plugin/tui"
 import { createSignal } from "solid-js"
 
 type RouteEntry = {

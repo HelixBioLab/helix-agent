@@ -50,7 +50,7 @@ def evaluate(directory):
         return {"kind": "pressure", **data, "sampledPeakWorkBytes": obs["sampledPeakWorkBytes"]}
     evidence = directory / "evidence"
     manifest = hashlib.sha256((evidence / "manifest.json").read_bytes()).hexdigest()
-    check = subprocess.run(["python3", str(ROOT / "packages/bioinformatica/src/trp/verify_bundle.py.txt"),
+    check = subprocess.run(["python3", str(ROOT / "packages/helix/src/trp/verify_bundle.py.txt"),
                             str(evidence), "--sha256", manifest], capture_output=True, text=True, check=True)
     cold = json.loads(check.stdout)
     run = evidence / "run"

@@ -19,7 +19,7 @@ export type TuiOptions = {
   config?: Config
 }
 
-export async function createBioinformaticaServer(options?: ServerOptions) {
+export async function createHelixServer(options?: ServerOptions) {
   options = Object.assign(
     {
       hostname: "127.0.0.1",
@@ -32,10 +32,10 @@ export async function createBioinformaticaServer(options?: ServerOptions) {
   const args = [`serve`, `--hostname=${options.hostname}`, `--port=${options.port}`]
   if (options.config?.logLevel) args.push(`--log-level=${options.config.logLevel}`)
 
-  const proc = launch(`bioinformatica`, args, {
+  const proc = launch(`helix`, args, {
     env: {
       ...process.env,
-      BIOINFORMATICA_CONFIG_CONTENT: JSON.stringify(options.config ?? {}),
+      HELIX_CONFIG_CONTENT: JSON.stringify(options.config ?? {}),
     },
   })
   let clear = () => {}
@@ -53,7 +53,7 @@ export async function createBioinformaticaServer(options?: ServerOptions) {
       output += chunk.toString()
       const lines = output.split("\n")
       for (const line of lines) {
-        if (line.startsWith("bioinformatica server listening")) {
+        if (line.startsWith("helix server listening")) {
           const match = line.match(/on\s+(https?:\/\/[^\s]+)/)
           if (!match) {
             clear()
@@ -99,7 +99,7 @@ export async function createBioinformaticaServer(options?: ServerOptions) {
   }
 }
 
-export function createBioinformaticaTui(options?: TuiOptions) {
+export function createHelixTui(options?: TuiOptions) {
   const args = []
 
   if (options?.project) {
@@ -115,11 +115,11 @@ export function createBioinformaticaTui(options?: TuiOptions) {
     args.push(`--agent=${options.agent}`)
   }
 
-  const proc = launch(`bioinformatica`, args, {
+  const proc = launch(`helix`, args, {
     stdio: "inherit",
     env: {
       ...process.env,
-      BIOINFORMATICA_CONFIG_CONTENT: JSON.stringify(options?.config ?? {}),
+      HELIX_CONFIG_CONTENT: JSON.stringify(options?.config ?? {}),
     },
   })
 

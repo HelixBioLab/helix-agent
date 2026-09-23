@@ -166,7 +166,7 @@ function withSlash(input: string) {
 }
 
 function githubRemote(pathname: string) {
-  const base = process.env.BIOINFORMATICA_REPO_CLONE_GITHUB_BASE_URL
+  const base = process.env.HELIX_REPO_CLONE_GITHUB_BASE_URL
   if (!base) return `https://github.com/${pathname}.git`
   return new URL(`${pathname}.git`, withSlash(base)).href
 }

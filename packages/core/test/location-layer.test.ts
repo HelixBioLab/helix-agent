@@ -2,21 +2,21 @@ import fs from "fs/promises"
 import path from "path"
 import { describe, expect } from "bun:test"
 import { DateTime, Effect, Equal, Hash, Schema } from "effect"
-import { Tool } from "@bioinformatica/core/tool/tool"
-import { define } from "@bioinformatica/plugin/v2/effect"
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { LocationServiceMap } from "@bioinformatica/core/location-services"
-import { Location } from "@bioinformatica/core/location"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { ProjectV2 } from "@bioinformatica/core/project"
-import { ProviderV2 } from "@bioinformatica/core/provider"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { SessionV2 } from "@bioinformatica/core/session"
-import { SessionRunnerModel } from "@bioinformatica/core/session/runner/model"
+import { Tool } from "@helix/core/tool/tool"
+import { define } from "@helix/plugin/v2/effect"
+import { AgentV2 } from "@helix/core/agent"
+import { Catalog } from "@helix/core/catalog"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { LocationServiceMap } from "@helix/core/location-services"
+import { Location } from "@helix/core/location"
+import { PluginV2 } from "@helix/core/plugin"
+import { ModelV2 } from "@helix/core/model"
+import { ProjectV2 } from "@helix/core/project"
+import { ProviderV2 } from "@helix/core/provider"
+import { AbsolutePath } from "@helix/core/schema"
+import { SessionV2 } from "@helix/core/session"
+import { SessionRunnerModel } from "@helix/core/session/runner/model"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
 import { toolDefinitions } from "./lib/tool"
@@ -78,7 +78,7 @@ describe("LocationServiceMap", () => {
           })
           yield* Effect.promise(() =>
             fs.writeFile(
-              path.join(blocked.path, "bioinformatica.json"),
+              path.join(blocked.path, "helix.json"),
               JSON.stringify({
                 experimental: { policies: [{ effect: "deny", action: "provider.use", resource: "test" }] },
               }),
@@ -150,7 +150,7 @@ describe("LocationServiceMap", () => {
           const location = Location.Ref.make({ directory: AbsolutePath.make(dir.path) })
           yield* Effect.promise(() =>
             fs.writeFile(
-              path.join(dir.path, "bioinformatica.json"),
+              path.join(dir.path, "helix.json"),
               JSON.stringify({
                 providers: {
                   unavailable: {

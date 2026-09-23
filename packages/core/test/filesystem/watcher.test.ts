@@ -3,14 +3,14 @@ import { describe, expect } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { ConfigProvider, Deferred, Duration, Effect, Fiber, Layer, Option, Stream } from "effect"
-import { Config } from "@bioinformatica/core/config"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { EventV2 } from "@bioinformatica/core/event"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { Watcher } from "@bioinformatica/core/filesystem/watcher"
-import { Location } from "@bioinformatica/core/location"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { Config } from "@helix/core/config"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { EventV2 } from "@helix/core/event"
+import { FSUtil } from "@helix/core/fs-util"
+import { Watcher } from "@helix/core/filesystem/watcher"
+import { Location } from "@helix/core/location"
+import { AbsolutePath } from "@helix/core/schema"
 import { location } from "../fixture/location"
 import { tmpdir } from "../fixture/tmpdir"
 import { testEffect } from "../lib/effect"
@@ -30,8 +30,8 @@ const configLayer = Layer.succeed(
 
 const flagsLayer = ConfigProvider.layer(
   ConfigProvider.fromUnknown({
-    BIOINFORMATICA_EXPERIMENTAL_FILEWATCHER: "true",
-    BIOINFORMATICA_EXPERIMENTAL_DISABLE_FILEWATCHER: "false",
+    HELIX_EXPERIMENTAL_FILEWATCHER: "true",
+    HELIX_EXPERIMENTAL_DISABLE_FILEWATCHER: "false",
   }),
 )
 
@@ -59,7 +59,7 @@ function withTmp<A, E, R>(
       await $`git init`.cwd(tmp.path).quiet()
       await $`git config core.fsmonitor false`.cwd(tmp.path).quiet()
       await $`git config commit.gpgsign false`.cwd(tmp.path).quiet()
-      await $`git config user.email test@bioinformatica.test`.cwd(tmp.path).quiet()
+      await $`git config user.email test@helix.test`.cwd(tmp.path).quiet()
       await $`git config user.name Test`.cwd(tmp.path).quiet()
       await $`git commit --allow-empty -m root`.cwd(tmp.path).quiet()
       await options.init?.(tmp.path)

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test"
-import { LLM, LLMClient, Provider } from "@bioinformatica/llm"
-import { Route, Protocol } from "@bioinformatica/llm/route"
-import { Provider as ProviderSubpath } from "@bioinformatica/llm/provider"
+import { LLM, LLMClient, Provider } from "@helix/llm"
+import { Route, Protocol } from "@helix/llm/route"
+import { Provider as ProviderSubpath } from "@helix/llm/provider"
 import {
   CloudflareAIGateway,
   CloudflareWorkersAI,
@@ -9,10 +9,10 @@ import {
   OpenAICompatible,
   OpenRouter,
   XAI,
-} from "@bioinformatica/llm/providers"
-import * as GitHubCopilot from "@bioinformatica/llm/providers/github-copilot"
-import { OpenAIChat, OpenAICompatibleChat, OpenAIResponses } from "@bioinformatica/llm/protocols"
-import * as AnthropicMessages from "@bioinformatica/llm/protocols/anthropic-messages"
+} from "@helix/llm/providers"
+import * as GitHubCopilot from "@helix/llm/providers/github-copilot"
+import { OpenAIChat, OpenAICompatibleChat, OpenAIResponses } from "@helix/llm/protocols"
+import * as AnthropicMessages from "@helix/llm/protocols/anthropic-messages"
 
 describe("public exports", () => {
   test("root exposes app-facing runtime APIs", () => {

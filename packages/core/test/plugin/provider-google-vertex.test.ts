@@ -1,12 +1,12 @@
-import { AISDK } from "@bioinformatica/core/aisdk"
+import { AISDK } from "@helix/core/aisdk"
 import { describe, expect, mock } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { GoogleVertexPlugin } from "@bioinformatica/core/plugin/provider/google-vertex"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { ModelV2 } from "@helix/core/model"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { GoogleVertexPlugin } from "@helix/core/plugin/provider/google-vertex"
+import { ProviderV2 } from "@helix/core/provider"
 import type { LanguageModelV3 } from "@ai-sdk/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
@@ -91,7 +91,7 @@ describe("GoogleVertexPlugin", () => {
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
       yield* catalog.transform((catalog) =>
-        catalog.provider.update(ProviderV2.ID.bioinformatica, (provider) => {
+        catalog.provider.update(ProviderV2.ID.helix, (provider) => {
           provider.api = {
             type: "aisdk",
             package: "@ai-sdk/openai-compatible",
@@ -101,7 +101,7 @@ describe("GoogleVertexPlugin", () => {
       )
       yield* addPlugin()
 
-      const provider = required(yield* catalog.provider.get(ProviderV2.ID.bioinformatica))
+      const provider = required(yield* catalog.provider.get(ProviderV2.ID.helix))
       expect(provider.request.body).toEqual({})
     }),
   )

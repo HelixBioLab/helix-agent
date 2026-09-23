@@ -1,8 +1,8 @@
-import { QuestionV2 } from "@bioinformatica/core/question"
+import { QuestionV2 } from "@helix/core/question"
 import { Effect } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/unstable/httpapi"
 import { Api } from "../api"
-import { QuestionNotFoundError } from "@bioinformatica/protocol/errors"
+import { QuestionNotFoundError } from "@helix/protocol/errors"
 import { response } from "../location"
 
 function missingRequest(id: QuestionV2.ID) {

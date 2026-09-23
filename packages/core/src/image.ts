@@ -42,7 +42,7 @@ export interface Interface {
   >
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/Image") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/Image") {}
 
 const layer = Layer.effect(
   Service,

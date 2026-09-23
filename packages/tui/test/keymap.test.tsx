@@ -5,7 +5,7 @@ import { testRender, useRenderer } from "@opentui/solid"
 import { expect, test } from "bun:test"
 import { onCleanup } from "solid-js"
 import { TuiKeybind } from "../src/config/keybind"
-import { getBioinformaticaModeStack, BIOINFORMATICA_BASE_MODE, BioinformaticaKeymapProvider, registerBioinformaticaKeymap } from "../src/keymap"
+import { getHelixModeStack, HELIX_BASE_MODE, HelixKeymapProvider, registerHelixKeymap } from "../src/keymap"
 
 function createResolvedKeymapConfig(input: TuiKeybind.KeybindOverrides = {}) {
   const keybinds = TuiKeybind.parse(input)
@@ -28,7 +28,7 @@ test("legacy page key aliases compile as page keys", async () => {
       messages_page_up: "pgup",
       messages_page_down: "pgdown",
     })
-    const offKeymap = registerBioinformaticaKeymap(keymap, renderer, config)
+    const offKeymap = registerHelixKeymap(keymap, renderer, config)
     const offLayer = keymap.registerLayer({
       bindings: config.keybinds.gather("session", ["session.page.up", "session.page.down"]),
     })
@@ -46,9 +46,9 @@ test("legacy page key aliases compile as page keys", async () => {
     })
 
     return (
-      <BioinformaticaKeymapProvider keymap={keymap}>
+      <HelixKeymapProvider keymap={keymap}>
         <box />
-      </BioinformaticaKeymapProvider>
+      </HelixKeymapProvider>
     )
   }
 
@@ -63,14 +63,14 @@ test("legacy page key aliases compile as page keys", async () => {
   }
 })
 
-test("mode-less bindings stay active when bioinformatica mode changes", async () => {
+test("mode-less bindings stay active when helix mode changes", async () => {
   const counts: Record<string, Record<string, number>> = {}
 
   function Harness() {
     const renderer = useRenderer()
     const keymap = createDefaultOpenTuiKeymap(renderer)
     const config = createResolvedKeymapConfig()
-    const offKeymap = registerBioinformaticaKeymap(keymap, renderer, config)
+    const offKeymap = registerHelixKeymap(keymap, renderer, config)
     const offGlobal = keymap.registerLayer({
       commands: [
         { name: "session.list", run() {} },
@@ -86,7 +86,7 @@ test("mode-less bindings stay active when bioinformatica mode changes", async ()
       ]),
     })
     const offBase = keymap.registerLayer({
-      mode: BIOINFORMATICA_BASE_MODE,
+      mode: HELIX_BASE_MODE,
       commands: [{ name: "model.list", run() {} }],
       bindings: config.keybinds.gather("test.base", ["model.list"]),
     })
@@ -102,10 +102,10 @@ test("mode-less bindings stay active when bioinformatica mode changes", async ()
       )
 
     counts.base = activeCounts()
-    const popQuestion = getBioinformaticaModeStack(keymap).push("question")
+    const popQuestion = getHelixModeStack(keymap).push("question")
     counts.question = activeCounts()
     popQuestion()
-    const popAutocomplete = getBioinformaticaModeStack(keymap).push("autocomplete")
+    const popAutocomplete = getHelixModeStack(keymap).push("autocomplete")
     counts.autocomplete = activeCounts()
     popAutocomplete()
 
@@ -116,9 +116,9 @@ test("mode-less bindings stay active when bioinformatica mode changes", async ()
     })
 
     return (
-      <BioinformaticaKeymapProvider keymap={keymap}>
+      <HelixKeymapProvider keymap={keymap}>
         <box />
-      </BioinformaticaKeymapProvider>
+      </HelixKeymapProvider>
     )
   }
 

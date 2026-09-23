@@ -1,8 +1,8 @@
-import { SessionV2 } from "@bioinformatica/core/session"
+import { SessionV2 } from "@helix/core/session"
 import { DateTime, Effect, Stream } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/unstable/httpapi"
 import { Api } from "../api"
-import { SessionsCursor } from "@bioinformatica/protocol/groups/session"
+import { SessionsCursor } from "@helix/protocol/groups/session"
 import {
   ConflictError,
   InvalidCursorError,
@@ -10,8 +10,8 @@ import {
   ServiceUnavailableError,
   SessionNotFoundError,
   UnknownError,
-} from "@bioinformatica/protocol/errors"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+} from "@helix/protocol/errors"
+import { AbsolutePath } from "@helix/core/schema"
 
 const DefaultSessionsLimit = 50
 const DefaultSessionHistoryLimit = 50

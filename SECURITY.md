@@ -4,7 +4,7 @@
 
 Usa el formulario privado de GitHub, **no** un issue público:
 
-<https://github.com/webiwabou/bioinformatica.org/security/advisories/new>
+<https://github.com/HelixBioLab/helix-agent/security/advisories/new>
 
 Incluye, si puedes: la versión que usabas, el sistema operativo, los pasos para reproducirlo y qué
 consigue quien lo explote. Un ejemplo mínimo vale más que una descripción larga.
@@ -38,7 +38,7 @@ seguridad. Si configuras una regla en `allow`, esa clase de acción se ejecuta s
 
 Si necesitas aislamiento real, ejecuta el agente dentro de un contenedor o una máquina virtual, con
 solo los datos que la tarea necesite montados. El repositorio incluye un `Dockerfile` en
-`packages/bioinformatica/Dockerfile`.
+`packages/helix/Dockerfile`.
 
 ### Todo lo que el agente lee es entrada no confiable
 
@@ -70,26 +70,26 @@ puede tomar esa decisión por ti y no te lo impide. Consúltalo con quien respon
 de apuntar el agente a un directorio con material sensible, y considera un proveedor autoalojado o
 dentro de tu propia infraestructura si la respuesta es que no puede salir.
 
-Para inspeccionar qué contenía una sesión, `bioinformatica export <sessionID>` la vuelca como JSON.
+Para inspeccionar qué contenía una sesión, `helix export <sessionID>` la vuelca como JSON.
 
-Los comandos de verificación en frío (`bioinformatica verify`, `dossier`, `handcount`, `census`) no
+Los comandos de verificación en frío (`helix verify`, `dossier`, `handcount`, `census`) no
 usan modelo ni red: trabajan solo sobre los ficheros del directorio. Esa parte del sistema no envía
 nada a ninguna parte, y ese es justamente el motivo de que exista.
 
 ### Dónde quedan tus credenciales y tus datos
 
 Las credenciales de proveedor se guardan en `auth.json`, dentro del directorio de datos XDG
-(normalmente `~/.local/share/bioinformatica/`), con permisos `0600`. Están **en claro**: no hay
+(normalmente `~/.local/share/helix/`), con permisos `0600`. Están **en claro**: no hay
 cifrado en reposo, así que cualquiera que pueda leer los ficheros de tu cuenta puede leer esas
 claves. Las sesiones, los logs y la base de datos local viven en los directorios XDG de datos, estado
 y caché del mismo nombre.
 
 ### El modo servidor
 
-`bioinformatica serve` es opcional y hay que pedirlo explícitamente. Por defecto escucha en
+`helix serve` es opcional y hay que pedirlo explícitamente. Por defecto escucha en
 `127.0.0.1`, solo accesible desde tu propia máquina.
 
-Sin la variable `BIOINFORMATICA_SERVER_PASSWORD`, el servidor funciona **sin autenticación** y lo
+Sin la variable `HELIX_SERVER_PASSWORD`, el servidor funciona **sin autenticación** y lo
 avisa al arrancar. Con ella, exige HTTP Basic.
 
 Presta atención a los flags que cambian dónde escucha: `--hostname` lo expone donde le digas, y

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
-APP=bioinformatica
+APP=helix
 
 # Where releases come from. Kept as one variable rather than repeated in every
 # download URL below, so the release origin is a single edit here and one in
 # packages/script/src/identity.ts. Override only for development.
-REPO="${BIOINFORMATICA_INSTALL_REPO:-webiwabou/bioinformatica.org}"
+REPO="${HELIX_INSTALL_REPO:-HelixBioLab/helix-agent}"
 
 MUTED='\033[0;2m'
 SAGE='\033[38;5;151m'
@@ -28,7 +28,7 @@ Options:
 Examples:
     ./install
     ./install --version 0.1.0
-    ./install --binary /path/to/bioinformatica
+    ./install --binary /path/to/helix
 EOF
 }
 
@@ -95,7 +95,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-INSTALL_DIR=$HOME/.bioinformatica/bin
+INSTALL_DIR=$HOME/.helix/bin
 mkdir -p "$INSTALL_DIR"
 
 # If --binary is provided, skip all download/detection logic
@@ -244,11 +244,11 @@ print_message() {
 }
 
 check_version() {
-    if command -v bioinformatica >/dev/null 2>&1; then
-        bioinformatica_path=$(which bioinformatica)
+    if command -v helix >/dev/null 2>&1; then
+        helix_path=$(which helix)
 
         ## Check the installed version
-        installed_version=$(bioinformatica --version 2>/dev/null || echo "")
+        installed_version=$(helix --version 2>/dev/null || echo "")
 
         if [[ "$installed_version" != "$specific_version" ]]; then
             print_message info "${MUTED}Installed version: ${NC}$installed_version."
@@ -260,8 +260,8 @@ check_version() {
 }
 
 download_and_install() {
-    print_message info "\n${MUTED}Installing ${NC}bioinformatica ${MUTED}version: ${NC}$specific_version"
-    local tmp_dir="${TMPDIR:-/tmp}/bioinformatica_install_$$"
+    print_message info "\n${MUTED}Installing ${NC}helix ${MUTED}version: ${NC}$specific_version"
+    local tmp_dir="${TMPDIR:-/tmp}/helix_install_$$"
     mkdir -p "$tmp_dir"
 
     if ! fetch "$url" "$tmp_dir/$filename"; then
@@ -276,15 +276,15 @@ download_and_install() {
         unzip -q "$tmp_dir/$filename" -d "$tmp_dir"
     fi
 
-    mv "$tmp_dir/bioinformatica" "$INSTALL_DIR"
-    chmod 755 "${INSTALL_DIR}/bioinformatica"
+    mv "$tmp_dir/helix" "$INSTALL_DIR"
+    chmod 755 "${INSTALL_DIR}/helix"
     rm -rf "$tmp_dir"
 }
 
 install_from_binary() {
-    print_message info "\n${MUTED}Installing ${NC}bioinformatica ${MUTED}from: ${NC}$binary_path"
-    cp "$binary_path" "${INSTALL_DIR}/bioinformatica"
-    chmod 755 "${INSTALL_DIR}/bioinformatica"
+    print_message info "\n${MUTED}Installing ${NC}helix ${MUTED}from: ${NC}$binary_path"
+    cp "$binary_path" "${INSTALL_DIR}/helix"
+    chmod 755 "${INSTALL_DIR}/helix"
 }
 
 if [ -n "$binary_path" ]; then
@@ -302,9 +302,9 @@ add_to_path() {
     if grep -Fxq "$command" "$config_file"; then
         print_message info "Command already exists in $config_file, skipping write."
     elif [[ -w $config_file ]]; then
-        echo -e "\n# bioinformatica" >> "$config_file"
+        echo -e "\n# helix" >> "$config_file"
         echo "$command" >> "$config_file"
-        print_message info "${MUTED}Successfully added ${NC}bioinformatica ${MUTED}to \$PATH in ${NC}$config_file"
+        print_message info "${MUTED}Successfully added ${NC}helix ${MUTED}to \$PATH in ${NC}$config_file"
     else
         print_message warning "Manually add the directory to $config_file (or similar):"
         print_message info "  $command"
@@ -426,9 +426,9 @@ echo -e "${MUTED}◦       ${SAGE}●${NC}"
 echo -e ""
 echo -e "${MUTED}Configura un proveedor de modelos y abre un proyecto:${NC}"
 echo -e ""
-echo -e "bioinformatica providers  ${MUTED}# Conectar un proveedor (DeepSeek, Qwen, Anthropic...)${NC}"
+echo -e "helix providers  ${MUTED}# Conectar un proveedor (DeepSeek, Qwen, Anthropic...)${NC}"
 echo -e "cd <proyecto>             ${MUTED}# Entrar en el directorio de trabajo${NC}"
-echo -e "bioinformatica            ${MUTED}# Abrir la interfaz${NC}"
+echo -e "helix            ${MUTED}# Abrir la interfaz${NC}"
 echo -e "${MUTED}For more information visit ${NC}https://github.com/${REPO}"
 echo -e ""
 echo -e ""

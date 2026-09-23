@@ -1,18 +1,18 @@
 import path from "path"
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { Integration } from "@bioinformatica/core/integration"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { EventV2 } from "@bioinformatica/core/event"
-import { Flag } from "@bioinformatica/core/flag/flag"
-import { Location } from "@bioinformatica/core/location"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { ModelsDev } from "@bioinformatica/core/models-dev"
-import { ModelsDevPlugin } from "@bioinformatica/core/plugin/models-dev"
-import { ProviderV2 } from "@bioinformatica/core/provider"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { Catalog } from "@helix/core/catalog"
+import { Integration } from "@helix/core/integration"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { EventV2 } from "@helix/core/event"
+import { Flag } from "@helix/core/flag/flag"
+import { Location } from "@helix/core/location"
+import { ModelV2 } from "@helix/core/model"
+import { ModelsDev } from "@helix/core/models-dev"
+import { ModelsDevPlugin } from "@helix/core/plugin/models-dev"
+import { ProviderV2 } from "@helix/core/provider"
+import { AbsolutePath } from "@helix/core/schema"
 import { location } from "../fixture/location"
 import { testEffect } from "../lib/effect"
 import { catalogHost, host, integrationHost } from "./host"
@@ -128,11 +128,11 @@ describe("ModelsDevPlugin", () => {
     Effect.acquireUseRelease(
       Effect.sync(() => {
         const previous = {
-          path: Flag.BIOINFORMATICA_MODELS_PATH,
-          disabled: Flag.BIOINFORMATICA_DISABLE_MODELS_FETCH,
+          path: Flag.HELIX_MODELS_PATH,
+          disabled: Flag.HELIX_DISABLE_MODELS_FETCH,
         }
-        Flag.BIOINFORMATICA_MODELS_PATH = path.join(import.meta.dir, "fixtures", "models-dev.json")
-        Flag.BIOINFORMATICA_DISABLE_MODELS_FETCH = true
+        Flag.HELIX_MODELS_PATH = path.join(import.meta.dir, "fixtures", "models-dev.json")
+        Flag.HELIX_DISABLE_MODELS_FETCH = true
         return previous
       }),
       () =>
@@ -162,8 +162,8 @@ describe("ModelsDevPlugin", () => {
         }).pipe(Effect.provide(AppNodeBuilder.build(ModelsDev.node))),
       (previous) =>
         Effect.sync(() => {
-          Flag.BIOINFORMATICA_MODELS_PATH = previous.path
-          Flag.BIOINFORMATICA_DISABLE_MODELS_FETCH = previous.disabled
+          Flag.HELIX_MODELS_PATH = previous.path
+          Flag.HELIX_DISABLE_MODELS_FETCH = previous.disabled
         }),
     ),
   )

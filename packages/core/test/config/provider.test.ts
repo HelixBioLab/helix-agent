@@ -1,13 +1,13 @@
 import { describe, expect } from "bun:test"
 import { Effect, Schema } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { Config } from "@bioinformatica/core/config"
-import { ConfigProviderPlugin } from "@bioinformatica/core/config/plugin/provider"
-import { Integration } from "@bioinformatica/core/integration"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { Config } from "@helix/core/config"
+import { ConfigProviderPlugin } from "@helix/core/config/plugin/provider"
+import { Integration } from "@helix/core/integration"
+import { ModelV2 } from "@helix/core/model"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "../plugin/fixture"
 
@@ -58,7 +58,7 @@ describe("ConfigProviderPlugin.Plugin", () => {
   it.effect("keeps configured model variant bodies unchanged", () =>
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
-      const providerID = ProviderV2.ID.bioinformatica
+      const providerID = ProviderV2.ID.helix
       const modelID = ModelV2.ID.make("alpha-gpt-next")
       const config = Config.Service.of({
         entries: () =>
@@ -67,8 +67,8 @@ describe("ConfigProviderPlugin.Plugin", () => {
               type: "document",
               info: decode({
                 providers: {
-                  bioinformatica: {
-                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://bioinformatica.test/v1" },
+                  helix: {
+                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://helix.test/v1" },
                     models: {
                       "alpha-gpt-next": {
                         variants: [
@@ -109,7 +109,7 @@ describe("ConfigProviderPlugin.Plugin", () => {
   it.effect("keeps layered model variant bodies unchanged", () =>
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
-      const providerID = ProviderV2.ID.bioinformatica
+      const providerID = ProviderV2.ID.helix
       const modelID = ModelV2.ID.make("alpha-gpt-next")
       const config = Config.Service.of({
         entries: () =>
@@ -118,8 +118,8 @@ describe("ConfigProviderPlugin.Plugin", () => {
               type: "document",
               info: decode({
                 providers: {
-                  bioinformatica: {
-                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://bioinformatica.test/v1" },
+                  helix: {
+                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://helix.test/v1" },
                   },
                 },
               }),
@@ -128,7 +128,7 @@ describe("ConfigProviderPlugin.Plugin", () => {
               type: "document",
               info: decode({
                 providers: {
-                  bioinformatica: {
+                  helix: {
                     models: {
                       "alpha-gpt-next": {
                         variants: [{ id: "high", body: { reasoningEffort: "high" } }],

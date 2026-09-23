@@ -7,8 +7,8 @@ This document describes the agreed target design for the V2 plugin system. It is
 ## Goals
 
 - Internal and external plugins use the same public plugin API.
-- Effect plugins import `@bioinformatica/plugin/v2/effect`, not `@bioinformatica/core`.
-- Public domain values use generated `@bioinformatica/sdk` types.
+- Effect plugins import `@helix/plugin/v2/effect`, not `@helix/core`.
+- Public domain values use generated `@helix/sdk` types.
 - Core may retain branded IDs, decoded Effect schemas, and internal service types.
 - Plugins may register replayable domain transforms and runtime hooks imperatively during setup.
 - Registrations are scoped, independently disposable, ordered, and removable.
@@ -424,7 +424,7 @@ The Effect implementation remains the canonical runtime. Promise and embedding w
 
 ### 1. Define Public Contracts
 
-- Define `PluginHost` domain capabilities in `@bioinformatica/plugin/v2/effect`.
+- Define `PluginHost` domain capabilities in `@helix/plugin/v2/effect`.
 - Define SDK-typed editors for agent, catalog, command, integration, reference, skill, and tool.
 - Define typed runtime hook maps per domain.
 - Define `Registration`.

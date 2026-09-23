@@ -1,4 +1,4 @@
-import { define } from "@bioinformatica/plugin/v2/promise"
+import { define } from "@helix/plugin/v2/promise"
 
 export default define({
   id: "config-promise-plugin",

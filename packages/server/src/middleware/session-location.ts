@@ -1,21 +1,21 @@
-import { Database } from "@bioinformatica/core/database/database"
-import { LocationServiceMap } from "@bioinformatica/core/location-services"
-import { Location } from "@bioinformatica/core/location"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { SessionV2 } from "@bioinformatica/core/session"
-import { SessionTable } from "@bioinformatica/core/session/sql"
-import { WorkspaceV2 } from "@bioinformatica/core/workspace"
+import { Database } from "@helix/core/database/database"
+import { LocationServiceMap } from "@helix/core/location-services"
+import { Location } from "@helix/core/location"
+import { AbsolutePath } from "@helix/core/schema"
+import { SessionV2 } from "@helix/core/session"
+import { SessionTable } from "@helix/core/session/sql"
+import { WorkspaceV2 } from "@helix/core/workspace"
 import { eq } from "drizzle-orm"
 import { Effect, Layer, Schema } from "effect"
 import { HttpRouter } from "effect/unstable/http"
 import { HttpApiMiddleware } from "effect/unstable/httpapi"
-import { InvalidRequestError, SessionNotFoundError } from "@bioinformatica/protocol/errors"
+import { InvalidRequestError, SessionNotFoundError } from "@helix/protocol/errors"
 import type { LocationServices } from "../location"
 
 export class SessionLocationMiddleware extends HttpApiMiddleware.Service<
   SessionLocationMiddleware,
   { provides: LocationServices }
->()("@bioinformatica/HttpApiSessionLocation", {
+>()("@helix/HttpApiSessionLocation", {
   error: [InvalidRequestError, SessionNotFoundError],
 }) {}
 

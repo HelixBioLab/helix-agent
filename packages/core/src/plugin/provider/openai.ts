@@ -1,6 +1,6 @@
 import { createServer } from "node:http"
-import type { IntegrationOAuthMethodRegistration } from "@bioinformatica/plugin/v2/effect/integration"
-import { define } from "@bioinformatica/plugin/v2/effect/plugin"
+import type { IntegrationOAuthMethodRegistration } from "@helix/plugin/v2/effect/integration"
+import { define } from "@helix/plugin/v2/effect/plugin"
 import { Deferred, Effect } from "effect"
 import type { Scope } from "effect"
 import { Credential } from "../../credential"
@@ -189,7 +189,7 @@ export const OpenAIPlugin = define({
 } satisfies PluginInternal.Plugin<PluginInternal.Requirements | Scope.Scope>)
 
 function headers(contentType: string) {
-  return { "Content-Type": contentType, "User-Agent": `bioinformatica/${InstallationVersion}` }
+  return { "Content-Type": contentType, "User-Agent": `helix/${InstallationVersion}` }
 }
 
 function exchange(code: string, redirect: string, pkce: Pkce) {

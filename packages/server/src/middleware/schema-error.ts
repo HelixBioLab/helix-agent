@@ -1,8 +1,8 @@
 import { Effect } from "effect"
 import { HttpApiMiddleware } from "effect/unstable/httpapi"
-import { InvalidRequestError } from "@bioinformatica/protocol/errors"
-import { SchemaErrorMiddleware } from "@bioinformatica/protocol/middleware/schema-error"
-export { SchemaErrorMiddleware } from "@bioinformatica/protocol/middleware/schema-error"
+import { InvalidRequestError } from "@helix/protocol/errors"
+import { SchemaErrorMiddleware } from "@helix/protocol/middleware/schema-error"
+export { SchemaErrorMiddleware } from "@helix/protocol/middleware/schema-error"
 
 const REASON_LIMIT = 1024
 

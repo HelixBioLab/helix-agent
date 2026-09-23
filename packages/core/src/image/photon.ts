@@ -9,7 +9,7 @@ import { DecodeError, ResizerUnavailableError, SizeError } from "../image"
 const JPEG_QUALITIES = [80, 85, 70, 55, 40]
 
 export const make = Effect.gen(function* () {
-  ;(globalThis as typeof globalThis & { __BIOINFORMATICA_PHOTON_WASM_PATH?: string }).__BIOINFORMATICA_PHOTON_WASM_PATH =
+  ;(globalThis as typeof globalThis & { __HELIX_PHOTON_WASM_PATH?: string }).__HELIX_PHOTON_WASM_PATH =
     path.isAbsolute(photonWasm) ? photonWasm : fileURLToPath(new URL(photonWasm, import.meta.url))
   const loadPhoton = yield* Effect.cached(
     Effect.tryPromise({

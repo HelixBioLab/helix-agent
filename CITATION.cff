@@ -22,8 +22,8 @@ abstract: >-
 authors:
   - name: "Bioinformática.org"
 
-repository-code: "https://github.com/webiwabou/bioinformatica.org"
-url: "https://bioinformatica.org"
+repository-code: "https://github.com/HelixBioLab/helix-agent"
+url: "https://helixbiolab.github.io/helix-agent"
 license: MIT
 
 keywords:

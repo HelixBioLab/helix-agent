@@ -17,10 +17,10 @@ export function TestTuiContexts(
   return (
     <TuiPathsProvider
       value={{
-        cwd: props.cwd ?? props.directory ?? "/tmp/bioinformatica/packages/tui",
-        home: "/tmp/bioinformatica/home",
-        state: "/tmp/bioinformatica/state",
-        worktree: "/tmp/bioinformatica",
+        cwd: props.cwd ?? props.directory ?? "/tmp/helix/packages/tui",
+        home: "/tmp/helix/home",
+        state: "/tmp/helix/state",
+        worktree: "/tmp/helix",
         ...props.paths,
       }}
     >

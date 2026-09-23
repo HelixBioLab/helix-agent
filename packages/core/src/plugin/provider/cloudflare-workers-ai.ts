@@ -64,7 +64,7 @@ function sdkOptions(options: Record<string, any>) {
     baseURL: expandAccountId(options.baseURL),
     apiKey: process.env.CLOUDFLARE_API_KEY ?? options.apiKey,
     headers: {
-      "User-Agent": `bioinformatica/${InstallationVersion} cloudflare-workers-ai (${os.platform()} ${os.release()}; ${os.arch()})`,
+      "User-Agent": `helix/${InstallationVersion} cloudflare-workers-ai (${os.platform()} ${os.release()}; ${os.arch()})`,
       ...options.headers,
     },
     name: providerID,

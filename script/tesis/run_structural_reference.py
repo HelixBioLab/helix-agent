@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT/'evaluation/trp/reference/structural-f5'
-ENGINE = ROOT/'packages/bioinformatica/src/trp/inspect_structure.py.txt'
+ENGINE = ROOT/'packages/helix/src/trp/inspect_structure.py.txt'
 inspect = runpy.run_path(str(ENGINE))['inspect']
 
 def requests():

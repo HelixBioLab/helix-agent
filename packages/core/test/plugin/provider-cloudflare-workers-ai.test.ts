@@ -1,12 +1,12 @@
-import { AISDK } from "@bioinformatica/core/aisdk"
+import { AISDK } from "@helix/core/aisdk"
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { CloudflareWorkersAIPlugin } from "@bioinformatica/core/plugin/provider/cloudflare-workers-ai"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { ModelV2 } from "@helix/core/model"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { CloudflareWorkersAIPlugin } from "@helix/core/plugin/provider/cloudflare-workers-ai"
+import { ProviderV2 } from "@helix/core/provider"
 import type { LanguageModelV3 } from "@ai-sdk/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
@@ -200,7 +200,7 @@ describe("CloudflareWorkersAIPlugin", () => {
         const headers = yield* Effect.promise(() => Promise.resolve(cloudflareHeaders(result.sdk)))
         expect(headers.authorization).toBe("Bearer env-key")
         expect(headers.custom).toBe("header")
-        expect(headers["user-agent"]).toMatch(/^bioinformatica\/.* cloudflare-workers-ai \(.+\) ai-sdk\/openai-compatible\//)
+        expect(headers["user-agent"]).toMatch(/^helix\/.* cloudflare-workers-ai \(.+\) ai-sdk\/openai-compatible\//)
       }),
     ),
   )

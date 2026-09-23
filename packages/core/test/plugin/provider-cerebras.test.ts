@@ -1,12 +1,12 @@
-import { AISDK } from "@bioinformatica/core/aisdk"
+import { AISDK } from "@helix/core/aisdk"
 import { describe, expect, mock } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { CerebrasPlugin } from "@bioinformatica/core/plugin/provider/cerebras"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { ModelV2 } from "@helix/core/model"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { CerebrasPlugin } from "@helix/core/plugin/provider/cerebras"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -43,7 +43,7 @@ describe("CerebrasPlugin", () => {
       yield* addPlugin()
       expect((yield* catalog.provider.get(ProviderV2.ID.make("cerebras")))?.request.headers).toEqual({
         Existing: "1",
-        "X-Cerebras-3rd-Party-Integration": "bioinformatica",
+        "X-Cerebras-3rd-Party-Integration": "helix",
       })
     }),
   )

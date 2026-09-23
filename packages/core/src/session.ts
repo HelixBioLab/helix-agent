@@ -2,7 +2,7 @@ export * as SessionV2 from "./session"
 export * from "./session/schema"
 
 import { DateTime, Effect, Layer, Schema, Context, Stream } from "effect"
-import { ListAnchor } from "@bioinformatica/schema/session"
+import { ListAnchor } from "@helix/schema/session"
 import { and, asc, desc, eq, gt, like, lt, or, type SQL } from "drizzle-orm"
 import { ProjectV2 } from "./project"
 import { WorkspaceV2 } from "./workspace"
@@ -10,7 +10,7 @@ import { ModelV2 } from "./model"
 import { Location } from "./location"
 import { SessionMessage } from "./session/message"
 import { Prompt } from "./session/prompt"
-import { PromptInput } from "@bioinformatica/schema/prompt-input"
+import { PromptInput } from "@helix/schema/prompt-input"
 import { EventV2 } from "./event"
 import { Database } from "./database/database"
 import { SessionProjector } from "./session/projector"
@@ -34,9 +34,9 @@ import { SessionEvent } from "./session/event"
 import { SessionInput } from "./session/input"
 import { Snapshot } from "./snapshot"
 import { SessionRevert } from "./session/revert"
-import { Revert } from "@bioinformatica/schema/revert"
+import { Revert } from "@helix/schema/revert"
 import { FSUtil } from "./fs-util"
-import { SessionDurable } from "@bioinformatica/schema/durable-event-manifest"
+import { SessionDurable } from "@helix/schema/durable-event-manifest"
 
 export const RevertState = Revert.State
 export type RevertState = Revert.State
@@ -179,7 +179,7 @@ export interface Interface {
   }
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/Session") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/Session") {}
 
 const layer = Layer.effect(
   Service,

@@ -4,7 +4,7 @@ import { useTerminalDimensions } from "@opentui/solid"
 import { createEffect, createMemo, createSignal, For, Show } from "solid-js"
 import { useBindings, useKeymapSelector } from "../../keymap"
 import type { ActiveKey } from "@opentui/keymap"
-import type { TuiPlugin, TuiPluginApi } from "@bioinformatica/plugin/tui"
+import type { TuiPlugin, TuiPluginApi } from "@helix/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 
 const command = {

@@ -1,4 +1,4 @@
-import { TrpCatalog } from "../../packages/bioinformatica/src/trp/catalog"
+import { TrpCatalog } from "../../packages/helix/src/trp/catalog"
 import path from "node:path"
 
 const root = path.resolve(import.meta.dir, "../..")

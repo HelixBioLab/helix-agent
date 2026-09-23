@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@bioinformatica/protocol",
+  "name": "@helix/protocol",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@bioinformatica/schema": "workspace:*",
+    "@helix/schema": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

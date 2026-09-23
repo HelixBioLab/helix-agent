@@ -40,8 +40,8 @@ export function DialogModel(props: { providerID?: string }) {
             title: model.name ?? item.modelID,
             description: provider.name,
             category,
-            disabled: provider.id === "bioinformatica" && model.id.includes("-nano"),
-            footer: model.cost?.input === 0 && provider.id === "bioinformatica" ? "Free" : undefined,
+            disabled: provider.id === "helix" && model.id.includes("-nano"),
+            footer: model.cost?.input === 0 && provider.id === "helix" ? "Free" : undefined,
             onSelect: () => {
               onSelect(provider.id, model.id)
             },
@@ -61,7 +61,7 @@ export function DialogModel(props: { providerID?: string }) {
     const providerOptions = pipe(
       sync.data.provider,
       sortBy(
-        (provider) => provider.id !== "bioinformatica",
+        (provider) => provider.id !== "helix",
         (provider) => provider.name,
       ),
       flatMap((provider) =>
@@ -78,8 +78,8 @@ export function DialogModel(props: { providerID?: string }) {
               ? "(Favorite)"
               : undefined,
             category: connected() ? provider.name : undefined,
-            disabled: provider.id === "bioinformatica" && model.includes("-nano"),
-            footer: info.cost?.input === 0 && provider.id === "bioinformatica" ? "Free" : undefined,
+            disabled: provider.id === "helix" && model.includes("-nano"),
+            footer: info.cost?.input === 0 && provider.id === "helix" ? "Free" : undefined,
             onSelect() {
               onSelect(provider.id, model)
             },

@@ -1,13 +1,13 @@
-import { AISDK } from "@bioinformatica/core/aisdk"
+import { AISDK } from "@helix/core/aisdk"
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { ProviderPlugins } from "@bioinformatica/core/plugin/provider"
-import { OpenRouterPlugin } from "@bioinformatica/core/plugin/provider/openrouter"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { ModelV2 } from "@helix/core/model"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { ProviderPlugins } from "@helix/core/plugin/provider"
+import { OpenRouterPlugin } from "@helix/core/plugin/provider/openrouter"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -39,8 +39,8 @@ describe("OpenRouterPlugin", () => {
 
       expect((yield* catalog.provider.get(ProviderV2.ID.openrouter))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://bioinformatica.org/",
-        "X-Title": "bioinformatica",
+        "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/",
+        "X-Title": "helix",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.make("nvidia")))?.request.headers).toEqual({})
     }),

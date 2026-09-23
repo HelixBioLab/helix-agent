@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@bioinformatica/plugin",
+  "name": "@helix/plugin",
   "version": "1.17.18",
   "type": "module",
   "license": "MIT",
@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "@ai-sdk/provider": "3.0.8",
-    "@bioinformatica/sdk": "workspace:*",
+    "@helix/sdk": "workspace:*",
     "effect": "catalog:",
     "zod": "catalog:"
   },

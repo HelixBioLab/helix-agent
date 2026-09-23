@@ -1,6 +1,6 @@
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { SessionMessage } from "@bioinformatica/core/session/message"
-import { ToolRegistry } from "@bioinformatica/core/tool/registry"
+import { AgentV2 } from "@helix/core/agent"
+import { SessionMessage } from "@helix/core/session/message"
+import { ToolRegistry } from "@helix/core/tool/registry"
 import { Effect } from "effect"
 
 export const toolIdentity = {

@@ -1,4 +1,4 @@
-import type { TuiPluginApi } from "@bioinformatica/plugin/tui"
+import type { TuiPluginApi } from "@helix/plugin/tui"
 import { RGBA } from "@opentui/core"
 import { createTuiResolvedConfig } from "./tui-runtime"
 

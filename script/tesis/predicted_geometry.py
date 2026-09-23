@@ -18,7 +18,7 @@ import subprocess
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
-ENGINE = ROOT/'packages/bioinformatica/src/trp/inspect_structure.py.txt'
+ENGINE = ROOT/'packages/helix/src/trp/inspect_structure.py.txt'
 IMAGE = 'sha256:1dd91e70acb153a0bd9a51346fc001dd5025f851c9598697cdd37f07d9490b0a'
 VERSION = 'trp-predicted-geometry/1.0.0'
 

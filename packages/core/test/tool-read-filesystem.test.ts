@@ -1,10 +1,10 @@
 import { describe, expect } from "bun:test"
 import path from "path"
 import { Effect, FileSystem } from "effect"
-import { LayerNodePlatform } from "@bioinformatica/core/effect/app-node-platform"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { ReadToolFileSystem } from "@bioinformatica/core/tool/read-filesystem"
+import { LayerNodePlatform } from "@helix/core/effect/app-node-platform"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { FSUtil } from "@helix/core/fs-util"
+import { ReadToolFileSystem } from "@helix/core/tool/read-filesystem"
 import { testEffect } from "./lib/effect"
 
 const it = testEffect(LayerNode.compile(LayerNode.group([FSUtil.node, LayerNodePlatform.filesystem])))

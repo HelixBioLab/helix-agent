@@ -18,22 +18,22 @@ if (!semver.satisfies(process.versions.bun, expectedBunVersionRange)) {
 }
 
 const env = {
-  BIOINFORMATICA_CHANNEL: process.env["BIOINFORMATICA_CHANNEL"],
-  BIOINFORMATICA_BUMP: process.env["BIOINFORMATICA_BUMP"],
-  BIOINFORMATICA_VERSION: process.env["BIOINFORMATICA_VERSION"],
-  BIOINFORMATICA_RELEASE: process.env["BIOINFORMATICA_RELEASE"],
+  HELIX_CHANNEL: process.env["HELIX_CHANNEL"],
+  HELIX_BUMP: process.env["HELIX_BUMP"],
+  HELIX_VERSION: process.env["HELIX_VERSION"],
+  HELIX_RELEASE: process.env["HELIX_RELEASE"],
 }
 const CHANNEL = await (async () => {
-  if (env.BIOINFORMATICA_CHANNEL) return env.BIOINFORMATICA_CHANNEL
-  if (env.BIOINFORMATICA_BUMP) return "latest"
-  if (env.BIOINFORMATICA_VERSION && !env.BIOINFORMATICA_VERSION.startsWith("0.0.0-")) return "latest"
+  if (env.HELIX_CHANNEL) return env.HELIX_CHANNEL
+  if (env.HELIX_BUMP) return "latest"
+  if (env.HELIX_VERSION && !env.HELIX_VERSION.startsWith("0.0.0-")) return "latest"
   return await $`git branch --show-current`.text().then((x) => x.trim())
 })()
 const IS_PREVIEW = CHANNEL !== "latest"
 
 // The release version is derived from this repository's own git tags.
 //
-// It used to be derived from `registry.npmjs.org/bioinformatica/latest` — a package owned
+// It used to be derived from `registry.npmjs.org/helix/latest` — a package owned
 // by an unrelated third party — so every `latest`-channel release numbered itself
 // after a stranger's publishing schedule. Tags are the only version source this
 // project controls, and every published artifact is keyed to them, so deriving
@@ -41,10 +41,10 @@ const IS_PREVIEW = CHANNEL !== "latest"
 //
 // When no version tag exists there is deliberately no fallback: a real release
 // with no tag behind it is exactly the state this check exists to make
-// impossible, and a silent `0.0.1` would hide it. Set BIOINFORMATICA_VERSION to
+// impossible, and a silent `0.0.1` would hide it. Set HELIX_VERSION to
 // override.
 const VERSION = await (async () => {
-  if (env.BIOINFORMATICA_VERSION) return env.BIOINFORMATICA_VERSION
+  if (env.HELIX_VERSION) return env.HELIX_VERSION
   if (IS_PREVIEW) return `0.0.0-${CHANNEL}-${new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "")}`
   const latestTag = await $`git tag --list "v[0-9]*" --sort=-version:refname`
     .nothrow()
@@ -61,9 +61,9 @@ const VERSION = await (async () => {
       [
         "no version tag found in this repository, so there is no base to bump from.",
         "",
-        "Create the first release tag, or set BIOINFORMATICA_VERSION explicitly:",
+        "Create the first release tag, or set HELIX_VERSION explicitly:",
         "  git tag -a v0.1.0 -m 'first release' && git push origin v0.1.0",
-        "  BIOINFORMATICA_VERSION=0.1.0 bun run build",
+        "  HELIX_VERSION=0.1.0 bun run build",
       ].join("\n"),
     )
   }
@@ -71,13 +71,13 @@ const VERSION = await (async () => {
     .replace(/^v/, "")
     .split(".")
     .map((x: string) => Number(x) || 0)
-  const t = env.BIOINFORMATICA_BUMP?.toLowerCase()
+  const t = env.HELIX_BUMP?.toLowerCase()
   if (t === "major") return `${major + 1}.0.0`
   if (t === "minor") return `${major}.${minor + 1}.0`
   return `${major}.${minor}.${patch + 1}`
 })()
 
-const bot = ["actions-user", "bioinformatica", "bioinformatica-agent[bot]"]
+const bot = ["actions-user", "helix", "helix-agent[bot]"]
 const teamPath = path.resolve(import.meta.dir, "../../../.github/TEAM_MEMBERS")
 const team = [
   ...(await Bun.file(teamPath)
@@ -99,10 +99,10 @@ export const Script = {
     return IS_PREVIEW
   },
   get release(): boolean {
-    return !!env.BIOINFORMATICA_RELEASE
+    return !!env.HELIX_RELEASE
   },
   get team() {
     return team
   },
 }
-console.log(`bioinformatica script`, JSON.stringify(Script, null, 2))
+console.log(`helix script`, JSON.stringify(Script, null, 2))

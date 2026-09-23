@@ -1,10 +1,10 @@
 import { Context } from "effect"
 
-const bioinformaticaOrigin = /^https:\/\/([a-z0-9-]+\.)*bioinformatica\.org$/
+const helixOrigin = "https://helixbiolab.github.io"
 
 export type CorsOptions = { readonly cors?: ReadonlyArray<string> }
 
-export const CorsConfig = Context.Reference<CorsOptions | undefined>("@bioinformatica/ServerCorsConfig", {
+export const CorsConfig = Context.Reference<CorsOptions | undefined>("@helix/ServerCorsConfig", {
   defaultValue: () => undefined,
 })
 
@@ -15,7 +15,7 @@ export function isAllowedCorsOrigin(input: string | undefined, opts?: CorsOption
   if (input.startsWith("oc://renderer")) return true
   if (input === "tauri://localhost" || input === "http://tauri.localhost" || input === "https://tauri.localhost")
     return true
-  if (bioinformaticaOrigin.test(input)) return true
+  if (input === helixOrigin) return true
   return opts?.cors?.includes(input) ?? false
 }
 

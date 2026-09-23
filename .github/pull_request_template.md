@@ -40,7 +40,7 @@ los artefactos de proveniencia. Se puede borrar en cualquier otro caso.
 -->
 
 - [ ] He comprobado que el brazo sin capa sigue siendo equivalente al agente base:
-      `BIOINFORMATICA_ABLATE=all bioinformatica debug ablation --leaks`
+      `HELIX_ABLATE=all helix debug ablation --leaks`
 - [ ] Si el cambio afecta a lo que se escribe sobre una ejecución (manifiesto, protocolo,
       conteo de intervenciones, dossier), sigue verificándose en frío, sin modelo y sin red.
 
@@ -53,6 +53,6 @@ los artefactos de proveniencia. Se puede borrar en cualquier otro caso.
 
 <!--
 El título del PR sigue conventional commits: feat:, fix:, docs:, chore:, refactor:, test:,
-opcionalmente con el paquete afectado — p. ej. `fix(bioinformatica): …`.
+opcionalmente con el paquete afectado — p. ej. `fix(helix): …`.
 Ver CONTRIBUTING.md.
 -->

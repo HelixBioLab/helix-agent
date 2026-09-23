@@ -1,0 +1,582 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix acp --help 1`] = `
+"helix acp
+
+start ACP (Agent Client Protocol) server
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --port         port to listen on                                         [number] [default: 0]
+      --hostname     hostname to listen on                           [string] [default: "127.0.0.1"]
+      --mdns         enable mDNS service discovery (defaults hostname to 0.0.0.0)
+                                                                          [boolean] [default: false]
+      --mdns-domain  custom domain name for mDNS service (default: helix.local)
+                                                                   [string] [default: "helix.local"]
+      --cors         additional domains to allow for CORS                      [array] [default: []]
+      --cwd          working directory [string] [default: "<HOME>"]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix mcp --help 1`] = `
+"helix mcp
+
+manage MCP (Model Context Protocol) servers
+
+Commands:
+  helix mcp add [name]     add an MCP server
+  helix mcp list           list MCP servers and their status                           [aliases: ls]
+  helix mcp auth [name]    authenticate with an OAuth-enabled MCP server
+  helix mcp logout [name]  remove OAuth credentials for an MCP server
+  helix mcp debug <name>   debug OAuth connection for an MCP server
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix attach --help 1`] = `
+"helix attach <url>
+
+attach to a running helix server
+
+Positionals:
+  url  http://localhost:4096                                                     [string] [required]
+
+Options:
+  -h, --help          show help                                                            [boolean]
+  -v, --version       show version number                                                  [boolean]
+      --print-logs    print logs to stderr                                                 [boolean]
+      --log-level     log level                 [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure          run without external plugins                                         [boolean]
+      --dir           directory to run in                                                   [string]
+  -c, --continue      continue the last session                                            [boolean]
+  -s, --session       session id to continue                                                [string]
+      --fork          fork the session when continuing (use with --continue or --session)  [boolean]
+  -p, --password      basic auth password (defaults to HELIX_SERVER_PASSWORD)               [string]
+  -u, --username      basic auth username (defaults to HELIX_SERVER_USERNAME or 'helix')    [string]
+      --mini          start the minimal interactive interface             [boolean] [default: false]
+      --no-replay     disable mini session history replay on resume and after resize       [boolean]
+      --replay-limit  cap visible mini replay to the newest N messages                      [number]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix run --help 1`] = `
+"helix run [message..]
+
+run helix with a message
+
+Positionals:
+  message  message to send                                                     [array] [default: []]
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --command      the command to run, use message for args                               [string]
+  -c, --continue     continue the last session                                             [boolean]
+  -s, --session      session id to continue                                                 [string]
+      --fork         fork the session before continuing (requires --continue or --session) [boolean]
+      --share        share the session                                                     [boolean]
+  -m, --model        model to use in the format of provider/model                           [string]
+      --agent        agent to use                                                           [string]
+      --format       format: default (formatted) or json (raw JSON events)
+                                          [string] [choices: "default", "json"] [default: "default"]
+  -f, --file         file(s) to attach to message                                            [array]
+      --title        title for the session (uses truncated prompt if no value provided)     [string]
+      --attach       attach to a running helix server (e.g., http://localhost:4096)         [string]
+  -p, --password     basic auth password (defaults to HELIX_SERVER_PASSWORD)                [string]
+  -u, --username     basic auth username (defaults to HELIX_SERVER_USERNAME or 'helix')     [string]
+      --dir          directory to run in, path on remote server if attaching                [string]
+      --port         port for the local server (defaults to random port if no value provided)
+                                                                                            [number]
+      --variant      model variant (provider-specific reasoning effort, e.g., high, max, minimal)
+                                                                                            [string]
+      --thinking     show thinking blocks                                                  [boolean]
+  -i, --interactive  run in direct interactive split-footer mode          [boolean] [default: false]
+      --auto         auto-approve permissions that are not explicitly denied (dangerous!)
+                                                                          [boolean] [default: false]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix debug --help 1`] = `
+"helix debug
+
+debugging and troubleshooting tools
+
+Commands:
+  helix debug config                     show resolved configuration
+  helix debug lsp                        LSP debugging utilities
+  helix debug rg                         ripgrep debugging utilities
+  helix debug file                       file system debugging utilities
+  helix debug scrap                      list all known projects
+  helix debug skill                      list all available skills
+  helix debug env                        inspect the local nf-core execution environment and
+                                         remediation plan (read-only)
+  helix debug objective [statement]      show or set this project's standing campaign objective
+                                         (read-only without a statement)
+  helix debug repeatsdb                  inspect RepeatsDB — the already-annotated set a discovery
+                                         campaign subtracts (read-only)
+  helix debug sifts                      load the SIFTS PDB<->UniProt mapping and show its version
+                                         stamp (read-only, cached)
+  helix debug corpus <name>              write or inspect a versioned corpus snapshot in the
+                                         project's corpus/ folder
+  helix debug glue [directory]           list or materialise the coordinate-bookkeeping scripts
+                                         (SEQRES/ATOM mapping, fragment cutting, propagation)
+  helix debug ablation                   show which specialization layers are active, with the
+                                         hashes that prove it (read-only)
+  helix debug pipelines [query]          search the cached nf-core pipeline registry (read-only)
+  helix debug samplesheet <pipeline>     show an nf-core pipeline's samplesheet columns from its
+                                         schema (read-only)
+  helix debug run-command <pipeline>     build the nextflow run command for an nf-core pipeline
+                                         (does not run it)
+  helix debug resources                  show the recommended nf-core run resource ceiling for this
+                                         machine (read-only)
+  helix debug params <pipeline> [query]  explain an nf-core pipeline's parameters from its schema
+                                         (read-only)
+  helix debug diagnose [runDir]          diagnose a failed nf-core/Nextflow run from its logs
+                                         (read-only)
+  helix debug runs                       list recorded nf-core runs from this project's .helix/runs/
+                                         (read-only)
+  helix debug validate [pipelines..]     validate Helix Agent's generic capabilities across a
+                                         curated set of nf-core pipelines
+  helix debug manifest <outdir>          build a reproducibility manifest for a completed run's
+                                         outdir (read-only)
+  helix debug critique <analysis>        run the adaptive critique for an analysis type (read-only)
+  helix debug report [body]              render and claim-type-check a report body, optionally
+                                         saving it (read-only unless --out)
+  helix debug lint [directory]           run or parse nf-core lint results and report contribution
+                                         readiness (read-only)
+  helix debug fork [pipeline] [release]  plan/record a local pipeline fork, or show its divergence
+                                         from upstream (read-only)
+  helix debug hypothesis <file>          rank candidate hypotheses from a JSON file (read-only)
+  helix debug pubmed <query>             search PubMed for literature with citations (read-only)
+  helix debug gene <symbol>              look up a gene in Ensembl (read-only)
+  helix debug protein <query>            search UniProt for a protein (read-only)
+  helix debug structure <query>          look up a PDB structure by ID or keyword (read-only)
+  helix debug pathway <query>            find KEGG pathways by keyword (read-only)
+  helix debug snapshot                   snapshot debugging utilities
+  helix debug startup                    print startup timing
+  helix debug agent <name>               show agent configuration details
+  helix debug v2                         debug v2 catalog and built-in plugins
+  helix debug info                       show debug information
+  helix debug paths                      show global paths (data, config, cache, state)
+  helix debug wait                       wait indefinitely (for debugging)
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix providers --help 1`] = `
+"helix providers
+
+manage AI providers and credentials
+
+Commands:
+  helix providers list               list providers and credentials                    [aliases: ls]
+  helix providers login [url]        log in to a provider
+  helix providers logout [provider]  log out from a configured provider
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix agent --help 1`] = `
+"helix agent
+
+manage agents
+
+Commands:
+  helix agent create  create a new agent
+  helix agent list    list all available agents
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix uninstall --help 1`] = `
+"helix uninstall
+
+uninstall helix and remove all related files
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+  -c, --keep-config  keep configuration files                             [boolean] [default: false]
+  -d, --keep-data    keep session data and snapshots                      [boolean] [default: false]
+      --dry-run      show what would be removed without removing          [boolean] [default: false]
+  -f, --force        skip confirmation prompts                            [boolean] [default: false]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix serve --help 1`] = `
+"helix serve
+
+starts a headless helix server
+
+Options:
+  -h, --help         show help                                                             [boolean]
+  -v, --version      show version number                                                   [boolean]
+      --print-logs   print logs to stderr                                                  [boolean]
+      --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure         run without external plugins                                          [boolean]
+      --port         port to listen on                                         [number] [default: 0]
+      --hostname     hostname to listen on                           [string] [default: "127.0.0.1"]
+      --mdns         enable mDNS service discovery (defaults hostname to 0.0.0.0)
+                                                                          [boolean] [default: false]
+      --mdns-domain  custom domain name for mDNS service (default: helix.local)
+                                                                   [string] [default: "helix.local"]
+      --cors         additional domains to allow for CORS                      [array] [default: []]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix models --help 1`] = `
+"helix models [provider]
+
+list all available models
+
+Positionals:
+  provider  provider ID to filter models by                                                 [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --verbose     use more verbose model output (includes metadata like costs)           [boolean]
+      --refresh     refresh the models cache from models.dev                               [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix stats --help 1`] = `
+"helix stats
+
+show token usage and cost statistics
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --days        show stats for the last N days (default: all time)                      [number]
+      --tools       number of tools to show (default: all)                                  [number]
+      --models      show model statistics (default: hidden). Pass a number to show top N, otherwise
+                    shows all
+      --project     filter by project (default: all projects, empty string: current project)[string]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix export --help 1`] = `
+"helix export [sessionID]
+
+export session data as JSON
+
+Positionals:
+  sessionID  session id to export                                                           [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --sanitize    redact sensitive transcript and file data                              [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix import --help 1`] = `
+"helix import <file>
+
+import session data from JSON file or URL
+
+Positionals:
+  file  path to JSON file or share URL                                           [string] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix pr --help 1`] = `
+"helix pr <number>
+
+fetch and checkout a GitHub PR branch, then run helix
+
+Positionals:
+  number  PR number to checkout                                                  [number] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix session --help 1`] = `
+"helix session
+
+manage sessions
+
+Commands:
+  helix session list                list sessions
+  helix session delete <sessionID>  delete a session
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix plugin --help 1`] = `
+"helix plugin <module>
+
+install plugin and update config
+
+Positionals:
+  module  npm module name                                                        [string] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -g, --global      install in global config                              [boolean] [default: false]
+  -f, --force       replace existing plugin version                       [boolean] [default: false]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix db --help 1`] = `
+"helix db
+
+database tools
+
+Commands:
+  helix db [query]     open an interactive sqlite3 shell or run a query                    [default]
+  helix db path        print the database path
+
+Positionals:
+  query  SQL query to execute                                                               [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --format      Output format                 [string] [choices: "json", "tsv"] [default: "tsv"]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix mcp list --help 1`] = `
+"helix mcp list
+
+list MCP servers and their status
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix mcp add --help 1`] = `
+"helix mcp add [name]
+
+add an MCP server
+
+Positionals:
+  name  name of the MCP server                                                              [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+      --url         URL for a remote MCP server                                             [string]
+      --env         environment variable for a local MCP server (KEY=VALUE)                  [array]
+      --header      HTTP header for a remote MCP server (KEY=VALUE)                          [array]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix mcp auth --help 1`] = `
+"helix mcp auth [name]
+
+authenticate with an OAuth-enabled MCP server
+
+Commands:
+  helix mcp auth list  list OAuth-capable MCP servers and their auth status            [aliases: ls]
+
+Positionals:
+  name  name of the MCP server                                                              [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix mcp logout --help 1`] = `
+"helix mcp logout [name]
+
+remove OAuth credentials for an MCP server
+
+Positionals:
+  name  name of the MCP server                                                              [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix providers list --help 1`] = `
+"helix providers list
+
+list providers and credentials
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix providers login --help 1`] = `
+"helix providers login [url]
+
+log in to a provider
+
+Positionals:
+  url  helix auth provider                                                                  [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -p, --provider    provider id or name to log in to (skips provider selection)             [string]
+  -m, --method      login method label (skips method selection)                             [string]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix providers logout --help 1`] = `
+"helix providers logout [provider]
+
+log out from a configured provider
+
+Positionals:
+  provider  provider id or name to log out from                                             [string]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix agent create --help 1`] = `
+"helix agent create
+
+create a new agent
+
+Options:
+  -h, --help                  show help                                                    [boolean]
+  -v, --version               show version number                                          [boolean]
+      --print-logs            print logs to stderr                                         [boolean]
+      --log-level             log level         [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure                  run without external plugins                                 [boolean]
+      --path                  directory path to generate the agent file                     [string]
+      --description           what the agent should do                                      [string]
+      --mode                  agent mode            [string] [choices: "all", "primary", "subagent"]
+      --permissions, --tools  comma-separated list of permissions to allow (default: all).
+                              Available: "bash, read, edit, glob, grep, webfetch, task, todowrite,
+                              websearch, lsp, skill"                                        [string]
+  -m, --model                 model to use in the format of provider/model                  [string]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix agent list --help 1`] = `
+"helix agent list
+
+list all available agents
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix session list --help 1`] = `
+"helix session list
+
+list sessions
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]
+  -n, --max-count   limit to N most recent sessions                                         [number]
+      --format      output format             [string] [choices: "table", "json"] [default: "table"]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix session delete --help 1`] = `
+"helix session delete <sessionID>
+
+delete a session
+
+Positionals:
+  sessionID  session ID to delete                                                [string] [required]
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;
+
+exports[`helix CLI help-text snapshots every documented command emits stable help text: helix db path --help 1`] = `
+"helix db path
+
+print the database path
+
+Options:
+  -h, --help        show help                                                              [boolean]
+  -v, --version     show version number                                                    [boolean]
+      --print-logs  print logs to stderr                                                   [boolean]
+      --log-level   log level                   [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+      --pure        run without external plugins                                           [boolean]"
+`;

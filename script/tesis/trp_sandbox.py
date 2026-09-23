@@ -154,7 +154,7 @@ def main():
                "TMPDIR": str(workspace / "tmp"), "NXF_HOME": a.nextflow_home,
                "NXF_OFFLINE": "true", "NXF_DISABLE_CHECK_LATEST": "true",
                "NXF_OPTS": f"-Xmx1536m -XX:ActiveProcessorCount=1 -Djava.io.tmpdir={workspace / 'tmp'}",
-               "BIOINFORMATICA_TRP_SANDBOX": str(state_path),
+               "HELIX_TRP_SANDBOX": str(state_path),
                "TRP_SANDBOX_WORKSPACE": str(workspace), "TRP_REFERENCE_OUTPUT": str(workspace / "export/reference"),
                "LC_ALL": "C", "LANG": "C.UTF-8"}
         for item in a.env:

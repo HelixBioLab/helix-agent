@@ -18,18 +18,18 @@ import { useTuiConfig } from "./config"
 import { TuiKeybind } from "./config/keybind"
 
 export const LEADER_TOKEN = "leader"
-export const BIOINFORMATICA_BASE_MODE = "base"
+export const HELIX_BASE_MODE = "base"
 export const COMMAND_PALETTE_COMMAND = "command.palette.show"
 
-const BIOINFORMATICA_MODE_KEY = "bioinformatica.mode"
+const HELIX_MODE_KEY = "helix.mode"
 
-export const BioinformaticaKeymapProvider = KeymapProvider
-export const useBioinformaticaKeymap = useKeymap
+export const HelixKeymapProvider = KeymapProvider
+export const useHelixKeymap = useKeymap
 
 export { useBindings, useKeymapSelector }
 
 export type OpenTuiKeymap = ReturnType<typeof useKeymap>
-type BioinformaticaModeStack = ReturnType<typeof createBioinformaticaModeStack>
+type HelixModeStack = ReturnType<typeof createHelixModeStack>
 type CommandSlashEntry = {
   display: string
   description?: string
@@ -44,18 +44,18 @@ type BindingLookup = {
 type FormatConfig = { keybinds: BindingLookup }
 type ResolvedKeymapConfig = FormatConfig & { leader_timeout: number }
 
-const modeStacks = new WeakMap<OpenTuiKeymap, BioinformaticaModeStack>()
+const modeStacks = new WeakMap<OpenTuiKeymap, HelixModeStack>()
 
 function isVisiblePaletteCommand(command: Command) {
   return command.hidden !== true && command.name !== COMMAND_PALETTE_COMMAND
 }
 
-export function createBioinformaticaModeStack(keymap: OpenTuiKeymap) {
-  keymap.setData(BIOINFORMATICA_MODE_KEY, BIOINFORMATICA_BASE_MODE)
+export function createHelixModeStack(keymap: OpenTuiKeymap) {
+  keymap.setData(HELIX_MODE_KEY, HELIX_BASE_MODE)
 
   const offFields = keymap.registerLayerFields({
     mode(value, ctx) {
-      ctx.require(BIOINFORMATICA_MODE_KEY, value)
+      ctx.require(HELIX_MODE_KEY, value)
     },
   })
 
@@ -63,12 +63,12 @@ export function createBioinformaticaModeStack(keymap: OpenTuiKeymap) {
   let disposed = false
 
   const update = () => {
-    keymap.setData(BIOINFORMATICA_MODE_KEY, stack.at(-1)?.mode ?? BIOINFORMATICA_BASE_MODE)
+    keymap.setData(HELIX_MODE_KEY, stack.at(-1)?.mode ?? HELIX_BASE_MODE)
   }
 
   const stackApi = {
     current() {
-      return stack.at(-1)?.mode ?? BIOINFORMATICA_BASE_MODE
+      return stack.at(-1)?.mode ?? HELIX_BASE_MODE
     },
     push(mode: string) {
       if (disposed) return () => {}
@@ -90,7 +90,7 @@ export function createBioinformaticaModeStack(keymap: OpenTuiKeymap) {
       disposed = true
       stack.length = 0
       offFields()
-      keymap.setData(BIOINFORMATICA_MODE_KEY, undefined)
+      keymap.setData(HELIX_MODE_KEY, undefined)
       modeStacks.delete(keymap)
     },
   }
@@ -99,13 +99,13 @@ export function createBioinformaticaModeStack(keymap: OpenTuiKeymap) {
   return stackApi
 }
 
-export function useBioinformaticaModeStack() {
-  return getBioinformaticaModeStack(useBioinformaticaKeymap())
+export function useHelixModeStack() {
+  return getHelixModeStack(useHelixKeymap())
 }
 
-export function getBioinformaticaModeStack(keymap: OpenTuiKeymap) {
+export function getHelixModeStack(keymap: OpenTuiKeymap) {
   const value = modeStacks.get(keymap)
-  if (!value) throw new Error("Bioinformatica mode stack is not registered for this keymap")
+  if (!value) throw new Error("Helix mode stack is not registered for this keymap")
   return value
 }
 
@@ -211,8 +211,8 @@ export function formatKeyBindings(bindings: Parameters<typeof formatCommandBindi
   return formatCommandBindingsExtra(bindings, formatOptions(config))
 }
 
-export function registerBioinformaticaKeymap(keymap: OpenTuiKeymap, renderer: CliRenderer, config: ResolvedKeymapConfig) {
-  const modeStack = createBioinformaticaModeStack(keymap)
+export function registerHelixKeymap(keymap: OpenTuiKeymap, renderer: CliRenderer, config: ResolvedKeymapConfig) {
+  const modeStack = createHelixModeStack(keymap)
   const offCommaBindings = registerCommaBindings(keymap)
   const offAliasExpander = registerKeyAliases(keymap)
   const offBaseLayout = registerBaseLayoutFallback(keymap)
@@ -258,7 +258,7 @@ export function useCommandShortcut(command: string): Accessor<string> {
 }
 
 export function useCommandSlashes(): Accessor<readonly CommandSlashEntry[]> {
-  const keymap = useBioinformaticaKeymap()
+  const keymap = useHelixKeymap()
   const entries = useKeymapSelector((keymap: OpenTuiKeymap) =>
     keymap.getCommandEntries({
       visibility: "reachable",

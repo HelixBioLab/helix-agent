@@ -1,11 +1,11 @@
 export * as SessionRunnerModel from "./model"
 
 import { makeLocationNode } from "../../effect/app-node"
-import { type Model } from "@bioinformatica/llm"
-import * as AnthropicMessages from "@bioinformatica/llm/protocols/anthropic-messages"
-import * as OpenAICompatibleChat from "@bioinformatica/llm/protocols/openai-compatible-chat"
-import * as OpenAIResponses from "@bioinformatica/llm/protocols/openai-responses"
-import { Auth, type AnyRoute } from "@bioinformatica/llm/route"
+import { type Model } from "@helix/llm"
+import * as AnthropicMessages from "@helix/llm/protocols/anthropic-messages"
+import * as OpenAICompatibleChat from "@helix/llm/protocols/openai-compatible-chat"
+import * as OpenAIResponses from "@helix/llm/protocols/openai-responses"
+import { Auth, type AnyRoute } from "@helix/llm/route"
 import { Context, Effect, Layer, Schema } from "effect"
 import { produce } from "immer"
 import { Catalog } from "../../catalog"
@@ -75,7 +75,7 @@ export interface Interface {
   readonly resolve: (session: SessionSchema.Info) => Effect.Effect<Model, Error>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/SessionRunnerModel") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/SessionRunnerModel") {}
 
 /** Test or embedding seam for supplying a model resolver directly. */
 export const layerWith = (resolve: Interface["resolve"]) => Layer.succeed(Service, Service.of({ resolve }))

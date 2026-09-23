@@ -3,9 +3,9 @@ import { $ } from "bun"
 import fs from "fs/promises"
 import path from "path"
 import { Effect } from "effect"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { Git } from "@bioinformatica/core/git"
-import { AbsolutePath, RelativePath } from "@bioinformatica/core/schema"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { Git } from "@helix/core/git"
+import { AbsolutePath, RelativePath } from "@helix/core/schema"
 import { branch, commit, gitRemote } from "./fixture/git"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
@@ -74,7 +74,7 @@ async function initRepo(directory: string) {
   await $`git init`.cwd(directory).quiet()
   await $`git config core.fsmonitor false`.cwd(directory).quiet()
   await $`git config commit.gpgsign false`.cwd(directory).quiet()
-  await $`git config user.email test@bioinformatica.test`.cwd(directory).quiet()
+  await $`git config user.email test@helix.test`.cwd(directory).quiet()
   await $`git config user.name Test`.cwd(directory).quiet()
   await $`git commit --allow-empty -m root`.cwd(directory).quiet()
 }

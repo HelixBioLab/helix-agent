@@ -8,7 +8,7 @@ export function sessionEpilogue(input: { title: string; sessionID?: string }) {
   const weak = (text: string) => `${dim}${text.padEnd(10, " ")}${reset}`
   return [
     `  ${weak("Session")}${bold}${input.title}${reset}`,
-    `  ${weak("Continue")}${bold}bioinformatica -s ${input.sessionID}${reset}`,
+    `  ${weak("Continue")}${bold}helix -s ${input.sessionID}${reset}`,
     "",
   ].join("\n")
 }

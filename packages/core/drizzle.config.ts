@@ -7,10 +7,10 @@ import { xdgData } from "xdg-basedir"
 // `Global.Path.data` in src/global.ts, i.e. the XDG data directory — rather than
 // pinning one developer's home directory into the repository.
 //
-// `BIOINFORMATICA_DB` overrides it, matching the flag `Database.path()` reads.
+// `HELIX_DB` overrides it, matching the flag `Database.path()` reads.
 const url =
-  process.env["BIOINFORMATICA_DB"] ??
-  path.join(xdgData ?? path.join(process.cwd(), ".xdg"), "bioinformatica", "bioinformatica.db")
+  process.env["HELIX_DB"] ??
+  path.join(xdgData ?? path.join(process.cwd(), ".xdg"), "helix", "helix.db")
 
 export default defineConfig({
   dialect: "sqlite",

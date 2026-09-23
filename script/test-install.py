@@ -30,7 +30,7 @@ class InstallerTest(unittest.TestCase):
             payload = b'#!/bin/sh\necho 9.8.7\n'
             archive = root / 'fixture.tar.gz'
             with tarfile.open(archive, 'w:gz') as tar:
-                info = tarfile.TarInfo('bioinformatica')
+                info = tarfile.TarInfo('helix')
                 info.size = len(payload)
                 info.mode = 0o755
                 tar.addfile(info, io.BytesIO(payload))
@@ -74,7 +74,7 @@ cp "$TEST_ARCHIVE" "$output"
                 binary.write_bytes(payload)
                 args += ['--binary', str(binary)]
             result = subprocess.run(args, env=env, capture_output=True, text=True, timeout=15)
-            target = home / '.bioinformatica' / 'bin' / 'bioinformatica'
+            target = home / '.helix' / 'bin' / 'helix'
             logs = log.read_text() if log.exists() else ''
             self.assertNotIn('snap-invoked', logs)
             if fail or (not downloaders and not local):
@@ -93,6 +93,8 @@ cp "$TEST_ARCHIVE" "$output"
         logs, _ = self.run_install(['wget'])
         self.assertIn('api.github.com', logs)
         self.assertIn('/wget ', logs)
+        self.assertIn('api.github.com/repos/HelixBioLab/helix-agent/releases/latest', logs)
+        self.assertIn('github.com/HelixBioLab/helix-agent/releases/latest/download/helix-', logs)
 
     def test_curl_without_wget(self):
         self.run_install(['curl'])

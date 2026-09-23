@@ -1,10 +1,10 @@
-import { SessionMessage } from "@bioinformatica/schema/session-message"
-import { SessionInput } from "@bioinformatica/schema/session-input"
-import { PromptInput } from "@bioinformatica/schema/prompt-input"
-import { Session } from "@bioinformatica/schema/session"
-import { Project } from "@bioinformatica/schema/project"
-import { AbsolutePath, NonNegativeInt, PositiveInt, RelativePath, statics } from "@bioinformatica/schema/schema"
-import { Workspace } from "@bioinformatica/schema/workspace"
+import { SessionMessage } from "@helix/schema/session-message"
+import { SessionInput } from "@helix/schema/session-input"
+import { PromptInput } from "@helix/schema/prompt-input"
+import { Session } from "@helix/schema/session"
+import { Project } from "@helix/schema/project"
+import { AbsolutePath, NonNegativeInt, PositiveInt, RelativePath, statics } from "@helix/schema/schema"
+import { Workspace } from "@helix/schema/workspace"
 import { Context, Effect, Encoding, Result, Schema, Struct } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiMiddleware, HttpApiSchema, OpenApi } from "effect/unstable/httpapi"
 import {
@@ -16,11 +16,11 @@ import {
   SessionNotFoundError,
   UnknownError,
 } from "../errors"
-import { Agent } from "@bioinformatica/schema/agent"
-import { Model } from "@bioinformatica/schema/model"
-import { Location } from "@bioinformatica/schema/location"
-import { Revert } from "@bioinformatica/schema/revert"
-import { SessionEvent } from "@bioinformatica/schema/session-event"
+import { Agent } from "@helix/schema/agent"
+import { Model } from "@helix/schema/model"
+import { Location } from "@helix/schema/location"
+import { Revert } from "@helix/schema/revert"
+import { SessionEvent } from "@helix/schema/session-event"
 
 const SessionsQueryFields = {
   workspace: Workspace.ID.pipe(Schema.optional),
@@ -150,7 +150,7 @@ export const makeSessionGroup = <I extends HttpApiMiddleware.AnyId, S>(sessionLo
           identifier: "v2.session.active",
           summary: "List active sessions",
           description:
-            "Retrieve foreground Session drains currently owned by this Bioinformatica process. Sessions absent from the result are inactive.",
+            "Retrieve foreground Session drains currently owned by this Helix process. Sessions absent from the result are inactive.",
         }),
       ),
     )
@@ -352,7 +352,7 @@ export const makeSessionGroup = <I extends HttpApiMiddleware.AnyId, S>(sessionLo
           OpenApi.annotations({
             identifier: "v2.session.interrupt",
             summary: "Interrupt session execution",
-            description: "Interrupt active execution owned by this Bioinformatica process. Idle interruption is a no-op.",
+            description: "Interrupt active execution owned by this Helix process. Idle interruption is a no-op.",
           }),
         ),
     )

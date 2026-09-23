@@ -1,1 +1,1 @@
-export * as Identifier from "@bioinformatica/schema/identifier"
+export * as Identifier from "@helix/schema/identifier"

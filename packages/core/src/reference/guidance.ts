@@ -29,7 +29,7 @@ export interface Interface {
   readonly load: () => Effect.Effect<SystemContext.SystemContext>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/ReferenceGuidance") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/ReferenceGuidance") {}
 
 const layer = Layer.effect(
   Service,

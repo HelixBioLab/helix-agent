@@ -1,7 +1,7 @@
-import { Global } from "@bioinformatica/core/global"
-import { InstallationVersion } from "@bioinformatica/core/installation/version"
-import { createBioinformaticaClient } from "@bioinformatica/sdk/v2/client"
-import { ServerAuth } from "@bioinformatica/server/auth"
+import { Global } from "@helix/core/global"
+import { InstallationVersion } from "@helix/core/installation/version"
+import { createHelixClient } from "@helix/sdk/v2/client"
+import { ServerAuth } from "@helix/server/auth"
 import { Context, Effect, FileSystem, Layer, Option, Schedule, Schema, Scope } from "effect"
 import { HttpServer } from "effect/unstable/http"
 import { randomBytes, randomUUID } from "crypto"
@@ -9,7 +9,7 @@ import { spawn } from "node:child_process"
 import path from "path"
 
 export interface Interface {
-  readonly client: () => Effect.Effect<ReturnType<typeof createBioinformaticaClient>, unknown>
+  readonly client: () => Effect.Effect<ReturnType<typeof createHelixClient>, unknown>
   readonly transport: () => Effect.Effect<{ url: string; headers: RequestInit["headers"] }, unknown>
   readonly start: () => Effect.Effect<string, Error>
   readonly status: () => Effect.Effect<string | undefined>
@@ -18,7 +18,7 @@ export interface Interface {
   readonly register: (address: HttpServer.Address) => Effect.Effect<void, unknown, Scope.Scope>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/cli/Daemon") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/cli/Daemon") {}
 
 const Registration = Schema.Struct({
   id: Schema.optional(Schema.String),
@@ -60,7 +60,7 @@ export const layer = Layer.effect(
     })
 
     const createClient = Effect.fnUntraced(function* (url: string) {
-      return createBioinformaticaClient({ baseUrl: url, headers: ServerAuth.headers({ password: yield* password() }) })
+      return createHelixClient({ baseUrl: url, headers: ServerAuth.headers({ password: yield* password() }) })
     })
 
     const healthy = Effect.fnUntraced(function* () {
@@ -140,7 +140,7 @@ export const layer = Layer.effect(
 
     const client = Effect.fn("cli.daemon.client")(function* () {
       const connection = yield* transport()
-      return createBioinformaticaClient({ baseUrl: connection.url, headers: connection.headers })
+      return createHelixClient({ baseUrl: connection.url, headers: connection.headers })
     })
 
     const status = Effect.fn("cli.daemon.status")(function* () {

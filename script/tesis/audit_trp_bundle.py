@@ -8,7 +8,7 @@ import shutil
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[2]
-VERIFY = ROOT / 'packages/bioinformatica/src/trp/verify_bundle.py.txt'
+VERIFY = ROOT / 'packages/helix/src/trp/verify_bundle.py.txt'
 
 
 def main():

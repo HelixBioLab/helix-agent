@@ -11,9 +11,9 @@ export const NvidiaPlugin = define({
           if (item.provider.api.package !== "@ai-sdk/openai-compatible") continue
           if (item.provider.api.url !== "https://integrate.api.nvidia.com/v1") continue
           evt.provider.update(item.provider.id, (provider) => {
-            provider.request.headers["HTTP-Referer"] = "https://bioinformatica.org/"
-            provider.request.headers["X-Title"] = "bioinformatica"
-            provider.request.headers["X-BILLING-INVOKE-ORIGIN"] ??= "Bioinformatica"
+            provider.request.headers["HTTP-Referer"] = "https://helixbiolab.github.io/helix-agent/"
+            provider.request.headers["X-Title"] = "helix"
+            provider.request.headers["X-BILLING-INVOKE-ORIGIN"] ??= "Helix"
           })
         }
       }),

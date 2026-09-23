@@ -1,0 +1,32 @@
+/** @jsxImportSource @opentui/solid */
+import {
+  TuiPathsProvider,
+  TuiStartupProvider,
+  TuiTerminalEnvironmentProvider,
+  type TuiPaths,
+} from "@helix/tui/context/runtime"
+import type { ParentProps } from "solid-js"
+
+export function TestTuiContexts(
+  props: ParentProps<{
+    cwd?: string
+    directory?: string
+    paths?: Partial<TuiPaths>
+  }>,
+) {
+  return (
+    <TuiPathsProvider
+      value={{
+        cwd: props.cwd ?? props.directory ?? "/tmp/helix/packages/helix",
+        home: "/tmp/helix/home",
+        state: "/tmp/helix/state",
+        worktree: "/tmp/helix",
+        ...props.paths,
+      }}
+    >
+      <TuiTerminalEnvironmentProvider value={{ platform: "linux" }}>
+        <TuiStartupProvider value={{ skipInitialLoading: false }}>{props.children}</TuiStartupProvider>
+      </TuiTerminalEnvironmentProvider>
+    </TuiPathsProvider>
+  )
+}

@@ -1,4 +1,4 @@
-import type { ReferenceGitSource, ReferenceLocalSource } from "@bioinformatica/sdk/v2/types"
+import type { ReferenceGitSource, ReferenceLocalSource } from "@helix/sdk/v2/types"
 import type { Hooks } from "./registration.js"
 
 export interface ReferenceDraft {

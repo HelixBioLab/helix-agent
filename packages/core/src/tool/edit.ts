@@ -6,8 +6,8 @@
  */
 export * as EditTool from "./edit"
 
-import { ToolFailure } from "@bioinformatica/llm"
-import { FileDiff } from "@bioinformatica/schema/file-diff"
+import { ToolFailure } from "@helix/llm"
+import { FileDiff } from "@helix/schema/file-diff"
 import { createTwoFilesPatch, diffLines } from "diff"
 import { Effect, Layer, Schema } from "effect"
 import { makeLocationNode } from "../effect/app-node"

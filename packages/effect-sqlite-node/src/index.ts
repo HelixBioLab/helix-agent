@@ -17,8 +17,8 @@ import * as Statement from "effect/unstable/sql/Statement"
 
 const ATTR_DB_SYSTEM_NAME = "db.system.name"
 
-export const TypeId: TypeId = "~@bioinformatica/effect-sqlite-node/NodeSqliteClient"
-export type TypeId = "~@bioinformatica/effect-sqlite-node/NodeSqliteClient"
+export const TypeId: TypeId = "~@helix/effect-sqlite-node/NodeSqliteClient"
+export type TypeId = "~@helix/effect-sqlite-node/NodeSqliteClient"
 
 export interface SqliteClient extends Client.SqlClient {
   readonly [TypeId]: TypeId
@@ -27,7 +27,7 @@ export interface SqliteClient extends Client.SqlClient {
   readonly updateValues: never
 }
 
-export const SqliteClient = Context.Service<SqliteClient>("@bioinformatica/effect-sqlite-node/NodeSqliteClient")
+export const SqliteClient = Context.Service<SqliteClient>("@helix/effect-sqlite-node/NodeSqliteClient")
 
 export interface SqliteClientConfig {
   readonly filename: string

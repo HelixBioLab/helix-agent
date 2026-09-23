@@ -6,7 +6,7 @@ import { Database } from "../database/database"
 import { makeGlobalNode } from "../effect/app-node"
 import { ProjectV2 } from "../project"
 import { PermissionTable } from "./sql"
-import { PermissionSaved } from "@bioinformatica/schema/permission-saved"
+import { PermissionSaved } from "@helix/schema/permission-saved"
 
 export const ID = PermissionSaved.ID
 export type ID = typeof ID.Type
@@ -32,7 +32,7 @@ export interface Interface {
   readonly remove: (id: ID) => Effect.Effect<void>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/PermissionSaved") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/PermissionSaved") {}
 
 const layer = Layer.effect(
   Service,

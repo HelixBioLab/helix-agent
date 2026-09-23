@@ -4,19 +4,19 @@ import fs from "fs/promises"
 import path from "path"
 import { eq } from "drizzle-orm"
 import { Effect } from "effect"
-import { MoveSession } from "@bioinformatica/core/control-plane/move-session"
-import { Database } from "@bioinformatica/core/database/database"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { EventV2 } from "@bioinformatica/core/event"
-import { Project } from "@bioinformatica/core/project"
-import { ProjectTable } from "@bioinformatica/core/project/sql"
-import { ProjectDirectories } from "@bioinformatica/core/project/directories"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { SessionV2 } from "@bioinformatica/core/session"
-import { SessionProjector } from "@bioinformatica/core/session/projector"
-import { SessionTable } from "@bioinformatica/core/session/sql"
-import { SessionStore } from "@bioinformatica/core/session/store"
+import { MoveSession } from "@helix/core/control-plane/move-session"
+import { Database } from "@helix/core/database/database"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { EventV2 } from "@helix/core/event"
+import { Project } from "@helix/core/project"
+import { ProjectTable } from "@helix/core/project/sql"
+import { ProjectDirectories } from "@helix/core/project/directories"
+import { AbsolutePath } from "@helix/core/schema"
+import { SessionV2 } from "@helix/core/session"
+import { SessionProjector } from "@helix/core/session/projector"
+import { SessionTable } from "@helix/core/session/sql"
+import { SessionStore } from "@helix/core/session/store"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
 
@@ -43,7 +43,7 @@ async function initRepo(directory: string) {
   await $`git config core.autocrlf false`.cwd(directory).quiet()
   await $`git config core.fsmonitor false`.cwd(directory).quiet()
   await $`git config commit.gpgsign false`.cwd(directory).quiet()
-  await $`git config user.email test@bioinformatica.test`.cwd(directory).quiet()
+  await $`git config user.email test@helix.test`.cwd(directory).quiet()
   await $`git config user.name Test`.cwd(directory).quiet()
   await fs.writeFile(path.join(directory, "tracked.txt"), "initial\n")
   await $`git add tracked.txt`.cwd(directory).quiet()

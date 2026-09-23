@@ -54,7 +54,7 @@ export type Interface = ChildProcessSpawner["Service"] & {
   ) => Stream.Stream<string, AppProcessError>
 }
 
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/AppProcess") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/AppProcess") {}
 
 export const requireSuccess = (result: RunResult): Effect.Effect<RunResult, AppProcessError> =>
   result.exitCode === 0

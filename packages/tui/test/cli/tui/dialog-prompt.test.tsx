@@ -35,7 +35,7 @@ async function mountPrompt(input: {
     { ThemeProvider },
     { TuiConfigProvider },
     { ToastProvider },
-    { BioinformaticaKeymapProvider, registerBioinformaticaKeymap },
+    { HelixKeymapProvider, registerHelixKeymap },
   ] = await Promise.all([
     import("../../../src/ui/dialog"),
     import("../../../src/ui/dialog-prompt"),
@@ -53,7 +53,7 @@ async function mountPrompt(input: {
       keybinds: input.keybinds,
       leader_timeout: 1000,
     })
-    const off = registerBioinformaticaKeymap(keymap, renderer, resolvedConfig)
+    const off = registerHelixKeymap(keymap, renderer, resolvedConfig)
     onCleanup(off)
 
     return (
@@ -65,7 +65,7 @@ async function mountPrompt(input: {
           worktree: input.root,
         }}
       >
-        <BioinformaticaKeymapProvider keymap={keymap}>
+        <HelixKeymapProvider keymap={keymap}>
           <TuiConfigProvider config={resolvedConfig}>
             <KVProvider>
               <ThemeProvider mode="dark">
@@ -77,7 +77,7 @@ async function mountPrompt(input: {
               </ThemeProvider>
             </KVProvider>
           </TuiConfigProvider>
-        </BioinformaticaKeymapProvider>
+        </HelixKeymapProvider>
       </TestTuiContexts>
     )
   }

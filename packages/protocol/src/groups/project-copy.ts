@@ -1,5 +1,5 @@
-import { ProjectCopy } from "@bioinformatica/schema/project-copy"
-import { Project } from "@bioinformatica/schema/project"
+import { ProjectCopy } from "@helix/schema/project-copy"
+import { Project } from "@helix/schema/project"
 import { Schema, Struct } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema, OpenApi } from "effect/unstable/httpapi"
 import { LocationQuery, locationQueryOpenApi } from "./location"

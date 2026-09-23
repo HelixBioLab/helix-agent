@@ -1,7 +1,7 @@
 /** Offline integration reference of the same inspection adapter exposed to the agent. */
 import fs from "node:fs/promises"
 import path from "node:path"
-import { TrpStructural as C } from "../../packages/bioinformatica/src/trp/structural"
+import { TrpStructural as C } from "../../packages/helix/src/trp/structural"
 import rawOptions from "../../evaluation/trp/development/f5-afdb-options.json"
 
 const root = path.resolve(import.meta.dir, "../..")

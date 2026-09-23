@@ -1,7 +1,7 @@
-import type { GlobalEvent } from "@bioinformatica/sdk/v2"
+import type { GlobalEvent } from "@helix/sdk/v2"
 import type { EventSource } from "../../src/context/sdk"
 
-export const worktree = "/tmp/bioinformatica"
+export const worktree = "/tmp/helix"
 export const directory = `${worktree}/packages/tui`
 
 export function json(data: unknown, init?: ResponseInit) {

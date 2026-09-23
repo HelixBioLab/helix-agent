@@ -2,15 +2,15 @@ import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import fs from "fs/promises"
 import path from "path"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { Global } from "@bioinformatica/core/global"
-import { InstructionContext } from "@bioinformatica/core/instruction-context"
-import { Location } from "@bioinformatica/core/location"
-import { AbsolutePath } from "@bioinformatica/core/schema"
-import { SystemContext } from "@bioinformatica/core/system-context"
-import { SystemContextRegistry } from "@bioinformatica/core/system-context/registry"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { FSUtil } from "@helix/core/fs-util"
+import { Global } from "@helix/core/global"
+import { InstructionContext } from "@helix/core/instruction-context"
+import { Location } from "@helix/core/location"
+import { AbsolutePath } from "@helix/core/schema"
+import { SystemContext } from "@helix/core/system-context"
+import { SystemContextRegistry } from "@helix/core/system-context/registry"
 import { location } from "./fixture/location"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
@@ -257,9 +257,9 @@ describe("InstructionContext", () => {
 
   it.effect("honors the project instruction opt-out", () =>
     Effect.gen(function* () {
-      const previous = process.env.BIOINFORMATICA_DISABLE_PROJECT_CONFIG
+      const previous = process.env.HELIX_DISABLE_PROJECT_CONFIG
       let scanned = false
-      process.env.BIOINFORMATICA_DISABLE_PROJECT_CONFIG = "1"
+      process.env.HELIX_DISABLE_PROJECT_CONFIG = "1"
 
       yield* SystemContextRegistry.Service.pipe(
         Effect.flatMap((service) => service.load()),
@@ -280,8 +280,8 @@ describe("InstructionContext", () => {
         ),
         Effect.ensuring(
           Effect.sync(() => {
-            if (previous === undefined) delete process.env.BIOINFORMATICA_DISABLE_PROJECT_CONFIG
-            else process.env.BIOINFORMATICA_DISABLE_PROJECT_CONFIG = previous
+            if (previous === undefined) delete process.env.HELIX_DISABLE_PROJECT_CONFIG
+            else process.env.HELIX_DISABLE_PROJECT_CONFIG = previous
           }),
         ),
       )

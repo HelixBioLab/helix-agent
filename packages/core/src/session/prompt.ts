@@ -1,1 +1,1 @@
-export { AgentAttachment, FileAttachment, Prompt, Source } from "@bioinformatica/schema/prompt"
+export { AgentAttachment, FileAttachment, Prompt, Source } from "@helix/schema/prompt"

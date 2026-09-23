@@ -1,7 +1,7 @@
 # Release.
 #
 # Before this workflow existed the packaging chain was complete and unreachable:
-# `packages/bioinformatica/script/build.ts` already ends in a `gh release upload`, and
+# `packages/helix/script/build.ts` already ends in a `gh release upload`, and
 # nothing ever invoked it. `git tag -l` returned zero, so there was no release at all
 # and no run of the agent could be cited against a fixed, downloadable version.
 #
@@ -10,7 +10,7 @@
 #
 # NOTE: publishing to npm / ghcr / AUR / Homebrew is deliberately NOT wired here.
 # Those targets are immutable in practice — a registry name, a container tag and a
-# DOI cannot be taken back — and `packages/bioinformatica/script/publish.ts` guards
+# DOI cannot be taken back — and `packages/helix/script/publish.ts` guards
 # them with `Identity.assertPublishable()`. This workflow publishes exactly what is
 # reversible: a GitHub release with binaries and their checksums.
 
@@ -68,17 +68,17 @@ jobs:
       - name: Build binaries and upload with checksums
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BIOINFORMATICA_VERSION: ${{ steps.version.outputs.version }}
-          BIOINFORMATICA_CHANNEL: latest
-          BIOINFORMATICA_RELEASE: "1"
-        run: bun run --cwd packages/bioinformatica script/build.ts
+          HELIX_VERSION: ${{ steps.version.outputs.version }}
+          HELIX_CHANNEL: latest
+          HELIX_RELEASE: "1"
+        run: bun run --cwd packages/helix script/build.ts
 
       # The whole point of shipping checksums is that a third party can verify what
       # they downloaded. Prove the checksum file is usable before the release
       # stops being a draft.
       - name: Verify the published checksums
         run: |
-          cd packages/bioinformatica/dist
+          cd packages/helix/dist
           sha256sum --check SHA256SUMS
 
       # Un draft no es una release: no sale en `releases/latest`, que es

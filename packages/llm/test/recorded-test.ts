@@ -1,6 +1,6 @@
 import { NodeFileSystem } from "@effect/platform-node"
-import { HttpRecorder } from "@bioinformatica/http-recorder"
-import { HttpRecorderInternal } from "@bioinformatica/http-recorder/internal"
+import { HttpRecorder } from "@helix/http-recorder"
+import { HttpRecorderInternal } from "@helix/http-recorder/internal"
 import { Layer } from "effect"
 import { FetchHttpClient } from "effect/unstable/http"
 import * as path from "node:path"

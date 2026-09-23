@@ -1,7 +1,7 @@
 import { type ChildProcess, spawnSync } from "node:child_process"
 
-// Duplicated from `packages/bioinformatica/src/util/process.ts` because the SDK cannot
-// import `bioinformatica` without creating a cycle (`bioinformatica` depends on `@bioinformatica/sdk`).
+// Duplicated from `packages/helix/src/util/process.ts` because the SDK cannot
+// import `helix` without creating a cycle (`helix` depends on `@helix/sdk`).
 export function stop(proc: ChildProcess) {
   if (proc.exitCode !== null || proc.signalCode !== null) return
   if (process.platform === "win32" && proc.pid) {

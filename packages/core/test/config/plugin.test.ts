@@ -1,15 +1,15 @@
 import path from "path"
 import { describe, expect } from "bun:test"
 import { Effect, Schema } from "effect"
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { Config } from "@bioinformatica/core/config"
-import { ConfigExternalPlugin } from "@bioinformatica/core/config/plugin/external"
-import { FSUtil } from "@bioinformatica/core/fs-util"
-import { Location } from "@bioinformatica/core/location"
-import { Npm } from "@bioinformatica/core/npm"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { AgentV2 } from "@helix/core/agent"
+import { Config } from "@helix/core/config"
+import { ConfigExternalPlugin } from "@helix/core/config/plugin/external"
+import { FSUtil } from "@helix/core/fs-util"
+import { Location } from "@helix/core/location"
+import { Npm } from "@helix/core/npm"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { AbsolutePath } from "@helix/core/schema"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "../plugin/fixture"
 
@@ -25,7 +25,7 @@ describe("ConfigExternalPlugin", () => {
       const location = yield* Location.Service
       const npm = yield* Npm.Service
       const host = yield* PluginHost.make(plugins)
-      const document = path.join(import.meta.dir, "bioinformatica.json")
+      const document = path.join(import.meta.dir, "helix.json")
 
       yield* ConfigExternalPlugin.Plugin.effect(host).pipe(
         Effect.provideService(PluginV2.Service, plugins),
@@ -82,7 +82,7 @@ describe("ConfigExternalPlugin", () => {
               Effect.succeed([
                 new Config.Document({
                   type: "document",
-                  path: path.join(import.meta.dir, "bioinformatica.json"),
+                  path: path.join(import.meta.dir, "helix.json"),
                   info: decode({
                     plugins: [
                       {
@@ -125,7 +125,7 @@ describe("ConfigExternalPlugin", () => {
               Effect.succeed([
                 new Config.Document({
                   type: "document",
-                  path: path.join(import.meta.dir, "bioinformatica.json"),
+                  path: path.join(import.meta.dir, "helix.json"),
                   info: decode({
                     plugins: [
                       "../plugin/fixtures/missing-plugin.ts",

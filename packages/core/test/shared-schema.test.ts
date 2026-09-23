@@ -1,35 +1,35 @@
 import { expect, test } from "bun:test"
 import { Schema } from "effect"
-import { AgentV2 } from "@bioinformatica/core/agent"
-import { ModelV2 } from "@bioinformatica/core/model"
-import { SessionV2 } from "@bioinformatica/core/session"
-import { Agent } from "@bioinformatica/schema/agent"
-import { Location } from "@bioinformatica/schema/location"
-import { Model } from "@bioinformatica/schema/model"
-import { AgentAttachment, FileAttachment, Prompt, Source } from "@bioinformatica/schema/prompt"
-import { Provider } from "@bioinformatica/schema/provider"
-import { Project } from "@bioinformatica/schema/project"
-import { ProjectDirectories } from "@bioinformatica/schema/project-directories"
-import { PermissionV1 } from "@bioinformatica/schema/permission-v1"
-import { Session } from "@bioinformatica/schema/session"
-import { SessionInput } from "@bioinformatica/schema/session-input"
-import { SessionMessage } from "@bioinformatica/schema/session-message"
-import { Workspace } from "@bioinformatica/schema/workspace"
-import { Command } from "@bioinformatica/schema/command"
-import { Connection } from "@bioinformatica/schema/connection"
-import { Credential } from "@bioinformatica/schema/credential"
-import { FileSystem } from "@bioinformatica/schema/filesystem"
-import { Integration } from "@bioinformatica/schema/integration"
-import { LLM } from "@bioinformatica/schema/llm"
-import { Permission } from "@bioinformatica/schema/permission"
-import { Plugin } from "@bioinformatica/schema/plugin"
-import { Pty } from "@bioinformatica/schema/pty"
-import { Reference } from "@bioinformatica/schema/reference"
-import { SessionTodo } from "@bioinformatica/schema/session-todo"
-import { Skill } from "@bioinformatica/schema/skill"
-import { AbsolutePath, DateTimeUtcFromMillis, optional, statics } from "@bioinformatica/schema/schema"
-import { ProviderV2 } from "@bioinformatica/core/provider"
-import { PluginV2 } from "@bioinformatica/core/plugin"
+import { AgentV2 } from "@helix/core/agent"
+import { ModelV2 } from "@helix/core/model"
+import { SessionV2 } from "@helix/core/session"
+import { Agent } from "@helix/schema/agent"
+import { Location } from "@helix/schema/location"
+import { Model } from "@helix/schema/model"
+import { AgentAttachment, FileAttachment, Prompt, Source } from "@helix/schema/prompt"
+import { Provider } from "@helix/schema/provider"
+import { Project } from "@helix/schema/project"
+import { ProjectDirectories } from "@helix/schema/project-directories"
+import { PermissionV1 } from "@helix/schema/permission-v1"
+import { Session } from "@helix/schema/session"
+import { SessionInput } from "@helix/schema/session-input"
+import { SessionMessage } from "@helix/schema/session-message"
+import { Workspace } from "@helix/schema/workspace"
+import { Command } from "@helix/schema/command"
+import { Connection } from "@helix/schema/connection"
+import { Credential } from "@helix/schema/credential"
+import { FileSystem } from "@helix/schema/filesystem"
+import { Integration } from "@helix/schema/integration"
+import { LLM } from "@helix/schema/llm"
+import { Permission } from "@helix/schema/permission"
+import { Plugin } from "@helix/schema/plugin"
+import { Pty } from "@helix/schema/pty"
+import { Reference } from "@helix/schema/reference"
+import { SessionTodo } from "@helix/schema/session-todo"
+import { Skill } from "@helix/schema/skill"
+import { AbsolutePath, DateTimeUtcFromMillis, optional, statics } from "@helix/schema/schema"
+import { ProviderV2 } from "@helix/core/provider"
+import { PluginV2 } from "@helix/core/plugin"
 
 test("Core reuses the canonical shared schemas", async () => {
   const [
@@ -55,27 +55,27 @@ test("Core reuses the canonical shared schemas", async () => {
     coreSchema,
     coreWorkspace,
   ] = await Promise.all([
-    import("@bioinformatica/core/command"),
-    import("@bioinformatica/core/integration/connection"),
-    import("@bioinformatica/core/credential"),
-    import("@bioinformatica/core/filesystem"),
-    import("@bioinformatica/core/integration"),
-    import("@bioinformatica/core/location"),
-    import("@bioinformatica/llm"),
-    import("@bioinformatica/core/permission"),
-    import("@bioinformatica/core/v1/permission"),
-    import("@bioinformatica/core/project/copy"),
-    import("@bioinformatica/core/pty"),
-    import("@bioinformatica/core/project/schema"),
-    import("@bioinformatica/core/reference"),
-    import("@bioinformatica/core/session/input"),
-    import("@bioinformatica/core/session/message"),
-    import("@bioinformatica/core/session/todo"),
-    import("@bioinformatica/core/session/prompt"),
-    import("@bioinformatica/core/skill"),
-    import("@bioinformatica/core/v2-schema"),
-    import("@bioinformatica/core/schema"),
-    import("@bioinformatica/core/workspace"),
+    import("@helix/core/command"),
+    import("@helix/core/integration/connection"),
+    import("@helix/core/credential"),
+    import("@helix/core/filesystem"),
+    import("@helix/core/integration"),
+    import("@helix/core/location"),
+    import("@helix/llm"),
+    import("@helix/core/permission"),
+    import("@helix/core/v1/permission"),
+    import("@helix/core/project/copy"),
+    import("@helix/core/pty"),
+    import("@helix/core/project/schema"),
+    import("@helix/core/reference"),
+    import("@helix/core/session/input"),
+    import("@helix/core/session/message"),
+    import("@helix/core/session/todo"),
+    import("@helix/core/session/prompt"),
+    import("@helix/core/skill"),
+    import("@helix/core/v2-schema"),
+    import("@helix/core/schema"),
+    import("@helix/core/workspace"),
   ])
 
   const schemas = [

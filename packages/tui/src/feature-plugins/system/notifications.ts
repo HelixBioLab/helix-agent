@@ -1,5 +1,5 @@
-import type { Event } from "@bioinformatica/sdk/v2"
-import type { TuiAttentionSoundName, TuiPlugin, TuiPluginApi } from "@bioinformatica/plugin/tui"
+import type { Event } from "@helix/sdk/v2"
+import type { TuiAttentionSoundName, TuiPlugin, TuiPluginApi } from "@helix/plugin/tui"
 import type { BuiltinTuiPlugin } from "../builtins"
 
 const id = "internal:notifications"

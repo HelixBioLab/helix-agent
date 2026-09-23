@@ -1,12 +1,12 @@
 import { describe, expect } from "bun:test"
 import { Effect } from "effect"
-import { Catalog } from "@bioinformatica/core/catalog"
-import { Integration } from "@bioinformatica/core/integration"
-import { PluginV2 } from "@bioinformatica/core/plugin"
-import { PluginHost } from "@bioinformatica/core/plugin/host"
-import { ProviderPlugins } from "@bioinformatica/core/plugin/provider"
-import { LLMGatewayPlugin } from "@bioinformatica/core/plugin/provider/llmgateway"
-import { ProviderV2 } from "@bioinformatica/core/provider"
+import { Catalog } from "@helix/core/catalog"
+import { Integration } from "@helix/core/integration"
+import { PluginV2 } from "@helix/core/plugin"
+import { PluginHost } from "@helix/core/plugin/host"
+import { ProviderPlugins } from "@helix/core/plugin/provider"
+import { LLMGatewayPlugin } from "@helix/core/plugin/provider/llmgateway"
+import { ProviderV2 } from "@helix/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
 
@@ -46,9 +46,9 @@ describe("LLMGatewayPlugin", () => {
       yield* addPlugin()
       expect((yield* catalog.provider.get(ProviderV2.ID.make("llmgateway")))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://bioinformatica.org/",
-        "X-Title": "bioinformatica",
-        "X-Source": "bioinformatica",
+        "HTTP-Referer": "https://helixbiolab.github.io/helix-agent/",
+        "X-Title": "helix",
+        "X-Source": "helix",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.openrouter))?.request.headers).toEqual({})
     }),

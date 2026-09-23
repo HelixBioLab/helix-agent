@@ -1,4 +1,4 @@
-import { Reference } from "@bioinformatica/core/reference"
+import { Reference } from "@helix/core/reference"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { Api } from "../api"
 import { response } from "../location"

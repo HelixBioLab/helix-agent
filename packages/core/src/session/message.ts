@@ -1,2 +1,2 @@
 export * as SessionMessage from "./message"
-export * from "@bioinformatica/schema/session-message"
+export * from "@helix/schema/session-message"

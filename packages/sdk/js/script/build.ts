@@ -9,9 +9,9 @@ import path from "path"
 
 import { createClient } from "@hey-api/openapi-ts"
 
-const bioinformatica = path.resolve(dir, "../../bioinformatica")
+const helix = path.resolve(dir, "../../helix")
 
-await $`bun dev generate > ${dir}/openapi.json`.cwd(bioinformatica)
+await $`bun dev generate > ${dir}/openapi.json`.cwd(helix)
 
 const document = (await Bun.file("./openapi.json").json()) as {
   components?: { schemas?: Record<string, unknown> }
@@ -58,7 +58,7 @@ await createClient({
     },
     {
       name: "@hey-api/sdk",
-      instance: "BioinformaticaClient",
+      instance: "HelixClient",
       exportFromIndex: false,
       auth: false,
       paramsStructure: "flat",

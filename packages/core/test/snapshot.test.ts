@@ -3,12 +3,12 @@ import { describe, expect } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { Effect, Layer } from "effect"
-import { AppNodeBuilder } from "@bioinformatica/core/effect/app-node-builder"
-import { Global } from "@bioinformatica/core/global"
-import { Location } from "@bioinformatica/core/location"
-import { AbsolutePath, RelativePath } from "@bioinformatica/core/schema"
-import { Snapshot } from "@bioinformatica/core/snapshot"
-import { Hash } from "@bioinformatica/core/util/hash"
+import { AppNodeBuilder } from "@helix/core/effect/app-node-builder"
+import { Global } from "@helix/core/global"
+import { Location } from "@helix/core/location"
+import { AbsolutePath, RelativePath } from "@helix/core/schema"
+import { Snapshot } from "@helix/core/snapshot"
+import { Hash } from "@helix/core/util/hash"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
 
@@ -27,7 +27,7 @@ describe("Snapshot", () => {
             await $`git init`.cwd(project).quiet()
             await $`git config core.fsmonitor false`.cwd(project).quiet()
             await $`git config commit.gpgsign false`.cwd(project).quiet()
-            await $`git config user.email test@bioinformatica.test`.cwd(project).quiet()
+            await $`git config user.email test@helix.test`.cwd(project).quiet()
             await $`git config user.name Test`.cwd(project).quiet()
             await $`git add .`.cwd(project).quiet()
             await $`git commit -m initial`.cwd(project).quiet()
@@ -96,7 +96,7 @@ describe("Snapshot", () => {
             await $`git init`.cwd(project).quiet()
             await $`git config core.fsmonitor false`.cwd(project).quiet()
             await $`git config commit.gpgsign false`.cwd(project).quiet()
-            await $`git config user.email test@bioinformatica.test`.cwd(project).quiet()
+            await $`git config user.email test@helix.test`.cwd(project).quiet()
             await $`git config user.name Test`.cwd(project).quiet()
             await $`git add .`.cwd(project).quiet()
             await $`git commit -m initial`.cwd(project).quiet()
@@ -141,7 +141,7 @@ describe("Snapshot", () => {
             await $`git init`.cwd(project).quiet()
             await $`git config core.fsmonitor false`.cwd(project).quiet()
             await $`git config commit.gpgsign false`.cwd(project).quiet()
-            await $`git config user.email test@bioinformatica.test`.cwd(project).quiet()
+            await $`git config user.email test@helix.test`.cwd(project).quiet()
             await $`git config user.name Test`.cwd(project).quiet()
             await $`git add .`.cwd(project).quiet()
             await $`git commit -m initial`.cwd(project).quiet()

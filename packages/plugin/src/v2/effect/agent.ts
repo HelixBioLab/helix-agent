@@ -1,4 +1,4 @@
-import type { AgentV2Info } from "@bioinformatica/sdk/v2/types"
+import type { AgentV2Info } from "@helix/sdk/v2/types"
 import type { Hooks } from "./registration.js"
 
 export interface AgentDraft {

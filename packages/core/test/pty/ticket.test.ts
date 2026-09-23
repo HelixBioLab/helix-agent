@@ -1,9 +1,9 @@
 import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
-import { LayerNode } from "@bioinformatica/core/effect/layer-node"
-import { PtyID } from "@bioinformatica/core/pty/schema"
-import { PtyTicket } from "@bioinformatica/core/pty/ticket"
-import { WorkspaceV2 } from "@bioinformatica/core/workspace"
+import { LayerNode } from "@helix/core/effect/layer-node"
+import { PtyID } from "@helix/core/pty/schema"
+import { PtyTicket } from "@helix/core/pty/ticket"
+import { WorkspaceV2 } from "@helix/core/workspace"
 import { testEffect } from "../lib/effect"
 
 const it = testEffect(LayerNode.compile(PtyTicket.node))

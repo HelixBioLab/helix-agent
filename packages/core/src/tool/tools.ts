@@ -10,4 +10,4 @@ export interface Interface {
 }
 
 /** Narrow registration-only Location capability. */
-export class Service extends Context.Service<Service, Interface>()("@bioinformatica/v2/Tools") {}
+export class Service extends Context.Service<Service, Interface>()("@helix/v2/Tools") {}

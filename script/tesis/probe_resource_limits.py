@@ -29,7 +29,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("mode", choices=["disk", "cpu", "memory"])
     a = p.parse_args()
-    state = json.loads(Path(os.environ["BIOINFORMATICA_TRP_SANDBOX"]).read_text())
+    state = json.loads(Path(os.environ["HELIX_TRP_SANDBOX"]).read_text())
     root = Path(state["config"]["workspace"])
     cg = Path("/sys/fs/cgroup") / state["config"]["controller"]
     result = {"mode": a.mode, "kind": "intentional-kernel-limit-probe", "scientificRun": False}

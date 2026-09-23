@@ -1,6 +1,6 @@
 import type {
   Event,
-  createBioinformaticaClient,
+  createHelixClient,
   Project,
   Model,
   Provider,
@@ -9,8 +9,8 @@ import type {
   Message,
   Part,
   Config as SDKConfig,
-} from "@bioinformatica/sdk"
-import type { Provider as ProviderV2, Model as ModelV2, Auth } from "@bioinformatica/sdk/v2"
+} from "@helix/sdk"
+import type { Provider as ProviderV2, Model as ModelV2, Auth } from "@helix/sdk/v2"
 
 import type { BunShell } from "./shell.js"
 import { type ToolDefinition } from "./tool.js"
@@ -54,7 +54,7 @@ export type WorkspaceAdapter = {
 }
 
 export type PluginInput = {
-  client: ReturnType<typeof createBioinformaticaClient>
+  client: ReturnType<typeof createHelixClient>
   project: Project
   directory: string
   worktree: string

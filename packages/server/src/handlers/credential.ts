@@ -1,4 +1,4 @@
-import { Integration } from "@bioinformatica/core/integration"
+import { Integration } from "@helix/core/integration"
 import { Effect } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/unstable/httpapi"
 import { Api } from "../api"

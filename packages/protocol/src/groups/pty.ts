@@ -1,13 +1,13 @@
-import { Pty } from "@bioinformatica/schema/pty"
-import { PtyTicket } from "@bioinformatica/schema/pty-ticket"
-import { Location } from "@bioinformatica/schema/location"
+import { Pty } from "@helix/schema/pty"
+import { PtyTicket } from "@helix/schema/pty-ticket"
+import { Location } from "@helix/schema/location"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema, OpenApi } from "effect/unstable/httpapi"
 import { ForbiddenError, PtyNotFoundError } from "../errors"
 import { LocationQuery, locationQueryOpenApi } from "./location"
 
 export const PTY_CONNECT_TICKET_QUERY = "ticket"
-export const PTY_CONNECT_TOKEN_HEADER = "x-bioinformatica-ticket"
+export const PTY_CONNECT_TOKEN_HEADER = "x-helix-ticket"
 export const PTY_CONNECT_TOKEN_HEADER_VALUE = "1"
 
 const PTY_CONNECT_PATH = /^\/api\/pty\/[^/]+\/connect$/

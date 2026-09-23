@@ -1,5 +1,5 @@
-import { Model } from "@bioinformatica/schema/model"
-import { Location } from "@bioinformatica/schema/location"
+import { Model } from "@helix/schema/model"
+import { Location } from "@helix/schema/location"
 import { Schema } from "effect"
 import { HttpApiEndpoint, HttpApiGroup, OpenApi } from "effect/unstable/httpapi"
 import { ServiceUnavailableError } from "../errors"

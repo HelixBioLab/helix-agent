@@ -1,4 +1,4 @@
-import { Catalog } from "@bioinformatica/core/catalog"
+import { Catalog } from "@helix/core/catalog"
 import { Effect } from "effect"
 import { HttpApiBuilder } from "effect/unstable/httpapi"
 import { Api } from "../api"

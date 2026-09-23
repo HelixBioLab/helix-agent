@@ -1,6 +1,6 @@
-import { Location } from "@bioinformatica/core/location"
-import { Project } from "@bioinformatica/core/project"
-import { AbsolutePath } from "@bioinformatica/core/schema"
+import { Location } from "@helix/core/location"
+import { Project } from "@helix/core/project"
+import { AbsolutePath } from "@helix/core/schema"
 import { Effect, Layer } from "effect"
 import { tmpdir } from "./tmpdir"
 
