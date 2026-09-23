@@ -93,7 +93,7 @@ export function make(input: {
     const started = performance.now()
     const authMethod: AuthMethod = {
       description: "Run `bioinformatica auth login` in the terminal",
-      name: "Login with Bioinformática.org",
+      name: "Login with Helix Agent",
       id: AuthMethodID,
     }
 
@@ -102,7 +102,7 @@ export function make(input: {
         "terminal-auth": {
           command: "bioinformatica",
           args: ["auth", "login"],
-          label: "Bioinformática.org Login",
+          label: "Helix Agent Login",
         },
       }
     }
@@ -128,7 +128,7 @@ export function make(input: {
       },
       authMethods: [authMethod],
       agentInfo: {
-        name: "Bioinformática.org",
+        name: "Helix Agent",
         version: InstallationVersion,
       },
     }
@@ -866,7 +866,7 @@ const promptResponse = Effect.fn("ACP.promptResponse")(function* (
 
 function promptErrorMessage(error: AssistantError) {
   if ("message" in error.data && typeof error.data.message === "string") return error.data.message
-  return "Bioinformática.org prompt failed"
+  return "Helix Agent prompt failed"
 }
 
 function sendUsageUpdate(
@@ -1059,7 +1059,7 @@ function fromUnknownError(error: unknown, service?: string): Error {
   if (isAuthRequired(error)) {
     return new ACPError.AuthRequiredError({ providerId: findProviderID(error) })
   }
-  return new ACPError.ServiceFailureError({ safeMessage: "Bioinformática.org service failure", service })
+  return new ACPError.ServiceFailureError({ safeMessage: "Helix Agent service failure", service })
 }
 
 function isACPError(error: unknown): error is Error {

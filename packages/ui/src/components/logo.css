@@ -1,4 +1,5 @@
 [data-component="logo-mark"] {
-  width: 16px;
-  aspect-ratio: 4/5;
+  width: 24px;
+  aspect-ratio: 1;
+  color: #385940;
 }

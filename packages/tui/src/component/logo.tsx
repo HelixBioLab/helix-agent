@@ -18,9 +18,7 @@ function segments(line: string) {
 export function Logo() {
   const { theme } = useTheme()
 
-  // The mark's two rings are painted apart — the outer one in the accent, the
-  // inner one muted — which is the whole point of the shape. The name beside it
-  // takes the normal text colour.
+  // Paint the two DNA strands separately; keep the wordmark in the text colour.
   const colour = (kind: "outer" | "inner" | "text") =>
     kind === "outer" ? theme.primary : kind === "inner" ? theme.textMuted : theme.text
 

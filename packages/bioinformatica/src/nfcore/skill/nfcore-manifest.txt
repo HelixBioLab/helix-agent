@@ -4,13 +4,13 @@ Every real run should end with a reproducibility manifest so the investigation c
 exactly and the result trusted.
 
 ## What it is
-Bioinformática.org does not invent a provenance format. The manifest **references** the ecosystem's own
-provenance and adds the layer only Bioinformática.org sees:
+Helix Agent does not invent a provenance format. The manifest **references** the ecosystem's own
+provenance and adds the layer only Helix Agent sees:
 - **Referenced (native):** nf-core's `<outdir>/pipeline_info/` — `software_versions.yml` (every
   tool + version), the resolved `params_*.json`, and the execution report / timeline / trace.
   If the run used Nextflow's `nf-prov` plugin, its BCO `manifest.json` and WRROC/RO-Crate files
   are referenced too.
-- **Bioinformática.org-native layer:** the human approvals granted during the session (from
+- **Helix Agent-native layer:** the human approvals granted during the session (from
   `.bioinformatica/approvals.jsonl`) and a short session summary (what the scientist set out to do
   and what was decided).
 

@@ -1,23 +1,17 @@
 import { EOL } from "os"
 import { Schema } from "effect"
-import { logo as glyphs } from "./logo"
+import { logo as glyphs, home } from "./logo"
 
 // The plain-text fallback used when neither stream is a TTY. Same content as the
 // coloured two-column banner below, so a piped `--help` and an interactive one
 // name the same product.
-const wordmark = [
-  `      ●      `,
-  `●    ◦ ◦    ●   Bioinformática.org`,
-  `    ◦   ◦    `,
-  `●    ◦ ◦    ●   bioinformatics co-scientist`,
-  `      ●      `,
-]
+const wordmark = home.word
 
 export class CancelledError extends Schema.TaggedErrorClass<CancelledError>()("UICancelledError", {}) {}
 
 export const Style = {
-  TEXT_HIGHLIGHT: "\x1b[96m",
-  TEXT_HIGHLIGHT_BOLD: "\x1b[96m\x1b[1m",
+  TEXT_HIGHLIGHT: "\x1b[38;5;151m",
+  TEXT_HIGHLIGHT_BOLD: "\x1b[38;5;151m\x1b[1m",
   TEXT_DIM: "\x1b[90m",
   TEXT_DIM_BOLD: "\x1b[90m\x1b[1m",
   TEXT_NORMAL: "\x1b[0m",
@@ -73,10 +67,8 @@ export function logo(pad?: string) {
     bg: "\x1b[48;5;238m",
   }
   const gap = " "
-  // The mark's two rings are coloured apart wherever colour is available: the
-  // outer ring in the accent, the inner one muted. The glyphs differ too, so a
-  // terminal that drops colour still shows two rings rather than one blur.
-  const outer = "\x1b[36m"
+  // Render the DNA strands in sage and a muted tone.
+  const outer = "\x1b[38;5;151m"
   const inner = "\x1b[90m"
   const draw = (line: string, fg: string, shadow: string, bg: string) => {
     const parts: string[] = []

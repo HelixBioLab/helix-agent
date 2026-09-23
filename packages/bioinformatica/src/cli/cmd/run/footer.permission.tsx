@@ -100,7 +100,7 @@ export function RejectField(props: {
       minHeight={1}
       maxHeight={3}
       wrapMode="word"
-      placeholder="Tell Bioinformática.org what to do differently"
+      placeholder="Tell Helix Agent what to do differently"
       placeholderColor={props.theme.muted}
       textColor={props.theme.text}
       focusedTextColor={props.theme.text}
@@ -284,7 +284,7 @@ export function RunPermissionBody(props: {
           </Match>
           <Match when={state().stage === "reject"}>
             <box paddingLeft={1}>
-              <text fg={props.theme.muted}>Tell Bioinformática.org what to do differently</text>
+              <text fg={props.theme.muted}>Tell Helix Agent what to do differently</text>
             </box>
           </Match>
         </Switch>

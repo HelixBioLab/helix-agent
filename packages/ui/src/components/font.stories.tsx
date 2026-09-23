@@ -41,8 +41,8 @@ export const Basic = {
   render: () => (
     <div style={{ display: "grid", gap: "8px" }}>
       <mod.Font />
-      <div style={{ "font-family": "var(--font-family-sans)" }}>Bioinformatica Sans Sample</div>
-      <div style={{ "font-family": "var(--font-family-mono)" }}>Bioinformatica Mono Sample</div>
+      <div style={{ "font-family": "var(--font-family-sans)" }}>Helix Agent Sans Sample</div>
+      <div style={{ "font-family": "var(--font-family-mono)" }}>Helix Agent Mono Sample</div>
     </div>
   ),
 }

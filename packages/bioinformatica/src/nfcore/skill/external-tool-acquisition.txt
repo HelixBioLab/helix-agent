@@ -1,6 +1,6 @@
 # Acquiring and running a tool that has no nf-core module
 
-Load this when a stage needs a command-line tool Bioinformática.org has no dedicated tool for — a
+Load this when a stage needs a command-line tool Helix Agent has no dedicated tool for — a
 clustering program, an aligner, a structure comparator, a Python library. Installing and
 running an established, pinned tool is ordinary work you do yourself; it is not a reason
 to hand the step back to the scientist.

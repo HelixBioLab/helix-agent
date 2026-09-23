@@ -4,7 +4,7 @@ import { NfcorePersona } from "../../src/nfcore/persona"
 describe("nfcore.persona", () => {
   test("persona text is a non-empty nf-core identity block", () => {
     expect(NfcorePersona.Persona.length).toBeGreaterThan(0)
-    expect(NfcorePersona.Persona).toContain("You are Bioinformática.org")
+    expect(NfcorePersona.Persona).toContain("You are Helix Agent")
     expect(NfcorePersona.Persona).toContain("nf-core")
   })
 

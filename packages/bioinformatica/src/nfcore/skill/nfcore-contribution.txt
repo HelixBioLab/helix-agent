@@ -1,7 +1,7 @@
 # Contributing to nf-core and publishing a pipeline
 
 This is the frame for helping a scientist give work back to the community — a new module,
-a fix, or their own pipeline — or publish a pipeline of their own. Bioinformática.org *guides and
+a fix, or their own pipeline — or publish a pipeline of their own. Helix Agent *guides and
 prepares*; the scientist owns the submission. Build on the authoring skill: everything
 here assumes the component was scaffolded with nf-core's own tools, not hand-rolled.
 

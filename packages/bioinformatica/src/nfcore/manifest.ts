@@ -197,7 +197,7 @@ export function summarize(manifest: Manifest): string {
     `- Tool versions recorded: ${manifest.software.length}`,
     `- Native provenance artifacts referenced: ${manifest.artifacts.length} (${Object.entries(kinds).map(([k, n]) => `${k}:${n}`).join(", ") || "none"})`,
     `- nf-prov BCO/RO-Crate present: ${hasNative ? "yes" : "no"}`,
-    `- Human approvals logged (Bioinformática.org layer): ${manifest.approvals.length}`,
+    `- Human approvals logged (Helix Agent layer): ${manifest.approvals.length}`,
     `- Session summary: ${manifest.session.summary ? "included" : "none provided"}`,
   ].join("\n")
 }

@@ -55,7 +55,7 @@ const EXTRA: readonly string[] = [".bioinformatica/approvals.jsonl", ".bioinform
 
 export const DossierCommand = effectCmd({
   command: "dossier [directory]",
-  describe: "collect the four run artefacts into one directory a third party can check without Bioinformática.org",
+  describe: "collect the four run artefacts into one directory a third party can check without Helix Agent",
   builder: (yargs) =>
     yargs
       .positional("directory", { describe: "project directory to collect from (default: cwd)", type: "string" })

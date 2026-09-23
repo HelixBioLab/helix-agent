@@ -8,7 +8,7 @@ carry its provenance, so the reader knows what backs it. This is the core honest
 ## The three claim types
 Tag each statement by what backs it, with the tag at the start of the sentence or bullet:
 - **`[computed]`** — backed by *this analysis's own* run or artifacts: a pipeline output,
-  a file it produced, a number Bioinformática.org computed. Not "the literature says" — that's cited.
+  a file it produced, a number Helix Agent computed. Not "the literature says" — that's cited.
 - **`[cited]`** — backed by an *external source*, cited inline (a paper via PubMed with
   its PMID, a database record with its accession/link). The citation travels with it.
 - **`[model-inferred]`** — *your own* reasoning, interpretation, hypothesis, or guess,

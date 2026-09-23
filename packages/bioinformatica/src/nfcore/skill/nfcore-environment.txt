@@ -1,6 +1,6 @@
 # nf-core environment: detection and repair policy
 
-This skill describes how Bioinformática.org reasons about the local environment for nf-core runs. It is the
+This skill describes how Helix Agent reasons about the local environment for nf-core runs. It is the
 policy; the concrete detection and repair tooling grows over time — use the
 tools you actually have, and otherwise inspect and explain the exact commands rather than
 assuming an action happened.
@@ -18,9 +18,9 @@ assuming an action happened.
 
 ## Self-install vs. show-the-command
 - Anything installable **without elevated privileges** (e.g. Nextflow via its installer, the
-  `nf-core` tools via pip/conda) — Bioinformática.org installs it itself, after showing the command and
+  `nf-core` tools via pip/conda) — Helix Agent installs it itself, after showing the command and
   getting approval.
-- Anything requiring **`sudo`** (e.g. installing Docker itself) — Bioinformática.org does **not** run it.
+- Anything requiring **`sudo`** (e.g. installing Docker itself) — Helix Agent does **not** run it.
   It presents the exact commands, explains what they do, and the scientist runs them.
 
 ## Acting on the environment report

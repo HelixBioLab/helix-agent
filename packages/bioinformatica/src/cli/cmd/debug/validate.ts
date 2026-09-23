@@ -11,7 +11,7 @@ import { effectCmd, fail } from "../../effect-cmd"
 // report a pass/fail matrix. Hits the network; run on demand.
 export const ValidateCommand = effectCmd({
   command: "validate [pipelines..]",
-  describe: "validate Bioinformática.org's generic capabilities across a curated set of nf-core pipelines",
+  describe: "validate Helix Agent's generic capabilities across a curated set of nf-core pipelines",
   instance: false,
   builder: (yargs) => yargs.positional("pipelines", { describe: "pipelines to check (default: curated set)", type: "string" }),
   handler: Effect.fn("Cli.debug.validate")(function* (args: { pipelines?: string | readonly string[] }) {

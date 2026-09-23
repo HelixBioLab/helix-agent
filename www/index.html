@@ -3,856 +3,577 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Descargar Bioinformática.org</title>
+    <title>Helix Agent | Bioinformática en tu terminal</title>
     <meta
       name="description"
-      content="Un co-científico en la terminal. Se instala con una línea en macOS, Linux y Windows."
+      content="De tu pregunta al análisis. Helix Agent te ayuda a planificar, ejecutar y documentar tu trabajo en bioinformática. Descárgalo para Linux, macOS o Windows."
     />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <meta property="og:title" content="Descargar Bioinformática.org" />
-    <meta property="og:description" content="Un co-científico en la terminal. Se instala con una línea." />
+    <meta property="og:title" content="Helix Agent | Bioinformática en tu terminal" />
+    <meta
+      property="og:description"
+      content="Un compañero de investigación para tu terminal. Descarga Helix Agent para Linux, macOS y Windows."
+    />
     <meta property="og:type" content="website" />
-    <style>
-      /* La paleta es la del propio agente: packages/tui/src/theme/assets/bioinformatica.json,
-         para que la página y la terminal se parezcan a la misma cosa. */
-      :root {
-        --bg: #ffffff;
-        --surface: #f6faf9;
-        --surface-2: #eef4f2;
-        --border: #d7e3df;
-        --border-strong: #c6d6d1;
-        --text: #132018;
-        --muted: #5f6f6a;
-        --primary: #0d9488;
-        --primary-strong: #0f766e;
-        --term-bg: #0a0f0e;
-        --term-text: #eaeaea;
-        --term-muted: #8a938f;
-        --term-primary: #2dd4bf;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #0a0f0e;
-          --surface: #111917;
-          --surface-2: #1a2320;
-          --border: #232f2b;
-          --border-strong: #374742;
-          --text: #eaeaea;
-          --muted: #8a938f;
-          --primary: #2dd4bf;
-          --primary-strong: #5eead4;
-          --term-bg: #050807;
-          --term-text: #eaeaea;
-          --term-muted: #8a938f;
-          --term-primary: #2dd4bf;
-        }
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        -webkit-text-size-adjust: 100%;
-      }
-
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family:
-          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size: 17px;
-        line-height: 1.65;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      .wrap {
-        max-width: 46rem;
-        margin: 0 auto;
-        padding: 3rem 1.25rem 5rem;
-      }
-
-      /* Los interruptores de idioma y de sistema son radios de verdad, escondidos
-         a la vista pero no al teclado. Toda la conmutación es CSS: si el
-         JavaScript no carga, la página sigue funcionando entera. El JS del final
-         sólo elige el estado inicial y lo recuerda. */
-      .switch {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #lang-es:checked ~ .wrap [data-lang="en"],
-      #lang-en:checked ~ .wrap [data-lang="es"] {
-        display: none;
-      }
-
-      #os-mac:checked ~ .wrap [data-os]:not([data-os~="mac"]),
-      #os-linux:checked ~ .wrap [data-os]:not([data-os~="linux"]),
-      #os-win:checked ~ .wrap [data-os]:not([data-os~="win"]) {
-        display: none;
-      }
-
-      /* Cabecera ------------------------------------------------------- */
-
-      header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 3rem;
-      }
-
-      .mark {
-        width: 3.25rem;
-        height: 3.25rem;
-        flex: none;
-      }
-
-      .mark .outer {
-        fill: var(--primary);
-      }
-
-      .mark .inner {
-        fill: none;
-        stroke: var(--muted);
-        stroke-width: 2.5;
-      }
-
-      .brand {
-        font-size: 1.0625rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        line-height: 1.3;
-      }
-
-      .tagline {
-        color: var(--muted);
-        font-size: 0.9375rem;
-        line-height: 1.3;
-      }
-
-      .langs {
-        margin-left: auto;
-        display: flex;
-        gap: 0.15rem;
-        font-size: 0.8125rem;
-      }
-
-      .langs label {
-        cursor: pointer;
-        color: var(--muted);
-        padding: 0.15rem 0.45rem;
-        border-radius: 5px;
-        letter-spacing: 0.04em;
-        font-weight: 600;
-      }
-
-      .langs label:hover {
-        color: var(--text);
-      }
-
-      #lang-es:checked ~ .wrap label[for="lang-es"],
-      #lang-en:checked ~ .wrap label[for="lang-en"] {
-        color: var(--primary-strong);
-        background: var(--surface-2);
-      }
-
-      /* Texto ---------------------------------------------------------- */
-
-      h1 {
-        font-size: clamp(1.9rem, 5vw, 2.6rem);
-        line-height: 1.15;
-        letter-spacing: -0.025em;
-        margin: 0 0 1rem;
-        font-weight: 650;
-      }
-
-      .lead {
-        font-size: 1.125rem;
-        color: var(--muted);
-        margin: 0 0 2.5rem;
-        max-width: 38rem;
-      }
-
-      h2 {
-        font-size: 1.125rem;
-        letter-spacing: -0.01em;
-        margin: 0 0 0.5rem;
-        font-weight: 620;
-      }
-
-      p {
-        margin: 0 0 1rem;
-      }
-
-      a {
-        color: var(--primary-strong);
-        text-underline-offset: 0.2em;
-        text-decoration-thickness: 1px;
-      }
-
-      a:hover {
-        color: var(--primary);
-      }
-
-      code {
-        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-        font-size: 0.9em;
-        background: var(--surface-2);
-        border-radius: 4px;
-        padding: 0.1em 0.35em;
-      }
-
-      /* Selector de sistema -------------------------------------------- */
-
-      .systems {
-        display: flex;
-        gap: 0.35rem;
-        margin: 0 0 2.5rem;
-        flex-wrap: wrap;
-      }
-
-      .systems label {
-        cursor: pointer;
-        font-size: 0.9375rem;
-        font-weight: 550;
-        color: var(--muted);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 0.4rem 0.9rem;
-      }
-
-      .systems label:hover {
-        color: var(--text);
-        border-color: var(--border-strong);
-      }
-
-      #os-mac:checked ~ .wrap label[for="os-mac"],
-      #os-linux:checked ~ .wrap label[for="os-linux"],
-      #os-win:checked ~ .wrap label[for="os-win"] {
-        color: var(--bg);
-        background: var(--primary-strong);
-        border-color: var(--primary-strong);
-      }
-
-      /* Pasos ---------------------------------------------------------- */
-
-      .step {
-        display: grid;
-        grid-template-columns: 2.25rem 1fr;
-        gap: 0 1rem;
-        margin-bottom: 2.75rem;
-      }
-
-      .num {
-        width: 1.75rem;
-        height: 1.75rem;
-        border-radius: 50%;
-        border: 1.5px solid var(--primary);
-        color: var(--primary-strong);
-        font-size: 0.875rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0.15rem;
-      }
-
-      .step > .body > :last-child {
-        margin-bottom: 0;
-      }
-
-      .note {
-        color: var(--muted);
-        font-size: 0.9375rem;
-      }
-
-      kbd {
-        font-family: inherit;
-        font-size: 0.875em;
-        background: var(--surface-2);
-        border: 1px solid var(--border-strong);
-        border-bottom-width: 2px;
-        border-radius: 5px;
-        padding: 0.05em 0.4em;
-        white-space: nowrap;
-      }
-
-      /* Bloque de comando ---------------------------------------------- */
-
-      .cmd {
-        position: relative;
-        background: var(--term-bg);
-        border: 1px solid var(--border-strong);
-        border-radius: 10px;
-        padding: 1rem 1rem 1rem 1.15rem;
-        margin: 1rem 0;
-        overflow-x: auto;
-      }
-
-      .cmd pre {
-        margin: 0;
-        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-        font-size: 0.9375rem;
-        line-height: 1.6;
-        color: var(--term-text);
-        white-space: pre;
-      }
-
-      .cmd .prompt {
-        color: var(--term-primary);
-        user-select: none;
-        -webkit-user-select: none;
-      }
-
-      .cmd .comment {
-        color: var(--term-muted);
-      }
-
-      .copy {
-        position: absolute;
-        top: 0.55rem;
-        right: 0.55rem;
-        font: inherit;
-        font-size: 0.8125rem;
-        color: var(--term-muted);
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 6px;
-        padding: 0.2rem 0.6rem;
-        cursor: pointer;
-      }
-
-      .copy:hover {
-        color: var(--term-text);
-        background: rgba(255, 255, 255, 0.11);
-      }
-
-      .copy[data-done="true"] {
-        color: var(--term-primary);
-        border-color: var(--term-primary);
-      }
-
-      /* La letra pequeña ------------------------------------------------
-         Todo lo que va después del paso 3 es para quien lo busque. Se queda
-         plegado, en cuerpo menor y en color apagado, para que la página
-         termine visualmente donde termina la instalación. */
-
-      .fine {
-        margin-top: 4rem;
-        border-top: 1px solid var(--border);
-        padding-top: 1.5rem;
-        font-size: 0.9375rem;
-        color: var(--muted);
-      }
-
-      .fine details {
-        border-bottom: 1px solid var(--border);
-      }
-
-      .fine summary {
-        cursor: pointer;
-        padding: 0.7rem 0;
-        font-weight: 550;
-        color: var(--muted);
-        list-style: none;
-      }
-
-      .fine summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .fine summary::before {
-        content: "+";
-        display: inline-block;
-        width: 1.1rem;
-        color: var(--primary);
-        font-weight: 600;
-      }
-
-      .fine details[open] summary::before {
-        content: "\2212";
-      }
-
-      .fine summary:hover {
-        color: var(--text);
-      }
-
-      .fine .content {
-        padding: 0 0 1rem 1.1rem;
-      }
-
-      .fine .content > :last-child {
-        margin-bottom: 0;
-      }
-
-      .fine ul {
-        margin: 0 0 1rem;
-        padding-left: 1.15rem;
-      }
-
-      .fine li {
-        margin-bottom: 0.35rem;
-      }
-
-      .fine .cmd {
-        font-size: 0.9375rem;
-      }
-
-      footer {
-        margin-top: 2.5rem;
-        color: var(--muted);
-        font-size: 0.875rem;
-      }
-
-      footer a {
-        color: var(--muted);
-      }
-
-      footer a:hover {
-        color: var(--primary);
-      }
-    </style>
+    <meta name="theme-color" content="#244d3e" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
-
   <body>
-    <input class="switch" type="radio" name="lang" id="lang-es" checked />
-    <input class="switch" type="radio" name="lang" id="lang-en" />
-    <input class="switch" type="radio" name="os" id="os-mac" />
-    <input class="switch" type="radio" name="os" id="os-linux" checked />
-    <input class="switch" type="radio" name="os" id="os-win" />
-
+    <input class="switch" type="radio" name="lang" id="lang-es" aria-label="Español" checked />
+    <input class="switch" type="radio" name="lang" id="lang-en" aria-label="English" />
+    <input class="switch" type="radio" name="os" id="os-linux" aria-label="Linux" checked />
+    <input class="switch" type="radio" name="os" id="os-mac" aria-label="macOS" />
+    <input class="switch" type="radio" name="os" id="os-win" aria-label="Windows" />
     <div class="wrap">
+      <a class="skip" href="#download"
+        ><span data-lang="es" lang="es">Ir a la descarga</span><span data-lang="en" lang="en">Skip to download</span></a
+      >
       <header>
-        <!-- La marca: dos anillos de seis puntos, el interior girado un sexto de vuelta.
-             Es la misma que pinta la TUI y el instalador al terminar. -->
-        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-          <g class="outer">
-            <circle cx="50" cy="12" r="6.5" />
-            <circle cx="82.9" cy="31" r="6.5" />
-            <circle cx="82.9" cy="69" r="6.5" />
-            <circle cx="50" cy="88" r="6.5" />
-            <circle cx="17.1" cy="69" r="6.5" />
-            <circle cx="17.1" cy="31" r="6.5" />
-          </g>
-          <g class="inner">
-            <circle cx="59" cy="34.4" r="3.5" />
-            <circle cx="68" cy="50" r="3.5" />
-            <circle cx="59" cy="65.6" r="3.5" />
-            <circle cx="41" cy="65.6" r="3.5" />
-            <circle cx="32" cy="50" r="3.5" />
-            <circle cx="41" cy="34.4" r="3.5" />
-          </g>
-        </svg>
-        <div>
-          <div class="brand">Bioinformática.org</div>
-          <div class="tagline">bioinformatics co-scientist</div>
-        </div>
-        <div class="langs">
-          <label for="lang-es">ES</label>
-          <label for="lang-en">EN</label>
-        </div>
+        <a href="#" class="brand" aria-label="Helix Agent"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M6 3c0 9 12 9 12 18M18 3c0 9-12 9-12 18M7 6h10M8 18h8M10 10h4M10 14h4" /></svg
+          ><span>helix<span class="period">.</span></span
+          ><span class="brand-tag">AGENT</span></a
+        >
+        <nav aria-label="Language"><label for="lang-es">ES</label><label for="lang-en">EN</label></nav>
+        <a class="repo-link" href="https://github.com/webiwabou/bioinformatica.org">GitHub ↗</a>
       </header>
-
-      <h1 data-lang="es">Descarga Bioinformática.org</h1>
-      <h1 data-lang="en">Download Bioinformática.org</h1>
-
-      <p class="lead" data-lang="es">
-        Un co-científico en tu terminal. Le cuentas con tus palabras lo que quieres averiguar y
-        trabaja contigo: propone el camino, comprueba lo que hace falta, enseña cada comando antes
-        de ejecutarlo y deja constancia de lo que hizo para que otra persona pueda comprobarlo.
-      </p>
-      <p class="lead" data-lang="en">
-        A co-scientist in your terminal. Tell it in your own words what you want to find out and it
-        works alongside you: it proposes the route, checks what is needed, shows every command before
-        running it, and leaves a record of what it did so that someone else can check it.
-      </p>
-
-      <div class="systems">
-        <label for="os-mac">macOS</label>
-        <label for="os-linux">Linux</label>
-        <label for="os-win">Windows</label>
-      </div>
-
-      <div class="step">
-        <div class="num">1</div>
-        <div class="body">
-          <h2 data-lang="es">Abre la terminal</h2>
-          <h2 data-lang="en">Open the terminal</h2>
-
-          <p data-os="mac" data-lang="es">
-            Pulsa <kbd>⌘</kbd> + <kbd>Espacio</kbd>, escribe <em>Terminal</em> y pulsa
-            <kbd>Enter</kbd>.
-          </p>
-          <p data-os="mac" data-lang="en">
-            Press <kbd>⌘</kbd> + <kbd>Space</kbd>, type <em>Terminal</em> and press <kbd>Enter</kbd>.
-          </p>
-
-          <p data-os="linux" data-lang="es">
-            Pulsa <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>, o busca <em>Terminal</em> entre
-            tus aplicaciones.
-          </p>
-          <p data-os="linux" data-lang="en">
-            Press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>, or look for <em>Terminal</em>
-            among your applications.
-          </p>
-
-          <p data-os="win" data-lang="es">
-            Pulsa la tecla <kbd>Windows</kbd>, escribe <em>PowerShell</em> y pulsa <kbd>Enter</kbd>.
-          </p>
-          <p data-os="win" data-lang="en">
-            Press the <kbd>Windows</kbd> key, type <em>PowerShell</em> and press <kbd>Enter</kbd>.
-          </p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="num">2</div>
-        <div class="body">
-          <h2 data-lang="es">Copia esta línea, pégala y pulsa Enter</h2>
-          <h2 data-lang="en">Copy this line, paste it and press Enter</h2>
-
-          <div
-            class="cmd"
-            data-os="mac linux"
-            data-copy="curl -fsSL https://webiwabou.github.io/bioinformatica.org/install | bash"
-          >
-            <pre><span class="prompt">$ </span>curl -fsSL https://webiwabou.github.io/bioinformatica.org/install | bash</pre>
-          </div>
-
-          <div
-            class="cmd"
-            data-os="win"
-            data-copy="irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex"
-          >
-            <pre><span class="prompt">&gt; </span>irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex</pre>
-          </div>
-
-          <p class="note" data-os="mac linux" data-lang="es">
-            Tarda menos de un minuto. Descarga el programa que corresponde a tu sistema, lo deja en
-            <code>~/.bioinformatica/bin</code> y añade esa carpeta a tu <code>PATH</code>. No pide
-            contraseña ni permisos de administrador: vive en tu carpeta personal.
-          </p>
-          <p class="note" data-os="mac linux" data-lang="en">
-            It takes less than a minute. It downloads the build for your system, puts it in
-            <code>~/.bioinformatica/bin</code> and adds that folder to your <code>PATH</code>. No
-            password and no administrator rights: it lives in your home folder.
-          </p>
-
-          <p class="note" data-os="win" data-lang="es">
-            En Windows hay un paso más, y el instalador se encarga. Las herramientas que el agente
-            orquesta necesitan Linux, y Windows ya lo trae: se llama WSL. Si no lo tienes, el
-            instalador te enseña el comando que lo instala y te pide permiso antes de nada. Eso sí
-            pide permisos de administrador y reiniciar una vez. Después el agente vive dentro de ese
-            Linux y tú lo llamas desde PowerShell como cualquier otro programa.
-          </p>
-          <p class="note" data-os="win" data-lang="en">
-            Windows has one extra step, and the installer handles it. The tools the agent drives need
-            Linux, and Windows already ships it: it is called WSL. If you do not have it, the
-            installer shows you the command that installs it and asks before doing anything. That
-            part does need administrator rights and one restart. After that the agent lives inside
-            that Linux and you call it from PowerShell like any other program.
-          </p>
-
-          <p class="note" data-lang="es">
-            Pegar un comando que no has leído es un acto de confianza. Puedes leer antes lo que hace:
-            <a href="./install">el de macOS y Linux</a>, <a href="./install.ps1">el de Windows</a>.
-          </p>
-          <p class="note" data-lang="en">
-            Pasting a command you have not read is an act of trust. You can read it first:
-            <a href="./install">the macOS and Linux one</a>,
-            <a href="./install.ps1">the Windows one</a>.
-          </p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="num">3</div>
-        <div class="body">
-          <h2 data-lang="es">Cierra la terminal, ábrela otra vez y arranca</h2>
-          <h2 data-lang="en">Close the terminal, open it again and start</h2>
-
-          <p class="note" data-lang="es">
-            Hay que reabrirla para que reconozca el comando nuevo. Después, conecta un proveedor de
-            modelos y entra en la carpeta de tu trabajo:
-          </p>
-          <p class="note" data-lang="en">
-            You need to reopen it for the new command to be recognised. Then connect a model provider
-            and go into your working folder:
-          </p>
-
-          <div class="cmd" data-os="mac linux" data-lang="es">
-            <pre><span class="prompt">$ </span>bioinformatica providers login   <span class="comment"># conectar un proveedor</span>
-<span class="prompt">$ </span>cd ~/mi-analisis                 <span class="comment"># tu carpeta de trabajo</span>
-<span class="prompt">$ </span>bioinformatica                   <span class="comment"># abrir la interfaz</span></pre>
-          </div>
-          <div class="cmd" data-os="mac linux" data-lang="en">
-            <pre><span class="prompt">$ </span>bioinformatica providers login   <span class="comment"># connect a provider</span>
-<span class="prompt">$ </span>cd ~/my-analysis                 <span class="comment"># your working folder</span>
-<span class="prompt">$ </span>bioinformatica                   <span class="comment"># open the interface</span></pre>
-          </div>
-
-          <div class="cmd" data-os="win" data-lang="es">
-            <pre><span class="prompt">&gt; </span>bioinformatica providers login   <span class="comment"># conectar un proveedor</span>
-<span class="prompt">&gt; </span>cd C:\mi-analisis                <span class="comment"># tu carpeta de trabajo</span>
-<span class="prompt">&gt; </span>bioinformatica                   <span class="comment"># abrir la interfaz</span></pre>
-          </div>
-          <div class="cmd" data-os="win" data-lang="en">
-            <pre><span class="prompt">&gt; </span>bioinformatica providers login   <span class="comment"># connect a provider</span>
-<span class="prompt">&gt; </span>cd C:\my-analysis                <span class="comment"># your working folder</span>
-<span class="prompt">&gt; </span>bioinformatica                   <span class="comment"># open the interface</span></pre>
-          </div>
-
-          <p class="note" data-lang="es">Y ya puedes escribirle con tus palabras:</p>
-          <p class="note" data-lang="en">And then you can just write to it in your own words:</p>
-
-          <div class="cmd" data-lang="es">
-            <pre><span class="comment">&gt;</span> Tengo 12 FASTQ pareados de RNA-seq de hígado de ratón en ./datos,
-<span class="comment">&gt;</span> seis controles y seis tratados. Quiero cuantificar expresión génica.</pre>
-          </div>
-          <div class="cmd" data-lang="en">
-            <pre><span class="comment">&gt;</span> I have 12 paired RNA-seq FASTQ files from mouse liver in ./data,
-<span class="comment">&gt;</span> six controls and six treated. I want to quantify gene expression.</pre>
-          </div>
-        </div>
-      </div>
-
-      <div class="fine">
-        <details>
-          <summary>
-            <span data-lang="es">Qué más necesita el ordenador</span><span data-lang="en">What else the computer needs</span>
-          </summary>
-          <div class="content">
-            <p data-lang="es">
-              El agente orquesta herramientas del ecosistema y no las sustituye. Para ejecutar
-              análisis de verdad hacen falta <a href="https://www.nextflow.io">Nextflow</a> con un
-              Java compatible, y un backend de contenedores: Docker, o conda/mamba.
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p data-lang="es" lang="es" class="eyebrow">BIOINFORMÁTICA, CONTIGO</p>
+            <p data-lang="en" lang="en" class="eyebrow">BIOINFORMATICS, TOGETHER</p>
+            <h1 data-lang="es" lang="es">Tu próxima pregunta.<br /><em>Un nuevo hallazgo.</em></h1>
+            <h1 data-lang="en" lang="en">Your next question.<br /><em>A new discovery.</em></h1>
+            <p data-lang="es" lang="es" class="lead">
+              La investigación empieza con una pregunta. Helix Agent te ayuda a convertirla en un análisis: organiza los
+              pasos, trabaja con tus herramientas y deja un registro que puedes revisar y compartir.
             </p>
-            <p data-lang="en">
-              The agent drives the tools of the ecosystem, it does not replace them. To run real
-              analyses you need <a href="https://www.nextflow.io">Nextflow</a> with a compatible
-              Java, and a container backend: Docker, or conda/mamba.
+            <p data-lang="en" lang="en" class="lead">
+              Research starts with a question. Helix Agent helps you turn it into an analysis: plan the steps, work with
+              your tools, and keep a record you can review and share.
             </p>
-            <p data-lang="es">
-              No hace falta instalarlos antes. Este comando inspecciona el ordenador y dice, para
-              cada pieza que falte, si se puede instalar sin permisos de administrador y el comando
-              exacto. Es de sólo lectura: recomienda, nunca instala.
-            </p>
-            <p data-lang="en">
-              You do not need to install them first. This command inspects the machine and reports,
-              for every missing piece, whether it can be installed without administrator rights and
-              the exact command. It is read only: it recommends, it never installs.
-            </p>
-            <div class="cmd" data-copy="bioinformatica debug env">
-              <pre><span class="prompt">$ </span>bioinformatica debug env</pre>
+            <div class="hero-actions">
+              <a class="primary" href="#download"
+                ><span data-lang="es" lang="es">Instalar Helix Agent <span aria-hidden="true">↘</span></span
+                ><span data-lang="en" lang="en">Install Helix Agent <span aria-hidden="true">↘</span></span></a
+              ><span data-lang="es" lang="es" class="quiet">Código abierto · En tu terminal</span
+              ><span data-lang="en" lang="en" class="quiet">Open source · In your terminal</span>
             </div>
           </div>
-        </details>
-
-        <details>
-          <summary>
-            <span data-lang="es">Comprobar lo que has descargado</span><span data-lang="en">Checking what you downloaded</span>
-          </summary>
-          <div class="content">
-            <p data-lang="es">
-              Cada versión publicada lleva un fichero <code>SHA256SUMS</code> junto a los programas.
-              Si te descargas uno a mano desde
-              <a href="https://github.com/webiwabou/bioinformatica.org/releases">las releases</a>,
-              puedes comprobar que es exactamente el que se publicó:
-            </p>
-            <p data-lang="en">
-              Every published version ships a <code>SHA256SUMS</code> file next to the builds. If you
-              download one by hand from
-              <a href="https://github.com/webiwabou/bioinformatica.org/releases">the releases</a>,
-              you can check that it is exactly the one that was published:
-            </p>
-            <div class="cmd" data-copy="sha256sum --check SHA256SUMS">
-              <pre><span class="prompt">$ </span>sha256sum --check SHA256SUMS</pre>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="art-label">HELIX / AGENT</div>
+            <div class="helix-art">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M6 3c0 9 12 9 12 18M18 3c0 9-12 9-12 18M7 6h10M8 18h8M10 10h4M10 14h4" />
+              </svg>
+            </div>
+            <span class="molecule m1"></span><span class="molecule m2"></span><span class="molecule m3"></span>
+            <div class="art-caption">
+              <span data-lang="es" lang="es">De la pregunta a la evidencia</span
+              ><span data-lang="en" lang="en">From question to evidence</span>
             </div>
           </div>
-        </details>
-
-        <details>
-          <summary>
-            <span data-lang="es">Otras formas de instalarlo</span><span data-lang="en">Other ways to install it</span>
-          </summary>
-          <div class="content">
-            <ul data-lang="es">
-              <li>
-                Una versión concreta:
-                <code>curl -fsSL https://webiwabou.github.io/bioinformatica.org/install | bash -s -- --version 0.1.0</code>
-              </li>
-              <li>
-                El programa suelto, sin script: descárgalo de
-                <a href="https://github.com/webiwabou/bioinformatica.org/releases">las releases</a> y
-                ponlo en tu <code>PATH</code>.
-              </li>
-              <li>
-                Desde el código fuente, con <a href="https://bun.sh">Bun</a> 1.3.x: las instrucciones
-                están en el
-                <a href="https://github.com/webiwabou/bioinformatica.org#instalación">README</a>.
-              </li>
-            </ul>
-            <ul data-lang="en">
-              <li>
-                A specific version:
-                <code>curl -fsSL https://webiwabou.github.io/bioinformatica.org/install | bash -s -- --version 0.1.0</code>
-              </li>
-              <li>
-                The plain binary, no script: download it from
-                <a href="https://github.com/webiwabou/bioinformatica.org/releases">the releases</a>
-                and put it on your <code>PATH</code>.
-              </li>
-              <li>
-                From source, with <a href="https://bun.sh">Bun</a> 1.3.x: the instructions are in the
-                <a href="https://github.com/webiwabou/bioinformatica.org#instalación">README</a>.
-              </li>
-            </ul>
+        </section>
+        <section class="features" aria-label="Helix Agent">
+          <article>
+            <span class="index">01</span>
+            <h2 data-lang="es" lang="es">Dale contexto</h2>
+            <h2 data-lang="en" lang="en">Start with context</h2>
+            <p data-lang="es" lang="es">
+              Cuéntale qué datos tienes y qué quieres investigar, con tus propias palabras.
+            </p>
+            <p data-lang="en" lang="en">Describe your data and what you want to investigate, in your own words.</p>
+          </article>
+          <article>
+            <span class="index">02</span>
+            <h2 data-lang="es" lang="es">Construye el análisis</h2>
+            <h2 data-lang="en" lang="en">Build your analysis</h2>
+            <p data-lang="es" lang="es">
+              Revisa la propuesta y las herramientas necesarias antes de poner el análisis en marcha.
+            </p>
+            <p data-lang="en" lang="en">Review the plan and the tools it needs before starting your analysis.</p>
+          </article>
+          <article>
+            <span class="index">03</span>
+            <h2 data-lang="es" lang="es">Conserva la evidencia</h2>
+            <h2 data-lang="en" lang="en">Keep the evidence</h2>
+            <p data-lang="es" lang="es">
+              Consulta los comandos, resultados y registros para comprobar cómo se hizo el trabajo.
+            </p>
+            <p data-lang="en" lang="en">Inspect commands, results and records to understand how the work was done.</p>
+          </article>
+        </section>
+        <section class="download" id="download">
+          <div class="section-heading">
+            <div>
+              <p data-lang="es" lang="es" class="eyebrow">EMPIEZA AQUÍ</p>
+              <p data-lang="en" lang="en" class="eyebrow">START HERE</p>
+              <h2 data-lang="es" lang="es">Tu terminal, con Helix.</h2>
+              <h2 data-lang="en" lang="en">Your terminal, with Helix.</h2>
+            </div>
+            <p data-lang="es" lang="es" class="quiet">Elige tu sistema y sigue los pasos.</p>
+            <p data-lang="en" lang="en" class="quiet">Choose your system and follow the steps.</p>
           </div>
-        </details>
-
-        <details>
-          <summary>
-            <span data-lang="es">Por qué existe</span><span data-lang="en">Why it exists</span>
-          </summary>
-          <div class="content">
-            <p data-lang="es">
-              Un resultado producido por un agente tiene que poder defenderse ante alguien que no
-              estuvo en la sala: un director de tesis, un revisor, uno mismo dieciocho meses después.
-              Y ahí el relato del propio agente no vale nada. Por eso, sobre cada campaña,
-              Bioinformática.org emite cuatro artefactos pensados para que los verifique un tercero
-              sin ejecutar el agente, sin modelo y sin red, y para que digan en voz alta lo que
-              <em>no</em> demuestran.
-            </p>
-            <p data-lang="en">
-              A result produced by an agent has to stand up in front of someone who was not in the
-              room: a thesis supervisor, a reviewer, yourself eighteen months later. And there the
-              agent's own account of itself is worth nothing. That is why, for every campaign,
-              Bioinformática.org emits four artefacts built to be verified by a third party without
-              running the agent, without a model and without a network, and to say out loud what they
-              do <em>not</em> prove.
-            </p>
-            <p data-lang="es">
-              <a href="https://github.com/webiwabou/bioinformatica.org#los-cuatro-artefactos"
-                >Los cuatro artefactos, explicados</a
-              >.
-            </p>
-            <p data-lang="en">
-              <a href="https://github.com/webiwabou/bioinformatica.org#los-cuatro-artefactos"
-                >The four artefacts, explained</a
-              >.
-            </p>
+          <div class="systems" role="group" aria-label="Operating system">
+            <label for="os-linux">Linux</label><label for="os-mac">macOS</label><label for="os-win">Windows</label>
           </div>
-        </details>
-
-        <footer>
-          <a href="https://github.com/webiwabou/bioinformatica.org">GitHub</a> ·
-          <a href="https://github.com/webiwabou/bioinformatica.org/issues" data-lang="es">Incidencias</a>
-          <a href="https://github.com/webiwabou/bioinformatica.org/issues" data-lang="en">Issues</a> ·
-          <a href="https://github.com/webiwabou/bioinformatica.org/blob/main/LICENSE" data-lang="es"
-            >Licencia MIT</a
+          <div class="install-grid">
+            <div class="install-main">
+              <section class="step">
+                <span class="num">1</span>
+                <div>
+                  <h3 data-lang="es" lang="es">Prepara la descarga</h3>
+                  <h3 data-lang="en" lang="en">Prepare your download</h3>
+                  <div data-os="linux">
+                    <p data-lang="es" lang="es">
+                      Abre la terminal desde el menú de aplicaciones. Puedes usar wget o curl instalado con el gestor de
+                      paquetes de tu distribución.
+                    </p>
+                    <p data-lang="en" lang="en">
+                      Open Terminal from your applications menu. Use wget or curl installed through your distribution’s
+                      package manager.
+                    </p>
+                    <div class="distro-list">
+                      <details>
+                        <summary>
+                          <span data-lang="es" lang="es">Ubuntu / Debian / Linux Mint</span
+                          ><span data-lang="en" lang="en">Ubuntu / Debian / Linux Mint</span>
+                        </summary>
+                        <div class="detail-body">
+                          <div
+                            class="cmd"
+                            data-copy="sudo apt update &amp;&amp; sudo apt install -y wget ca-certificates tar gzip"
+                          >
+                            <pre><code>sudo apt update &amp;&amp; sudo apt install -y wget ca-certificates tar gzip</code></pre>
+                          </div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          <span data-lang="es" lang="es">Fedora</span><span data-lang="en" lang="en">Fedora</span>
+                        </summary>
+                        <div class="detail-body">
+                          <div class="cmd" data-copy="sudo dnf install wget ca-certificates tar gzip">
+                            <pre><code>sudo dnf install wget ca-certificates tar gzip</code></pre>
+                          </div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          <span data-lang="es" lang="es">Arch / EndeavourOS</span
+                          ><span data-lang="en" lang="en">Arch / EndeavourOS</span>
+                        </summary>
+                        <div class="detail-body">
+                          <div class="cmd" data-copy="sudo pacman -Syu wget ca-certificates tar gzip">
+                            <pre><code>sudo pacman -Syu wget ca-certificates tar gzip</code></pre>
+                          </div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          <span data-lang="es" lang="es">openSUSE</span><span data-lang="en" lang="en">openSUSE</span>
+                        </summary>
+                        <div class="detail-body">
+                          <div class="cmd" data-copy="sudo zypper install wget ca-certificates tar gzip">
+                            <pre><code>sudo zypper install wget ca-certificates tar gzip</code></pre>
+                          </div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          <span data-lang="es" lang="es">Alpine</span><span data-lang="en" lang="en">Alpine</span>
+                        </summary>
+                        <div class="detail-body">
+                          <div class="cmd" data-copy="sudo apk add bash wget ca-certificates tar gzip">
+                            <pre><code>sudo apk add bash wget ca-certificates tar gzip</code></pre>
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+                    <p data-lang="es" lang="es" class="note">
+                      Si ya tienes wget, puedes pasar al siguiente paso. Estos comandos pueden pedir tu contraseña para
+                      instalar los paquetes del sistema.
+                    </p>
+                    <p data-lang="en" lang="en" class="note">
+                      Already have wget? Continue to the next step. These commands may ask for your password to install
+                      system packages.
+                    </p>
+                  </div>
+                  <div data-os="mac">
+                    <p data-lang="es" lang="es">
+                      Abre Spotlight con <kbd>⌘</kbd> + <kbd>Espacio</kbd>, busca <strong>Terminal</strong> y presiona
+                      Enter. Usaremos el curl incluido en macOS.
+                    </p>
+                    <p data-lang="en" lang="en">
+                      Open Spotlight with <kbd>⌘</kbd> + <kbd>Space</kbd>, search for <strong>Terminal</strong>, and
+                      press Enter. We’ll use the curl included with macOS.
+                    </p>
+                  </div>
+                  <div data-os="win">
+                    <p data-lang="es" lang="es">
+                      Busca <strong>PowerShell</strong> en el menú Inicio. El agente se ejecuta dentro de Linux mediante
+                      WSL y podrás abrirlo desde PowerShell.
+                    </p>
+                    <p data-lang="en" lang="en">
+                      Find <strong>PowerShell</strong> in the Start menu. The agent runs inside Linux through WSL and
+                      can be launched from PowerShell.
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <section class="step">
+                <span class="num">2</span>
+                <div>
+                  <h3 data-lang="es" lang="es">Instala el agente</h3>
+                  <h3 data-lang="en" lang="en">Install the agent</h3>
+                  <div data-os="linux">
+                    <p data-lang="es" lang="es">
+                      Con wget, descarga el instalador y ejecútalo solo si la descarga termina correctamente.
+                    </p>
+                    <p data-lang="en" lang="en">
+                      With wget, download the installer and run it only after a successful download.
+                    </p>
+                    <div
+                      class="cmd"
+                      data-copy="wget -O helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh"
+                    >
+                      <pre><code>wget -O helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh</code></pre>
+                    </div>
+                    <details>
+                      <summary>
+                        <span data-lang="es" lang="es">¿Prefieres curl?</span
+                        ><span data-lang="en" lang="en">Prefer curl?</span>
+                      </summary>
+                      <div class="detail-body">
+                        <p data-lang="es" lang="es">
+                          Usa la versión del sistema. En Ubuntu o Debian puedes instalarla con
+                          <code>sudo apt install curl</code>. La ruta completa evita usar por accidente la versión de
+                          Snap.
+                        </p>
+                        <p data-lang="en" lang="en">
+                          Use the system version. On Ubuntu or Debian, install it with
+                          <code>sudo apt install curl</code>. The full path avoids accidentally selecting the Snap
+                          version.
+                        </p>
+                        <div
+                          class="cmd"
+                          data-copy="/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh"
+                        >
+                          <pre><code>/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh</code></pre>
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                  <div data-os="mac">
+                    <div
+                      class="cmd"
+                      data-copy="/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh"
+                    >
+                      <pre><code>/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install &amp;&amp; bash helix-install.sh</code></pre>
+                    </div>
+                  </div>
+                  <div data-os="win">
+                    <div class="cmd" data-copy="irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex">
+                      <pre><code>irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex</code></pre>
+                    </div>
+                    <p data-lang="es" lang="es" class="note">
+                      Si falta WSL, el instalador te guía para habilitarlo. Ese paso requiere permisos de administrador
+                      y puede pedir un reinicio. Luego, vuelve a ejecutar el comando.
+                    </p>
+                    <p data-lang="en" lang="en" class="note">
+                      If WSL is missing, the installer guides you through enabling it. This requires administrator
+                      rights and may need a restart. Then run the command again.
+                    </p>
+                  </div>
+                  <p data-lang="es" lang="es" class="note">
+                    El agente se instala en tu carpeta personal. En Linux y macOS, este paso no requiere sudo. Puedes
+                    revisar el <a href="./install">script de Linux y macOS</a> o el
+                    <a href="./install.ps1">de Windows</a> antes de ejecutarlo.
+                  </p>
+                  <p data-lang="en" lang="en" class="note">
+                    The agent installs in your home folder. On Linux and macOS, this step does not need sudo. You can
+                    read the <a href="./install">Linux and macOS script</a> or the
+                    <a href="./install.ps1">Windows script</a> before running it.
+                  </p>
+                </div>
+              </section>
+              <section class="step">
+                <span class="num">3</span>
+                <div>
+                  <h3 data-lang="es" lang="es">Abre tu primera sesión</h3>
+                  <h3 data-lang="en" lang="en">Start your first session</h3>
+                  <p data-lang="es" lang="es">
+                    Abre una terminal nueva y conecta tu proveedor de modelos. Después, entra a la carpeta de tu
+                    proyecto y ejecuta el agente.
+                  </p>
+                  <p data-lang="en" lang="en">
+                    Open a new terminal and connect your model provider. Then open your project folder and launch the
+                    agent.
+                  </p>
+                  <div class="cmd" data-copy="bioinformatica providers login">
+                    <pre><code>bioinformatica providers login</code></pre>
+                  </div>
+                  <p data-lang="es" lang="es">Desde la carpeta de tu proyecto:</p>
+                  <p data-lang="en" lang="en">From your project folder:</p>
+                  <div class="cmd" data-copy="bioinformatica">
+                    <pre><code>bioinformatica</code></pre>
+                  </div>
+                  <p data-lang="es" lang="es" class="note">
+                    Por compatibilidad con las instalaciones existentes, el comando sigue siendo
+                    <code>bioinformatica</code>.
+                  </p>
+                  <p data-lang="en" lang="en" class="note">
+                    For compatibility with existing installations, the command remains <code>bioinformatica</code>.
+                  </p>
+                </div>
+              </section>
+            </div>
+            <aside>
+              <div class="aside-card">
+                <span class="aside-icon"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 3c0 9 12 9 12 18M18 3c0 9-12 9-12 18M7 6h10M8 18h8M10 10h4M10 14h4" /></svg
+                ></span>
+                <h3 data-lang="es" lang="es">¿curl te falla en Ubuntu?</h3>
+                <h3 data-lang="en" lang="en">Trouble with curl on Ubuntu?</h3>
+                <p data-lang="es" lang="es">
+                  Si lo instalaste mediante Snap, sus restricciones de acceso a archivos pueden interferir con la
+                  instalación. Usa wget desde APT o el curl del sistema. El instalador admite ambos y evita los
+                  ejecutables de Snap.
+                </p>
+                <p data-lang="en" lang="en">
+                  Snap’s file access restrictions can interfere with installation. Use wget from APT or the system curl.
+                  The installer supports both and skips Snap executables.
+                </p>
+                <a href="https://snapcraft.io/docs/explanation/security/security-policies/"
+                  ><span data-lang="es" lang="es">Cómo funciona el aislamiento de Snap ↗</span
+                  ><span data-lang="en" lang="en">About Snap confinement ↗</span></a
+                >
+              </div>
+              <div class="aside-card manual">
+                <h3 data-lang="es" lang="es">¿Prefieres el navegador?</h3>
+                <h3 data-lang="en" lang="en">Prefer your browser?</h3>
+                <p data-lang="es" lang="es">
+                  Descarga el archivo de tu sistema desde GitHub. Linux usa <code>.tar.gz</code> y macOS
+                  <code>.zip</code>. En Windows, usa el instalador de WSL que aparece en esta página.
+                </p>
+                <p data-lang="en" lang="en">
+                  Download the archive for your system from GitHub. Linux uses <code>.tar.gz</code> and macOS uses
+                  <code>.zip</code>. On Windows, use this page’s WSL installer.
+                </p>
+                <a class="secondary" href="https://github.com/webiwabou/bioinformatica.org/releases/latest"
+                  ><span data-lang="es" lang="es">Ver descargas ↗</span
+                  ><span data-lang="en" lang="en">Browse downloads ↗</span></a
+                >
+                <details>
+                  <summary>
+                    <span data-lang="es" lang="es">Elegir e instalar el archivo</span
+                    ><span data-lang="en" lang="en">Choose and install an archive</span>
+                  </summary>
+                  <div class="detail-body">
+                    <p data-lang="es" lang="es">
+                      Elige <code>arm64</code> para ARM o Apple Silicon y <code>x64</code> para Intel/AMD. En x64, la
+                      variante <code>baseline</code> sirve para equipos sin AVX2; en Alpine, elige <code>musl</code>.
+                    </p>
+                    <p data-lang="en" lang="en">
+                      Choose <code>arm64</code> for ARM or Apple Silicon, or <code>x64</code> for Intel/AMD. On x64,
+                      choose <code>baseline</code> for CPUs without AVX2; on Alpine, choose <code>musl</code>.
+                    </p>
+                    <p data-lang="es" lang="es">
+                      Extrae el archivo y abre una terminal en la carpeta del ejecutable. En Linux o macOS:
+                    </p>
+                    <p data-lang="en" lang="en">
+                      Extract the archive and open a terminal in the executable’s folder. On Linux or macOS:
+                    </p>
+                    <div
+                      class="cmd"
+                      data-copy='mkdir -p "$HOME/.bioinformatica/bin"
+cp bioinformatica "$HOME/.bioinformatica/bin/"
+chmod +x "$HOME/.bioinformatica/bin/bioinformatica"'
+                    >
+                      <pre><code>mkdir -p &quot;$HOME/.bioinformatica/bin&quot;
+cp bioinformatica &quot;$HOME/.bioinformatica/bin/&quot;
+chmod +x &quot;$HOME/.bioinformatica/bin/bioinformatica&quot;</code></pre>
+                    </div>
+                    <p data-lang="es" lang="es">Puedes iniciarlo por su ruta completa, sin configurar el PATH:</p>
+                    <p data-lang="en" lang="en">Launch it by its full path without configuring PATH:</p>
+                    <div class="cmd" data-copy="~/.bioinformatica/bin/bioinformatica">
+                      <pre><code>~/.bioinformatica/bin/bioinformatica</code></pre>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </aside>
+          </div>
+        </section>
+        <section class="first-question">
+          <p data-lang="es" lang="es" class="eyebrow">UNA IDEA PARA EMPEZAR</p>
+          <p data-lang="en" lang="en" class="eyebrow">A PLACE TO START</p>
+          <blockquote data-lang="es" lang="es">
+            “Tengo datos de RNA-seq de seis muestras de control y seis tratadas. Quiero comparar su expresión génica.
+            ¿Qué necesitamos revisar primero?”
+          </blockquote>
+          <blockquote data-lang="en" lang="en">
+            “I have RNA-seq data from six control samples and six treated samples. I want to compare gene expression.
+            What should we check first?”
+          </blockquote>
+        </section>
+        <section class="faq">
+          <h2 data-lang="es" lang="es">Antes de empezar</h2>
+          <h2 data-lang="en" lang="en">Before you begin</h2>
+          <details>
+            <summary>
+              <span data-lang="es" lang="es">¿Necesito un modelo o una suscripción?</span
+              ><span data-lang="en" lang="en">Do I need a model or a subscription?</span>
+            </summary>
+            <div class="detail-body">
+              <p data-lang="es" lang="es">
+                Helix Agent no incluye un modelo propio. Conecta un proveedor con tus credenciales; la disponibilidad y
+                el costo dependen del proveedor y del modelo que elijas.
+              </p>
+              <p data-lang="en" lang="en">
+                Helix Agent does not include a model. Connect a provider with your credentials; availability and cost
+                depend on your provider and chosen model.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              <span data-lang="es" lang="es">¿Qué herramientas necesito para analizar mis datos?</span
+              ><span data-lang="en" lang="en">Which tools do I need to analyze my data?</span>
+            </summary>
+            <div class="detail-body">
+              <p data-lang="es" lang="es">
+                Depende del análisis. Los flujos de Nextflow requieren Java y pueden usar Docker, Apptainer o Conda.
+                Este comando revisa tu equipo y sugiere cómo instalar lo que falte, sin hacer cambios:
+              </p>
+              <p data-lang="en" lang="en">
+                It depends on your analysis. Nextflow workflows require Java and may use Docker, Apptainer or Conda.
+                This command checks your machine and suggests how to install missing tools without making changes:
+              </p>
+              <div class="cmd" data-copy="bioinformatica debug env">
+                <pre><code>bioinformatica debug env</code></pre>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary>
+              <span data-lang="es" lang="es">¿Cómo verifico una descarga manual?</span
+              ><span data-lang="en" lang="en">How do I verify a manual download?</span>
+            </summary>
+            <div class="detail-body">
+              <p data-lang="es" lang="es">
+                Descarga también <code>SHA256SUMS</code> de la misma versión y guárdalo junto al archivo. Ejecuta el
+                comando desde esa carpeta. Si no descargaste todos los archivos, aparecerán avisos por los que faltan;
+                comprueba que el tuyo indique <code>OK</code>.
+              </p>
+              <p data-lang="en" lang="en">
+                Download <code>SHA256SUMS</code> from the same release and save it beside the archive. Run the command
+                from that folder. Missing archives may produce warnings; check that your downloaded file reports
+                <code>OK</code>.
+              </p>
+              <p data-lang="es" lang="es">En Linux:</p>
+              <p data-lang="en" lang="en">On Linux:</p>
+              <div class="cmd" data-copy="sha256sum --check --ignore-missing SHA256SUMS">
+                <pre><code>sha256sum --check --ignore-missing SHA256SUMS</code></pre>
+              </div>
+              <p data-lang="es" lang="es">En macOS:</p>
+              <p data-lang="en" lang="en">On macOS:</p>
+              <div class="cmd" data-copy="shasum -a 256 --check SHA256SUMS">
+                <pre><code>shasum -a 256 --check SHA256SUMS</code></pre>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary>
+              <span data-lang="es" lang="es">¿Puedo instalar una versión específica o compilar el código?</span
+              ><span data-lang="en" lang="en">Can I install a specific version or build from source?</span>
+            </summary>
+            <div class="detail-body">
+              <p data-lang="es" lang="es">
+                Sí. Después de descargar el instalador, ejecútalo con
+                <code>bash helix-install.sh --version X.Y.Z</code>, reemplazando <code>X.Y.Z</code> por una versión
+                publicada. Para compilarlo, sigue la
+                <a href="https://github.com/webiwabou/bioinformatica.org#instalación">guía del repositorio</a>.
+              </p>
+              <p data-lang="en" lang="en">
+                Yes. After downloading the installer, run <code>bash helix-install.sh --version X.Y.Z</code>, replacing
+                <code>X.Y.Z</code> with a published version. To build from source, follow the
+                <a href="https://github.com/webiwabou/bioinformatica.org#instalación">repository guide</a>.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              <span data-lang="es" lang="es">¿Qué queda registrado del análisis?</span
+              ><span data-lang="en" lang="en">What does the analysis record?</span>
+            </summary>
+            <div class="detail-body">
+              <p data-lang="es" lang="es">
+                El agente puede generar un dossier, un registro del protocolo, un recuento del trabajo y manifiestos de
+                archivos. Sirven para revisar lo realizado y sus límites. Encontrarás los detalles en
+                <a href="https://github.com/webiwabou/bioinformatica.org#los-cuatro-artefactos"
+                  >la documentación de los cuatro artefactos</a
+                >.
+              </p>
+              <p data-lang="en" lang="en">
+                The agent can produce a dossier, a protocol ledger, a work tally and file manifests to help review the
+                work and its limits. Read about
+                <a href="https://github.com/webiwabou/bioinformatica.org#los-cuatro-artefactos">the four artifacts</a>.
+              </p>
+            </div>
+          </details>
+        </section>
+      </main>
+      <footer>
+        <a class="brand footer-brand" href="#"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            aria-hidden="true"
           >
-          <a href="https://github.com/webiwabou/bioinformatica.org/blob/main/LICENSE" data-lang="en"
-            >MIT licence</a
-          >
-        </footer>
-      </div>
+            <path d="M6 3c0 9 12 9 12 18M18 3c0 9-12 9-12 18M7 6h10M8 18h8M10 10h4M10 14h4" /></svg
+          ><span>helix<span class="period">.</span></span
+          ><span class="brand-tag">AGENT</span></a
+        >
+        <p data-lang="es" lang="es">Preguntas que avanzan. Ciencia que puedes revisar.</p>
+        <p data-lang="en" lang="en">Move your questions forward. Keep your science reviewable.</p>
+        <div>
+          <a href="https://github.com/webiwabou/bioinformatica.org">GitHub</a
+          ><a href="https://github.com/webiwabou/bioinformatica.org/issues"
+            ><span data-lang="es" lang="es">Reportar un problema</span
+            ><span data-lang="en" lang="en">Report an issue</span></a
+          ><a href="https://github.com/webiwabou/bioinformatica.org/blob/main/LICENSE">MIT</a>
+        </div>
+      </footer>
     </div>
-
-    <script>
-      // El JavaScript sólo elige el estado inicial y lo recuerda. La conmutación
-      // de idioma y de sistema la hace el CSS sobre los radios, así que sin JS la
-      // página sigue entera: sólo se queda en español y en Linux.
-      const store = {
-        get(key) {
-          try {
-            return localStorage.getItem(key)
-          } catch {
-            return null
-          }
-        },
-        set(key, value) {
-          try {
-            localStorage.setItem(key, value)
-          } catch {}
-        },
-      }
-
-      const titles = { es: "Descargar Bioinformática.org", en: "Download Bioinformática.org" }
-
-      function applyLang(lang) {
-        document.getElementById("lang-" + lang).checked = true
-        document.documentElement.lang = lang
-        document.title = titles[lang]
-      }
-
-      function detectLang() {
-        const saved = store.get("lang")
-        if (saved === "es" || saved === "en") return saved
-        return (navigator.language || "es").toLowerCase().startsWith("es") ? "es" : "en"
-      }
-
-      function detectOs() {
-        const saved = store.get("os")
-        if (saved === "mac" || saved === "linux" || saved === "win") return saved
-        const ua = navigator.userAgent || ""
-        if (/Windows/i.test(ua)) return "win"
-        if (/Mac|iPhone|iPad/i.test(ua)) return "mac"
-        return "linux"
-      }
-
-      applyLang(detectLang())
-      document.getElementById("os-" + detectOs()).checked = true
-
-      for (const lang of ["es", "en"]) {
-        document.getElementById("lang-" + lang).addEventListener("change", () => {
-          store.set("lang", lang)
-          applyLang(lang)
-        })
-      }
-
-      for (const os of ["mac", "linux", "win"]) {
-        document.getElementById("os-" + os).addEventListener("change", () => store.set("os", os))
-      }
-
-      // El botón de copiar se crea desde JS: sin JS no aparece un botón que no
-      // haría nada, y el comando sigue ahí para seleccionarlo a mano.
-      for (const block of document.querySelectorAll(".cmd[data-copy]")) {
-        const button = document.createElement("button")
-        button.className = "copy"
-        button.type = "button"
-        const labels = { es: "copiar", en: "copy" }
-        const done = { es: "copiado", en: "copied" }
-        const label = () => labels[document.documentElement.lang] || labels.es
-        button.textContent = label()
-        button.addEventListener("click", async () => {
-          const text = block.dataset.copy
-          try {
-            await navigator.clipboard.writeText(text)
-          } catch {
-            const area = document.createElement("textarea")
-            area.value = text
-            area.style.position = "fixed"
-            area.style.opacity = "0"
-            document.body.appendChild(area)
-            area.select()
-            document.execCommand("copy")
-            area.remove()
-          }
-          button.textContent = done[document.documentElement.lang] || done.es
-          button.dataset.done = "true"
-          setTimeout(() => {
-            button.textContent = label()
-            delete button.dataset.done
-          }, 2000)
-        })
-        block.appendChild(button)
-      }
-    </script>
+    <script src="./site.js"></script>
   </body>
 </html>

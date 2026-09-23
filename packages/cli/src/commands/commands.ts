@@ -4,7 +4,7 @@ import { Spec } from "../framework/spec"
 declare const BIOINFORMATICA_CLI_NAME: string | undefined
 
 export const Commands = Spec.make(typeof BIOINFORMATICA_CLI_NAME === "string" ? BIOINFORMATICA_CLI_NAME : "bioinformatica", {
-  description: "Bioinformática.org command line interface",
+  description: "Helix Agent command line interface",
   commands: [
     Spec.make("api", {
       description: "Make a request to the running server",

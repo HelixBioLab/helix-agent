@@ -1,6 +1,6 @@
 {
-  "name": "Bioinformatica",
-  "short_name": "Bioinformatica",
+  "name": "Helix Agent",
+  "short_name": "Helix Agent",
   "id": "/",
   "start_url": "/",
   "scope": "/",
@@ -18,7 +18,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#080808",
-  "background_color": "#080808",
+  "theme_color": "#244d3e",
+  "background_color": "#fafbf8",
   "display": "standalone"
 }

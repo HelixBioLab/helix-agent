@@ -6,7 +6,7 @@ Use it before proposing or running a pipeline, or when diagnosing an environment
 - the platform: Linux, macOS, native Windows, or Linux inside a WSL distribution. Nothing in this stack runs natively on Windows; inside WSL it also reports whether the working directory sits on a Windows drive (/mnt/...), which is read across a slow bridge and can make a run several times longer
 - Nextflow, Java, and nf-core tools presence and versions
 - Docker (installed + whether the daemon is running) and conda/mamba availability
-- the container backend Bioinformática.org would use (Docker preferred, conda fallback)
+- the container backend Helix Agent would use (Docker preferred, conda fallback)
 - CPU cores and total/available memory
 - GPU presence, VRAM, and driver
 

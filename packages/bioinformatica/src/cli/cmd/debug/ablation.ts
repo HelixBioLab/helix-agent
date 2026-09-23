@@ -66,7 +66,7 @@ export const AblationCommand = effectCmd({
         prompt: persona,
         // Derived from the persona itself, never hardcoded. A literal drifts the moment
         // the identity text changes — and it did: the marker read "You are Bioinformatica"
-        // while the persona opens "You are Bioinformática.org,", so this check reported
+        // while the persona opens "You are Helix Agent,", so this check reported
         // "no leak" unconditionally. A verifier that cannot fail is worse than none.
         personaMarker: NfcorePersona.Persona.split("\n")[0]!.slice(0, 40),
         skillNames: builtinSkills,

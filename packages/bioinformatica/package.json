@@ -154,7 +154,7 @@
   "overrides": {
     "drizzle-orm": "catalog:"
   },
-  "description": "Bioinformática.org — agente de terminal para análisis bioinformáticos con nf-core/Nextflow, con proveniencia verificable",
+  "description": "Helix Agent — agente de terminal para análisis bioinformáticos con nf-core/Nextflow, con proveniencia verificable",
   "homepage": "https://bioinformatica.org",
   "repository": {
     "type": "git",

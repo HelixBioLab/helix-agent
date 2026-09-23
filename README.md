@@ -1,4 +1,7 @@
-# Bioinformática.org
+# Helix Agent
+
+La identidad visual comparte la hélice, el verde bosque y los tonos salvia de Helix Learn.
+El comando sigue siendo `bioinformatica` para mantener la compatibilidad con las instalaciones existentes.
 
 Un agente de terminal para bioinformática: ejecuta pipelines de
 [nf-core](https://nf-co.re)/[Nextflow](https://www.nextflow.io) a partir de una pregunta
@@ -14,7 +17,7 @@ herramientas actuales sólo cubren una.
 diferencial entre estos dos grupos?"— no tiene por qué hablar el vocabulario de la
 herramienta: no tiene por qué saber que eso es `nf-core/rnaseq`, ni qué release fijar, ni
 qué columnas lleva su samplesheet, ni cómo se le dice a Nextflow que esta máquina tiene 16
-GB y no 200. Bioinformática.org hace ese trabajo: traduce la pregunta a un pipeline y una
+GB y no 200. Helix Agent hace ese trabajo: traduce la pregunta a un pipeline y una
 versión concretos, construye la samplesheet a partir de una descripción en prosa de los
 datos, comprueba el entorno, arma el comando exacto, lo **enseña**, pide aprobación, y sólo
 entonces lo ejecuta. El científico no escribe un comando de pipeline a mano en ningún
@@ -25,7 +28,7 @@ producido por un agente tiene que poder defenderse ante alguien que no estuvo en
 un director de tesis, un revisor, un tribunal, uno mismo dieciocho meses después. Y ahí el
 relato del propio agente no vale nada. Que un modelo afirme que trabajó de forma autónoma,
 que respetó el protocolo o que los datos no cambiaron es exactamente lo que no se puede
-comprobar. Por eso Bioinformática.org emite, sobre cada campaña, cuatro artefactos
+comprobar. Por eso Helix Agent emite, sobre cada campaña, cuatro artefactos
 diseñados para que **los verifique un tercero sin ejecutar el agente, sin modelo y sin
 red** — y para que digan en voz alta lo que *no* demuestran.
 
@@ -48,8 +51,20 @@ Para compilar desde el código fuente hace falta además **[Bun](https://bun.sh)
 ## Instalación
 
 ```bash
-curl -fsSL https://webiwabou.github.io/bioinformatica.org/install | bash
+wget -O helix-install.sh https://webiwabou.github.io/bioinformatica.org/install && bash helix-install.sh
 ```
+
+El instalador funciona con wget o curl nativos y evita las versiones de Snap.
+En Ubuntu/Debian puedes instalar wget con `sudo apt update && sudo apt install -y wget ca-certificates`.
+En macOS, usa el curl del sistema:
+
+```bash
+/usr/bin/curl -fL -o helix-install.sh https://webiwabou.github.io/bioinformatica.org/install && bash helix-install.sh
+```
+
+La [página de descarga](https://webiwabou.github.io/bioinformatica.org/) incluye instrucciones
+para Fedora, Arch, openSUSE y Alpine, además de descarga manual desde el navegador.
+
 
 Descarga el binario que corresponde a la plataforma desde
 [GitHub Releases](https://github.com/webiwabou/bioinformatica.org/releases), lo deja en
@@ -303,7 +318,7 @@ excepción.
 
 ## Modelos
 
-Bioinformática.org no trae modelo propio. El catálogo se obtiene de
+Helix Agent no trae modelo propio. El catálogo se obtiene de
 [models.dev](https://models.dev) y las credenciales se configuran localmente:
 
 ```bash
@@ -391,7 +406,7 @@ lugar de en un README que nadie lee. Los que importan a quien vaya a usar esto:
 
 No hay detectores de repeticiones integrados. No hay alineadores estructurales. No hay
 descarga de estructuras. Los clientes de bases de datos consultan metadatos y devuelven
-citas; no son un motor de análisis. Bioinformática.org **orquesta** herramientas validadas
+citas; no son un motor de análisis. Helix Agent **orquesta** herramientas validadas
 del ecosistema —los CLIs oficiales `nextflow` y `nf-core`, y en general lo que el campo ya
 usa y cita— y hace la contabilidad alrededor; no reimplementa sus algoritmos.
 
@@ -436,6 +451,6 @@ Ver [CITATION.cff](./CITATION.cff).
 
 MIT — ver [LICENSE](./LICENSE).
 
-Bioinformática.org es un fork de [opencode](https://github.com/anomalyco/opencode) (MIT),
+Helix Agent es un fork de [opencode](https://github.com/anomalyco/opencode) (MIT),
 del que conserva el núcleo de agente CLI/TUI. El aviso de copyright original se mantiene
 íntegro en `LICENSE`.

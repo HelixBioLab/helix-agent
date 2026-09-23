@@ -53,7 +53,7 @@ function View(props: { api: TuiPluginApi; sessionID: string }) {
                 ✕
               </text>
             </box>
-            <text fg={theme().textMuted}>Bioinformatica runs on the model provider you connect to it.</text>
+            <text fg={theme().textMuted}>Helix Agent runs on the model provider you connect to it.</text>
             <text fg={theme().textMuted}>Connect from 75+ providers, including Claude, GPT, Gemini etc</text>
             <box flexDirection="row" gap={1} justifyContent="space-between">
               <text fg={theme().text}>Connect provider</text>
@@ -67,7 +67,7 @@ function View(props: { api: TuiPluginApi; sessionID: string }) {
         <span style={{ fg: theme().text }}>{path().name}</span>
       </text>
       <text fg={theme().textMuted}>
-        <span style={{ fg: theme().success }}>•</span> <b>Bioinformática</b>
+        <span style={{ fg: theme().success }}>•</span> <b>Helix Agent</b>
         <span style={{ fg: theme().text }}>
           <b>.org</b>
         </span>

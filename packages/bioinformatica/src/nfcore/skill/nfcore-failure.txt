@@ -21,7 +21,7 @@ Never jump straight to "just retry". Follow this fixed sequence:
    `resume: true` so Nextflow continues from cached tasks instead of starting over. (Exception:
    a pipeline/revision error means nothing ran, so resume won't help — rebuild the command.)
 
-5. **Know the limits.** If the diagnosis says the cause is beyond Bioinformática.org — an external network or
+5. **Know the limits.** If the diagnosis says the cause is beyond Helix Agent — an external network or
    service outage, something needing permissions you can't grant, a hardware limit, or a
    data-specific tool error — say so plainly, explain why, and stop. Do not keep guessing or
    retrying blindly.

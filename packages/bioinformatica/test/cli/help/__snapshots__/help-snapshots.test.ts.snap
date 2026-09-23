@@ -148,8 +148,8 @@ Commands:
                                                   logs (read-only)
   bioinformatica debug runs                       list recorded nf-core runs from this project's
                                                   .bioinformatica/runs/ (read-only)
-  bioinformatica debug validate [pipelines..]     validate Bioinformática.org's generic capabilities
-                                                  across a curated set of nf-core pipelines
+  bioinformatica debug validate [pipelines..]     validate Helix Agent's generic capabilities across
+                                                  a curated set of nf-core pipelines
   bioinformatica debug manifest <outdir>          build a reproducibility manifest for a completed
                                                   run's outdir (read-only)
   bioinformatica debug critique <analysis>        run the adaptive critique for an analysis type

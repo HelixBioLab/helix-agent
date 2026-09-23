@@ -17,7 +17,7 @@ parameters genuinely cannot achieve what they need.
 1. **Plan** the fork with `nfcore_fork` (pipeline + release). It gives you the exact
    `git clone --branch <release>` command and the target folder.
 2. **Run the clone** through the shell tool — it writes files, so it asks for approval.
-3. **Record** it by calling `nfcore_fork` again once the folder exists; Bioinformática.org pins the
+3. **Record** it by calling `nfcore_fork` again once the folder exists; Helix Agent pins the
    baseline commit and stores the provenance.
 4. **Make the change** in `pipelines/<name>-fork/`, then keep it conformant: run
    `nfcore_lint` on the fork and fix findings (a fork that drifts out of nf-core

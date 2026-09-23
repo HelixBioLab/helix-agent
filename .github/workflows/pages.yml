@@ -27,6 +27,7 @@ on:
       - "install"
       - "install.ps1"
       - ".github/workflows/pages.yml"
+      - "script/test-install.py"
   workflow_dispatch:
 
 permissions:
@@ -73,6 +74,9 @@ jobs:
           grep -q 'webiwabou.github.io/bioinformatica.org/install' _site/index.html
           grep -q 'webiwabou.github.io/bioinformatica.org/install.ps1' _site/index.html
           pwsh -NoProfile -File script/check-powershell-syntax.ps1 _site/install.ps1
+
+      - name: Test native curl and wget installation
+        run: python3 script/test-install.py
 
       - name: Upload the site
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0

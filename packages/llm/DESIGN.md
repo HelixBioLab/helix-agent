@@ -12,7 +12,7 @@
 - Release posture: pre-1.0, with a stable-core intent
 - Migration posture: clean break; do not preserve compatibility aliases
 - Primary audience: general-purpose TypeScript developers using Effect
-- Secondary audience: Bioinformática.org and other durable agent runtimes
+- Secondary audience: Helix Agent and other durable agent runtimes
 
 The package name leaves room for future domains such as embeddings, images, and
 speech. Those domains are not part of this design and should not be forced into
@@ -448,7 +448,7 @@ only tool experience.
 
 ## One Provider Turn
 
-Bioinformática.org and other durable runtimes need to own persistence, tool settlement,
+Helix Agent and other durable runtimes need to own persistence, tool settlement,
 and continuation. They use the explicit turn API:
 
 ```ts
@@ -1091,7 +1091,7 @@ The redesign intentionally removes or changes these current concepts:
 | `providerExecuted` dispatch check       | Distinct hosted-tool constructors                           |
 | One wrapped `LLMError`                  | Tagged domain error union                                   |
 
-Bioinformática.org should migrate to `generateTurn` / `streamTurn`, preserving its durable
+Helix Agent should migrate to `generateTurn` / `streamTurn`, preserving its durable
 prompt admission, persistence, permission, tool settlement, and continuation
 boundaries. It should not use the automatic run API for Session orchestration.
 

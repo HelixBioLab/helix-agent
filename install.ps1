@@ -1,6 +1,6 @@
 #!/usr/bin/env pwsh
 #
-# Instalador de Bioinformatica.org para Windows.
+# Instalador de Helix Agent para Windows.
 #
 #   irm https://webiwabou.github.io/bioinformatica.org/install.ps1 | iex
 #
@@ -33,10 +33,9 @@
 # NOTA SOBRE LA CODIFICACION: este fichero es ASCII puro, sin una sola tilde,
 # incluidos los comentarios. Se descarga con `irm` desde un servidor que no
 # declara charset, y Windows PowerShell 5.1 decide entonces por su cuenta como
-# decodificarlo; en ASCII todas esas decisiones dan el mismo resultado. Es la
-# misma razon por la que el nombre distribuible es `bioinformatica` y no
-# `Bioinformatica.org` (ver packages/script/src/identity.ts): el acento no
-# sobrevive a ciertos canales, y este es uno.
+# decodificarlo; en ASCII todas esas decisiones dan el mismo resultado.
+# El identificador distribuible sigue siendo `bioinformatica` por compatibilidad.
+# La marca publica es Helix Agent (ver packages/script/src/identity.ts).
 
 [CmdletBinding()]
 param(
@@ -65,7 +64,7 @@ $ServiceDistros = @("docker-desktop", "docker-desktop-data", "rancher-desktop", 
 # versiones recientes; para las viejas se limpian los nulos al leer.
 $env:WSL_UTF8 = "1"
 
-function Write-Title($text) { Write-Host "`n$text" -ForegroundColor Cyan }
+function Write-Title($text) { Write-Host "`n$text" -ForegroundColor Green }
 function Write-Muted($text) { Write-Host $text -ForegroundColor DarkGray }
 function Write-Fail($text) { Write-Host $text -ForegroundColor Red }
 
@@ -146,7 +145,7 @@ function Get-DefaultDistro() {
 function Invoke-BioinformaticaInstall {
 
     Write-Host ""
-    Write-Host "Bioinformatica.org" -ForegroundColor Cyan
+    Write-Host "Helix Agent" -ForegroundColor Green
     Write-Muted "instalador para Windows"
 
     # 1. Hay WSL? ---------------------------------------------------------------
@@ -171,7 +170,7 @@ function Invoke-BioinformaticaInstall {
         Write-Host ""
         Write-Host "El comando que lo instala es:"
         Write-Host ""
-        Write-Host "    wsl --install" -ForegroundColor Cyan
+        Write-Host "    wsl --install" -ForegroundColor Green
         Write-Host ""
         Write-Muted "Necesita permisos de administrador y, casi siempre, reiniciar el equipo."
         Write-Muted "Se abrira una ventana nueva pidiendo esos permisos."
@@ -182,7 +181,7 @@ function Invoke-BioinformaticaInstall {
             try {
                 Start-Process -FilePath "powershell.exe" -Verb RunAs -ArgumentList @(
                     "-NoProfile", "-ExecutionPolicy", "Bypass", "-NoExit", "-Command",
-                    "Write-Host 'Instalando WSL. Al terminar, reinicia el equipo.' -ForegroundColor Cyan; wsl.exe --install"
+                    "Write-Host 'Instalando WSL. Al terminar, reinicia el equipo.' -ForegroundColor Green; wsl.exe --install"
                 )
                 $launched = $true
             } catch {
@@ -251,7 +250,7 @@ function Invoke-BioinformaticaInstall {
     # 3. Instalar el agente dentro de WSL ---------------------------------------
 
     $downloader = ""
-    foreach ($candidate in @("curl", "wget")) {
+    foreach ($candidate in @("/usr/bin/wget", "/usr/bin/curl", "wget", "curl")) {
         if ((Invoke-WslQuiet @("-d", $Distro, "--", "sh", "-c", "command -v $candidate")) -eq 0) {
             $downloader = $candidate
             break
@@ -264,11 +263,11 @@ function Invoke-BioinformaticaInstall {
         return 1
     }
 
-    if ($downloader -eq "curl") { $fetch = "curl -fsSL '$InstallUrl'" } else { $fetch = "wget -qO- '$InstallUrl'" }
+    if ($downloader -match "curl$") { $fetch = "$downloader -fsSL '$InstallUrl'" } else { $fetch = "$downloader -qO- '$InstallUrl'" }
     if ($Version -ne "") { $pin = "VERSION='$Version' " } else { $pin = "" }
 
     Write-Title "Instalando el agente dentro de $Distro"
-    & wsl.exe -d $Distro -- bash -lc "$fetch | $pin bash" | Out-Host
+    & wsl.exe -d $Distro -- bash -o pipefail -lc "$fetch | $pin bash" | Out-Host
     if ($LASTEXITCODE -ne 0) {
         Write-Fail "`nLa instalacion dentro de $Distro fallo."
         return 1
@@ -294,7 +293,7 @@ function Invoke-BioinformaticaInstall {
     # en la columna 0, y su contenido entra literal en el fichero .cmd.
     $shim = @"
 @echo off
-rem Lanzador generado por el instalador de Bioinformatica.org.
+rem Lanzador generado por el instalador de Helix Agent.
 rem El agente vive dentro de WSL ($Distro); esto solo lo llama, situandolo en la
 rem carpeta desde la que has escrito el comando.
 wsl.exe -d $Distro --cd "%CD%" -- $binary %*
@@ -319,22 +318,16 @@ wsl.exe -d $Distro --cd "%CD%" -- $binary %*
 
     # 5. Listo ------------------------------------------------------------------
     #
-    # La marca son dos anillos de seis puntos. Aqui van en ASCII por la misma razon
+    # La marca es una helice de ADN. Aqui va en ASCII por la misma razon
     # que el resto del fichero; en la terminal de Linux, donde el agente vive de
     # verdad, se dibuja con los glifos buenos.
 
     Write-Host ""
-    Write-Host "      *      " -ForegroundColor Cyan
-    Write-Host "*    " -ForegroundColor Cyan -NoNewline
-    Write-Host "o o" -ForegroundColor DarkGray -NoNewline
-    Write-Host "    *" -ForegroundColor Cyan -NoNewline
-    Write-Host "   Bioinformatica.org"
-    Write-Host "    o   o    " -ForegroundColor DarkGray
-    Write-Host "*    " -ForegroundColor Cyan -NoNewline
-    Write-Host "o o" -ForegroundColor DarkGray -NoNewline
-    Write-Host "    *" -ForegroundColor Cyan -NoNewline
-    Write-Host "   bioinformatics co-scientist" -ForegroundColor DarkGray
-    Write-Host "      *      " -ForegroundColor Cyan
+    Write-Host "*       o" -ForegroundColor Green
+    Write-Host "  *---o     Helix Agent" -ForegroundColor Green
+    Write-Host "    *       bioinformatics co-scientist" -ForegroundColor DarkGray
+    Write-Host "  o---*" -ForegroundColor Green
+    Write-Host "o       *" -ForegroundColor Green
     Write-Host ""
     Write-Muted "Configura un proveedor de modelos y abre un proyecto:"
     Write-Host ""

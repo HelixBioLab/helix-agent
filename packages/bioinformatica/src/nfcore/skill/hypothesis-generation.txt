@@ -17,7 +17,7 @@ Each candidate must carry its footing, claim-typed like any saved claim (see cla
 - **model-inferred** — your own reasoning, plainly flagged.
 Do not dress a guess as evidence. A model-inferred hypothesis is welcome — as long as it is
 labelled as one. Each hypothesis must also propose a **concrete test**, ideally naming the
-nf-core pipeline or analysis that would test it, so it stays inside what Bioinformática.org can actually
+nf-core pipeline or analysis that would test it, so it stays inside what Helix Agent can actually
 run.
 
 ## Rank transparently

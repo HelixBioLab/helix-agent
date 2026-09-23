@@ -6,7 +6,7 @@
 // offline and drop into any transport (`res.end(...)`, Effect `response.end`,
 // etc.).
 //
-// The visual language mirrors the Bioinformática.org app: the design tokens are a
+// The visual language mirrors the Helix Agent app: the design tokens are a
 // curated subset of the OC-2 semantic tokens in `packages/ui/src/styles/theme.css`,
 // and the wordmark is the brand set in type, the same treatment as the `Logo`
 // component in `packages/ui/src/components/logo.tsx`. Keep this file in sync with
@@ -26,7 +26,7 @@ export function success(options?: CallbackPageOptions) {
     body: renderCard({
       status: "success",
       headline: "Authorization successful",
-      message: provider ? `Bioinformática.org is now connected to ${escapeHtml(provider)}.` : "Bioinformática.org is now authorized.",
+      message: provider ? `Helix Agent is now connected to ${escapeHtml(provider)}.` : "Helix Agent is now authorized.",
       footnote: "You can close this window.",
     }),
     script: options?.autoClose === false ? undefined : AUTO_CLOSE_SCRIPT,
@@ -41,10 +41,10 @@ export function error(detail: string, options?: CallbackPageOptions) {
       status: "error",
       headline: "Authorization failed",
       message: provider
-        ? `Bioinformática.org couldn't finish connecting to ${escapeHtml(provider)}.`
-        : "Bioinformática.org couldn't complete authorization.",
+        ? `Helix Agent couldn't finish connecting to ${escapeHtml(provider)}.`
+        : "Helix Agent couldn't complete authorization.",
       detail,
-      footnote: "Close this window and try again from Bioinformática.org.",
+      footnote: "Close this window and try again from Helix Agent.",
     }),
   })
 }
@@ -101,7 +101,7 @@ function renderDocument(input: { title: string; body: string; script?: string })
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>${escapeHtml(input.title)} · Bioinformática.org</title>
+    <title>${escapeHtml(input.title)} · Helix Agent</title>
     <style>${STYLES}</style>
   </head>
   <body>
@@ -117,8 +117,8 @@ function bootstrapScript(options: BootstrapOptions) {
 var TOKEN_URL=new URL(${scriptString(options.tokenPath)},window.location.origin).href;
 (function(){
   var card=document.getElementById("oc-card"),headline=document.getElementById("oc-headline"),message=document.getElementById("oc-message"),detail=document.getElementById("oc-detail"),footnote=document.getElementById("oc-footnote");
-  function fail(text){card.dataset.status="error";headline.textContent="Authorization failed";message.textContent=PROVIDER?("Bioinformática.org couldn't finish connecting to "+PROVIDER+"."):"Bioinformática.org couldn't complete authorization.";if(text){detail.textContent=text;detail.hidden=false}footnote.textContent="Close this window and try again from Bioinformática.org."}
-  function ok(){card.dataset.status="success";headline.textContent="Authorization successful";message.textContent=PROVIDER?("Bioinformática.org is now connected to "+PROVIDER+"."):"Bioinformática.org is now authorized.";detail.hidden=true;footnote.textContent="You can close this window.";setTimeout(function(){try{window.close()}catch(e){}},2500)}
+  function fail(text){card.dataset.status="error";headline.textContent="Authorization failed";message.textContent=PROVIDER?("Helix Agent couldn't finish connecting to "+PROVIDER+"."):"Helix Agent couldn't complete authorization.";if(text){detail.textContent=text;detail.hidden=false}footnote.textContent="Close this window and try again from Helix Agent."}
+  function ok(){card.dataset.status="success";headline.textContent="Authorization successful";message.textContent=PROVIDER?("Helix Agent is now connected to "+PROVIDER+"."):"Helix Agent is now authorized.";detail.hidden=true;footnote.textContent="You can close this window.";setTimeout(function(){try{window.close()}catch(e){}},2500)}
   try{
     var hash=new URLSearchParams((window.location.hash||"").slice(1));
     var search=new URLSearchParams(window.location.search||"");
@@ -151,32 +151,32 @@ function escapeHtml(value: string) {
 // light; dark applies via prefers-color-scheme. The [data-theme] selectors let a
 // host force a scheme without changing the default.
 const LIGHT_VARS = `
-    --oc-bg: #f8f8f8;
-    --oc-card: #fcfcfc;
-    --oc-text-strong: #171717;
-    --oc-text-base: #6f6f6f;
+    --oc-bg: #fafbf8;
+    --oc-card: #f0f3eb;
+    --oc-text-strong: #243c32;
+    --oc-text-base: #60705f;
     --oc-text-weak: #8f8f8f;
-    --oc-border-weak: #e5e5e5;
-    --oc-icon-strong: #171717;
+    --oc-border-weak: #dce3d5;
+    --oc-icon-strong: #243c32;
     --oc-icon-base: #8f8f8f;
     --oc-icon-weak: #dbdbdb;
-    --oc-success: #2dba26;
+    --oc-success: #527343;
     --oc-error: #ed4831;
     --oc-detail-bg: #fff8f6;
     --oc-detail-border: #fdc3b7;
     --oc-shadow: 0 16px 48px -6px rgba(0,0,0,.10), 0 6px 12px -2px rgba(0,0,0,.05), 0 1px 2px rgba(0,0,0,.06);`
 
 const DARK_VARS = `
-    --oc-bg: #101010;
-    --oc-card: #161616;
+    --oc-bg: #14251e;
+    --oc-card: #1b3026;
     --oc-text-strong: rgba(255,255,255,.936);
     --oc-text-base: rgba(255,255,255,.618);
     --oc-text-weak: rgba(255,255,255,.422);
-    --oc-border-weak: #282828;
+    --oc-border-weak: #38503f;
     --oc-icon-strong: #ededed;
     --oc-icon-base: #7e7e7e;
     --oc-icon-weak: #343434;
-    --oc-success: #12c905;
+    --oc-success: #dcebb5;
     --oc-error: #fc533a;
     --oc-detail-bg: #28110c;
     --oc-detail-border: #6a1206;
@@ -216,7 +216,7 @@ const STYLES = `
   }
   .brand { display: flex; justify-content: center; margin-bottom: 1.75rem; }
   .brand svg { height: 19px; width: auto; }
-  .wordmark text { font-family: var(--oc-font-sans); font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+  .wordmark text { font-family: Georgia, 'Times New Roman', serif; font-size: 28px; font-weight: 400; letter-spacing: -0.02em; }
   .status { display: flex; justify-content: center; margin-bottom: 1.125rem; }
   .icon { display: none; line-height: 0; }
   .icon svg { display: block; }
@@ -254,8 +254,8 @@ const STYLES = `
 // Wordmark — the brand set in type rather than a logotype, so what the page shows
 // is exactly the name it claims. Same treatment as the `Logo` component in
 // packages/ui/src/components/logo.tsx.
-const WORDMARK = `<svg class="wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 42" role="img" aria-label="Bioinformática.org">
-        <text x="0" y="30" textLength="268" lengthAdjust="spacingAndGlyphs" fill="var(--oc-icon-strong)">Bioinformática<tspan fill="var(--oc-icon-base)">.org</tspan></text>
+const WORDMARK = `<svg class="wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 42" role="img" aria-label="Helix Agent">
+        <text x="0" y="30" textLength="268" lengthAdjust="spacingAndGlyphs" fill="var(--oc-icon-strong)">helix<tspan fill="#809c61">.</tspan> agent</text>
       </svg>`
 
 const ICON_CHECK = `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="m8.5 12.5 2.4 2.4 4.6-5.4" /></svg>`

@@ -68,7 +68,7 @@ describe("nfcore.manifest summarize", () => {
     expect(out).toContain("Nextflow 24.10.0")
     expect(out).toContain("Tool versions recorded: 1")
     expect(out).toContain("nf-prov BCO/RO-Crate present: yes")
-    expect(out).toContain("Human approvals logged (Bioinformática.org layer): 1")
+    expect(out).toContain("Human approvals logged (Helix Agent layer): 1")
     expect(out).toContain("Session summary: included")
   })
 })

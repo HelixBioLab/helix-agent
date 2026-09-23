@@ -17,10 +17,8 @@ const REPOSITORY = process.env["GITHUB_REPOSITORY"] ?? "webiwabou/bioinformatica
  * The distribution name: the binary, the npm package, the container image, the
  * AUR package and the Homebrew formula all derive from it.
  *
- * ASCII and lowercase by necessity. The product is called Bioinformática.org,
- * which is a brand and not an identifier: it carries an accent and a dot, and
- * neither survives a package registry, a shell command or an environment
- * variable prefix.
+ * The public brand is Helix Agent. Keep the distribution identifier stable so
+ * existing binaries, package references and installed configurations still work.
  */
 const DISTRIBUTION_NAME: string | undefined = "bioinformatica"
 
@@ -40,7 +38,7 @@ const DISTRIBUTION_NAME: string | undefined = "bioinformatica"
 const HOMEPAGE: string | undefined = "https://webiwabou.github.io/bioinformatica.org"
 
 /** The name as written for a human: in the TUI, the docs, and any citation. */
-export const BRAND = "Bioinformática.org"
+export const BRAND = "Helix Agent"
 
 const [owner, repo] = REPOSITORY.split("/")
 
